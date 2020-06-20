@@ -1,0 +1,125 @@
+.App {
+}
+
+.cropContainer {
+  background-color: white;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.cropContainer .cropper {
+  position: relative;
+  height: 80vh;
+  flex-shrink: 1;
+}
+
+.cropContainer .cropButton {
+  text-align: center;
+  vertical-align: middle;
+  flex-shrink: 0;
+  padding: 10px;
+}
+
+.images {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.gridElement {
+  width: 150px;
+  height: 150px;
+  max-width: vw;
+  max-height: vw;
+  line-height: 150px;
+  position: relative;
+  display: block;
+  text-align: center;
+  font-size: 5em;
+  color: white;
+}
+
+.NewImage {
+  background-color: lightgray;
+}
+
+.imgContainer {
+  text-align: center;
+  padding-bottom: 20px;
+  text-decoration: none;
+}
+
+.imgContainer .removeLink {
+  text-decoration: none;
+  font-weight: 500;
+  color: midnightblue;
+  cursor: pointer;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.NewImage input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+}
+
+.buttonRow {
+  text-align: center;
+}
+
+.resultRow .title {
+  padding-left: 20px;
+  font-size: 1.6em;
+  font-weight: 300;
+}
+
+.resultRow .body {
+  padding: 20px;
+  font-size: 1.2em;
+  font-weight: 300;
+}
+
+.resultDonut {
+  width: 100px;
+  height: 100px;
+}
+
+.resultLabels {
+  padding-left: 15px;
+}
+
+.resultLabels .vernacular {
+  font-size: 1.8em;
+  font-weight: 500;
+}
+
+.resultLabels .scientific {
+  font-style: italic;
+  font-weight: 200;
+  font-size: 1.4em;
+}
+
+.resultLabels .percentage {
+  font-weight: 300;
+  font-size: 0.85em;
+  line-height: 2em;
+}
+
+.resultRow {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+}

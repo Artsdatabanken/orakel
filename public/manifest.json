@@ -1,0 +1,8 @@
+{
+  "short_name": "Automatisk ID",
+  "name": "Automatisk identifisering av arter",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#f57c00",
+  "background_color": "#ffffff"
+}
