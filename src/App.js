@@ -56,8 +56,13 @@ function App() {
     axios
       .post("//ai.artsdatabanken.no/", formdata)
       .then((res) => {
+        let predictions = res.data.predictions.filter((pred) => pred.probability > 0.02);
+        if (predictions.length > 5) {
+          predictions = predictions.slice(0, 5)
+        }
+
         setPredictions(
-          res.data.predictions.filter((pred) => pred.probability > 0.01)
+          predictions
         );
         setLoading(false);
       })
@@ -100,14 +105,33 @@ function App() {
         ) : (
           <div>
             <div className="resultRow">
-              <span className="body">
-                Husk at resultatene er autogenerert, og kan være feil (også når
-                auto-id oppgir høy sikkerhet).
-              </span>
+              {predictions[0].probability > 0.5 ? (
+                <span className="body">
+                  Husk at resultatene er autogenerert, og kan være feil (også
+                  når orakelet oppgir høy sikkerhet).
+                </span>
+              ) : (
+                <span className="body">
+                  Orakelet er for usikker på gjenkjenningen til å si hva dette
+                  er.
+                </span>
+              )}
             </div>
-            {predictions.map((prediction) => (
-              <IdResult result={prediction} key={prediction.taxon.id} />
-            ))}
+
+            {predictions[0].probability < 0.8 && (
+              <div className="resultRow">
+                <span className="body">
+                  Det kan hjelpe å legge til flere bilder med ulike vinkler
+                  eller detaljer. Zoom også inn til arten du vil gjenkjenne, når
+                  det er flere arter kan resultatet gjenspeile det.
+                </span>
+              </div>
+            )}
+
+            {
+              predictions.map((prediction) => (
+                <IdResult result={prediction} key={prediction.taxon.id} />
+              ))}
           </div>
         )}
       </div>
