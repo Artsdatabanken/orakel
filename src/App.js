@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
+import Fab from "@material-ui/core/Fab";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import axios from "axios";
-
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import Dialog from "@material-ui/core/Dialog";
 import "./App.css";
 import ImageAdder from "./components/ImageAdder";
 import Image from "./components/Image";
@@ -15,6 +18,7 @@ function App() {
   const [uncroppedImages, setUncroppedImages] = useState([]);
   const [predictions, setPredictions] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const addImage = (img) => {
     for (let i of img) {
@@ -43,6 +47,16 @@ function App() {
   const delImage = (name) => {
     setCroppedImages(croppedImages.filter((i) => i.name !== name));
     setPredictions([]);
+  };
+
+  const handleClickOpen = () => {
+    setModalOpen(true);
+    console.log("open");
+  };
+
+  const handleClose = () => {
+    setModalOpen(false);
+    console.log("close");
   };
 
   const getId = () => {
@@ -136,6 +150,16 @@ function App() {
             ))}
           </div>
         )}
+
+        <div className="fabContainer">
+          <Fab
+            style={{ backgroundColor: "#f57c00", color: "white" }}
+            aria-label="Om appen"
+            onClick={handleClickOpen}
+          >
+            ?
+          </Fab>
+        </div>
       </div>
 
       {!!uncroppedImages.length &&
@@ -147,6 +171,63 @@ function App() {
             imgSize={500}
           />
         ))}
+
+      <Dialog
+        onClose={handleClose}
+        aria-labelledby="dialog-title"
+        open={modalOpen}
+        fullWidth={true}
+      >
+        <DialogTitle id="simple-dialog-title">Om orakelet</DialogTitle>
+        <DialogContent className="dialogContent">
+          <p>
+            Orakelet er Artsdatabankens app som prøver å artsbestemme bilder ved
+            hjelp av maskinlæring. Den er trent ved hjelp av bilder fra{" "}
+            <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>
+            , og utviklet i samarbeid med{" "}
+            <a href="https://www.naturalis.nl/en">
+              Naturalis Biodiversity Center
+            </a>
+            .
+          </p>
+
+          <p>
+            Last opp ett eller flere bilder ved å trykke på kamera-ikonet og
+            zoome inn på arten. Klikk deretter på "Identifiser" for å se hva
+            modellen tror det ser ut som.
+          </p>
+
+          <p>
+            Resultatene er autogenerert, og selv om konfidensen er høy betyr det
+            ikke at svaret er riktig. Sjekk derfor alltid med god litteratur,
+            for eksempel våre ekspertskrevne artsbeskrivelser på{" "}
+            <a href="https://www.artsdatabanken.no/arter-pa-nett">
+              Arter på nett
+            </a>
+            . Hvis du har bekreftet hvilken art det er, må du gjerne rapportere
+            observasjonen på{" "}
+            <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>
+            . Slik hjelper du forskere og forvaltere med din observasjon. I
+            tillegg kan bildene brukes til å forbedre neste versjon av denne
+            appen.
+          </p>
+
+          <p>
+            Bilder som blir lastet opp blir ikke lagret. Både appen og tjenesten
+            bak er åpen og gratis. Ta kontakt hvis du ønsker å bruke tjenesten i
+            din applikasjon eller nettside.
+          </p>
+
+          <p>
+            <img
+              src="Artsdatabanken.png"
+              alt="Artsdatabanken"
+              className="aboutLogo"
+            />
+            <img src="Naturalis.svg" className="aboutLogo" alt="Naturalis" />
+          </p>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
