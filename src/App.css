@@ -96,7 +96,7 @@
 }
 
 .resultRow .body {
-  padding: 20px;
+  padding: 15px;
   font-size: 1.2em;
   font-weight: 300;
 }
@@ -121,14 +121,22 @@
   font-size: 1.4em;
 }
 
+.resultLabels .group {
+  font-weight: 400;
+  font-size: 0.95em;
+  line-height: 1em;
+  font-variant: small-caps;
+}
+
 .resultLabels .percentage {
   font-weight: 300;
   font-size: 0.85em;
-  line-height: 2em;
+  line-height: 1.4em;
 }
 
 .resultRow {
   display: flex;
   align-items: center;
   padding-left: 15px;
+  padding-bottom: 15px;
 }

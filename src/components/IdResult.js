@@ -2,7 +2,6 @@ import React from "react";
 import "../App.css";
 
 function IdResult({ result }) {
-  
   const percentage = result.probability * 100;
   const strokes = percentage.toString() + " " + (100 - percentage).toString();
 
@@ -51,9 +50,13 @@ function IdResult({ result }) {
       </div>
 
       <div className="resultLabels">
-        <div className="vernacular">{result.taxon.vernacularName.charAt(0).toUpperCase() + result.taxon.vernacularName.slice(1)}</div>
+        <div className="vernacular">
+          {result.taxon.vernacularName.charAt(0).toUpperCase() +
+            result.taxon.vernacularName.slice(1)}
+        </div>
         <div className="scientific">{result.taxon.name}</div>
-        <div className="percentage">({Math.round(percentage)} % sikkerhet)</div>
+        <div className="percentage">({Math.round(percentage)} % konfidens)</div>
+        <div className="group">{result.taxon.groupName}</div>
       </div>
     </div>
   );

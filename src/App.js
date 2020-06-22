@@ -56,17 +56,20 @@ function App() {
     axios
       .post("//ai.artsdatabanken.no/", formdata)
       .then((res) => {
-        let predictions = res.data.predictions.filter((pred) => pred.probability > 0.02);
+        let predictions = res.data.predictions.filter(
+          (pred) => pred.probability > 0.02
+        );
         if (predictions.length > 5) {
-          predictions = predictions.slice(0, 5)
+          predictions = predictions.slice(0, 5);
         }
 
-        setPredictions(
-          predictions
-        );
+        setPredictions(predictions);
         setLoading(false);
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => {
+        console.log("error", error);
+        setLoading(false);
+      });
   };
 
   return (
@@ -128,10 +131,9 @@ function App() {
               </div>
             )}
 
-            {
-              predictions.map((prediction) => (
-                <IdResult result={prediction} key={prediction.taxon.id} />
-              ))}
+            {predictions.map((prediction) => (
+              <IdResult result={prediction} key={prediction.taxon.id} />
+            ))}
           </div>
         )}
       </div>
