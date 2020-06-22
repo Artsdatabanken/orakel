@@ -1,4 +1,13 @@
 .App {
+  height: 100%;
+}
+
+.Container {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 666px;
+  background-color: white;
+  min-height: 100%;
 }
 
 .cropContainer {

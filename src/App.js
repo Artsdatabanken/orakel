@@ -66,49 +66,51 @@ function App() {
 
   return (
     <div className="App">
-      <div className="images">
-        {croppedImages.map((img, index) => (
-          <Image img={img} key={index} delImage={delImage} />
-        ))}
-        <ImageAdder addImage={addImage} />
-      </div>
-
-      {!predictions.length ? (
-        !croppedImages.length ? (
-          <div className="resultRow">
-            <span className="body">
-              Trykk på kamera-ikonet for å laste opp et bilde som du ønsker å
-              artsbestemme. Det hjelper ofte å laste opp flere bilder fra
-              forskjellige vinkler.
-            </span>
-          </div>
-        ) : loading ? (
-          <div className="buttonRow">
-            <CircularProgress
-              style={{ color: "#f57c00", width: 100, height: 100 }}
-            />
-          </div>
-        ) : (
-          <div className="buttonRow">
-            <Button variant="contained" className="resultRow" onClick={getId}>
-              <CloudUploadIcon style={{ fontSize: "4em" }} />
-              <span className="title">Identifiser</span>
-            </Button>
-          </div>
-        )
-      ) : (
-        <div>
-          <div className="resultRow">
-            <span className="body">
-              Husk at resultatene er autogenerert, og kan være feil (også når
-              auto-id oppgir høy sikkerhet).
-            </span>
-          </div>
-          {predictions.map((prediction) => (
-            <IdResult result={prediction} key={prediction.taxon.id} />
+      <div className="Container">
+        <div className="images">
+          {croppedImages.map((img, index) => (
+            <Image img={img} key={index} delImage={delImage} />
           ))}
+          <ImageAdder addImage={addImage} />
         </div>
-      )}
+
+        {!predictions.length ? (
+          !croppedImages.length ? (
+            <div className="resultRow">
+              <span className="body">
+                Trykk på kamera-ikonet for å laste opp et bilde som du ønsker å
+                artsbestemme. Det hjelper ofte å laste opp flere bilder fra
+                forskjellige vinkler.
+              </span>
+            </div>
+          ) : loading ? (
+            <div className="buttonRow">
+              <CircularProgress
+                style={{ color: "#f57c00", width: 100, height: 100 }}
+              />
+            </div>
+          ) : (
+            <div className="buttonRow">
+              <Button variant="contained" className="resultRow" onClick={getId}>
+                <CloudUploadIcon style={{ fontSize: "4em" }} />
+                <span className="title">Identifiser</span>
+              </Button>
+            </div>
+          )
+        ) : (
+          <div>
+            <div className="resultRow">
+              <span className="body">
+                Husk at resultatene er autogenerert, og kan være feil (også når
+                auto-id oppgir høy sikkerhet).
+              </span>
+            </div>
+            {predictions.map((prediction) => (
+              <IdResult result={prediction} key={prediction.taxon.id} />
+            ))}
+          </div>
+        )}
+      </div>
 
       {!!uncroppedImages.length &&
         uncroppedImages.map((ucimg, index) => (
