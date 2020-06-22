@@ -12,6 +12,7 @@ import ImageAdder from "./components/ImageAdder";
 import Image from "./components/Image";
 import IdResult from "./components/IdResult";
 import ImageCropper from "./components/ImageCropper";
+import ReplayIcon from "@material-ui/icons/Replay";
 
 function App() {
   const [croppedImages, setCroppedImages] = useState([]);
@@ -48,6 +49,11 @@ function App() {
     setCroppedImages(croppedImages.filter((i) => i.name !== name));
     setPredictions([]);
   };
+
+  const resetImages = () => {
+    setCroppedImages([]);
+    setPredictions([]);
+  }
 
   const handleClickOpen = () => {
     setModalOpen(true);
@@ -94,6 +100,11 @@ function App() {
             <Image img={img} key={index} delImage={delImage} />
           ))}
           <ImageAdder addImage={addImage} />
+{ !!croppedImages.length &&
+          <div className="gridElement Reset" onClick={resetImages}>
+            <ReplayIcon style={{ fontSize: ".8em" }} />
+          </div>
+          }
         </div>
 
         {!predictions.length ? (
@@ -182,7 +193,7 @@ function App() {
         <DialogContent className="dialogContent">
           <p>
             Orakelet er Artsdatabankens app som prøver å artsbestemme bilder ved
-            hjelp av maskinlæring. Den er trent ved hjelp av bilder fra{" "}
+            hjelp av maskinlæring. Det er trent ved hjelp av bilder fra{" "}
             <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>
             , og utviklet i samarbeid med{" "}
             <a href="https://www.naturalis.nl/en">
@@ -197,10 +208,17 @@ function App() {
             modellen tror det ser ut som.
           </p>
 
+          <p className="quote">
+            I likhet med andre orakler kan svaret være en åpenbaring, men er det
+            alltid en sjanse for at svaret er feil, uklart, flertydig og/eller
+            krever tolkning.
+          </p>
+
           <p>
             Resultatene er autogenerert, og selv om konfidensen er høy betyr det
-            ikke at svaret er riktig. Sjekk derfor alltid med god litteratur,
-            for eksempel våre ekspertskrevne artsbeskrivelser på{" "}
+            ikke at svaret er riktig. Sjekk derfor alltid med relevant
+            litteratur, for eksempel våre ekspertskrevne artsbeskrivelser og
+            nøkler på{" "}
             <a href="https://www.artsdatabanken.no/arter-pa-nett">
               Arter på nett
             </a>

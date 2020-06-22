@@ -53,8 +53,12 @@
   color: white;
 }
 
-.NewImage {
+.images .NewImage {
   background-color: lightgray;
+}
+
+.images .Reset {
+  background-color: #f7ab60
 }
 
 .imgContainer {
@@ -66,7 +70,7 @@
 .imgContainer .removeLink {
   text-decoration: none;
   font-weight: 500;
-  color: midnightblue;
+  color: #333;
   cursor: pointer;
 }
 
@@ -145,7 +149,7 @@
 .fabContainer {
   position: absolute;
   right: 15px;
-  bottom: 15px;
+  bottom: 40px;
 }
 
 .fabContainer * {
@@ -158,7 +162,15 @@
 }
 
 .dialogContent p {
-  padding-bottom: 25px;
+  margin-bottom: 25px;
+}
+
+.dialogContent .quote {
+  border-left: #f57c00 3px solid ;
+  padding-left: 20px;
+  font-size: 1.2em;
+  font-weight: 300;
+  font-style: italic;
 }
 
 .aboutLogo {
