@@ -1,6 +1,10 @@
 import React, { Component } from "react";
+import Slider from "@material-ui/core/Slider";
 import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
+import ZoomOutIcon from "@material-ui/icons/ZoomOut";
+import ZoomInIcon from "@material-ui/icons/ZoomIn";
+import Grid from "@material-ui/core/Grid";
 import "cropperjs/dist/cropper.css";
 import "../App.css";
 
@@ -28,8 +32,10 @@ if (!HTMLCanvasElement.prototype.toBlob) {
 export default class ImageCropper extends Component {
   constructor(props) {
     super(props);
-    this.state = { src: props.imgFile, cropResult: null };
+    this.state = { src: props.imgFile, cropResult: null, zoom: 0.25 };
     this.cropImage = this.cropImage.bind(this);
+    this.doZoom = this.doZoom.bind(this);
+    this.slideZoom = this.slideZoom.bind(this);
   }
 
   cropImage() {
@@ -51,6 +57,14 @@ export default class ImageCropper extends Component {
     );
   }
 
+  slideZoom(event, newValue) {
+    this.cropper.zoomTo(newValue);
+  }
+
+  doZoom(event) {
+    this.setState({ zoom: event.detail.ratio });
+  }
+
   render() {
     return (
       <div className="cropContainer">
@@ -67,14 +81,36 @@ export default class ImageCropper extends Component {
           >
             OK
           </Button>
+
+          <Grid container spacing={2}>
+            <Grid item>
+              <ZoomOutIcon />
+            </Grid>
+            <Grid item xs>
+              <Slider
+                value={this.state.zoom}
+                onChange={this.slideZoom}
+                step={0.01}
+                min={0}
+                max={2}
+                aria-labelledby="zoom-slider"
+              />{" "}
+            </Grid>
+            <Grid item>
+              <ZoomInIcon />
+            </Grid>
+          </Grid>
         </div>
         <div className="cropper">
           <Cropper
             style={{ width: "100vw", height: "80vh" }}
             aspectRatio={1}
+            viewMode={1}
             dragMode={"move"}
+            zoom={this.doZoom}
             cropBoxMovable={false}
             cropBoxResizable={false}
+            toggleDragModeOnDblclick={false}
             highlight={false}
             scalable={false}
             wheelZoomRatio={0.3}
