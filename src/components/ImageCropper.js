@@ -33,7 +33,10 @@ export default class ImageCropper extends Component {
   }
 
   cropImage() {
-    let canvas = this.cropper.getCroppedCanvas();
+    let canvas = this.cropper.getCroppedCanvas({
+      width: 500,
+      imageSmoothingQuality: "high",
+    });
 
     if (typeof canvas === "undefined") {
       return;
@@ -44,7 +47,7 @@ export default class ImageCropper extends Component {
         this.props.imageCropped(blob);
       },
       "image/jpeg",
-      0.8
+      0.9
     );
   }
 
@@ -72,6 +75,9 @@ export default class ImageCropper extends Component {
             dragMode={"move"}
             cropBoxMovable={false}
             cropBoxResizable={false}
+            highlight={false}
+            scalable={false}
+            wheelZoomRatio={0.3}
             guides={false}
             src={this.state.src}
             ref={(cropper) => {
