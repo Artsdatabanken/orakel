@@ -53,7 +53,7 @@ function App() {
   const resetImages = () => {
     setCroppedImages([]);
     setPredictions([]);
-  }
+  };
 
   const handleClickOpen = () => {
     setModalOpen(true);
@@ -100,11 +100,11 @@ function App() {
             <Image img={img} key={index} delImage={delImage} />
           ))}
           <ImageAdder addImage={addImage} />
-{ !!croppedImages.length &&
-          <div className="gridElement Reset" onClick={resetImages}>
-            <ReplayIcon style={{ fontSize: ".8em" }} />
-          </div>
-          }
+          {!!croppedImages.length && (
+            <div className="gridElement Reset" onClick={resetImages}>
+              <ReplayIcon style={{ fontSize: ".8em" }} />
+            </div>
+          )}
         </div>
 
         {!predictions.length ? (
@@ -136,7 +136,7 @@ function App() {
               {predictions[0].probability > 0.5 ? (
                 <span className="body">
                   Husk at resultatene er autogenerert, og kan være feil (også
-                  når orakelet oppgir høy sikkerhet).
+                  når artsorakelet oppgir høy sikkerhet).
                 </span>
               ) : (
                 <span className="body">
@@ -189,11 +189,11 @@ function App() {
         open={modalOpen}
         fullWidth={true}
       >
-        <DialogTitle id="simple-dialog-title">Om orakelet</DialogTitle>
+        <DialogTitle id="simple-dialog-title">Om artsorakelet</DialogTitle>
         <DialogContent className="dialogContent">
           <p>
-            Orakelet er Artsdatabankens app som prøver å artsbestemme bilder ved
-            hjelp av maskinlæring. Det er trent ved hjelp av bilder fra{" "}
+            Artsorakelet er Artsdatabankens app som prøver å artsbestemme bilder
+            ved hjelp av maskinlæring. Det er trent ved hjelp av bilder fra{" "}
             <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>
             , og utviklet i samarbeid med{" "}
             <a href="https://www.naturalis.nl/en">
@@ -230,10 +230,15 @@ function App() {
             appen.
           </p>
 
+          <p className="quote">
+            NB: Bruk aldri orakelet til å vurdere om en art er spiselig eller
+            giftig!
+          </p>
+
           <p>
-            Bilder som blir lastet opp blir ikke lagret. Både appen og tjenesten
-            bak er åpen og gratis. Ta kontakt hvis du ønsker å bruke tjenesten i
-            din applikasjon eller nettside.
+            Bilder som lastes opp blir ikke lagret på serveren. Både appen og
+            tjenesten bak er åpen og gratis. Ta kontakt hvis du ønsker å bruke
+            tjenesten i din applikasjon eller nettside.
           </p>
 
           <p>
