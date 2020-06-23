@@ -21,7 +21,6 @@
   height: 65px;
 }
 
-
 .Container {
   margin-right: auto;
   margin-left: auto;
@@ -70,8 +69,8 @@
   max-width: 25vw;
   max-height: 25vw;
   position: relative;
-  align-items:center;
-  justify-content:center;
+  align-items: center;
+  justify-content: center;
   font-size: 5em;
   color: white;
 }
@@ -80,10 +79,9 @@
   background-color: lightgray;
 }
 
-.images .NewImage:focus {
+.images *:focus {
   background-color: #f57c00;
 }
-
 
 .images .Reset {
   background-color: #f7ab60;
@@ -193,8 +191,6 @@
   width: 150px;
   z-index: 1;
 }
-
-
 
 .dialogContent {
   padding-bottom: 25px;

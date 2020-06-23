@@ -119,7 +119,11 @@ function App() {
           ))}
           <ImageAdder addImage={addImage} />
           {!!croppedImages.length && (
-            <div className="gridElement Reset clickable" onClick={resetImages}>
+            <div
+              className="gridElement Reset clickable"
+              onClick={resetImages}
+              tabindex="0"
+            >
               <ReplayIcon style={{ fontSize: ".8em" }} />
             </div>
           )}
@@ -142,7 +146,7 @@ function App() {
             </div>
           ) : (
             <div className="buttonRow">
-              <Button variant="contained" className="resultRow" onClick={getId}>
+              <Button variant="contained" className="resultRow" onClick={getId} tabindex="0">
                 <CloudUploadIcon style={{ fontSize: "4em" }} />
                 <span className="title">Identifiser</span>
               </Button>
