@@ -33,7 +33,7 @@ if (!HTMLCanvasElement.prototype.toBlob) {
 export default class ImageCropper extends Component {
   constructor(props) {
     super(props);
-    this.state = { src: props.imgFile, cropResult: null, zoom: 0.25 };
+    this.state = { src: props.imgFile, cropResult: null, zoom: 0.7 };
     this.cropImage = this.cropImage.bind(this);
     this.cancel = this.cancel.bind(this);
     this.doZoom = this.doZoom.bind(this);
@@ -42,7 +42,7 @@ export default class ImageCropper extends Component {
 
   cropImage() {
     let canvas = this.cropper.getCroppedCanvas({
-      width: 500,
+      width: this.props.imgSize,
       imageSmoothingQuality: "high",
     });
 
@@ -119,7 +119,7 @@ export default class ImageCropper extends Component {
           <Cropper
             style={{ width: "100vw", height: "80vh" }}
             aspectRatio={1}
-            viewMode={1}
+            viewMode={0}
             dragMode={"move"}
             zoom={this.doZoom}
             cropBoxMovable={false}
@@ -127,7 +127,7 @@ export default class ImageCropper extends Component {
             toggleDragModeOnDblclick={false}
             highlight={false}
             scalable={false}
-            wheelZoomRatio={0.3}
+            wheelZoomRatio={0.2}
             guides={false}
             src={this.state.src}
             ref={(cropper) => {

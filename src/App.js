@@ -26,34 +26,7 @@ function App() {
       reader.addEventListener(
         "load",
         function () {
-          var myCanvas = document.createElement("canvas");
-          var ctx = myCanvas.getContext("2d");
-
-          var toPad = new Image(); // Create new img element
-          toPad.addEventListener(
-            "load",
-            function () {
-              // resize image to largest dimension (centered)
-              let dim = Math.max(toPad.width, toPad.height);
-              ctx.canvas.width = dim;
-              ctx.canvas.height = dim;
-              ctx.drawImage(
-                toPad,
-                (dim - toPad.width) / 2,
-                (dim - toPad.height) / 2
-              );
-
-              // store as a jpg again
-              let donePadding = myCanvas
-                .toDataURL("image/jpg")
-                .replace("image/jpg", "image/octet-stream");
-
-              // append to the images that have to be cropped by the user
-              setUncroppedImages([...uncroppedImages, donePadding]);
-            },
-            false
-          );
-          toPad.src = reader.result; // Set source path
+          setUncroppedImages([...uncroppedImages, reader.result]);
         },
         false
       );
@@ -236,7 +209,9 @@ function App() {
         open={modalOpen}
         fullWidth={true}
       >
-        <DialogTitle id="simple-dialog-title">Om artsorakelet (beta v0.1)</DialogTitle>
+        <DialogTitle id="simple-dialog-title">
+          Om artsorakelet (beta v0.1)
+        </DialogTitle>
         <DialogContent className="dialogContent">
           <p>
             Artsdatabankens Artsorakel prøver å artsbestemme bilder ved hjelp av
