@@ -9,7 +9,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Dialog from "@material-ui/core/Dialog";
 import "./App.css";
 import ImageAdder from "./components/ImageAdder";
-import Image from "./components/Image";
+import UploadedImage from "./components/Image";
 import IdResult from "./components/IdResult";
 import ImageCropper from "./components/ImageCropper";
 import ReplayIcon from "@material-ui/icons/Replay";
@@ -28,8 +28,30 @@ function App() {
       reader.addEventListener(
         "load",
         function () {
-          // convert image file to base64 string
-          setUncroppedImages([...uncroppedImages, reader.result]);
+          var myCanvas = document.createElement("canvas");
+          var ctx = myCanvas.getContext("2d");
+
+          var toPad = new Image(); // Create new img element
+          toPad.addEventListener(
+            "load",
+            function () {
+              // resize image to largest dimension (centered)
+              let dim = Math.max(toPad.width, toPad.height);
+              ctx.canvas.width  = dim;
+              ctx.canvas.height = dim;
+              ctx.drawImage(toPad, (dim - toPad.width) / 2, (dim - toPad.height) / 2);
+
+              // store as a jpg again
+              let donePadding = myCanvas
+                .toDataURL("image/jpg")
+                .replace("image/jpg", "image/octet-stream");
+
+              // append to the images that have to be cropped by the user
+              setUncroppedImages([...uncroppedImages, donePadding]);
+            },
+            false
+          );
+          toPad.src = reader.result; // Set source path
         },
         false
       );
@@ -115,14 +137,14 @@ function App() {
       <div className="Container">
         <div className="images">
           {croppedImages.map((img, index) => (
-            <Image img={img} key={index} delImage={delImage} />
+            <UploadedImage img={img} key={index} delImage={delImage} />
           ))}
           <ImageAdder addImage={addImage} />
           {!!croppedImages.length && (
             <div
               className="gridElement Reset clickable"
               onClick={resetImages}
-              tabindex="0"
+              tabIndex="0"
             >
               <ReplayIcon style={{ fontSize: ".8em" }} />
             </div>
@@ -146,7 +168,12 @@ function App() {
             </div>
           ) : (
             <div className="buttonRow">
-              <Button variant="contained" className="resultRow" onClick={getId} tabindex="0">
+              <Button
+                variant="contained"
+                className="resultRow"
+                onClick={getId}
+                tabIndex="0"
+              >
                 <CloudUploadIcon style={{ fontSize: "4em" }} />
                 <span className="title">Identifiser</span>
               </Button>

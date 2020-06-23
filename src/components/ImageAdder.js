@@ -8,7 +8,7 @@ function ImageAdder({ addImage }) {
   };
 
   return (
-    <div className="gridElement NewImage clickable" tabindex="0">
+    <div className="gridElement NewImage clickable" tabIndex="0">
       <AddAPhotoIcon style={{ fontSize: ".8em" }} />
       <input
         className="clickable"
