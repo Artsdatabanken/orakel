@@ -175,13 +175,26 @@
 
 .fabContainer {
   position: absolute;
-  right: 15px;
-  bottom: 5px;
+  right: 0;
+  top: 0;
+  line-height: 65px;
+  display: flex;
 }
 
 .fabContainer * {
-  font-size: 1.9em;
+  font-size: 15px;
   font-weight: 400;
+  padding-left: 18px;
+  padding-right: 18px;
+  color: white;
+  text-decoration: underline;
+}
+
+.fabContainer *:hover {
+  text-decoration: none;
+  background-color: lightgray;
+  color: rgb(76, 74, 72);
+
 }
 
 .betaRibbon {

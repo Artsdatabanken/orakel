@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Slider from "@material-ui/core/Slider";
 import Button from "@material-ui/core/Button";
-import SaveIcon from "@material-ui/icons/Save";
+import DoneIcon from '@material-ui/icons/Done';
+import CancelIcon from '@material-ui/icons/Cancel';
 import ZoomOutIcon from "@material-ui/icons/ZoomOut";
 import ZoomInIcon from "@material-ui/icons/ZoomIn";
 import Grid from "@material-ui/core/Grid";
@@ -34,6 +35,7 @@ export default class ImageCropper extends Component {
     super(props);
     this.state = { src: props.imgFile, cropResult: null, zoom: 0.25 };
     this.cropImage = this.cropImage.bind(this);
+    this.cancel = this.cancel.bind(this);
     this.doZoom = this.doZoom.bind(this);
     this.slideZoom = this.slideZoom.bind(this);
   }
@@ -57,6 +59,12 @@ export default class ImageCropper extends Component {
     );
   }
 
+  cancel() {
+    this.props.imageCropped();
+  }
+
+
+
   slideZoom(event, newValue) {
     this.cropper.zoomTo(newValue);
   }
@@ -76,10 +84,20 @@ export default class ImageCropper extends Component {
             variant="contained"
             color="primary"
             size="large"
-            startIcon={<SaveIcon />}
+            startIcon={<DoneIcon />}
             onClick={this.cropImage}
           >
-            OK
+            Ferdig
+          </Button>
+{' '}
+          <Button
+            variant="contained"
+            style={{backgroundColor: "darkred", color: "white"}}
+            size="large"
+            startIcon={<CancelIcon />}
+            onClick={this.cancel}
+          >
+            Avbryt
           </Button>
 
           <Grid container spacing={2}>

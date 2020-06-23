@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
-import Fab from "@material-ui/core/Fab";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import ImageSearchIcon from "@material-ui/icons/ImageSearch";
 import axios from "axios";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -12,7 +11,6 @@ import ImageAdder from "./components/ImageAdder";
 import UploadedImage from "./components/Image";
 import IdResult from "./components/IdResult";
 import ImageCropper from "./components/ImageCropper";
-import ReplayIcon from "@material-ui/icons/Replay";
 
 function App() {
   const [croppedImages, setCroppedImages] = useState([]);
@@ -37,9 +35,13 @@ function App() {
             function () {
               // resize image to largest dimension (centered)
               let dim = Math.max(toPad.width, toPad.height);
-              ctx.canvas.width  = dim;
+              ctx.canvas.width = dim;
               ctx.canvas.height = dim;
-              ctx.drawImage(toPad, (dim - toPad.width) / 2, (dim - toPad.height) / 2);
+              ctx.drawImage(
+                toPad,
+                (dim - toPad.width) / 2,
+                (dim - toPad.height) / 2
+              );
 
               // store as a jpg again
               let donePadding = myCanvas
@@ -60,11 +62,13 @@ function App() {
   };
 
   const imageCropped = (img) => {
-    img.lastModifiedDate = new Date();
-    img.name = new Date() + ".png";
+    if (img) {
+      img.lastModifiedDate = new Date();
+      img.name = new Date() + ".png";
+      setCroppedImages([...croppedImages, img]);
+      setPredictions([]);
+    }
     setUncroppedImages([]);
-    setCroppedImages([...croppedImages, img]);
-    setPredictions([]);
   };
 
   const delImage = (name) => {
@@ -123,13 +127,23 @@ function App() {
           </a>
 
           <div className="fabContainer">
-            <Fab
-              style={{ backgroundColor: "#f57c00", color: "white" }}
+            <div
+              className="clickable"
+              aria-label="Start på nytt"
+              tabIndex="0"
+              onClick={resetImages}
+            >
+              Restart
+            </div>
+
+            <div
+              className="clickable"
               aria-label="Om appen"
+              tabIndex="0"
               onClick={handleClickOpen}
             >
-              ?
-            </Fab>
+              Om
+            </div>
           </div>
         </div>
       </div>
@@ -140,15 +154,6 @@ function App() {
             <UploadedImage img={img} key={index} delImage={delImage} />
           ))}
           <ImageAdder addImage={addImage} />
-          {!!croppedImages.length && (
-            <div
-              className="gridElement Reset clickable"
-              onClick={resetImages}
-              tabIndex="0"
-            >
-              <ReplayIcon style={{ fontSize: ".8em" }} />
-            </div>
-          )}
         </div>
 
         {!predictions.length ? (
@@ -174,7 +179,7 @@ function App() {
                 onClick={getId}
                 tabIndex="0"
               >
-                <CloudUploadIcon style={{ fontSize: "4em" }} />
+                <ImageSearchIcon style={{ fontSize: "4em" }} />
                 <span className="title">Identifiser</span>
               </Button>
             </div>
