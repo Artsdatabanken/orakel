@@ -265,7 +265,7 @@ function App() {
           </p>
 
           <p>
-            Resultatene er autogenererte, og selv om svaret anis med høy
+            Resultatene er autogenererte, og selv om svaret angis med høy
             konfidens (høy prosent) betyr det ikke at svaret nødvendigvis er
             riktig. Sjekk derfor alltid med relevant litteratur, for eksempel
             våre ekspertskrevne artsbeskrivelser og nøkler i{" "}
