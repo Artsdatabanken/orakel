@@ -101,15 +101,14 @@ function App() {
           </a>
 
           <div className="fabContainer">
-          <Fab
-            style={{ backgroundColor: "#f57c00", color: "white" }}
-            aria-label="Om appen"
-            onClick={handleClickOpen}
-          >
-            ?
-          </Fab>
-        </div>
-
+            <Fab
+              style={{ backgroundColor: "#f57c00", color: "white" }}
+              aria-label="Om appen"
+              onClick={handleClickOpen}
+            >
+              ?
+            </Fab>
+          </div>
         </div>
       </div>
 
@@ -181,9 +180,7 @@ function App() {
           </div>
         )}
 
-            <img src="beta.svg" alt="beta" className="betaRibbon" />
-
-
+        <img src="beta.svg" alt="beta" className="betaRibbon" />
       </div>
 
       {!!uncroppedImages.length &&
@@ -206,19 +203,22 @@ function App() {
         <DialogContent className="dialogContent">
           <p>
             Artsorakelet er Artsdatabankens app som prøver å artsbestemme bilder
-            ved hjelp av maskinlæring. Det er trent ved hjelp av bilder fra{" "}
+            ved hjelp av maskinlæring. Det trenes ved hjelp av bilder fra{" "}
             <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>
             , og utviklet i samarbeid med{" "}
             <a href="https://www.naturalis.nl/en">
               Naturalis Biodiversity Center
             </a>
-            .
+            . Jo flere bilder av hver art appen får se, jo bedre blir den til å
+            artsbestemme. Den vil derfor gradvis bli mer treffsikker over tid,
+            etter hvert som den blir trent på flere og flere bilder.
           </p>
 
           <p>
             Last opp ett eller flere bilder ved å trykke på kamera-ikonet og
             zoome inn på arten. Klikk deretter på "Identifiser" for å se hva
-            modellen tror det ser ut som.
+            modellen tror det ser ut som. Orakelet gir kun svar på artsnivå
+            (ikke underarter eller høyere taksa).
           </p>
 
           <p className="quote">
@@ -228,19 +228,14 @@ function App() {
           </p>
 
           <p>
-            Resultatene er autogenerert, og selv om konfidensen er høy betyr det
-            ikke at svaret er riktig. Sjekk derfor alltid med relevant
-            litteratur, for eksempel våre ekspertskrevne artsbeskrivelser og
-            nøkler på{" "}
+            Resultatene er autogenererte, og selv om svaret anis med høy
+            konfidens (høy prosent) betyr det ikke at svaret nødvendigvis er
+            riktig. Sjekk derfor alltid med relevant litteratur, for eksempel
+            våre ekspertskrevne artsbeskrivelser og nøkler i{" "}
             <a href="https://www.artsdatabanken.no/arter-pa-nett">
               Arter på nett
             </a>
-            . Hvis du har bekreftet hvilken art det er, må du gjerne rapportere
-            observasjonen på{" "}
-            <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>
-            . Slik hjelper du forskere og forvaltere med din observasjon. I
-            tillegg kan bildene brukes til å forbedre neste versjon av denne
-            appen.
+            .
           </p>
 
           <p className="quote">
@@ -249,9 +244,24 @@ function App() {
           </p>
 
           <p>
+            Hvis du med stor sikkerhet vet hvilken art det er, vil vi gjerne at
+            du rapporterer observasjonen i{" "}
+            <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>
+            . Slik hjelper du forskere og naturforvaltere. I tillegg kan bildene
+            brukes til å forbedre neste versjon av denne appen.
+          </p>
+
+          <p>
             Bilder som lastes opp blir ikke lagret på serveren. Både appen og
             tjenesten bak er åpen og gratis. Ta kontakt hvis du ønsker å bruke
             tjenesten i din applikasjon eller nettside.
+          </p>
+
+          <p>
+            For spørsmål og tilbakemelding, ta kontakt med{" "}
+            <a href="mailto:support@artsobservasjoner.no">
+              support@artsobservasjoner.no
+            </a>
           </p>
 
           <p>
