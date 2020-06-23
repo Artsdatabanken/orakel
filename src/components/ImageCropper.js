@@ -40,13 +40,16 @@ export default class ImageCropper extends Component {
     this.slideZoom = this.slideZoom.bind(this);
   }
 
+
+
   cropImage() {
     let canvas = this.cropper.getCroppedCanvas({
       width: this.props.imgSize,
       imageSmoothingQuality: "high",
     });
 
-    if (typeof canvas === "undefined") {
+    if (!canvas || typeof canvas === "undefined") {
+      this.props.imageCropped(undefined);
       return;
     }
 
@@ -72,6 +75,11 @@ export default class ImageCropper extends Component {
   }
 
   render() {
+    if(this.state.src.slice(0,10) !== "data:image") {
+      this.props.imageCropped(undefined);
+      return <div>Det er ikke et bilde</div>;
+    }
+
     return (
       <div className="cropContainer">
         <div className="cropButton">

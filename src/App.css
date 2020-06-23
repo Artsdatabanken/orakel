@@ -137,8 +137,6 @@
   font-weight: 300;
 }
 
-
-
 .resultRow {
   display: flex;
   align-items: center;
@@ -246,6 +244,6 @@
 }
 
 .danger {
-  color: red;
+  color: darkred;
   font-weight: 700;
 }
