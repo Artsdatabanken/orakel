@@ -236,12 +236,11 @@ function App() {
         open={modalOpen}
         fullWidth={true}
       >
-        <DialogTitle id="simple-dialog-title">Om artsorakelet</DialogTitle>
+        <DialogTitle id="simple-dialog-title">Om artsorakelet (beta v0.1)</DialogTitle>
         <DialogContent className="dialogContent">
           <p>
-            Artsorakelet er Artsdatabankens app som prøver å artsbestemme bilder
-            ved hjelp av maskinlæring. Appen er i beta og trenes ved hjelp av
-            bilder fra{" "}
+            Artsdatabankens Artsorakel prøver å artsbestemme bilder ved hjelp av
+            maskinlæring. Appen er i beta og trenes ved hjelp av bilder fra{" "}
             <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>
             , og utviklet i samarbeid med{" "}
             <a href="https://www.naturalis.nl/en">

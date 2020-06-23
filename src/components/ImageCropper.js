@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Slider from "@material-ui/core/Slider";
 import Button from "@material-ui/core/Button";
-import DoneIcon from '@material-ui/icons/Done';
-import CancelIcon from '@material-ui/icons/Cancel';
+import DoneIcon from "@material-ui/icons/Done";
+import CancelIcon from "@material-ui/icons/Cancel";
 import ZoomOutIcon from "@material-ui/icons/ZoomOut";
 import ZoomInIcon from "@material-ui/icons/ZoomIn";
 import Grid from "@material-ui/core/Grid";
@@ -63,8 +63,6 @@ export default class ImageCropper extends Component {
     this.props.imageCropped();
   }
 
-
-
   slideZoom(event, newValue) {
     this.cropper.zoomTo(newValue);
   }
@@ -88,18 +86,16 @@ export default class ImageCropper extends Component {
             onClick={this.cropImage}
           >
             Ferdig
-          </Button>
-{' '}
+          </Button>{" "}
           <Button
             variant="contained"
-            style={{backgroundColor: "darkred", color: "white"}}
+            style={{ backgroundColor: "darkred", color: "white" }}
             size="large"
             startIcon={<CancelIcon />}
             onClick={this.cancel}
           >
             Avbryt
           </Button>
-
           <Grid container spacing={2}>
             <Grid item>
               <ZoomOutIcon />
