@@ -5,6 +5,7 @@ import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 function ImageAdder({ addImage }) {
   const uploadFile = () => {
     addImage(document.getElementById("uploader").files);
+    document.getElementById("uploader").value = '';
   };
 
   return (

@@ -120,6 +120,32 @@
   text-align: center;
 }
 
+.hint {
+  padding-left: 15px;
+  padding-bottom: 15px;
+}
+
+.hint .title {
+  padding: 15px;
+  font-size: 2.5em;
+  font-weight: 300;
+}
+
+.hint .body {
+  padding: 0px 15px 0px 15px;
+  font-size: 1.2em;
+  font-weight: 300;
+}
+
+
+
+.resultRow {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  padding-bottom: 15px;
+}
+
 .resultRow .title {
   padding-left: 20px;
   font-size: 1.6em;
@@ -166,13 +192,6 @@
   line-height: 1.4em;
 }
 
-.resultRow {
-  display: flex;
-  align-items: center;
-  padding-left: 15px;
-  padding-bottom: 15px;
-}
-
 .fabContainer {
   position: absolute;
   right: 0;
@@ -194,7 +213,6 @@
   text-decoration: none;
   background-color: lightgray;
   color: rgb(76, 74, 72);
-
 }
 
 .betaRibbon {

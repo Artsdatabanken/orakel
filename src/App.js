@@ -56,12 +56,10 @@ function App() {
 
   const handleClickOpen = () => {
     setModalOpen(true);
-    console.log("open");
   };
 
   const handleClose = () => {
     setModalOpen(false);
-    console.log("close");
   };
 
   const getId = () => {
@@ -131,12 +129,14 @@ function App() {
 
         {!predictions.length ? (
           !croppedImages.length ? (
-            <div className="resultRow">
-              <span className="body">
+            <div className="hint">
+              <div className="title">Artsorakel</div>
+
+              <div className="body">
                 Trykk på kamera-ikonet for å laste opp et bilde som du ønsker å
                 artsbestemme. Det hjelper ofte å laste opp flere bilder fra
                 forskjellige vinkler.
-              </span>
+              </div>
             </div>
           ) : loading ? (
             <div className="buttonRow">
@@ -160,27 +160,27 @@ function App() {
           )
         ) : (
           <div>
-            <div className="resultRow">
+            <div className="hint">
               {predictions[0].probability > 0.5 ? (
-                <span className="body">
+                <div className="body">
                   Husk at resultatene er autogenerert, og kan være feil (også
                   når artsorakelet oppgir høy sikkerhet).
-                </span>
+                </div>
               ) : (
-                <span className="body">
+                <div className="body">
                   Artsorakelet er for usikker på gjenkjenningen til å si hva
                   dette er.
-                </span>
+                </div>
               )}
             </div>
 
             {predictions[0].probability < 0.8 && (
-              <div className="resultRow">
-                <span className="body">
+              <div className="hint">
+                <div className="body">
                   Det kan hjelpe å legge til flere bilder med ulike vinkler
                   eller detaljer. Zoom også inn til arten du vil gjenkjenne, når
                   det er flere arter kan resultatet gjenspeile det.
-                </span>
+                </div>
               </div>
             )}
 
