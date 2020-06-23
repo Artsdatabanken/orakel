@@ -8,9 +8,14 @@ function ImageAdder({ addImage }) {
   };
 
   return (
-    <div className="gridElement NewImage clickable">
+    <div className="gridElement NewImage clickable" tabindex="0">
       <AddAPhotoIcon style={{ fontSize: ".8em" }} />
-      <input className="clickable" type="file" id="uploader" onChange={uploadFile} />
+      <input
+        className="clickable"
+        type="file"
+        id="uploader"
+        onChange={uploadFile}
+      />
     </div>
   );
 }

@@ -80,6 +80,11 @@
   background-color: lightgray;
 }
 
+.images .NewImage:focus {
+  background-color: #f57c00;
+}
+
+
 .images .Reset {
   background-color: #f7ab60;
 }
