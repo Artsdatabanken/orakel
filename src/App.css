@@ -178,3 +178,8 @@
   max-width: 40%;
   margin-right: 9%;
 }
+
+.danger {
+  color: red;
+  font-weight: 700;
+}

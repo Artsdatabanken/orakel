@@ -1,5 +1,6 @@
 import React from "react";
 import "../App.css";
+import WarningIcon from '@material-ui/icons/Warning';
 
 function IdResult({ result }) {
   const percentage = result.probability * 100;
@@ -56,7 +57,15 @@ function IdResult({ result }) {
         </div>
         <div className="scientific">{result.taxon.name}</div>
         <div className="percentage">({Math.round(percentage)} % konfidens)</div>
-        <div className="group">{result.taxon.groupName}</div>
+        <div className="group">{result.taxon.groupName}
+        
+        {result.taxon.groupName === "Sopper" &&
+        <span className="danger">
+        <WarningIcon /> ALDRI SPIS NOE BASERT PÅ ARTSORAKELETS SVAR
+        </span>
+        }
+        
+        </div>
       </div>
     </div>
   );
