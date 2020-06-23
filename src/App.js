@@ -195,8 +195,8 @@ function App() {
                 </span>
               ) : (
                 <span className="body">
-                  Orakelet er for usikker på gjenkjenningen til å si hva dette
-                  er.
+                  Artsorakelet er for usikker på gjenkjenningen til å si hva
+                  dette er.
                 </span>
               )}
             </div>
@@ -240,7 +240,8 @@ function App() {
         <DialogContent className="dialogContent">
           <p>
             Artsorakelet er Artsdatabankens app som prøver å artsbestemme bilder
-            ved hjelp av maskinlæring. Det trenes ved hjelp av bilder fra{" "}
+            ved hjelp av maskinlæring. Appen er i beta og trenes ved hjelp av
+            bilder fra{" "}
             <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>
             , og utviklet i samarbeid med{" "}
             <a href="https://www.naturalis.nl/en">
@@ -254,7 +255,7 @@ function App() {
           <p>
             Last opp ett eller flere bilder ved å trykke på kamera-ikonet og
             zoome inn på arten. Klikk deretter på "Identifiser" for å se hva
-            modellen tror det ser ut som. Orakelet gir kun svar på artsnivå
+            modellen tror det ser ut som. Artsorakelet gir kun svar på artsnivå
             (ikke underarter eller høyere taksa).
           </p>
 
@@ -276,8 +277,8 @@ function App() {
           </p>
 
           <p className="quote">
-            NB: Bruk aldri orakelet til å vurdere om en art er spiselig eller
-            giftig!
+            NB: Bruk aldri artsorakelet til å vurdere om en art er spiselig
+            eller giftig!
           </p>
 
           <p>
