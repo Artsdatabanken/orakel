@@ -258,7 +258,7 @@ function App() {
           </p>
 
           <p>
-            For spørsmål og tilbakemelding, ta kontakt med{" "}
+            Spørsmål og tilbakemelding kan sendes til{" "}
             <a href="mailto:support@artsobservasjoner.no">
               support@artsobservasjoner.no
             </a>

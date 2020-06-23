@@ -109,6 +109,8 @@
   right: 0;
   width: 166px;
   height: 166px;
+  max-width: 25vw;
+  max-height: 25vw;
 }
 
 .buttonRow {
