@@ -94,6 +94,25 @@ function App() {
 
   return (
     <div className="App">
+      <div className="headerBar">
+        <div className="headerLogo">
+          <a href="//artsdatabanken.no">
+            <img src="headerlogo.png" alt="Artsdatabanken" />
+          </a>
+
+          <div className="fabContainer">
+          <Fab
+            style={{ backgroundColor: "#f57c00", color: "white" }}
+            aria-label="Om appen"
+            onClick={handleClickOpen}
+          >
+            ?
+          </Fab>
+        </div>
+
+        </div>
+      </div>
+
       <div className="Container">
         <div className="images">
           {croppedImages.map((img, index) => (
@@ -162,15 +181,7 @@ function App() {
           </div>
         )}
 
-        <div className="fabContainer">
-          <Fab
-            style={{ backgroundColor: "#f57c00", color: "white" }}
-            aria-label="Om appen"
-            onClick={handleClickOpen}
-          >
-            ?
-          </Fab>
-        </div>
+
       </div>
 
       {!!uncroppedImages.length &&
