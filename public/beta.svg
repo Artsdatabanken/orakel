@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="122.34685mm"
+   height="122.34649mm"
+   viewBox="0 0 122.34685 122.34649"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="beta.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="242.04198"
+     inkscape:cy="383.78255"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1680"
+     inkscape:window-height="986"
+     inkscape:window-x="1920"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-43.826629,-80.359781)">
+    <path
+       style="opacity:1;fill:#f57c00;fill-opacity:1;stroke:none;stroke-width:24.31456757;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       d="M 462.41211 0 L 0 462.41211 L 179.80664 462.41211 L 462.41406 179.80469 L 462.41211 0 z M 311.76367 197.6543 L 370.51172 224.70117 L 359.4043 235.80859 L 348.88672 230.29883 L 334.71484 244.4707 L 340.25391 254.95898 L 329.20508 266.00781 L 302.04102 207.37695 L 311.76367 197.6543 z M 318.92383 214.53711 L 329.20508 234.01172 L 338.42773 224.78906 L 318.92383 214.53711 z M 288.7832 220.63477 L 296.76758 228.61914 L 283.89258 241.49414 L 318.80469 276.4082 L 308.46289 286.75 L 273.55078 251.83594 L 260.91016 264.47656 L 252.92578 256.49219 L 288.7832 220.63477 z M 250.30469 259.11328 L 258.28906 267.09766 L 239.01953 286.36719 L 248.06445 295.41211 L 264.32812 279.14844 L 272.01758 286.83789 L 255.75391 303.10156 L 265.97852 313.32422 L 285.1875 294.11523 L 293.14258 302.07031 L 263.5918 331.62109 L 220.69336 288.72266 L 250.30469 259.11328 z M 215.5332 302.42188 C 219.36137 302.43783 222.84078 304.01071 225.96875 307.13867 C 228.18828 309.3582 229.57112 311.76274 230.12109 314.35547 C 230.67107 316.94819 230.32923 319.60963 229.0918 322.33984 C 231.92022 320.68993 234.73809 320.0719 237.54688 320.48438 C 240.35566 320.89685 242.91859 322.26234 245.23633 324.58008 C 249.43969 328.78344 251.26677 333.28161 250.7168 338.07422 C 250.16682 342.82755 247.29873 347.83559 242.11328 353.09961 L 224.70117 370.51172 L 181.80273 327.61523 L 197.21289 312.20508 C 202.73225 306.68572 207.9373 303.50476 212.82812 302.66016 C 213.74884 302.49811 214.64978 302.41819 215.5332 302.42188 z M 212.12695 316.3125 C 211.89892 316.31219 211.6717 316.32746 211.44336 316.35938 C 209.59702 316.59508 207.515 317.87171 205.19727 320.18945 L 200.12891 325.25781 L 210.0293 335.15625 L 215.41992 329.76562 C 217.65909 327.48717 218.85654 325.46308 219.01367 323.69531 C 219.17081 321.92755 218.46393 320.25885 216.89258 318.6875 C 215.31141 317.10633 213.72316 316.31465 212.12695 316.3125 z M 229.41406 332.04883 C 227.62665 332.03901 225.84014 332.91778 224.05273 334.68555 L 216.80469 341.93359 L 227.08789 352.21484 L 233.86328 345.43945 C 235.72926 343.57348 236.7413 341.71743 236.89844 339.87109 C 237.03593 338.00512 236.32905 336.29585 234.77734 334.74414 C 232.98993 332.95673 231.20147 332.05865 229.41406 332.04883 z "
+       transform="matrix(0.26458333,0,0,0.26458333,43.826629,80.359781)"
+       id="rect815" />
+  </g>
+</svg>

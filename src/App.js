@@ -181,6 +181,8 @@ function App() {
           </div>
         )}
 
+            <img src="beta.svg" alt="beta" className="betaRibbon" />
+
 
       </div>
 
@@ -220,7 +222,7 @@ function App() {
           </p>
 
           <p className="quote">
-            I likhet med andre orakler kan svaret være en åpenbaring, men er det
+            I likhet med andre orakler kan svaret være en åpenbaring, men det er
             alltid en sjanse for at svaret er feil, uklart, flertydig og/eller
             krever tolkning.
           </p>

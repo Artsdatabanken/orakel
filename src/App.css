@@ -180,6 +180,16 @@
   font-weight: 400;
 }
 
+.betaRibbon {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 150px;
+  z-index: 1;
+}
+
+
+
 .dialogContent {
   padding-bottom: 25px;
 }
