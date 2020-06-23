@@ -5,7 +5,7 @@
 .Container {
   margin-right: auto;
   margin-left: auto;
-  max-width: 666px;
+  max-width: 664px;
   background-color: white;
   min-height: 100%;
   position: relative;
@@ -41,14 +41,14 @@
 }
 
 .gridElement {
-  width: 150px;
-  height: 150px;
-  max-width: vw;
-  max-height: vw;
-  line-height: 150px;
+  display: flex;
+  width: 166px;
+  height: 166px;
+  max-width: 25vw;
+  max-height: 25vw;
   position: relative;
-  display: block;
-  text-align: center;
+  align-items:center;
+  justify-content:center;
   font-size: 5em;
   color: white;
 }
@@ -58,7 +58,7 @@
 }
 
 .images .Reset {
-  background-color: #f7ab60
+  background-color: #f7ab60;
 }
 
 .imgContainer {
@@ -71,7 +71,6 @@
   text-decoration: none;
   font-weight: 500;
   color: #333;
-  cursor: pointer;
 }
 
 .clickable {
@@ -85,9 +84,8 @@
   left: 0;
   bottom: 0;
   right: 0;
-  width: 150px;
-  height: 150px;
-  cursor: pointer;
+  width: 166px;
+  height: 166px;
 }
 
 .buttonRow {
@@ -109,6 +107,7 @@
 .resultDonut {
   width: 100px;
   height: 100px;
+  flex-shrink: 0;
 }
 
 .resultLabels {
@@ -155,7 +154,7 @@
 .fabContainer * {
   font-size: 1.9em;
   font-weight: 400;
- }
+}
 
 .dialogContent {
   padding-bottom: 25px;
@@ -166,7 +165,7 @@
 }
 
 .dialogContent .quote {
-  border-left: #f57c00 3px solid ;
+  border-left: #f57c00 3px solid;
   padding-left: 20px;
   font-size: 1.2em;
   font-weight: 300;

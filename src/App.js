@@ -101,7 +101,7 @@ function App() {
           ))}
           <ImageAdder addImage={addImage} />
           {!!croppedImages.length && (
-            <div className="gridElement Reset" onClick={resetImages}>
+            <div className="gridElement Reset clickable" onClick={resetImages}>
               <ReplayIcon style={{ fontSize: ".8em" }} />
             </div>
           )}
