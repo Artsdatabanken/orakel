@@ -217,7 +217,7 @@ function App() {
             Artsdatabankens Artsorakel prøver å artsbestemme bilder ved hjelp av
             maskinlæring. Appen er i beta og trenes ved hjelp av bilder fra{" "}
             <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>
-            , og utviklet i samarbeid med{" "}
+            , og er utviklet i samarbeid med{" "}
             <a href="https://www.naturalis.nl/en">
               Naturalis Biodiversity Center
             </a>
@@ -273,7 +273,7 @@ function App() {
             Spørsmål og tilbakemelding kan sendes til{" "}
             <a href="mailto:support@artsobservasjoner.no">
               support@artsobservasjoner.no
-            </a>
+            </a>.
           </p>
 
           <p>
