@@ -12,6 +12,32 @@ import UploadedImage from "./components/Image";
 import IdResult from "./components/IdResult";
 import ImageCropper from "./components/ImageCropper";
 
+import { ApplicationInsights } from "@microsoft/applicationinsights-web";
+import {
+  ReactPlugin,
+  withAITracking,
+} from "@microsoft/applicationinsights-react-js";
+import { createBrowserHistory } from "history";
+
+const browserHistory = createBrowserHistory({ basename: "" });
+var reactPlugin = new ReactPlugin();
+if (window.location.hostname === "artsdatabanken.no") {
+  var appInsights = new ApplicationInsights({
+    config: {
+      instrumentationKey: "a108a996-bb13-431c-a929-b70f8e15c1ea",
+      extensions: [reactPlugin],
+      extensionConfig: {
+        [reactPlugin.identifier]: { history: browserHistory },
+      },
+    },
+  });
+  appInsights.loadAppInsights();
+}
+else {
+  console.log("Running on", window.location.hostname, "- not logging");
+}
+
+
 function App() {
   const [croppedImages, setCroppedImages] = useState([]);
   const [uncroppedImages, setUncroppedImages] = useState([]);
@@ -273,7 +299,8 @@ function App() {
             Spørsmål og tilbakemelding kan sendes til{" "}
             <a href="mailto:support@artsobservasjoner.no">
               support@artsobservasjoner.no
-            </a>.
+            </a>
+            .
           </p>
 
           <p>
@@ -290,4 +317,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAITracking(reactPlugin, App);
