@@ -4,7 +4,6 @@ import Button from "@material-ui/core/Button";
 import WarningIcon from "@material-ui/icons/Warning";
 
 function IdResult({ result }) {
-  console.log(result);
   const percentage = result.probability * 100;
   const strokes = percentage.toString() + " " + (100 - percentage).toString();
 
