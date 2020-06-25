@@ -190,8 +190,8 @@ function App() {
             <div className="hint">
               {predictions[0].probability > 0.5 ? (
                 <div className="body">
-                  Husk at resultatene er autogenerert, og kan være feil (også
-                  når artsorakelet oppgir høy sikkerhet).
+                  Husk at resultatene er autogenererte, og kan være feil (også
+                  når Artsorakelet oppgir høy konfidens).
                 </div>
               ) : (
                 <div className="body">
@@ -237,7 +237,7 @@ function App() {
         fullWidth={true}
       >
         <DialogTitle id="simple-dialog-title">
-          Om artsorakelet (beta v0.1)
+          Om Artsorakelet (beta v0.1)
         </DialogTitle>
         <DialogContent className="dialogContent">
           <p>
@@ -278,22 +278,23 @@ function App() {
           </p>
 
           <p className="quote">
-            NB: Bruk aldri artsorakelet til å vurdere om en art er spiselig
+            NB: Bruk aldri Artsorakelet til å vurdere om en art er spiselig
             eller giftig!
           </p>
 
           <p>
             Hvis du med stor sikkerhet vet hvilken art det er, vil vi gjerne at
             du rapporterer observasjonen i{" "}
-            <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>
-            . Slik hjelper du forskere og naturforvaltere. I tillegg kan bildene
+            <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>{" "}
+            ved å trykke på "rapporter"-knappen . Slik hjelper du forskere og
+            naturforvaltere. Hvis du laster opp bildene der kan de i tillegg
             brukes til å forbedre neste versjon av denne appen.
           </p>
 
           <p>
-            Bilder som lastes opp blir ikke lagret på serveren. Både appen og
-            tjenesten bak er åpen og gratis. Ta kontakt hvis du ønsker å bruke
-            tjenesten i din applikasjon eller nettside.
+            Bilder som lastes opp her blir ikke lagret på serveren. Både appen
+            og tjenesten bak er åpen og gratis. Ta kontakt hvis du ønsker å
+            bruke tjenesten i din applikasjon eller nettside.
           </p>
 
           <p>
