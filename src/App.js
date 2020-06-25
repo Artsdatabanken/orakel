@@ -21,7 +21,10 @@ import { createBrowserHistory } from "history";
 
 const browserHistory = createBrowserHistory({ basename: "" });
 var reactPlugin = new ReactPlugin();
-if (window.location.hostname === "orakel.test.artsdatabanken.no" || window.location.hostname === "orakel.artsdatabanken.no") {
+if (
+  window.location.hostname === "orakel.test.artsdatabanken.no" ||
+  window.location.hostname === "orakel.artsdatabanken.no"
+) {
   var appInsights = new ApplicationInsights({
     config: {
       instrumentationKey: "a108a996-bb13-431c-a929-b70f8e15c1ea",
@@ -32,11 +35,9 @@ if (window.location.hostname === "orakel.test.artsdatabanken.no" || window.locat
     },
   });
   appInsights.loadAppInsights();
-}
-else {
+} else {
   console.log("Running on", window.location.hostname, "- not logging");
 }
-
 
 function App() {
   const [croppedImages, setCroppedImages] = useState([]);

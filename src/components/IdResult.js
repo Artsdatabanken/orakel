@@ -1,8 +1,10 @@
 import React from "react";
 import "../App.css";
-import WarningIcon from '@material-ui/icons/Warning';
+import Button from "@material-ui/core/Button";
+import WarningIcon from "@material-ui/icons/Warning";
 
 function IdResult({ result }) {
+  console.log(result);
   const percentage = result.probability * 100;
   const strokes = percentage.toString() + " " + (100 - percentage).toString();
 
@@ -56,16 +58,34 @@ function IdResult({ result }) {
             result.taxon.vernacularName.slice(1)}
         </div>
         <div className="scientific">{result.taxon.name}</div>
-        <div className="percentage">({Math.round(percentage)} % konfidens)</div>
-        <div className="group">{result.taxon.groupName}
-        
-        {result.taxon.groupName === "Sopper" &&
-        <span className="danger">
-        <WarningIcon /> ALDRI SPIS NOE BASERT PÅ ARTSORAKELETS SVAR
-        </span>
-        }
-        
+        <div className="percentage">
+          ({Math.round(percentage)} % konfidens){" "}
         </div>
+        <div className="group">
+          {result.taxon.groupName}
+
+          {result.taxon.groupName === "Sopper" && (
+            <span className="danger">
+              <WarningIcon /> ALDRI SPIS NOE BASERT PÅ ARTSORAKELETS SVAR
+            </span>
+          )}
+        </div>
+        {percentage > 90 && (
+          <a
+            href={`https://www.artsobservasjoner.no/SubmitSighting/ReportByScientificName/${result.taxon.scientificNameID}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button
+              style={{ marginTop: "10px", height: "1.3em", fontSize: ".8em" }}
+              variant="contained"
+              color="primary"
+              className="reportButton"
+            >
+              Rapportere
+            </Button>
+          </a>
+        )}
       </div>
     </div>
   );

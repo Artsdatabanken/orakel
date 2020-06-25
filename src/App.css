@@ -247,3 +247,7 @@
   color: darkred;
   font-weight: 700;
 }
+
+.reportButton {
+  background-color: lightgreen;
+}
