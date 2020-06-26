@@ -90,7 +90,7 @@ function IdResult({ result }) {
             rel="noopener noreferrer"
           >
             <Button
-              style={{ marginTop: "10px", height: "1.3em", fontSize: ".8em" }}
+              style={{ marginTop: "10px", height: "16px", fontSize: "12px", lineHeight: "12px" }}
               variant="contained"
               color="primary"
               className="reportButton"
