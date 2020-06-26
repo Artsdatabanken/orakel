@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ImageSearchIcon from "@material-ui/icons/ImageSearch";
+import ReplayIcon from "@material-ui/icons/Replay";
+import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
+
 import axios from "axios";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import Dialog from "@material-ui/core/Dialog";
 import "./App.css";
-import ImageAdder from "./components/ImageAdder";
+
 import UploadedImage from "./components/Image";
 import IdResult from "./components/IdResult";
 import ImageCropper from "./components/ImageCropper";
@@ -89,6 +92,23 @@ function App() {
     setModalOpen(false);
   };
 
+  const uploadMore = () => {
+    addImage(document.getElementById("uploadMore").files);
+    document.getElementById("uploadMore").value = "";
+  };
+
+  const uploadReset = () => {
+    resetImages();
+    addImage(document.getElementById("uploader").files);
+    document.getElementById("uploader").value = "";
+  };
+
+
+
+
+
+
+
   const getId = () => {
     setLoading(true);
 
@@ -125,14 +145,14 @@ function App() {
           </a>
 
           <div className="fabContainer">
-            <div
+            {/* <div
               className="clickable"
               aria-label="Start på nytt"
               tabIndex="0"
               onClick={resetImages}
             >
               Restart
-            </div>
+            </div> */}
 
             <div
               className="clickable"
@@ -151,41 +171,89 @@ function App() {
           {croppedImages.map((img, index) => (
             <UploadedImage img={img} key={index} delImage={delImage} />
           ))}
-          <ImageAdder addImage={addImage} />
-        </div>
 
-        {!predictions.length ? (
-          !croppedImages.length ? (
-            <div className="hint">
-              <div className="title">Artsorakel</div>
-
-              <div className="body">
-                Trykk på kamera-ikonet for å laste opp et bilde som du ønsker å
-                artsbestemme. Det hjelper ofte å laste opp flere bilder fra
-                forskjellige vinkler.
-              </div>
-            </div>
-          ) : loading ? (
-            <div className="buttonRow">
-              <CircularProgress
-                style={{ color: "#f57c00", width: 100, height: 100 }}
+          {!croppedImages.length && (
+            <div className="gridElement NewImage clickable" tabIndex="0">
+              <AddAPhotoIcon style={{ fontSize: ".8em" }} />
+              <input
+                className="clickable"
+                type="file"
+                id="uploader"
+                onChange={uploadReset}
               />
             </div>
-          ) : (
-            <div className="buttonRow">
+          )}
+        </div>
+
+        {!predictions.length && !croppedImages.length && (
+          <div className="hint">
+            <div className="title">Artsorakel</div>
+
+            <div className="body">
+              Trykk på kamera-ikonet for å laste opp et bilde som du ønsker å
+              artsbestemme. Det hjelper ofte å laste opp flere bilder fra
+              forskjellige vinkler.
+            </div>
+          </div>
+        )}
+
+        {loading && (
+          <div className="buttonRow">
+            <CircularProgress
+              style={{ color: "#f57c00", width: 100, height: 100 }}
+            />
+          </div>
+        )}
+
+        {!!croppedImages.length && !loading && (
+          <div className="actionContainer">
+            <div>
               <Button
                 variant="contained"
-                className="resultRow"
-                style={{ backgroundColor: "#f57c00", color: "white" }}
-                onClick={getId}
                 tabIndex="0"
               >
-                <ImageSearchIcon style={{ fontSize: "4em" }} />
-                <span className="title">Identifiser</span>
+                <AddAPhotoIcon />
+                <input
+                  className="clickable"
+                  type="file"
+                  id="uploadMore"
+                  onChange={uploadMore}
+                />
               </Button>
+
+              <p>Legg til bilde for sikrere identifikasjon</p>
             </div>
-          )
-        ) : (
+            <div>
+              <Button tabIndex="0" variant="contained">
+                <ReplayIcon />
+                <input
+                  className="clickable"
+                  type="file"
+                  id="uploader"
+                  onChange={uploadReset}
+                />
+              </Button>
+              <p>Identifiser noe annet</p>
+            </div>
+          </div>
+        )}
+
+        {!predictions.length && !!croppedImages.length && !loading && (
+          <div className="buttonRow">
+            <Button
+              variant="contained"
+              className="resultRow"
+              style={{ backgroundColor: "#f57c00", color: "white" }}
+              onClick={getId}
+              tabIndex="0"
+            >
+              <ImageSearchIcon style={{ fontSize: "4em" }} />
+              <span className="title">Identifiser</span>
+            </Button>
+          </div>
+        )}
+
+        {!!predictions.length && (
           <div>
             <div className="hint">
               {predictions[0].probability > 0.5 ? (
@@ -268,9 +336,9 @@ function App() {
 
           <p>
             Resultatene er autogenererte, og selv om svaret angis med høy
-            treffprosent betyr det ikke at svaret nødvendigvis er
-            riktig. Sjekk derfor alltid med relevant litteratur, for eksempel
-            våre ekspertskrevne artsbeskrivelser og nøkler i{" "}
+            treffprosent betyr det ikke at svaret nødvendigvis er riktig. Sjekk
+            derfor alltid med relevant litteratur, for eksempel våre
+            ekspertskrevne artsbeskrivelser og nøkler i{" "}
             <a href="https://www.artsdatabanken.no/arter-pa-nett">
               Arter på nett
             </a>

@@ -251,3 +251,39 @@
 .reportButton {
   background-color: lightgreen;
 }
+
+.actionContainer {
+  padding: 0 15px 15px 15px;
+}
+
+.actionContainer div {
+  padding-bottom: 15px;
+  display: flex;
+}
+
+.actionContainer p {
+  display: block;
+  padding-left: 15px;
+  font-size: 1.3em;
+  line-height: 1.6em;
+  font-weight: 300;
+}
+
+.actionContainer button {
+  height: 2em;
+  line-height: 1em;
+  font-size: 1em;
+  background-color: #f57c00;
+  color: white;
+}
+
+.actionContainer input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
