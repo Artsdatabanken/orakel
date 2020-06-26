@@ -138,6 +138,10 @@
   font-weight: 300;
 }
 
+.hint .emphasis {
+  font-weight: 500;
+}
+
 .resultRow {
   display: flex;
   align-items: center;
@@ -260,13 +264,14 @@
 .actionContainer div {
   padding-bottom: 15px;
   display: flex;
+  align-content: center;
+  justify-content: left;
 }
 
 .actionContainer p {
   display: block;
   padding-left: 15px;
   font-size: 1.3em;
-  line-height: 1.6em;
   font-weight: 300;
 }
 

@@ -103,12 +103,6 @@ function App() {
     document.getElementById("uploader").value = "";
   };
 
-
-
-
-
-
-
   const getId = () => {
     setLoading(true);
 
@@ -208,10 +202,7 @@ function App() {
         {!!croppedImages.length && !loading && (
           <div className="actionContainer">
             <div>
-              <Button
-                variant="contained"
-                tabIndex="0"
-              >
+              <Button variant="contained" tabIndex="0">
                 <AddAPhotoIcon />
                 <input
                   className="clickable"
@@ -262,9 +253,9 @@ function App() {
                   når Artsorakelet oppgir høy treffprosent).
                 </div>
               ) : (
-                <div className="body">
-                  <b>Artsorakelet er for usikker på gjenkjenningen til å si hva
-                  dette er.</b>
+                <div className="body emphasis">
+                  Artsorakelet er for usikker på gjenkjenningen til å si hva
+                  dette er.
                 </div>
               )}
             </div>
