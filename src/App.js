@@ -139,15 +139,6 @@ function App() {
           </a>
 
           <div className="fabContainer">
-            {/* <div
-              className="clickable"
-              aria-label="Start på nytt"
-              tabIndex="0"
-              onClick={resetImages}
-            >
-              Restart
-            </div> */}
-
             <div
               className="clickable"
               aria-label="Om appen"
@@ -166,7 +157,7 @@ function App() {
             <UploadedImage img={img} key={index} delImage={delImage} />
           ))}
 
-          {!croppedImages.length && (
+          {!croppedImages.length && !uncroppedImages.length && (
             <div className="gridElement NewImage clickable" tabIndex="0">
               <AddAPhotoIcon style={{ fontSize: ".8em" }} />
               <input
@@ -179,7 +170,7 @@ function App() {
           )}
         </div>
 
-        {!predictions.length && !croppedImages.length && (
+        {!predictions.length && !croppedImages.length && !uncroppedImages.length && (
           <div className="hint">
             <div className="title">Artsorakel</div>
 
@@ -199,7 +190,7 @@ function App() {
           </div>
         )}
 
-        {!predictions.length && !!croppedImages.length && !loading && (
+        {!predictions.length && !!croppedImages.length && !loading && !uncroppedImages.length && (
           <div className="buttonRow">
             <Button
               variant="contained"
@@ -214,7 +205,7 @@ function App() {
           </div>
         )}
 
-        {!!predictions.length && (
+        {!!predictions.length && !uncroppedImages.length && (
           <div>
             <div className="hint">
               {predictions[0].probability > 0.5 ? (
@@ -247,7 +238,7 @@ function App() {
         )}
 
 
-{!!croppedImages.length && !loading && (
+{!!croppedImages.length && !loading && !uncroppedImages.length && (
           <div className="actionContainer">
             <div>
               <Button variant="contained" tabIndex="0">
