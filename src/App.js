@@ -141,7 +141,7 @@ function App() {
       <div className="headerBar">
         <div className="headerLogo">
           <a href="//artsdatabanken.no">
-            <img src="headerlogo.png" alt="Artsdatabanken" />
+            <img src="Artsdatabanken_long.svg" alt="Artsdatabanken" />
           </a>
 
           <div className="fabContainer">
@@ -375,7 +375,7 @@ function App() {
 
           <p>
             <img
-              src="Artsdatabanken.png"
+              src="Artsdatabanken_high.svg"
               alt="Artsdatabanken"
               className="aboutLogo"
             />
