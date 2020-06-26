@@ -40,8 +40,6 @@ export default class ImageCropper extends Component {
     this.slideZoom = this.slideZoom.bind(this);
   }
 
-
-
   cropImage() {
     let canvas = this.cropper.getCroppedCanvas({
       width: this.props.imgSize,
@@ -75,54 +73,13 @@ export default class ImageCropper extends Component {
   }
 
   render() {
-    if(this.state.src.slice(0,10) !== "data:image") {
+    if (this.state.src.slice(0, 10) !== "data:image") {
       this.props.imageCropped(undefined);
       return <div>Det er ikke et bilde</div>;
     }
 
     return (
       <div className="cropContainer">
-        <div className="cropButton">
-          Zoom og flytt til motivet fyller firkanten
-        </div>
-        <div className="cropButton">
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            startIcon={<DoneIcon />}
-            onClick={this.cropImage}
-          >
-            Ferdig
-          </Button>{" "}
-          <Button
-            variant="contained"
-            style={{ backgroundColor: "darkred", color: "white" }}
-            size="large"
-            startIcon={<CancelIcon />}
-            onClick={this.cancel}
-          >
-            Avbryt
-          </Button>
-          <Grid container spacing={2}>
-            <Grid item>
-              <ZoomOutIcon />
-            </Grid>
-            <Grid item xs>
-              <Slider
-                value={this.state.zoom}
-                onChange={this.slideZoom}
-                step={0.01}
-                min={0}
-                max={2}
-                aria-labelledby="zoom-slider"
-              />{" "}
-            </Grid>
-            <Grid item>
-              <ZoomInIcon />
-            </Grid>
-          </Grid>
-        </div>
         <div className="cropper">
           <Cropper
             style={{ width: "100vw", height: "80vh" }}
@@ -142,6 +99,50 @@ export default class ImageCropper extends Component {
               this.cropper = cropper;
             }}
           />
+        </div>
+        <div className="actions">
+          <Grid container>
+            <Grid item>
+              <ZoomOutIcon />
+            </Grid>
+            <Grid item xs>
+              <Slider
+                value={this.state.zoom}
+                onChange={this.slideZoom}
+                step={0.01}
+                min={0}
+                max={2}
+                aria-labelledby="zoom-slider"
+              />{" "}
+            </Grid>
+            <Grid item>
+              <ZoomInIcon />
+            </Grid>
+          </Grid>
+
+          <div className="cropButton">
+            Zoom og flytt til motivet fyller firkanten
+          </div>
+          <div className="cropButton">
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              startIcon={<DoneIcon />}
+              onClick={this.cropImage}
+            >
+              Ferdig
+            </Button>{" "}
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "darkred", color: "white" }}
+              size="large"
+              startIcon={<CancelIcon />}
+              onClick={this.cancel}
+            >
+              Avbryt
+            </Button>
+          </div>
         </div>
       </div>
     );

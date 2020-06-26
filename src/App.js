@@ -199,36 +199,6 @@ function App() {
           </div>
         )}
 
-        {!!croppedImages.length && !loading && (
-          <div className="actionContainer">
-            <div>
-              <Button variant="contained" tabIndex="0">
-                <AddAPhotoIcon />
-                <input
-                  className="clickable"
-                  type="file"
-                  id="uploadMore"
-                  onChange={uploadMore}
-                />
-              </Button>
-
-              <p>Legg til bilde for sikrere identifikasjon</p>
-            </div>
-            <div>
-              <Button tabIndex="0" variant="contained">
-                <ReplayIcon />
-                <input
-                  className="clickable"
-                  type="file"
-                  id="uploader"
-                  onChange={uploadReset}
-                />
-              </Button>
-              <p>Identifiser noe annet</p>
-            </div>
-          </div>
-        )}
-
         {!predictions.length && !!croppedImages.length && !loading && (
           <div className="buttonRow">
             <Button
@@ -273,6 +243,37 @@ function App() {
             {predictions.map((prediction) => (
               <IdResult result={prediction} key={prediction.taxon.id} />
             ))}
+          </div>
+        )}
+
+
+{!!croppedImages.length && !loading && (
+          <div className="actionContainer">
+            <div>
+              <Button variant="contained" tabIndex="0">
+                <AddAPhotoIcon />
+                <input
+                  className="clickable"
+                  type="file"
+                  id="uploadMore"
+                  onChange={uploadMore}
+                />
+              </Button>
+
+              <p>Legg til bilde for sikrere identifikasjon</p>
+            </div>
+            <div>
+              <Button tabIndex="0" variant="contained">
+                <ReplayIcon />
+                <input
+                  className="clickable"
+                  type="file"
+                  id="uploader"
+                  onChange={uploadReset}
+                />
+              </Button>
+              <p>Identifiser noe annet</p>
+            </div>
           </div>
         )}
 

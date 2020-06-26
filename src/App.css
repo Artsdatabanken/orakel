@@ -29,7 +29,7 @@
   min-height: 100vh;
   margin-top: -65px;
   padding-top: 65px;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
   position: relative;
 }
 
@@ -46,8 +46,13 @@
 
 .cropContainer .cropper {
   position: relative;
-  height: 80vh;
-  flex-shrink: 1;
+  flex-grow: 1;
+}
+
+.cropContainer .actions {
+  position: relative;
+  background-color: white;
+  bottom: 50px;
 }
 
 .cropContainer .cropButton {
@@ -60,7 +65,7 @@
 .images {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
 }
 
 .gridElement {
@@ -146,7 +151,7 @@
   display: flex;
   align-items: center;
   padding-left: 15px;
-  padding-bottom: 15px;
+  padding-top: 15px;
 }
 
 .resultRow .title {
@@ -172,14 +177,20 @@
 }
 
 .resultLabels .vernacular {
-  font-size: 1.8em;
+  font-size: 1.6em;
   font-weight: 500;
 }
 
 .resultLabels .scientific {
   font-style: italic;
   font-weight: 200;
-  font-size: 1.4em;
+  font-size: 1.3em;
+}
+
+.resultLabels .percentage {
+  font-weight: 300;
+  font-size: 0.85em;
+  line-height: 1.4em;
 }
 
 .resultLabels .group {
@@ -187,12 +198,6 @@
   font-size: 0.95em;
   line-height: 1em;
   font-variant: small-caps;
-}
-
-.resultLabels .percentage {
-  font-weight: 300;
-  font-size: 0.85em;
-  line-height: 1.4em;
 }
 
 .fabContainer {
@@ -258,7 +263,7 @@
 }
 
 .actionContainer {
-  padding: 0 15px 15px 15px;
+  padding: 55px 15px 15px 15px;
 }
 
 .actionContainer div {
