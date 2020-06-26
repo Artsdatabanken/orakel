@@ -191,7 +191,7 @@ function App() {
               {predictions[0].probability > 0.5 ? (
                 <div className="body">
                   Husk at resultatene er autogenererte, og kan være feil (også
-                  når Artsorakelet oppgir høy konfidens).
+                  når Artsorakelet oppgir høy treffprosent).
                 </div>
               ) : (
                 <div className="body">
@@ -268,7 +268,7 @@ function App() {
 
           <p>
             Resultatene er autogenererte, og selv om svaret angis med høy
-            konfidens (høy prosent) betyr det ikke at svaret nødvendigvis er
+            treffprosent betyr det ikke at svaret nødvendigvis er
             riktig. Sjekk derfor alltid med relevant litteratur, for eksempel
             våre ekspertskrevne artsbeskrivelser og nøkler i{" "}
             <a href="https://www.artsdatabanken.no/arter-pa-nett">

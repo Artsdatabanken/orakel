@@ -72,7 +72,7 @@ function IdResult({ result }) {
         </div>
         <div className="scientific">{result.taxon.name}</div>
         <div className="percentage">
-          ({Math.round(percentage)} % konfidens){" "}
+          ({Math.round(percentage)} % treff)
         </div>
         <div className="group">
           {result.taxon.groupName}
