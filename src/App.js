@@ -263,8 +263,8 @@ function App() {
                 </div>
               ) : (
                 <div className="body">
-                  Artsorakelet er for usikker på gjenkjenningen til å si hva
-                  dette er.
+                  <b>Artsorakelet er for usikker på gjenkjenningen til å si hva
+                  dette er.</b>
                 </div>
               )}
             </div>
