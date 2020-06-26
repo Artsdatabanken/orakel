@@ -95,7 +95,7 @@ function IdResult({ result }) {
               color="primary"
               className="reportButton"
             >
-              Rapporter
+              Rapportere
             </Button>
           </a>
         )}
