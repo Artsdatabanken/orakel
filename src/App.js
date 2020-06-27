@@ -4,7 +4,8 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import ImageSearchIcon from "@material-ui/icons/ImageSearch";
 import ReplayIcon from "@material-ui/icons/Replay";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
-
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 import axios from "axios";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -170,17 +171,19 @@ function App() {
           )}
         </div>
 
-        {!predictions.length && !croppedImages.length && !uncroppedImages.length && (
-          <div className="hint">
-            <div className="title">Artsorakel</div>
+        {!predictions.length &&
+          !croppedImages.length &&
+          !uncroppedImages.length && (
+            <div className="hint">
+              <div className="title">Artsorakel</div>
 
-            <div className="body">
-              Trykk på kamera-ikonet for å laste opp et bilde som du ønsker å
-              artsbestemme. Det hjelper ofte å laste opp flere bilder fra
-              forskjellige vinkler.
+              <div className="body">
+                Trykk på kamera-ikonet for å laste opp et bilde som du ønsker å
+                artsbestemme. Det hjelper ofte å laste opp flere bilder fra
+                forskjellige vinkler.
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
         {loading && (
           <div className="buttonRow">
@@ -190,20 +193,23 @@ function App() {
           </div>
         )}
 
-        {!predictions.length && !!croppedImages.length && !loading && !uncroppedImages.length && (
-          <div className="buttonRow">
-            <Button
-              variant="contained"
-              className="resultRow"
-              style={{ backgroundColor: "#f57c00", color: "white" }}
-              onClick={getId}
-              tabIndex="0"
-            >
-              <ImageSearchIcon style={{ fontSize: "4em" }} />
-              <span className="title">Identifiser</span>
-            </Button>
-          </div>
-        )}
+        {!predictions.length &&
+          !!croppedImages.length &&
+          !loading &&
+          !uncroppedImages.length && (
+            <div className="buttonRow">
+              <Button
+                variant="contained"
+                className="resultRow"
+                style={{ backgroundColor: "#f57c00", color: "white" }}
+                onClick={getId}
+                tabIndex="0"
+              >
+                <ImageSearchIcon style={{ fontSize: "4em" }} />
+                <span className="title">Identifiser</span>
+              </Button>
+            </div>
+          )}
 
         {!!predictions.length && !uncroppedImages.length && (
           <div>
@@ -224,8 +230,8 @@ function App() {
             {predictions[0].probability < 0.8 && (
               <div className="hint">
                 <div className="body">
-                  Prøv å legge til bilder med andre vinkler
-                  eller detaljer, og zoom inn til (kun) arten du vil gjenkjenne.
+                  Prøv å legge til bilder med andre vinkler eller detaljer, og
+                  zoom inn til (kun) arten du vil gjenkjenne.
                 </div>
               </div>
             )}
@@ -236,8 +242,7 @@ function App() {
           </div>
         )}
 
-
-{!!croppedImages.length && !loading && !uncroppedImages.length && (
+        {!!croppedImages.length && !loading && !uncroppedImages.length && (
           <div className="actionContainer">
             <div>
               <Button variant="contained" tabIndex="0">
@@ -288,6 +293,13 @@ function App() {
       >
         <DialogTitle id="simple-dialog-title">
           Om Artsorakelet (beta v0.1)
+          <IconButton
+            aria-label="close"
+            onClick={handleClose}
+            style={{ right: "15px", top: "0", position: "absolute" }}
+          >
+            <CloseIcon />
+          </IconButton>
         </DialogTitle>
         <DialogContent className="dialogContent">
           <p>
