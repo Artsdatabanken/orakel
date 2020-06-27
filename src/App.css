@@ -176,6 +176,12 @@
   padding-left: 15px;
 }
 
+.resultLabels a {
+  color: black;
+  text-decoration: none;
+}
+
+
 .resultLabels .vernacular {
   font-size: 1.6em;
   font-weight: 500;

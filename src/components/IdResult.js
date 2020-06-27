@@ -17,7 +17,7 @@ function IdResult({ result }) {
     const colorIndex = (percent / 100.0) * (colors.length - 1);
     const lowFactor = 1 - (colorIndex % 1);
     const lowIndex = Math.floor(colorIndex);
-    const highIndex = Math.min(lowIndex+1, colors.length - 1);
+    const highIndex = Math.min(lowIndex + 1, colors.length - 1);
 
     const r =
       colors[lowIndex][0] * lowFactor + colors[highIndex][0] * (1 - lowFactor);
@@ -66,14 +66,18 @@ function IdResult({ result }) {
       </div>
 
       <div className="resultLabels">
-        <div className="vernacular">
-          {result.taxon.vernacularName.charAt(0).toUpperCase() +
-            result.taxon.vernacularName.slice(1)}
-        </div>
-        <div className="scientific">{result.taxon.name}</div>
-        <div className="percentage">
-          ({Math.round(percentage)} % treff)
-        </div>
+        <a
+          href={`https://artsdatabanken.no/Taxon/${result.taxon.name}/${result.taxon.scientificNameID}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="vernacular">
+            {result.taxon.vernacularName.charAt(0).toUpperCase() +
+              result.taxon.vernacularName.slice(1)}
+          </div>
+          <div className="scientific">{result.taxon.name}</div>
+        </a>
+        <div className="percentage">({Math.round(percentage)} % treff)</div>
         <div className="group">
           {result.taxon.groupName}
 
@@ -83,19 +87,23 @@ function IdResult({ result }) {
             </span>
           )}
         </div>
-        {percentage > 90 && (
+
+        {!!result.taxon.scientificNameID && percentage > 90 && (
           <a
             href={`https://www.artsobservasjoner.no/SubmitSighting/ReportByScientificName/${result.taxon.scientificNameID}`}
             target="_blank"
             rel="noopener noreferrer"
           >
             <Button
-              style={{ marginTop: "10px", height: "16px", fontSize: "12px", lineHeight: "12px" }}
+              style={{
+                fontSize: "12px",
+                lineHeight: "14px",
+              }}
               variant="contained"
               color="primary"
               className="reportButton"
             >
-              Rapportere
+              Rapportér funn
             </Button>
           </a>
         )}
