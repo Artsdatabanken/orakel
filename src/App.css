@@ -181,7 +181,6 @@
   text-decoration: none;
 }
 
-
 .resultLabels .vernacular {
   font-size: 1.6em;
   font-weight: 500;
@@ -264,8 +263,10 @@
   font-weight: 700;
 }
 
-.reportButton {
-  background-color: lightgreen;
+.percentage button {
+  margin-left: 15px;
+  color: white;
+  background-color: olivedrab;
 }
 
 .actionContainer {

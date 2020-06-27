@@ -77,7 +77,28 @@ function IdResult({ result }) {
           </div>
           <div className="scientific">{result.taxon.name}</div>
         </a>
-        <div className="percentage">({Math.round(percentage)} % treff)</div>
+        <div className="percentage">({Math.round(percentage)} % treff) 
+        
+        {!!result.taxon.scientificNameID && percentage > 90 && (
+          <a
+            href={`https://www.artsobservasjoner.no/SubmitSighting/ReportByScientificName/${result.taxon.scientificNameID}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button
+              style={{
+                fontSize: "9px",
+                lineHeight: "10px",
+              }}
+              variant="contained"
+              color="primary"
+              className="reportButton"
+            >
+              Rapportér funn
+            </Button>
+          </a>
+        )}
+        </div>
         <div className="group">
           {result.taxon.groupName}
 
@@ -88,25 +109,7 @@ function IdResult({ result }) {
           )}
         </div>
 
-        {!!result.taxon.scientificNameID && percentage > 90 && (
-          <a
-            href={`https://www.artsobservasjoner.no/SubmitSighting/ReportByScientificName/${result.taxon.scientificNameID}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button
-              style={{
-                fontSize: "12px",
-                lineHeight: "14px",
-              }}
-              variant="contained"
-              color="primary"
-              className="reportButton"
-            >
-              Rapportér funn
-            </Button>
-          </a>
-        )}
+       
       </div>
     </div>
   );
