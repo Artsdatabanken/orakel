@@ -94,7 +94,7 @@ function IdResult({ result }) {
               color="primary"
               className="reportButton"
             >
-              Rapportér funn
+              Registrer funn
             </Button>
           </a>
         )}
