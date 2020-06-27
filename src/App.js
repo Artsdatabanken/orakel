@@ -210,8 +210,8 @@ function App() {
             <div className="hint">
               {predictions[0].probability > 0.5 ? (
                 <div className="body">
-                  Husk at resultatene er autogenererte, og kan være feil (også
-                  når Artsorakelet oppgir høy treffprosent).
+                  Husk at resultatene er autogenererte, og kan være feil, også
+                  når Artsorakelet oppgir høy treffprosent.
                 </div>
               ) : (
                 <div className="body emphasis">
@@ -224,9 +224,8 @@ function App() {
             {predictions[0].probability < 0.8 && (
               <div className="hint">
                 <div className="body">
-                  Det kan hjelpe å legge til flere bilder med ulike vinkler
-                  eller detaljer. Zoom også inn til arten du vil gjenkjenne, når
-                  det er flere arter kan resultatet gjenspeile det.
+                  Prøv å legge til bilder med andre vinkler
+                  eller detaljer, og zoom inn til (kun) arten du vil gjenkjenne.
                 </div>
               </div>
             )}
