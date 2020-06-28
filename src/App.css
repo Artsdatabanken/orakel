@@ -49,7 +49,6 @@
 .cropContainer .actions {
   position: relative;
   background-color: white;
-  bottom: 100px;
 }
 
 .cropContainer .cropButton {

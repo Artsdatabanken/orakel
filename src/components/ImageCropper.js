@@ -6,6 +6,8 @@ import CancelIcon from "@material-ui/icons/Cancel";
 import ZoomOutIcon from "@material-ui/icons/ZoomOut";
 import ZoomInIcon from "@material-ui/icons/ZoomIn";
 import Grid from "@material-ui/core/Grid";
+import { runningOnMobile } from '../utils/utils';
+
 import "cropperjs/dist/cropper.css";
 import "../App.css";
 
@@ -100,7 +102,7 @@ export default class ImageCropper extends Component {
             }}
           />
         </div>
-        <div className="actions">
+        <div className="actions" style={ window.cordova || !runningOnMobile() ? { bottom: "0px"} : {bottom: "100px"}  }   >
           <Grid container>
             <Grid item>
               <ZoomOutIcon />
