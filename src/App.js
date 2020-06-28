@@ -113,7 +113,7 @@ function App() {
     }
 
     axios
-      .post("//ai.artsdatabanken.no/", formdata)
+      .post("https://ai.artsdatabanken.no/", formdata)
       .then((res) => {
         let predictions = res.data.predictions.filter(
           (pred) => pred.probability > 0.02
