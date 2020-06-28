@@ -10,6 +10,7 @@ import axios from "axios";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import Dialog from "@material-ui/core/Dialog";
+import AppBar from "@material-ui/core/AppBar";
 import "./App.css";
 
 import UploadedImage from "./components/Image";
@@ -133,7 +134,9 @@ function App() {
 
   return (
     <div className="App">
+      <AppBar position="fixed" className="appBar">
       <div className="headerBar">
+
         <div className="headerLogo">
           <a href="//artsdatabanken.no">
             <img src="Artsdatabanken_long.svg" alt="Artsdatabanken" />
@@ -149,8 +152,10 @@ function App() {
               Om
             </div>
           </div>
+          </div>
+
         </div>
-      </div>
+      </AppBar>
 
       <div className="Container">
         <div className="images">

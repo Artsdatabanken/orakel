@@ -8,6 +8,7 @@
         Artsdatabanken
     </author>
     <content src="index.html" />
+    <preference name="HeaderColor" value="#4c4a48" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
