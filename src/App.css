@@ -259,8 +259,12 @@
   font-weight: 700;
 }
 
-.percentage button {
-  margin-left: 15px;
+.warning {
+  color: chocolate;
+}
+
+.percentage .number {
+  margin-right: 15px;
 }
 
 .actionContainer {

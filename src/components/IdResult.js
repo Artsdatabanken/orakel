@@ -2,6 +2,7 @@ import React from "react";
 import "../App.css";
 import Button from "@material-ui/core/Button";
 import WarningIcon from "@material-ui/icons/Warning";
+import { runningOnMobile } from "../utils/utils";
 
 function IdResult({ result }) {
   const percentage = result.probability * 100;
@@ -77,39 +78,44 @@ function IdResult({ result }) {
           </div>
           <div className="scientific">{result.taxon.name}</div>
         </a>
-        <div className="percentage">({Math.round(percentage)} % treff) 
-        
-        {!!result.taxon.scientificNameID && percentage > 90 && (
-          <a
-            href={`https://www.artsobservasjoner.no/SubmitSighting/ReportByScientificName/${result.taxon.scientificNameID}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button
-              style={{
-                fontSize: "9px",
-                lineHeight: "10px",
-              }}
-              variant="contained"
-              color="primary"
-              className="reportButton"
+        <div className="percentage">
+          <span className="number">({Math.round(percentage)} % treff)</span>
+          {!!result.taxon.scientificNameID && percentage > 90 && (
+            <a
+              href={
+                runningOnMobile()
+                  ? `https://mobil.artsobservasjoner.no/`
+                  : `https://www.artsobservasjoner.no/SubmitSighting/ReportByScientificName/${result.taxon.scientificNameID}`
+              }
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Registrer funn
-            </Button>
-          </a>
-        )}
+              <Button
+                style={{
+                  fontSize: "9px",
+                  lineHeight: "10px",
+                }}
+                variant="contained"
+                color="primary"
+              >
+                Registrer funn
+              </Button>
+            </a>
+          )}
         </div>
         <div className="group">
-          {result.taxon.groupName}
-
+          {result.taxon.groupName}{" "}
           {result.taxon.groupName === "Sopper" && (
             <span className="danger">
               <WarningIcon /> ALDRI SPIS NOE BASERT PÅ ARTSORAKELETS SVAR
             </span>
           )}
+          {result.taxon.groupName === "Fisker" && (
+            <span className="warning">
+              (Orakelet er ikke flink på fisker pga lite treningsdata)
+            </span>
+          )}
         </div>
-
-       
       </div>
     </div>
   );
