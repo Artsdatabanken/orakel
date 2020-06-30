@@ -226,7 +226,7 @@ function App() {
                 <div className="body emphasis">
                   Artsorakelet er for usikker på gjenkjenningen til å si hva
                   dette er. Du må selv kontrollere at artsbestemmelsen er riktig
-                  før du rapporterer.
+                  hvis du rapporterer.
                 </div>
               )}
             </div>
@@ -364,7 +364,7 @@ function App() {
             Hvis du med stor sikkerhet vet hvilken art det er, vil vi gjerne at
             du rapporterer observasjonen i{" "}
             <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>{" "}
-            ved å trykke på "rapporter"-knappen . Slik hjelper du forskere og
+            ved å trykke på "registrer funn"-knappen . Slik hjelper du forskere og
             naturforvaltere. Hvis du laster opp bildene der kan de i tillegg
             brukes til å forbedre neste versjon av denne appen.
           </p>

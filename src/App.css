@@ -196,6 +196,7 @@ body+div+div {
 
 .resultLabels {
   padding-left: 15px;
+  z-index: 2;
 }
 
 .resultLabels a {
