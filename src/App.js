@@ -17,32 +17,32 @@ import UploadedImage from "./components/Image";
 import IdResult from "./components/IdResult";
 import ImageCropper from "./components/ImageCropper";
 
-import { ApplicationInsights } from "@microsoft/applicationinsights-web";
-import {
-  ReactPlugin,
-  withAITracking,
-} from "@microsoft/applicationinsights-react-js";
-import { createBrowserHistory } from "history";
+// import { ApplicationInsights } from "@microsoft/applicationinsights-web";
+// import {
+//   ReactPlugin,
+//   withAITracking,
+// } from "@microsoft/applicationinsights-react-js";
+// import { createBrowserHistory } from "history";
 
-const browserHistory = createBrowserHistory({ basename: "" });
-var reactPlugin = new ReactPlugin();
-if (
-  window.location.hostname === "orakel.test.artsdatabanken.no" ||
-  window.location.hostname === "orakel.artsdatabanken.no"
-) {
-  var appInsights = new ApplicationInsights({
-    config: {
-      instrumentationKey: "a108a996-bb13-431c-a929-b70f8e15c1ea",
-      extensions: [reactPlugin],
-      extensionConfig: {
-        [reactPlugin.identifier]: { history: browserHistory },
-      },
-    },
-  });
-  appInsights.loadAppInsights();
-} else {
-  console.log("Running on", window.location.hostname, "- not logging");
-}
+// const browserHistory = createBrowserHistory({ basename: "" });
+// var reactPlugin = new ReactPlugin();
+// if (
+//   window.location.hostname === "orakel.test.artsdatabanken.no" ||
+//   window.location.hostname === "orakel.artsdatabanken.no"
+// ) {
+//   var appInsights = new ApplicationInsights({
+//     config: {
+//       instrumentationKey: "a108a996-bb13-431c-a929-b70f8e15c1ea",
+//       extensions: [reactPlugin],
+//       extensionConfig: {
+//         [reactPlugin.identifier]: { history: browserHistory },
+//       },
+//     },
+//   });
+//   appInsights.loadAppInsights();
+// } else {
+//   console.log("Running on", window.location.hostname, "- not logging");
+// }
 
 function App() {
   const [croppedImages, setCroppedImages] = useState([]);
@@ -79,6 +79,10 @@ function App() {
   const delImage = (name) => {
     setCroppedImages(croppedImages.filter((i) => i.name !== name));
     setPredictions([]);
+  };
+
+  const preventClick = (e) => {
+    e.preventDefault();
   };
 
   const resetImages = () => {
@@ -157,23 +161,16 @@ function App() {
       </AppBar>
 
       <div className="Container">
+        <input
+          type="file"
+          id="bigDropzone"
+          onClick={preventClick}
+          onChange={uploadMore.bind(this, "bigDropzone")}
+        />
         <div className="images">
           {croppedImages.map((img, index) => (
             <UploadedImage img={img} key={index} delImage={delImage} />
           ))}
-
-          {!croppedImages.length && !uncroppedImages.length && (
-            <div className="NewImage clickable" tabIndex="0">
-              <AddAPhotoIcon style={{ fontSize: ".8em" }} />
-            </div>
-          )}
-
-          <input
-            className="clickable"
-            type="file"
-            id="uploaderImages"
-            onChange={uploadMore.bind(this, "uploaderImages")}
-          />
         </div>
 
         {!predictions.length &&
@@ -222,12 +219,14 @@ function App() {
               {predictions[0].probability > 0.5 ? (
                 <div className="body">
                   Husk at resultatene er autogenererte, og kan være feil, også
-                  når Artsorakelet oppgir høy treffprosent.
+                  når Artsorakelet oppgir høy treffprosent. Du må selv
+                  kontrollere at artsbestemmelsen er riktig før du rapporterer.
                 </div>
               ) : (
                 <div className="body emphasis">
                   Artsorakelet er for usikker på gjenkjenningen til å si hva
-                  dette er.
+                  dette er. Du må selv kontrollere at artsbestemmelsen er riktig
+                  før du rapporterer.
                 </div>
               )}
             </div>
@@ -274,6 +273,18 @@ function App() {
                 onChange={uploadReset.bind(this, "uploader")}
               />
             </div>
+          </div>
+        )}
+
+        {!croppedImages.length && !uncroppedImages.length && (
+          <div className="NewImage clickable" tabIndex="0">
+            <AddAPhotoIcon style={{ fontSize: ".8em" }} />
+            <input
+              className="clickable"
+              type="file"
+              id="uploaderImages"
+              onChange={uploadMore.bind(this, "uploaderImages")}
+            />
           </div>
         )}
 
@@ -386,4 +397,6 @@ function App() {
   );
 }
 
-export default withAITracking(reactPlugin, App);
+// export default withAITracking(reactPlugin, App);
+export default  App;
+

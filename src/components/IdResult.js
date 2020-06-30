@@ -80,7 +80,7 @@ function IdResult({ result }) {
         </a>
         <div className="percentage">
           <span className="number">({Math.round(percentage)} % treff)</span>
-          {!!result.taxon.scientificNameID && percentage > 90 && (
+          {!!result.taxon.scientificNameID && percentage > 0 && (
             <a
               href={
                 runningOnMobile()

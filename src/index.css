@@ -101,9 +101,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100vh;
   background-color: rgb(245, 245, 245);
 }
+
+html, body { height: 100% } 
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -111,6 +112,6 @@ code {
 }
 
 #root {
-  height: 100vh;
+  height: 100%;
   margin: 0;
 }
