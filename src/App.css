@@ -43,6 +43,7 @@ body+div+div {
   position: absolute;
   width: 100vw;
   height: 100%;
+  padding-top: 65px;
   top: 0;
   display: flex;
   flex-direction: column;

@@ -34,7 +34,7 @@ if (!HTMLCanvasElement.prototype.toBlob) {
 export default class ImageCropper extends Component {
   constructor(props) {
     super(props);
-    this.state = { src: props.imgFile, cropResult: null, zoom: 0.7 };
+    this.state = { src: props.imgFile, cropResult: null, zoom: 0.2 };
     this.cropImage = this.cropImage.bind(this);
     this.cancel = this.cancel.bind(this);
     this.doZoom = this.doZoom.bind(this);
@@ -65,6 +65,33 @@ export default class ImageCropper extends Component {
     this.props.imageCropped();
   }
 
+  initCropper() {
+    let cropBoxSize =
+      Math.min(
+        this.cropper.cropper.containerData.width,
+        this.cropper.cropper.containerData.height
+      ) * 0.8;
+
+    this.cropper.setCropBoxData({
+      width: cropBoxSize,
+      left: (this.cropper.cropper.containerData.width - cropBoxSize) / 2,
+      top: (this.cropper.cropper.containerData.height - cropBoxSize) / 2,
+
+    });
+
+
+    // Set the initial zoom to fit the smallest dimension
+    let zoomFactor = Math.max(
+      cropBoxSize /
+        Math.min(
+          this.cropper.cropper.canvasData.naturalWidth,
+          this.cropper.cropper.canvasData.naturalHeight
+        )
+    );
+    this.setState({ zoom: zoomFactor });
+    this.cropper.zoomTo(zoomFactor);
+  }
+
   slideZoom(event, newValue) {
     this.cropper.zoomTo(newValue);
   }
@@ -88,7 +115,8 @@ export default class ImageCropper extends Component {
             viewMode={0}
             dragMode={"move"}
             zoom={this.doZoom}
-            autoCropArea={.75}
+            autoCropArea={0.75}
+            ready={this.initCropper.bind(this)}
             cropBoxMovable={false}
             cropBoxResizable={false}
             toggleDragModeOnDblclick={false}
@@ -102,9 +130,7 @@ export default class ImageCropper extends Component {
             }}
           />
         </div>
-        <div
-          className="actions"
-        >
+        <div className="actions">
           <Grid container>
             <Grid item>
               <ZoomOutIcon />

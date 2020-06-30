@@ -99,7 +99,6 @@ function App() {
   };
 
   const uploadMore = (sender) => {
-    console.log(sender);
     addImage(document.getElementById(sender).files);
     document.getElementById(sender).value = "";
   };
