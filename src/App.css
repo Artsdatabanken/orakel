@@ -84,22 +84,39 @@ body+div+div {
   height: 100%;
 }
 
-.NewImage {
-  background-color: #f57c00;
+.bottomButton {
   position: absolute;
   margin-left: 50%;
   transform: translate(-50%, -25%);
+  z-index: 2;
   bottom: 0px;
+}
+
+.NewImage {
   align-items: center;
   justify-content: center;
   display: flex;
   font-size: 4em;
-  color: white;
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  z-index: 2;
+  margin-bottom: 15px;
+  background-color: #f57c00;
+  color: white;
 }
+
+.identifyButton {
+  margin-bottom: 75px;
+}
+
+.identifyButton .title {
+  font-size: 1.3em;
+  font-weight: 400;
+  padding-left: 12px;
+}
+
+
+
 
 .images *:focus {
   background-color: #f57c00;

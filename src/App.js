@@ -194,24 +194,6 @@ function App() {
           </div>
         )}
 
-        {!predictions.length &&
-          !!croppedImages.length &&
-          !loading &&
-          !uncroppedImages.length && (
-            <div className="buttonRow">
-              <Button
-                variant="contained"
-                className="resultRow"
-                style={{ backgroundColor: "#f57c00", color: "white" }}
-                onClick={getId}
-                tabIndex="0"
-              >
-                <ImageSearchIcon style={{ fontSize: "4em" }} />
-                <span className="title">Identifiser</span>
-              </Button>
-            </div>
-          )}
-
         {!!predictions.length && !uncroppedImages.length && (
           <div>
             <div className="hint">
@@ -276,7 +258,7 @@ function App() {
         )}
 
         {!croppedImages.length && !uncroppedImages.length && (
-          <div className="NewImage clickable" tabIndex="0">
+          <div className=" bottomButton NewImage clickable" tabIndex="0">
             <AddAPhotoIcon style={{ fontSize: ".8em" }} />
             <input
               className="clickable"
@@ -286,6 +268,23 @@ function App() {
             />
           </div>
         )}
+
+        {!predictions.length &&
+          !!croppedImages.length &&
+          !loading &&
+          !uncroppedImages.length && (
+            <div className="bottomButton identifyButton clickable">
+              <Button
+                variant="contained"
+                style={{ backgroundColor: "#f57c00", color: "white" }}
+                onClick={getId}
+                tabIndex="0"
+              >
+                <ImageSearchIcon style={{ fontSize: "4em" }} />{' '}
+                <span className="title">Identifiser</span>
+              </Button>
+            </div>
+          )}
 
         <img src="beta.svg" alt="beta" className="betaRibbon" />
       </div>
@@ -363,8 +362,8 @@ function App() {
             Hvis du med stor sikkerhet vet hvilken art det er, vil vi gjerne at
             du rapporterer observasjonen i{" "}
             <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>{" "}
-            ved å trykke på "registrer funn"-knappen . Slik hjelper du forskere og
-            naturforvaltere. Hvis du laster opp bildene der kan de i tillegg
+            ved å trykke på "registrer funn"-knappen . Slik hjelper du forskere
+            og naturforvaltere. Hvis du laster opp bildene der kan de i tillegg
             brukes til å forbedre neste versjon av denne appen.
           </p>
 
@@ -397,5 +396,4 @@ function App() {
 }
 
 // export default withAITracking(reactPlugin, App);
-export default  App;
-
+export default App;

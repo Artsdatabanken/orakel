@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Slider from "@material-ui/core/Slider";
 import Button from "@material-ui/core/Button";
 import DoneIcon from "@material-ui/icons/Done";
-import CancelIcon from "@material-ui/icons/Cancel";
 import ZoomOutIcon from "@material-ui/icons/ZoomOut";
 import ZoomInIcon from "@material-ui/icons/ZoomIn";
 import Grid from "@material-ui/core/Grid";
@@ -76,9 +75,7 @@ export default class ImageCropper extends Component {
       width: cropBoxSize,
       left: (this.cropper.cropper.containerData.width - cropBoxSize) / 2,
       top: (this.cropper.cropper.containerData.height - cropBoxSize) / 2,
-
     });
-
 
     // Set the initial zoom to fit the smallest dimension
     let zoomFactor = Math.max(
@@ -155,6 +152,14 @@ export default class ImageCropper extends Component {
           </div>
           <div className="cropButton">
             <Button
+              variant="outlined"
+              color="primary"
+              size="large"
+              onClick={this.cancel}
+            >
+              Avbryt
+            </Button>{" "}
+            <Button
               variant="contained"
               color="primary"
               size="large"
@@ -162,15 +167,6 @@ export default class ImageCropper extends Component {
               onClick={this.cropImage}
             >
               Ferdig
-            </Button>{" "}
-            <Button
-              variant="contained"
-              style={{ backgroundColor: "darkred", color: "white" }}
-              size="large"
-              startIcon={<CancelIcon />}
-              onClick={this.cancel}
-            >
-              Avbryt
             </Button>
           </div>
         </div>
