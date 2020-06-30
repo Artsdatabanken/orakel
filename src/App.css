@@ -47,7 +47,9 @@
 }
 
 .cropContainer .actions {
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
   background-color: white;
 }
 
@@ -61,7 +63,36 @@
 .images {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 5px;
+  position: relative;
+}
+
+.images input {
+  opacity: 0;
+  top: 0px;
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 166px;
+  max-height: 25vw;
+}
+
+.images .NewImage {
+  background-color: #f57c00;
+  width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.5em;
+  font-size: 5em;
+  color: white;
+  height: 166px;
+  max-height: 25vw;
+}
+
+.images *:focus {
+  background-color: #f57c00;
 }
 
 .gridElement {
@@ -77,22 +108,11 @@
   color: white;
 }
 
-.images .NewImage {
-  background-color: lightgray;
-}
-
-.images *:focus {
-  background-color: #f57c00;
-}
-
-.images .Reset {
-  background-color: #f7ab60;
-}
-
 .imgContainer {
   text-align: center;
-  padding-bottom: 20px;
+  margin-bottom: 20px;
   text-decoration: none;
+  z-index: 2;
 }
 
 .imgContainer .removeLink {
@@ -180,6 +200,10 @@
 .resultLabels .vernacular {
   font-size: 1.6em;
   font-weight: 500;
+}
+
+.italics {
+  font-style: italic;
 }
 
 .resultLabels .scientific {
@@ -276,6 +300,7 @@
   display: flex;
   align-content: center;
   justify-content: left;
+  position: relative;
 }
 
 .actionContainer p {

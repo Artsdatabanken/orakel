@@ -94,15 +94,16 @@ function App() {
     setModalOpen(false);
   };
 
-  const uploadMore = () => {
-    addImage(document.getElementById("uploadMore").files);
-    document.getElementById("uploadMore").value = "";
+  const uploadMore = (sender) => {
+    console.log(sender);
+    addImage(document.getElementById(sender).files);
+    document.getElementById(sender).value = "";
   };
 
-  const uploadReset = () => {
+  const uploadReset = (sender) => {
     resetImages();
-    addImage(document.getElementById("uploader").files);
-    document.getElementById("uploader").value = "";
+    addImage(document.getElementById(sender).files);
+    document.getElementById(sender).value = "";
   };
 
   const getId = () => {
@@ -135,25 +136,23 @@ function App() {
   return (
     <div className="App">
       <AppBar position="fixed" className="appBar">
-      <div className="headerBar">
+        <div className="headerBar">
+          <div className="headerLogo">
+            <a href="//artsdatabanken.no">
+              <img src="Artsdatabanken_long.svg" alt="Artsdatabanken" />
+            </a>
 
-        <div className="headerLogo">
-          <a href="//artsdatabanken.no">
-            <img src="Artsdatabanken_long.svg" alt="Artsdatabanken" />
-          </a>
-
-          <div className="fabContainer">
-            <div
-              className="clickable"
-              aria-label="Om appen"
-              tabIndex="0"
-              onClick={handleClickOpen}
-            >
-              Om
+            <div className="fabContainer">
+              <div
+                className="clickable"
+                aria-label="Om appen"
+                tabIndex="0"
+                onClick={handleClickOpen}
+              >
+                Om
+              </div>
             </div>
           </div>
-          </div>
-
         </div>
       </AppBar>
 
@@ -164,16 +163,17 @@ function App() {
           ))}
 
           {!croppedImages.length && !uncroppedImages.length && (
-            <div className="gridElement NewImage clickable" tabIndex="0">
+            <div className="NewImage clickable" tabIndex="0">
               <AddAPhotoIcon style={{ fontSize: ".8em" }} />
-              <input
-                className="clickable"
-                type="file"
-                id="uploader"
-                onChange={uploadReset}
-              />
             </div>
           )}
+
+          <input
+            className="clickable"
+            type="file"
+            id="uploaderImages"
+            onChange={uploadMore.bind(this, "uploaderImages")}
+          />
         </div>
 
         {!predictions.length &&
@@ -252,27 +252,27 @@ function App() {
             <div>
               <Button variant="contained" tabIndex="0">
                 <AddAPhotoIcon />
-                <input
-                  className="clickable"
-                  type="file"
-                  id="uploadMore"
-                  onChange={uploadMore}
-                />
               </Button>
 
               <p>Legg til bilde for sikrere identifikasjon</p>
+              <input
+                className="clickable"
+                type="file"
+                id="uploadMore"
+                onChange={uploadMore.bind(this, "uploadMore")}
+              />
             </div>
             <div>
               <Button tabIndex="0" variant="contained">
                 <ReplayIcon />
-                <input
-                  className="clickable"
-                  type="file"
-                  id="uploader"
-                  onChange={uploadReset}
-                />
               </Button>
               <p>Identifiser noe annet</p>
+              <input
+                className="clickable"
+                type="file"
+                id="uploader"
+                onChange={uploadReset.bind(this, "uploader")}
+              />
             </div>
           </div>
         )}

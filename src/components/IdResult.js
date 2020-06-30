@@ -72,7 +72,7 @@ function IdResult({ result }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <div className="vernacular">
+          <div className={result.taxon.vernacularName.toLowerCase() === result.taxon.name.toLowerCase() ? "vernacular italics" : "vernacular"  }>
             {result.taxon.vernacularName.charAt(0).toUpperCase() +
               result.taxon.vernacularName.slice(1)}
           </div>
@@ -84,7 +84,7 @@ function IdResult({ result }) {
             <a
               href={
                 runningOnMobile()
-                  ? `https://mobil.artsobservasjoner.no/`
+                  ? `https://mobil.artsobservasjoner.no/#/report`
                   : `https://www.artsobservasjoner.no/SubmitSighting/ReportByScientificName/${result.taxon.scientificNameID}`
               }
               target="_blank"

@@ -6,7 +6,7 @@ import CancelIcon from "@material-ui/icons/Cancel";
 import ZoomOutIcon from "@material-ui/icons/ZoomOut";
 import ZoomInIcon from "@material-ui/icons/ZoomIn";
 import Grid from "@material-ui/core/Grid";
-import { runningOnMobile } from '../utils/utils';
+import { runningOnMobile } from "../utils/utils";
 
 import "cropperjs/dist/cropper.css";
 import "../App.css";
@@ -84,11 +84,12 @@ export default class ImageCropper extends Component {
       <div className="cropContainer">
         <div className="cropper">
           <Cropper
-            style={{ width: "100vw", height: "80vh" }}
+            style={{ width: "100vw", height: "100vh" }}
             aspectRatio={1}
             viewMode={0}
             dragMode={"move"}
             zoom={this.doZoom}
+            autoCropArea={0.7}
             cropBoxMovable={false}
             cropBoxResizable={false}
             toggleDragModeOnDblclick={false}
@@ -102,7 +103,14 @@ export default class ImageCropper extends Component {
             }}
           />
         </div>
-        <div className="actions" style={ window.cordova || !runningOnMobile() ? { bottom: "0px"} : {bottom: "100px"}  }   >
+        <div
+          className="actions"
+          style={
+            window.cordova || !runningOnMobile()
+              ? { bottom: "0px" }
+              : { bottom: "100px" }
+          }
+        >
           <Grid container>
             <Grid item>
               <ZoomOutIcon />
