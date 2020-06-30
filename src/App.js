@@ -201,13 +201,13 @@ function App() {
                 <div className="body">
                   Husk at resultatene er autogenererte, og kan være feil, også
                   når Artsorakelet oppgir høy treffprosent. Du må selv
-                  kontrollere at artsbestemmelsen er riktig før du rapporterer.
+                  kontrollere at artsbestemmelsen er riktig dersom du rapporterer funn.
                 </div>
               ) : (
                 <div className="body emphasis">
                   Artsorakelet er for usikker på gjenkjenningen til å si hva
                   dette er. Du må selv kontrollere at artsbestemmelsen er riktig
-                  hvis du rapporterer.
+                  dersom du rapporterer funn.
                 </div>
               )}
             </div>
