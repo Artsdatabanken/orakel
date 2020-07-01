@@ -64,29 +64,39 @@ export default class ImageCropper extends Component {
     this.props.imageCropped();
   }
 
+  debounce(func, time = 100) {
+    var timer;
+    return function (event) {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(func, time, event);
+    };
+  }
+
   initCropper() {
-    let cropBoxSize =
-      Math.min(
-        this.cropper.cropper.containerData.width,
-        this.cropper.cropper.containerData.height
-      ) * 0.8;
-
-    this.cropper.setCropBoxData({
-      width: cropBoxSize,
-      left: (this.cropper.cropper.containerData.width - cropBoxSize) / 2,
-      top: (this.cropper.cropper.containerData.height - cropBoxSize) / 2,
-    });
-
-    // Set the initial zoom to fit the smallest dimension
-    let zoomFactor = Math.max(
-      cropBoxSize /
+    if (this.cropper) {
+      let cropBoxSize =
         Math.min(
-          this.cropper.cropper.canvasData.naturalWidth,
-          this.cropper.cropper.canvasData.naturalHeight
-        )
-    );
-    this.setState({ zoom: zoomFactor });
-    this.cropper.zoomTo(zoomFactor);
+          this.cropper.cropper.containerData.width,
+          this.cropper.cropper.containerData.height
+        ) * 0.9;
+
+      this.cropper.setCropBoxData({
+        width: cropBoxSize,
+        left: (this.cropper.cropper.containerData.width - cropBoxSize) / 2,
+        top: (this.cropper.cropper.containerData.height - cropBoxSize) / 2,
+      });
+
+      // Set the initial zoom to fit the smallest dimension
+      let zoomFactor = Math.max(
+        cropBoxSize /
+          Math.min(
+            this.cropper.cropper.canvasData.naturalWidth,
+            this.cropper.cropper.canvasData.naturalHeight
+          )
+      );
+      this.setState({ zoom: zoomFactor });
+      this.cropper.zoomTo(zoomFactor);
+    }
   }
 
   slideZoom(event, newValue) {
@@ -103,16 +113,25 @@ export default class ImageCropper extends Component {
       return <div>Det er ikke et bilde</div>;
     }
 
+    window.addEventListener(
+      "resize",
+      this.debounce(this.initCropper.bind(this), 500).bind(this)
+    );
+
+    // set the height of the cropper to the visible height, minus the heights of the header and the (actions) footer
     return (
       <div className="cropContainer">
         <div className="cropper">
           <Cropper
-            style={{ width: "100vw", height: "80vh" }}
+            style={{
+              width: "100vw",
+              height: window.innerHeight - 65 - 140 + "px",
+            }}
             aspectRatio={1}
             viewMode={0}
             dragMode={"move"}
             zoom={this.doZoom}
-            autoCropArea={0.75}
+            autoCropArea={0.9}
             ready={this.initCropper.bind(this)}
             cropBoxMovable={false}
             cropBoxResizable={false}
