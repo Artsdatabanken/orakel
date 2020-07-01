@@ -1,8 +1,12 @@
-body+div+div {
+body + div + div {
   height: 100%;
 }
 
 .App {
+  height: 100%;
+}
+
+#root > div {
   height: 100%;
 }
 
@@ -115,9 +119,6 @@ body+div+div {
   font-weight: 400;
   padding-left: 12px;
 }
-
-
-
 
 .images *:focus {
   background-color: #f57c00;
@@ -328,7 +329,6 @@ body+div+div {
   justify-content: left;
   position: relative;
   z-index: 1;
-
 }
 
 .actionContainer p {

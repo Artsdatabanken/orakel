@@ -17,32 +17,33 @@ import UploadedImage from "./components/Image";
 import IdResult from "./components/IdResult";
 import ImageCropper from "./components/ImageCropper";
 
-// import { ApplicationInsights } from "@microsoft/applicationinsights-web";
-// import {
-//   ReactPlugin,
-//   withAITracking,
-// } from "@microsoft/applicationinsights-react-js";
-// import { createBrowserHistory } from "history";
+import { ApplicationInsights } from "@microsoft/applicationinsights-web";
+import {
+  ReactPlugin,
+  withAITracking,
+} from "@microsoft/applicationinsights-react-js";
+import { createBrowserHistory } from "history";
 
-// const browserHistory = createBrowserHistory({ basename: "" });
-// var reactPlugin = new ReactPlugin();
-// if (
-//   window.location.hostname === "orakel.test.artsdatabanken.no" ||
-//   window.location.hostname === "orakel.artsdatabanken.no"
-// ) {
-//   var appInsights = new ApplicationInsights({
-//     config: {
-//       instrumentationKey: "a108a996-bb13-431c-a929-b70f8e15c1ea",
-//       extensions: [reactPlugin],
-//       extensionConfig: {
-//         [reactPlugin.identifier]: { history: browserHistory },
-//       },
-//     },
-//   });
-//   appInsights.loadAppInsights();
-// } else {
-//   console.log("Running on", window.location.hostname, "- not logging");
-// }
+const browserHistory = createBrowserHistory({ basename: "" });
+var reactPlugin = new ReactPlugin();
+
+if (
+  window.location.hostname === "orakel.test.artsdatabanken.no" ||
+  window.location.hostname === "orakel.artsdatabanken.no"
+) {
+  var appInsights = new ApplicationInsights({
+    config: {
+      instrumentationKey: "a108a996-bb13-431c-a929-b70f8e15c1ea",
+      extensions: [reactPlugin],
+      extensionConfig: {
+        [reactPlugin.identifier]: { history: browserHistory },
+      },
+    },
+  });
+  appInsights.loadAppInsights();
+} else {
+  console.log("Running on", window.location.hostname, "- not logging");
+}
 
 function App() {
   const [croppedImages, setCroppedImages] = useState([]);
@@ -201,7 +202,8 @@ function App() {
                 <div className="body">
                   Husk at resultatene er autogenererte, og kan være feil, også
                   når Artsorakelet oppgir høy treffprosent. Du må selv
-                  kontrollere at artsbestemmelsen er riktig dersom du rapporterer funn.
+                  kontrollere at artsbestemmelsen er riktig dersom du
+                  rapporterer funn.
                 </div>
               ) : (
                 <div className="body emphasis">
@@ -280,7 +282,7 @@ function App() {
                 onClick={getId}
                 tabIndex="0"
               >
-                <ImageSearchIcon style={{ fontSize: "4em" }} />{' '}
+                <ImageSearchIcon style={{ fontSize: "4em" }} />{" "}
                 <span className="title">Identifiser</span>
               </Button>
             </div>
@@ -395,5 +397,4 @@ function App() {
   );
 }
 
-// export default withAITracking(reactPlugin, App);
-export default App;
+export default withAITracking(reactPlugin, App);
