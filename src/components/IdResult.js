@@ -98,7 +98,7 @@ function IdResult({ result }) {
                 variant="contained"
                 color="primary"
               >
-                Registrer funn
+                Rapporter funn
               </Button>
             </a>
           )}

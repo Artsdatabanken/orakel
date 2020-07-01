@@ -362,7 +362,7 @@ function App() {
             Hvis du med stor sikkerhet vet hvilken art det er, vil vi gjerne at
             du rapporterer observasjonen i{" "}
             <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>{" "}
-            ved å trykke på "registrer funn"-knappen . Slik hjelper du forskere
+            ved å trykke på "rapporter funn"-knappen . Slik hjelper du forskere
             og naturforvaltere. Hvis du laster opp bildene der kan de i tillegg
             brukes til å forbedre neste versjon av denne appen.
           </p>
