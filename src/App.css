@@ -74,6 +74,14 @@ body + div + div {
   padding: 10px;
 }
 
+.cropContainer .imageEditButton {
+  background-color: #f57c00;
+  color: white;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 50%;
+}
+
 .images {
   display: flex;
   flex-wrap: wrap;
@@ -123,7 +131,6 @@ body + div + div {
   background-color: #f57c00;
   color: white;
 }
-
 
 .identifyButton {
   margin-bottom: 75px;

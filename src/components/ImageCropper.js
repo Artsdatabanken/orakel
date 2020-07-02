@@ -5,6 +5,8 @@ import DoneIcon from "@material-ui/icons/Done";
 import ZoomOutIcon from "@material-ui/icons/ZoomOut";
 import ZoomInIcon from "@material-ui/icons/ZoomIn";
 import Grid from "@material-ui/core/Grid";
+import RotateLeftIcon from "@material-ui/icons/RotateLeft";
+import RotateRightIcon from "@material-ui/icons/RotateRight";
 
 import "cropperjs/dist/cropper.css";
 import "../App.css";
@@ -107,6 +109,30 @@ export default class ImageCropper extends Component {
     this.setState({ zoom: event.detail.ratio });
   }
 
+  rotateLeft = () => {
+    if (this.cropper) {
+      this.cropper.rotate(-90);
+    }
+  };
+
+  rotateRight = () => {
+    if (this.cropper) {
+      this.cropper.rotate(90);
+    }
+  };
+
+  zoomOut = () => {
+    if (this.cropper) {
+      this.cropper.zoom(-.1);
+    }
+  };
+
+  zoomIn = () => {
+    if (this.cropper) {
+      this.cropper.zoom(.1);
+    }
+  };
+
   render() {
     if (this.state.src.slice(0, 10) !== "data:image") {
       this.props.imageCropped(undefined);
@@ -138,6 +164,7 @@ export default class ImageCropper extends Component {
             toggleDragModeOnDblclick={false}
             highlight={false}
             scalable={false}
+            rotatable={true}
             wheelZoomRatio={0.2}
             guides={false}
             src={this.state.src}
@@ -149,7 +176,8 @@ export default class ImageCropper extends Component {
         <div className="actions">
           <Grid container>
             <Grid item>
-              <ZoomOutIcon />
+              <RotateLeftIcon className="clickable imageEditButton" onClick={this.rotateLeft} />
+              <ZoomOutIcon className="clickable imageEditButton" onClick={this.zoomOut} />
             </Grid>
             <Grid item xs>
               <Slider
@@ -162,7 +190,11 @@ export default class ImageCropper extends Component {
               />{" "}
             </Grid>
             <Grid item>
-              <ZoomInIcon />
+              <ZoomInIcon  className="clickable imageEditButton" onClick={this.zoomIn} />
+              <RotateRightIcon
+                className="clickable imageEditButton"
+                onClick={this.rotateRight}
+              />
             </Grid>
           </Grid>
 
