@@ -4,6 +4,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import ImageSearchIcon from "@material-ui/icons/ImageSearch";
 import ReplayIcon from "@material-ui/icons/Replay";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
+import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import axios from "axios";
@@ -51,6 +52,8 @@ function App() {
   const [predictions, setPredictions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+
+  const [useCamera, setUseCamera] = useState(true);
 
   const addImage = (img) => {
     for (let i of img) {
@@ -104,10 +107,59 @@ function App() {
     document.getElementById(sender).value = "";
   };
 
-  const uploadReset = (sender) => {
-    resetImages();
-    addImage(document.getElementById(sender).files);
-    document.getElementById(sender).value = "";
+  const openGallery = (e) => {
+    if (window.cordova) {
+      e.preventDefault();
+      setUseCamera(false);
+
+      navigator.camera.getPicture(onSuccess, onFail, {
+        destinationType: window.Camera.DestinationType.DATA_URL,
+        sourceType: window.Camera.PictureSourceType.PHOTOLIBRARY,
+        encodingType: window.Camera.EncodingType.JPEG,
+        mediaType: window.Camera.MediaType.PICTURE,
+        allowEdit: false,
+        correctOrientation: true,
+        quality: 80,
+      });
+
+      function onSuccess(imageData) {
+        setUncroppedImages([
+          ...uncroppedImages,
+          "data:image/jpeg;base64," + imageData,
+        ]);
+      }
+      function onFail(message) {
+        console.log(message);
+      }
+    }
+  };
+
+  const openCamera = (e) => {
+    if (window.cordova) {
+      e.preventDefault();
+      setUseCamera(true);
+
+      navigator.camera.getPicture(onSuccess, onFail, {
+        destinationType: window.Camera.DestinationType.DATA_URL,
+        sourceType: window.Camera.PictureSourceType.CAMERA,
+        encodingType: window.Camera.EncodingType.JPEG,
+        mediaType: window.Camera.MediaType.PICTURE,
+        allowEdit: false,
+        correctOrientation: true,
+        quality: 80,
+        saveToPhotoAlbum: true,
+      });
+
+      function onSuccess(imageData) {
+        setUncroppedImages([
+          ...uncroppedImages,
+          "data:image/jpeg;base64," + imageData,
+        ]);
+      }
+      function onFail(message) {
+        console.log(message);
+      }
+    }
   };
 
   const getId = () => {
@@ -180,9 +232,12 @@ function App() {
               <div className="title">Artsorakel</div>
 
               <div className="body">
-                Trykk på kamera-ikonet for å laste opp et bilde som du ønsker å
-                artsbestemme. Det hjelper ofte å laste opp flere bilder fra
-                forskjellige vinkler.
+                Trykk på kamera-ikonet for å{" "}
+                {window.cordova
+                  ? "ta et nytt bilde, eller galleri-ikonet for å velge et eksisterende bilde"
+                  : "ta eller velge et bilde"}{" "}
+                som du ønsker å artsbestemme. Det hjelper ofte å laste opp flere
+                bilder fra forskjellige vinkler.
               </div>
             </div>
           )}
@@ -242,19 +297,14 @@ function App() {
                 type="file"
                 id="uploadMore"
                 onChange={uploadMore.bind(this, "uploadMore")}
+                onClick={useCamera ? openCamera : openGallery}
               />
             </div>
-            <div>
+            <div onClick={resetImages}>
               <Button tabIndex="0" variant="contained">
                 <ReplayIcon />
               </Button>
               <p>Identifiser noe annet</p>
-              <input
-                className="clickable"
-                type="file"
-                id="uploader"
-                onChange={uploadReset.bind(this, "uploader")}
-              />
             </div>
           </div>
         )}
@@ -266,8 +316,19 @@ function App() {
               className="clickable"
               type="file"
               id="uploaderImages"
+              onClick={openCamera}
               onChange={uploadMore.bind(this, "uploaderImages")}
             />
+          </div>
+        )}
+
+        {window.cordova && !croppedImages.length && !uncroppedImages.length && (
+          <div
+            className=" bottomButton galleryButton clickable"
+            onClick={openGallery}
+            tabIndex="0"
+          >
+            <PhotoLibraryIcon style={{ fontSize: ".8em" }} />
           </div>
         )}
 
@@ -332,10 +393,11 @@ function App() {
           </p>
 
           <p>
-            Last opp ett eller flere bilder ved å trykke på kamera-ikonet og
-            zoome inn på arten. Klikk deretter på "Identifiser" for å se hva
-            modellen tror det ser ut som. Artsorakelet gir kun svar på artsnivå
-            (ikke underarter eller høyere taksa).
+            Ta eller velg ett eller flere bilder ved å trykke på kamera-ikonet{" "}
+            {window.cordova && "eller galleri-ikonet"} og zoome inn på arten.
+            Klikk deretter på "Identifiser" for å se hva modellen tror det ser
+            ut som. Artsorakelet gir kun svar på artsnivå (ikke underarter eller
+            høyere taksa).
           </p>
 
           <p className="quote">

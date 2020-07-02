@@ -56,7 +56,7 @@ export default class ImageCropper extends Component {
         this.props.imageCropped(blob);
       },
       "image/jpeg",
-      0.9
+      0.8
     );
   }
 
