@@ -151,7 +151,7 @@ export default class ImageCropper extends Component {
           <Cropper
             style={{
               width: "100vw",
-              height: window.innerHeight - 65 - 140 + "px",
+              height: window.innerHeight - 65 - 150 + "px",
             }}
             aspectRatio={1}
             viewMode={0}
