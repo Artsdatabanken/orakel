@@ -69,10 +69,26 @@ function IdResult({ result }) {
       <div className="resultLabels">
         <a
           href={`https://artsdatabanken.no/Taxon/${result.taxon.name}/${result.taxon.scientificNameID}`}
-          target="_blank"
+          target={"_blank"}
+          onClick={
+            result.taxon.scientificNameID
+              ? () => {
+                  return;
+                }
+              : (e) => {
+                  e.preventDefault();
+                }
+          }
           rel="noopener noreferrer"
         >
-          <div className={result.taxon.vernacularName.toLowerCase() === result.taxon.name.toLowerCase() ? "vernacular italics" : "vernacular"  }>
+          <div
+            className={
+              result.taxon.vernacularName.toLowerCase() ===
+              result.taxon.name.toLowerCase()
+                ? "vernacular italics"
+                : "vernacular"
+            }
+          >
             {result.taxon.vernacularName.charAt(0).toUpperCase() +
               result.taxon.vernacularName.slice(1)}
           </div>
@@ -80,12 +96,14 @@ function IdResult({ result }) {
         </a>
         <div className="percentage">
           <span className="number">({Math.round(percentage)} % treff)</span>
-          {!!result.taxon.scientificNameID && percentage > 0 && (
+          {percentage > 0 && (
             <a
               href={
                 runningOnMobile()
                   ? `https://mobil.artsobservasjoner.no/#/report`
-                  : `https://www.artsobservasjoner.no/SubmitSighting/ReportByScientificName/${result.taxon.scientificNameID}`
+                  : result.taxon.scientificNameID
+                  ? `https://www.artsobservasjoner.no/SubmitSighting/ReportByScientificName/${result.taxon.scientificNameID}`
+                  : `https://www.artsobservasjoner.no/SubmitSighting/Report`
               }
               target="_blank"
               rel="noopener noreferrer"
