@@ -52,10 +52,11 @@ function App() {
   const [predictions, setPredictions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-
+  const [gotError, setError] = useState(false);
   const [useCamera, setUseCamera] = useState(true);
 
   const addImage = (img) => {
+    setError(false);
     for (let i of img) {
       const reader = new FileReader();
 
@@ -83,6 +84,7 @@ function App() {
   const delImage = (name) => {
     setCroppedImages(croppedImages.filter((i) => i.name !== name));
     setPredictions([]);
+    setError(false);
   };
 
   const preventClick = (e) => {
@@ -90,6 +92,7 @@ function App() {
   };
 
   const resetImages = () => {
+    setError(false);
     setCroppedImages([]);
     setPredictions([]);
   };
@@ -164,6 +167,7 @@ function App() {
 
   const getId = () => {
     setLoading(true);
+    setError(false);
 
     var formdata = new FormData();
     for (let image of croppedImages) {
@@ -184,7 +188,7 @@ function App() {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("error", error);
+        setError(error.response.status);
         setLoading(false);
       });
   };
@@ -247,6 +251,27 @@ function App() {
             <CircularProgress
               style={{ color: "#f57c00", width: 100, height: 100 }}
             />
+          </div>
+        )}
+
+        {gotError === 503 && (
+          <div className="hint">
+            <div className="body emphasis">
+              Artsorakelet opplever stor trafikk for tiden. Vennligst prøv
+              igjen.
+            </div>
+          </div>
+        )}
+
+        {gotError && gotError !== 503 && (
+          <div className="hint">
+            <div className="body emphasis">
+              Noe gikk galt, vennligst prøv igjen. Ta kontakt med{" "}
+              <a href="mailto:support@artsobservasjoner.no">
+                support@artsobservasjoner.no
+              </a>{" "}
+              hvis problemet vedvarer.
+            </div>
           </div>
         )}
 
@@ -408,8 +433,18 @@ function App() {
 
           <p>
             Resultatene er autogenererte, og selv om svaret angis med høy
-            treffprosent betyr det ikke at svaret nødvendigvis er riktig. Sjekk
-            derfor alltid med relevant litteratur, for eksempel våre
+            treffprosent betyr det ikke at svaret nødvendigvis er riktig.
+            Artsorakelet er ikke flink på arter der det er få bilder
+            tilgjengelig på Artsobservasjoner, som
+            <ul>
+              <li>Store rovdyr og andre arter som er unntatt offentlighet</li>
+              <li>Fisk</li>
+              <li>
+                Arter som er vanskelig å fotografere og/eller artsbestemme fra
+                bilder
+              </li>
+            </ul>
+            Sjekk derfor alltid med relevant litteratur, for eksempel våre
             ekspertskrevne artsbeskrivelser og nøkler i{" "}
             <a href="https://www.artsdatabanken.no/arter-pa-nett">
               Arter på nett

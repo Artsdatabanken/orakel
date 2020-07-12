@@ -128,11 +128,6 @@ function IdResult({ result }) {
               <WarningIcon /> ALDRI SPIS NOE BASERT PÅ ARTSORAKELETS SVAR
             </span>
           )}
-          {result.taxon.groupName === "Fisker" && (
-            <span className="warning">
-              (Orakelet er ikke flink på fisker pga lite treningsdata)
-            </span>
-          )}
         </div>
       </div>
     </div>

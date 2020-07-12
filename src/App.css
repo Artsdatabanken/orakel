@@ -322,6 +322,10 @@ body + div + div {
   font-style: italic;
 }
 
+.dialogContent ul {
+  padding: 20px;
+}
+
 .aboutLogo {
   max-height: 75px;
   max-width: 40%;
