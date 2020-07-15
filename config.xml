@@ -26,6 +26,7 @@
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <icon src="public/apple-touch-icon.png" />
     </platform>
     <hook type="before_prepare" src="scripts/prebuild.js" />
 </widget>
