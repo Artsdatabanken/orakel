@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="no.artsdatabanken.orakel" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="no.artsdatabanken.orakel" version="0.1.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Artsorakel</name>
     <description>
         Artsdatabankens Artsorakel til automatisk identifisering av arter i Norge.
@@ -26,6 +26,24 @@
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <icon src="www/apple-touch-icon.png" />
+        <preference name="WKWebViewOnly" value="true" />
+        <feature name="CDVWKWebViewEngine">
+            <param name="ios-package" value="CDVWKWebViewEngine" />
+        </feature>
+        <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
     </platform>
+    <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
+        <string>trenger tilgang til kamera og bildegalleri for at du skal kunne kjøre artsgjennkjenning på dine bilder</string>
+    </edit-config>
+    <edit-config target="NSPhotoLibraryUsageDescription" file="*-Info.plist" mode="merge">
+        <string>trenger tilgang til kamera og bildegalleri for at du skal kunne kjøre artsgjennkjenning på dine bilder</string>
+    </edit-config>
+    <!-- <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+        <string>trenger tilgang til geolocation for å filtrere på arter som forventes å finnes i nærheten</string>
+    </edit-config> -->
+    <edit-config target="NSPhotoLibraryAddUsageDescription" file="*-Info.plist" mode="merge">
+        <string>trenger tilgang for å lagre de nye bildene du tar med appen</string>
+    </edit-config>
     <hook type="before_prepare" src="scripts/prebuild.js" />
 </widget>
