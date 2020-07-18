@@ -39,6 +39,7 @@ body + div + div {
   min-height: 100%;
   margin-top: 0px;
   padding-top: 65px;
+  padding-bottom: 75px;
   position: relative;
 }
 
@@ -64,7 +65,7 @@ body + div + div {
   bottom: 0;
   width: 100vw;
   background-color: white;
-  height: 150px;
+  height: 175px;
   padding: 5px;
 }
 

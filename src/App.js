@@ -394,7 +394,7 @@ function App() {
         fullWidth={true}
       >
         <DialogTitle id="simple-dialog-title">
-          Om Artsorakelet (beta v0.1)
+          Om Artsorakelet (beta)
           <IconButton
             aria-label="close"
             onClick={handleClose}
@@ -412,9 +412,9 @@ function App() {
             <a href="https://www.naturalis.nl/en">
               Naturalis Biodiversity Center
             </a>
-            . Jo flere bilder av hver art appen får se, jo bedre blir den til å
-            artsbestemme. Den vil derfor gradvis bli mer treffsikker over tid,
-            etter hvert som den blir trent på flere og flere bilder.
+            . Jo flere bilder av hver art appen trenes på, jo bedre blir den til
+            å artsbestemme. Den vil derfor gradvis bli mer treffsikker over tid,
+            når flere bilder rapporteres i Artsobservasjoner.
           </p>
 
           <p>
@@ -434,7 +434,8 @@ function App() {
           <p>
             Resultatene er autogenererte, og selv om svaret angis med høy
             treffprosent betyr det ikke at svaret nødvendigvis er riktig.
-            Artsorakelet er ikke flink på arter der det er få bilder
+            Artsorakelet kjenner kun viltlevende arter, og ingen husdyr,
+            hageplanter, osv. Det er ikke flink på arter der det er få bilder
             tilgjengelig på Artsobservasjoner, som
             <ul>
               <li>Store rovdyr og andre arter som er unntatt offentlighet</li>
@@ -466,10 +467,35 @@ function App() {
             brukes til å forbedre neste versjon av denne appen.
           </p>
 
+          {window.cordova && (
+            <p>
+              Denne appen er også tilgjengelig som nettversjon for pc og mobil
+              på{' '}
+              <a href="https://orakel.artsdatabanken.no">
+                orakel.artsdatabanken.no
+              </a>
+              .
+            </p>
+          )}
+
+          {!window.cordova && (
+            <p>
+              Denne appen er også tilgjengelig som Android app. (iOS versjon kommer snart.)<br />
+              <a href="https://orakel.artsdatabanken.no">
+                <img
+                  src="Google_Play_badge.png"
+                  alt="Tilgjengelig på Google Play"
+                  className="aboutLogo"
+                />
+              </a>
+              .
+            </p>
+          )}
+
           <p>
-            Bilder som lastes opp her blir ikke lagret på serveren. Både appen
-            og tjenesten bak er åpen og gratis. Ta kontakt hvis du ønsker å
-            bruke tjenesten i din applikasjon eller nettside.
+            Bildene dine blir ikke lagret på serveren. Både appen og tjenesten
+            bak er åpen og gratis. Ta kontakt hvis du ønsker å bruke tjenesten i
+            din applikasjon eller nettside.
           </p>
 
           <p>
