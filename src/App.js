@@ -481,7 +481,7 @@ function App() {
           {!window.cordova && (
             <p>
               Denne appen er også tilgjengelig som Android app. (iOS versjon kommer snart.)<br />
-              <a href="https://orakel.artsdatabanken.no">
+              <a href="https://play.google.com/store/apps/details?id=no.artsdatabanken.orakel">
                 <img
                   src="Google_Play_badge.png"
                   alt="Tilgjengelig på Google Play"
