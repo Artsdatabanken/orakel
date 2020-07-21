@@ -245,7 +245,7 @@ body + div + div {
 
 .resultLabels a {
   color: black;
-  text-decoration: none;
+  text-decoration: underline solid;
 }
 
 .resultLabels .vernacular {
