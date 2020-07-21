@@ -188,7 +188,12 @@ function App() {
         setLoading(false);
       })
       .catch((error) => {
-        setError(error.response.status);
+        if (error.response && error.response.status) {
+          setError(error.response.status);
+        } else {
+          setError(1);
+        }
+
         setLoading(false);
       });
   };
@@ -470,7 +475,7 @@ function App() {
           {window.cordova && (
             <p>
               Denne appen er også tilgjengelig som nettversjon for pc og mobil
-              på{' '}
+              på{" "}
               <a href="https://orakel.artsdatabanken.no">
                 orakel.artsdatabanken.no
               </a>
@@ -480,8 +485,10 @@ function App() {
 
           {!window.cordova && (
             <p>
-              Denne appen er også tilgjengelig som Android app. (iOS versjon kommer snart.)<br />
-              <a href="https://orakel.artsdatabanken.no">
+              Denne appen er også tilgjengelig som Android app. (iOS versjon
+              kommer snart.)
+              <br />
+              <a href="https://play.google.com/store/apps/details?id=no.artsdatabanken.orakel">
                 <img
                   src="Google_Play_badge.png"
                   alt="Tilgjengelig på Google Play"
