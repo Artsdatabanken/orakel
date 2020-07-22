@@ -244,8 +244,14 @@ body + div + div {
 }
 
 .resultLabels a {
+  text-decoration: none;
+}
+
+
+.resultLabels a .vernacular, .resultLabels a .scientific {
   color: black;
   text-decoration: underline solid;
+  text-decoration-thickness: 1px;
 }
 
 .resultLabels .vernacular {
@@ -331,6 +337,12 @@ body + div + div {
   max-height: 75px;
   max-width: 40%;
   margin-right: 9%;
+}
+
+.appStoreBadge {
+  max-height: 50px;
+  max-width: 45%;
+  margin-right: 4%;
 }
 
 .danger {

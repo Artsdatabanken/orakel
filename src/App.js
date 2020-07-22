@@ -483,7 +483,7 @@ function App() {
             </p>
           )}
 
-          {!window.cordova && (
+          {false && !window.cordova && (
             <p>
               Denne appen er også tilgjengelig som Android app. (iOS versjon
               kommer snart.)
@@ -492,10 +492,22 @@ function App() {
                 <img
                   src="Google_Play_badge.png"
                   alt="Tilgjengelig på Google Play"
-                  className="aboutLogo"
+                  className="appStoreBadge"
                 />
               </a>
-              .
+              <a href="https://www.apple.com/no/ios/app-store/">
+                <img
+                  src="app_store_badge.png"
+                  alt="Last ned fra App Store"
+                  className="appStoreBadge"
+                />
+              </a>
+            </p>
+          )}
+
+          {!window.cordova && (
+            <p>
+              Denne appen blir også tilgjengelig som Android og iOS app snart.
             </p>
           )}
 
