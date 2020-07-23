@@ -378,8 +378,6 @@ function App() {
               </Button>
             </div>
           )}
-
-        <img src="beta.svg" alt="beta" className="betaRibbon" />
       </div>
 
       {!!uncroppedImages.length &&
@@ -399,7 +397,7 @@ function App() {
         fullWidth={true}
       >
         <DialogTitle id="simple-dialog-title">
-          Om Artsorakelet (beta)
+          Om Artsorakelet
           <IconButton
             aria-label="close"
             onClick={handleClose}
@@ -411,7 +409,8 @@ function App() {
         <DialogContent className="dialogContent">
           <p>
             Artsdatabankens Artsorakel prøver å artsbestemme bilder ved hjelp av
-            maskinlæring. Appen er i beta og trenes ved hjelp av bilder fra{" "}
+            maskinlæring. Modellen er i kontinuerlig utvikling og trenes ved
+            hjelp av bilder fra{" "}
             <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>
             , og er utviklet i samarbeid med{" "}
             <a href="https://www.naturalis.nl/en">
