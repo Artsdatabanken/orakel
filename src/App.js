@@ -482,7 +482,7 @@ function App() {
             </p>
           )}
 
-          {false && !window.cordova && (
+          {!window.cordova && (
             <p>
               Denne appen er også tilgjengelig som Android og iOS app.
               <br />
@@ -493,25 +493,10 @@ function App() {
                   className="appStoreBadge"
                 />
               </a>
-              <a href="https://apps.apple.com/us/app/id1522271415">
+              <a href="https://apps.apple.com/no/app/id1522271415">
                 <img
                   src="app_store_badge.png"
                   alt="Last ned fra App Store"
-                  className="appStoreBadge"
-                />
-              </a>
-            </p>
-          )}
-
-          {!window.cordova && (
-            <p>
-              Denne appen er også tilgjengelig som Android app. (iOS versjon
-              kommer snart.)
-              <br />
-              <a href="https://play.google.com/store/apps/details?id=no.artsdatabanken.orakel">
-                <img
-                  src="Google_Play_badge.png"
-                  alt="Tilgjengelig på Google Play"
                   className="appStoreBadge"
                 />
               </a>
