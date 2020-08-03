@@ -101,10 +101,10 @@ function IdResult({ result }) {
             <a
               href={
                 runningOnMobile()
-                  ? `https://mobil.artsobservasjoner.no/#/report?from=orakel&platform=${window.cordova ? (device ? device.platform : "app") : "mobileweb"}&percentage=${Math.round(percentage)}`
+                  ? `https://mobil.artsobservasjoner.no/#/report?meta=from%3Dorakel%7Cplatform%3D${window.cordova ? (device ? device.platform : "app") : "mobileweb"}%7Cpercentage%3D${Math.round(percentage)}`
                   : result.taxon.scientificNameID
-                  ? `https://www.artsobservasjoner.no/SubmitSighting/ReportByScientificName/${result.taxon.scientificNameID}?from=orakel&platform=desktopweb&percentage=${Math.round(percentage)}`
-                  : `https://www.artsobservasjoner.no/SubmitSighting/Report?from=orakel&platform=desktopweb&percentage=${Math.round(percentage)}`
+                  ? `https://www.artsobservasjoner.no/SubmitSighting/ReportByScientificName/${result.taxon.scientificNameID}?meta=from%3Dorakel%7Cplatform%3Ddesktopweb%7Cpercentage%3D${Math.round(percentage)}`
+                  : `https://www.artsobservasjoner.no/SubmitSighting/Report?meta=from%3Dorakel%7Cplatform%3Ddesktopweb%7Cpercentage%3D${Math.round(percentage)}`
               }
               target="_blank"
               rel="noopener noreferrer"
