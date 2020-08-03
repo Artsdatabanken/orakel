@@ -30,6 +30,7 @@ function IdResult({ result }) {
     return `rgb(${r},${g},${b})`;
   };
 
+  let device = {platform: "app"};
   let color = getColor(percentage);
 
   return (
@@ -100,10 +101,10 @@ function IdResult({ result }) {
             <a
               href={
                 runningOnMobile()
-                  ? `https://mobil.artsobservasjoner.no/#/report`
+                  ? `https://mobil.artsobservasjoner.no/#/report?from=orakel&platform=${window.cordova ? (device ? device.platform : "app") : "mobileweb"}&percentage=${Math.round(percentage)}`
                   : result.taxon.scientificNameID
-                  ? `https://www.artsobservasjoner.no/SubmitSighting/ReportByScientificName/${result.taxon.scientificNameID}`
-                  : `https://www.artsobservasjoner.no/SubmitSighting/Report`
+                  ? `https://www.artsobservasjoner.no/SubmitSighting/ReportByScientificName/${result.taxon.scientificNameID}?from=orakel&platform=web&percentage=${Math.round(percentage)}`
+                  : `https://www.artsobservasjoner.no/SubmitSighting/Report?from=orakel&platform=desktopweb&percentage=${Math.round(percentage)}`
               }
               target="_blank"
               rel="noopener noreferrer"

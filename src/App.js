@@ -241,12 +241,13 @@ function App() {
               <div className="title">Artsorakel</div>
 
               <div className="body">
-                Trykk på kamera-ikonet for å{" "}
-                {window.cordova
-                  ? "ta et nytt bilde, eller galleri-ikonet for å velge et eksisterende bilde"
-                  : "ta eller velge et bilde"}{" "}
-                som du ønsker å artsbestemme. Det hjelper ofte å laste opp flere
-                bilder fra forskjellige vinkler.
+                Trykk på kamera-
+                {window.cordova && " eller galleri-"}
+                ikonet for å starte. Appen kan brukes på arter som{" "}
+                <span className="emphasis">
+                  naturlig forekommer i Norge
+                </span>{" "}
+                (ikke husdyr, hageplanter, osv).
               </div>
             </div>
           )}
@@ -409,24 +410,14 @@ function App() {
         <DialogContent className="dialogContent">
           <p>
             Artsdatabankens Artsorakel prøver å artsbestemme bilder ved hjelp av
-            maskinlæring. Modellen er i kontinuerlig utvikling og trenes ved
-            hjelp av bilder fra{" "}
-            <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>
-            , og er utviklet i samarbeid med{" "}
-            <a href="https://www.naturalis.nl/en">
-              Naturalis Biodiversity Center
-            </a>
-            . Jo flere bilder av hver art appen trenes på, jo bedre blir den til
-            å artsbestemme. Den vil derfor gradvis bli mer treffsikker over tid,
-            når flere bilder rapporteres i Artsobservasjoner.
+            maskinlæring. Den vil gradvis bli mer treffsikker over tid, når
+            flere bilder rapporteres i Artsobservasjoner.
           </p>
 
           <p>
-            Ta eller velg ett eller flere bilder ved å trykke på kamera-ikonet{" "}
-            {window.cordova && "eller galleri-ikonet"} og zoome inn på arten.
-            Klikk deretter på "Identifiser" for å se hva modellen tror det ser
-            ut som. Artsorakelet gir kun svar på artsnivå (ikke underarter eller
-            høyere taksa).
+            Artsorakelet kjenner kun viltlevende arter (ingen husdyr,
+            hageplanter, osv.) og gir kun svar på artsnivå (ikke underarter
+            eller høyere taksa).
           </p>
 
           <p className="quote">
@@ -437,10 +428,9 @@ function App() {
 
           <p>
             Resultatene er autogenererte, og selv om svaret angis med høy
-            treffprosent betyr det ikke at svaret nødvendigvis er riktig.
-            Artsorakelet kjenner kun viltlevende arter, og ingen husdyr,
-            hageplanter, osv. Det er ikke flink på arter der det er få bilder
-            tilgjengelig på Artsobservasjoner, som
+            treffprosent betyr det ikke at svaret nødvendigvis er riktig. Det er
+            ikke flink på arter der det er få bilder tilgjengelig på
+            Artsobservasjoner, som
             <ul>
               <li>Store rovdyr og andre arter som er unntatt offentlighet</li>
               <li>Fisk</li>
@@ -504,13 +494,11 @@ function App() {
           )}
 
           <p>
-            Bildene dine blir ikke lagret på serveren. Både appen og tjenesten
-            bak er åpen og gratis. Ta kontakt hvis du ønsker å bruke tjenesten i
-            din applikasjon eller nettside.
-          </p>
-
-          <p>
-            Spørsmål og tilbakemelding kan sendes til{" "}
+            Du kan lese mer om orakelet på{" "}
+            <a href="https://www.artsdatabanken.no/Pages/299643">
+              Artsdatabankens nettsider
+            </a>
+            . Spørsmål og tilbakemelding kan sendes til{" "}
             <a href="mailto:support@artsobservasjoner.no">
               support@artsobservasjoner.no
             </a>
