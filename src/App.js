@@ -63,6 +63,7 @@ function App() {
       reader.addEventListener(
         "load",
         function () {
+          setLoading(true);
           setUncroppedImages([...uncroppedImages, reader.result]);
         },
         false
@@ -79,6 +80,7 @@ function App() {
       setPredictions([]);
     }
     setUncroppedImages([]);
+    setLoading(false);
   };
 
   const delImage = (name) => {
