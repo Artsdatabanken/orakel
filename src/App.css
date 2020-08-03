@@ -330,7 +330,7 @@ body + div + div {
 }
 
 .dialogContent ul {
-  padding: 20px;
+  padding: 0px 0px 20px 20px;
 }
 
 .aboutLogo {

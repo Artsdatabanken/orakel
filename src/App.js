@@ -408,16 +408,11 @@ function App() {
           </IconButton>
         </DialogTitle>
         <DialogContent className="dialogContent">
-          <p>
+          <p className="emphasis">
             Artsdatabankens Artsorakel prøver å artsbestemme bilder ved hjelp av
-            maskinlæring. Den vil gradvis bli mer treffsikker over tid, når
-            flere bilder rapporteres i Artsobservasjoner.
-          </p>
-
-          <p>
-            Artsorakelet kjenner kun viltlevende arter (ingen husdyr,
-            hageplanter, osv.) og gir kun svar på artsnivå (ikke underarter
-            eller høyere taksa).
+            maskinlæring. Artsorakelet kjenner kun viltlevende arter (ingen
+            husdyr, hageplanter, osv.) og gir kun svar på artsnivå (ikke
+            underarter eller høyere taksa).
           </p>
 
           <p className="quote">
@@ -427,18 +422,19 @@ function App() {
           </p>
 
           <p>
-            Resultatene er autogenererte, og selv om svaret angis med høy
-            treffprosent betyr det ikke at svaret nødvendigvis er riktig. Det er
-            ikke flink på arter der det er få bilder tilgjengelig på
-            Artsobservasjoner, som
-            <ul>
-              <li>Store rovdyr og andre arter som er unntatt offentlighet</li>
-              <li>Fisk</li>
-              <li>
-                Arter som er vanskelig å fotografere og/eller artsbestemme fra
-                bilder
-              </li>
-            </ul>
+            Selv om svaret angis med høy treffprosent betyr det ikke at svaret
+            nødvendigvis er riktig. Det er ikke like flink på arter der det er
+            få bilder tilgjengelig på Artsobservasjoner, som:
+          </p>
+          <ul>
+            <li>Store rovdyr og andre arter som er unntatt offentlighet</li>
+            <li>Fisk</li>
+            <li>
+              Arter som er vanskelig å fotografere og/eller artsbestemme fra
+              bilder
+            </li>
+          </ul>
+          <p>
             Sjekk derfor alltid med relevant litteratur, for eksempel våre
             ekspertskrevne artsbeskrivelser og nøkler i{" "}
             <a href="https://www.artsdatabanken.no/arter-pa-nett">
@@ -458,12 +454,12 @@ function App() {
             <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>{" "}
             ved å trykke på "rapporter funn"-knappen . Slik hjelper du forskere
             og naturforvaltere. Hvis du laster opp bildene der kan de i tillegg
-            brukes til å forbedre neste versjon av denne appen.
+            brukes til å forbedre neste versjon av Artsorakelet.
           </p>
 
           {window.cordova && (
             <p>
-              Denne appen er også tilgjengelig som nettversjon for pc og mobil
+              Artsorakelet er også tilgjengelig som nettversjon for pc og mobil
               på{" "}
               <a href="https://orakel.artsdatabanken.no">
                 orakel.artsdatabanken.no
@@ -474,7 +470,7 @@ function App() {
 
           {!window.cordova && (
             <p>
-              Denne appen er også tilgjengelig som Android og iOS app.
+              Artsorakelet er også tilgjengelig som Android og iOS app.
               <br />
               <a href="https://play.google.com/store/apps/details?id=no.artsdatabanken.orakel">
                 <img
@@ -494,7 +490,7 @@ function App() {
           )}
 
           <p>
-            Du kan lese mer om orakelet på{" "}
+            Du kan lese mer om Artsorakelet på{" "}
             <a href="https://www.artsdatabanken.no/Pages/299643">
               Artsdatabankens nettsider
             </a>
