@@ -13,10 +13,13 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Dialog from "@material-ui/core/Dialog";
 import AppBar from "@material-ui/core/AppBar";
 import "./App.css";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContentText from "@material-ui/core/DialogContentText";
 
 import UploadedImage from "./components/Image";
 import IdResult from "./components/IdResult";
 import ImageCropper from "./components/ImageCropper";
+import { runningOnMobile } from "./utils/utils";
 
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
 import {
@@ -27,6 +30,7 @@ import { createBrowserHistory } from "history";
 
 const browserHistory = createBrowserHistory({ basename: "" });
 var reactPlugin = new ReactPlugin();
+let device = { platform: "app" };
 
 if (
   window.location.hostname === "orakel.test.artsdatabanken.no" ||
@@ -52,6 +56,9 @@ function App() {
   const [predictions, setPredictions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [reportResult, setReportResult] = useState(false);
+
   const [gotError, setError] = useState(false);
   const [useCamera, setUseCamera] = useState(true);
 
@@ -103,8 +110,41 @@ function App() {
     setModalOpen(true);
   };
 
-  const handleClose = () => {
+  const openReportDialog = (result) => {
+    setReportResult(result);
+    setDialogOpen(true);
+  };
+
+  const reportAO = () => {
+    var URL;
+
+    if (runningOnMobile()) {
+      URL = `https://mobil.artsobservasjoner.no/#/report?meta=from%3Dorakel%7Cplatform%3D${
+        window.cordova ? (device ? device.platform : "app") : "mobileweb"
+      }%7Cpercentage%3D${Math.round(reportResult.percentage)}`;
+    } else if (reportResult.taxon.scientificNameID) {
+      URL = `https://www.artsobservasjoner.no/SubmitSighting/ReportByScientificName/${
+        reportResult.taxon.scientificNameID
+      }?meta=from%3Dorakel%7Cplatform%3Ddesktopweb%7Cpercentage%3D${Math.round(
+        reportResult.percentage
+      )}`;
+    } else {
+      URL = `https://www.artsobservasjoner.no/SubmitSighting/Report?meta=from%3Dorakel%7Cplatform%3Ddesktopweb%7Cpercentage%3D${Math.round(
+        reportResult.percentage
+      )}`;
+    }
+
+    window.open(URL, "_blank");
+    setReportResult(false);
+    setDialogOpen(false);
+  };
+
+  const handleModalClose = () => {
     setModalOpen(false);
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
   };
 
   const uploadMore = (sender) => {
@@ -312,7 +352,11 @@ function App() {
             )}
 
             {predictions.map((prediction) => (
-              <IdResult result={prediction} key={prediction.taxon.id} />
+              <IdResult
+                result={prediction}
+                key={prediction.taxon.id}
+                openDialog={openReportDialog}
+              />
             ))}
           </div>
         )}
@@ -394,7 +438,32 @@ function App() {
         ))}
 
       <Dialog
-        onClose={handleClose}
+        onClose={handleDialogClose}
+        aria-labelledby="dialog-title"
+        open={dialogOpen}
+        fullWidth={true}
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Sjekk artsbestemmelse"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Husk å sjekke artsbestemmelsen selv, Artsorakelet kan ta feil selv
+            ved høy treffprosent. Vil du fortsette?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogClose} color="primary">
+            Avbryt
+          </Button>
+          <Button onClick={reportAO} color="primary" autoFocus>
+            Fortsett
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        onClose={handleModalClose}
         aria-labelledby="dialog-title"
         open={modalOpen}
         fullWidth={true}
@@ -403,7 +472,7 @@ function App() {
           Om Artsorakelet
           <IconButton
             aria-label="close"
-            onClick={handleClose}
+            onClick={handleModalClose}
             style={{ right: "15px", top: "0", position: "absolute" }}
           >
             <CloseIcon />

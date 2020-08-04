@@ -2,9 +2,8 @@ import React from "react";
 import "../App.css";
 import Button from "@material-ui/core/Button";
 import WarningIcon from "@material-ui/icons/Warning";
-import { runningOnMobile } from "../utils/utils";
 
-function IdResult({ result }) {
+function IdResult({ result, openDialog }) {
   const percentage = result.probability * 100;
   const strokes = percentage.toString() + " " + (100 - percentage).toString();
 
@@ -30,7 +29,6 @@ function IdResult({ result }) {
     return `rgb(${r},${g},${b})`;
   };
 
-  let device = {platform: "app"};
   let color = getColor(percentage);
 
   return (
@@ -98,28 +96,17 @@ function IdResult({ result }) {
         <div className="percentage">
           <span className="number">({Math.round(percentage)} % treff)</span>
           {percentage > 0 && (
-            <a
-              href={
-                runningOnMobile()
-                  ? `https://mobil.artsobservasjoner.no/#/report?meta=from%3Dorakel%7Cplatform%3D${window.cordova ? (device ? device.platform : "app") : "mobileweb"}%7Cpercentage%3D${Math.round(percentage)}`
-                  : result.taxon.scientificNameID
-                  ? `https://www.artsobservasjoner.no/SubmitSighting/ReportByScientificName/${result.taxon.scientificNameID}?meta=from%3Dorakel%7Cplatform%3Ddesktopweb%7Cpercentage%3D${Math.round(percentage)}`
-                  : `https://www.artsobservasjoner.no/SubmitSighting/Report?meta=from%3Dorakel%7Cplatform%3Ddesktopweb%7Cpercentage%3D${Math.round(percentage)}`
-              }
-              target="_blank"
-              rel="noopener noreferrer"
+            <Button
+              style={{
+                fontSize: "9px",
+                lineHeight: "10px",
+              }}
+              variant="contained"
+              color="primary"
+              onClick={openDialog.bind(this, result)}
             >
-              <Button
-                style={{
-                  fontSize: "9px",
-                  lineHeight: "10px",
-                }}
-                variant="contained"
-                color="primary"
-              >
-                Rapporter funn
-              </Button>
-            </a>
+              Rapporter funn
+            </Button>
           )}
         </div>
         <div className="group">
