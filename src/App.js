@@ -70,7 +70,6 @@ function App() {
       reader.addEventListener(
         "load",
         function () {
-          setLoading(true);
           setUncroppedImages([...uncroppedImages, reader.result]);
         },
         false
@@ -87,7 +86,6 @@ function App() {
       setPredictions([]);
     }
     setUncroppedImages([]);
-    setLoading(false);
   };
 
   const delImage = (name) => {
@@ -208,8 +206,8 @@ function App() {
   };
 
   const getId = () => {
-    setLoading(true);
     setError(false);
+    setLoading(true);
 
     var formdata = new FormData();
     for (let image of croppedImages) {
@@ -444,12 +442,12 @@ function App() {
         fullWidth={true}
       >
         <DialogTitle id="alert-dialog-title">
-          {"Sjekk artsbestemmelse"}
+          {"Har du bekreftet arten?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Husk å sjekke artsbestemmelsen selv, Artsorakelet kan ta feil selv
-            ved høy treffprosent. Vil du fortsette?
+            Sjekk artsbestemmelsen selv før du rapporterer. Artsorakelet kan ta
+            feil også ved høy treffprosent. Vil du fortsette?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
