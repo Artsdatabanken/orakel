@@ -116,19 +116,22 @@ function App() {
   const reportAO = () => {
     var URL;
 
+    const prefix =
+      window.location.hostname === "orakel.test.artsdatabanken.no" ? "test" : "www";
+
     if (runningOnMobile()) {
       URL = `https://mobil.artsobservasjoner.no/#/report?meta=from%3Dorakel%7Cplatform%3D${
         window.cordova ? (device ? device.platform : "app") : "mobileweb"
-      }%7Cpercentage%3D${Math.round(reportResult.percentage)}`;
+      }%7Cpercentage%3D${Math.round(reportResult.probability * 100)}`;
     } else if (reportResult.taxon.scientificNameID) {
-      URL = `https://www.artsobservasjoner.no/SubmitSighting/ReportByScientificName/${
+      URL = `https://${prefix}.artsobservasjoner.no/SubmitSighting/ReportByScientificName/${
         reportResult.taxon.scientificNameID
       }?meta=from%3Dorakel%7Cplatform%3Ddesktopweb%7Cpercentage%3D${Math.round(
-        reportResult.percentage
+        reportResult.probability * 100
       )}`;
     } else {
-      URL = `https://www.artsobservasjoner.no/SubmitSighting/Report?meta=from%3Dorakel%7Cplatform%3Ddesktopweb%7Cpercentage%3D${Math.round(
-        reportResult.percentage
+      URL = `https://${prefix}.artsobservasjoner.no/SubmitSighting/Report?meta=from%3Dorakel%7Cplatform%3Ddesktopweb%7Cpercentage%3D${Math.round(
+        reportResult.probability * 100
       )}`;
     }
 
