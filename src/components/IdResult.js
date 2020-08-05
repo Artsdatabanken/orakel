@@ -39,8 +39,8 @@ function IdResult({ result, openDialog }) {
             <image
               xlinkHref={result.taxon.picture}
               id={result.taxon.name + "_svg"}
-              height="27"
-              width="27"
+              height="25.9"
+              width="25.9"
               y="8"
               x="8"
             />
@@ -68,48 +68,20 @@ function IdResult({ result, openDialog }) {
       </div>
 
       <div className="resultLabels">
-        <a
-          href={`https://artsdatabanken.no/Taxon/${result.taxon.name}/${result.taxon.scientificNameID}`}
-          target={"_blank"}
-          onClick={
-            result.taxon.scientificNameID
-              ? () => {
-                  return;
-                }
-              : (e) => {
-                  e.preventDefault();
-                }
+        <div
+          className={
+            result.taxon.vernacularName.toLowerCase() ===
+            result.taxon.name.toLowerCase()
+              ? "vernacular italics"
+              : "vernacular"
           }
-          rel="noopener noreferrer"
         >
-          <div
-            className={
-              result.taxon.vernacularName.toLowerCase() ===
-              result.taxon.name.toLowerCase()
-                ? "vernacular italics"
-                : "vernacular"
-            }
-          >
-            {result.taxon.vernacularName.charAt(0).toUpperCase() +
-              result.taxon.vernacularName.slice(1)}
-          </div>
-          <div className="scientific">{result.taxon.name}</div>
-        </a>
+          {result.taxon.vernacularName.charAt(0).toUpperCase() +
+            result.taxon.vernacularName.slice(1)}
+        </div>
+        <div className="scientific">{result.taxon.name}</div>
         <div className="percentage">
           <span className="number">({Math.round(percentage)} % treff)</span>
-          {percentage > 0 && (
-            <Button
-              style={{
-                fontSize: "9px",
-                lineHeight: "10px",
-              }}
-              variant="contained"
-              color="primary"
-              onClick={openDialog.bind(this, result)}
-            >
-              Rapporter funn
-            </Button>
-          )}
         </div>
         <div className="group">
           {result.taxon.groupName}{" "}
@@ -118,6 +90,45 @@ function IdResult({ result, openDialog }) {
               <WarningIcon /> ALDRI SPIS NOE BASERT PÅ ARTSORAKELETS SVAR
             </span>
           )}
+        </div>
+        <div className="actions">
+          <a
+            href={`https://artsdatabanken.no/Taxon/${result.taxon.name}/${result.taxon.scientificNameID}`}
+            target={"_blank"}
+            onClick={
+              result.taxon.scientificNameID
+                ? () => {
+                    return;
+                  }
+                : (e) => {
+                    e.preventDefault();
+                  }
+            }
+            rel="noopener noreferrer"
+          >
+            <Button
+              style={{
+                fontSize: "9px",
+                lineHeight: "10px",
+              }}
+              variant="contained"
+              color="primary"
+            >
+              Les mer
+            </Button>
+          </a>
+
+          <Button
+            style={{
+              fontSize: "9px",
+              lineHeight: "10px",
+            }}
+            variant="contained"
+            color="primary"
+            onClick={openDialog.bind(this, result)}
+          >
+            Rapporter funn
+          </Button>
         </div>
       </div>
     </div>

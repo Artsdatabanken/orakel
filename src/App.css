@@ -233,8 +233,8 @@ body + div + div {
 }
 
 .resultDonut {
-  width: 100px;
-  height: 100px;
+  width: 115px;
+  height: 115px;
   flex-shrink: 0;
 }
 
@@ -281,6 +281,13 @@ body + div + div {
   line-height: 1em;
   font-variant: small-caps;
 }
+
+.resultLabels .actions button {
+  margin-top: 5px;
+  margin-right: 10px;
+
+}
+
 
 .fabContainer {
   position: absolute;
