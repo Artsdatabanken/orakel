@@ -58,7 +58,6 @@
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
       "cordova-plugin-statusbar": {},
-      "cordova-plugin-wkwebview-engine": {},
       "cordova-plugin-device": {}
     },
     "platforms": [
