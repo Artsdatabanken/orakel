@@ -481,7 +481,7 @@ function App() {
         <DialogContent className="dialogContent">
           <p className="emphasis">
             Artsdatabankens Artsorakel prøver å artsbestemme bilder ved hjelp av
-            maskinlæring. Artsorakelet kjenner kun viltlevende arter (ingen
+            maskinlæring. Artsorakelet kjenner igjen viltlevende arter (ingen
             husdyr, hageplanter, osv.) og gir svar på artsnivå (og noen
             underarter).
           </p>
