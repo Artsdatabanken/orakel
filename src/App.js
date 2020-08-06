@@ -117,7 +117,9 @@ function App() {
     var URL;
 
     const prefix =
-      window.location.hostname === "orakel.test.artsdatabanken.no" ? "test" : "www";
+      window.location.hostname === "orakel.test.artsdatabanken.no"
+        ? "test"
+        : "www";
 
     if (runningOnMobile()) {
       URL = `https://mobil.artsobservasjoner.no/#/report?meta=from%3Dorakel%7Cplatform%3D${
@@ -286,11 +288,8 @@ function App() {
               <div className="body">
                 Trykk på kamera-
                 {window.cordova && " eller galleri-"}
-                ikonet for å starte. Appen kan brukes på arter som{" "}
-                <span className="emphasis">
-                  naturlig forekommer i Norge
-                </span>{" "}
-                (ikke husdyr, hageplanter, osv).
+                ikonet for å starte. Appen kan brukes på{" "}
+                <span className="emphasis">viltlevende arter</span>.
               </div>
             </div>
           )}
@@ -483,8 +482,8 @@ function App() {
           <p className="emphasis">
             Artsdatabankens Artsorakel prøver å artsbestemme bilder ved hjelp av
             maskinlæring. Artsorakelet kjenner kun viltlevende arter (ingen
-            husdyr, hageplanter, osv.) og gir kun svar på artsnivå (ikke
-            underarter eller høyere taksa).
+            husdyr, hageplanter, osv.) og gir svar på artsnivå (og noen
+            underarter).
           </p>
 
           <p className="quote">
