@@ -98,3 +98,6 @@ $RECYCLE.BIN/
 .AppleDB
 .AppleDesktop
 .apdisk
+build.json
+orakel_keystore.jks
+app.aab

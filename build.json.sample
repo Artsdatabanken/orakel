@@ -1,0 +1,10 @@
+{
+    "android": {
+        "release": {
+            "keystore": "/bitrise/src2/orakel_keystore.jks",
+            "storePassword": "",
+            "alias": "key0",
+            "password" : ""
+        }
+    }
+}

@@ -36,20 +36,12 @@ function IdResult({ result, openDialog }) {
       <div className="resultDonut">
         <svg width="100%" height="100%" viewBox="0 0 42 42">
           <circle
-            className="donut-hole"
-            cx="21"
-            cy="21"
-            r="15.91549430918954"
-            fill="#fff"
-          ></circle>
-          <circle
-            className="donut-ring"
             cx="21"
             cy="21"
             r="15.91549430918954"
             fill="transparent"
             stroke="#d2d3d4"
-            strokeWidth="8"
+            strokeWidth="6"
           ></circle>
 
           <circle
@@ -58,7 +50,7 @@ function IdResult({ result, openDialog }) {
             r="15.91549430918954"
             fill="transparent"
             stroke={color}
-            strokeWidth="8"
+            strokeWidth="6"
             strokeDasharray={strokes}
             strokeDashoffset="0"
           ></circle>
@@ -66,48 +58,20 @@ function IdResult({ result, openDialog }) {
       </div>
 
       <div className="resultLabels">
-        <a
-          href={`https://artsdatabanken.no/Taxon/${result.taxon.name}/${result.taxon.scientificNameID}`}
-          target={"_blank"}
-          onClick={
-            result.taxon.scientificNameID
-              ? () => {
-                  return;
-                }
-              : (e) => {
-                  e.preventDefault();
-                }
+        <div
+          className={
+            result.taxon.vernacularName.toLowerCase() ===
+            result.taxon.name.toLowerCase()
+              ? "vernacular italics"
+              : "vernacular"
           }
-          rel="noopener noreferrer"
         >
-          <div
-            className={
-              result.taxon.vernacularName.toLowerCase() ===
-              result.taxon.name.toLowerCase()
-                ? "vernacular italics"
-                : "vernacular"
-            }
-          >
-            {result.taxon.vernacularName.charAt(0).toUpperCase() +
-              result.taxon.vernacularName.slice(1)}
-          </div>
-          <div className="scientific">{result.taxon.name}</div>
-        </a>
+          {result.taxon.vernacularName.charAt(0).toUpperCase() +
+            result.taxon.vernacularName.slice(1)}
+        </div>
+        <div className="scientific">{result.taxon.name}</div>
         <div className="percentage">
           <span className="number">({Math.round(percentage)} % treff)</span>
-          {percentage > 0 && (
-            <Button
-              style={{
-                fontSize: "9px",
-                lineHeight: "10px",
-              }}
-              variant="contained"
-              color="primary"
-              onClick={openDialog.bind(this, result)}
-            >
-              Rapporter funn
-            </Button>
-          )}
         </div>
         <div className="group">
           {result.taxon.groupName}{" "}
@@ -116,6 +80,45 @@ function IdResult({ result, openDialog }) {
               <WarningIcon /> ALDRI SPIS NOE BASERT PÅ ARTSORAKELETS SVAR
             </span>
           )}
+        </div>
+        <div className="actions">
+          <a
+            href={`https://artsdatabanken.no/Taxon/${result.taxon.name}/${result.taxon.scientificNameID}`}
+            target={"_blank"}
+            onClick={
+              result.taxon.scientificNameID
+                ? () => {
+                    return;
+                  }
+                : (e) => {
+                    e.preventDefault();
+                  }
+            }
+            rel="noopener noreferrer"
+          >
+            <Button
+              style={{
+                fontSize: "9px",
+                lineHeight: "10px",
+              }}
+              variant="contained"
+              color="primary"
+            >
+              Les mer
+            </Button>
+          </a>
+
+          <Button
+            style={{
+              fontSize: "9px",
+              lineHeight: "10px",
+            }}
+            variant="contained"
+            color="primary"
+            onClick={openDialog.bind(this, result)}
+          >
+            Rapporter funn
+          </Button>
         </div>
       </div>
     </div>
