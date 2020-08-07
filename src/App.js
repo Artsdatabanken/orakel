@@ -123,11 +123,11 @@ function App() {
 
     if (runningOnMobile()) {
       if (prefix === "test") {
-        URL = `https://utv.artsdatabanken.no/a2m/#/report?meta=from%3Dorakel%7Cplatform%3D${
+        URL = `https://utv.artsdatabanken.no/a2m/#/report?scientificname=${reportResult.taxon.scientificNameID}%26meta=from%3Dorakel%7Cplatform%3D${
           window.cordova ? (device ? device.platform : "app") : "mobileweb"
         }%7Cpercentage%3D${Math.round(reportResult.probability * 100)}`;
       } else {
-        URL = `https://mobil.artsobservasjoner.no/#/report?meta=from%3Dorakel%7Cplatform%3D${
+        URL = `https://mobil.artsobservasjoner.no/#/report?scientificname=${reportResult.taxon.scientificNameID}%26meta=from%3Dorakel%7Cplatform%3D${
           window.cordova ? (device ? device.platform : "app") : "mobileweb"
         }%7Cpercentage%3D${Math.round(reportResult.probability * 100)}`;
       }
