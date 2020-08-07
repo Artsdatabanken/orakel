@@ -122,9 +122,15 @@ function App() {
         : "www";
 
     if (runningOnMobile()) {
-      URL = `https://mobil.artsobservasjoner.no/#/report?meta=from%3Dorakel%7Cplatform%3D${
-        window.cordova ? (device ? device.platform : "app") : "mobileweb"
-      }%7Cpercentage%3D${Math.round(reportResult.probability * 100)}`;
+      if (prefix === "test") {
+        URL = `https://utv.artsobservasjoner.no/a2m/#/report?meta=from%3Dorakel%7Cplatform%3D${
+          window.cordova ? (device ? device.platform : "app") : "mobileweb"
+        }%7Cpercentage%3D${Math.round(reportResult.probability * 100)}`;
+      } else {
+        URL = `https://mobil.artsobservasjoner.no/#/report?meta=from%3Dorakel%7Cplatform%3D${
+          window.cordova ? (device ? device.platform : "app") : "mobileweb"
+        }%7Cpercentage%3D${Math.round(reportResult.probability * 100)}`;
+      }
     } else if (reportResult.taxon.scientificNameID) {
       URL = `https://${prefix}.artsobservasjoner.no/SubmitSighting/ReportByScientificName/${
         reportResult.taxon.scientificNameID
