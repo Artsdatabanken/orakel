@@ -2,7 +2,7 @@
   "name": "artsorakel",
   "displayName": "Artsorakel",
   "homepage": "./",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "Artsdatabankens Artsorakel til automatisk identifisering av arter i Norge.",
   "main": "index.js",
   "scripts": {
@@ -58,7 +58,6 @@
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
       "cordova-plugin-statusbar": {},
-      "cordova-plugin-wkwebview-engine": {},
       "cordova-plugin-device": {}
     },
     "platforms": [
