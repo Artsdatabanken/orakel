@@ -37,6 +37,17 @@ function IdResult({ result, openDialog }) {
     <div className="resultRow">
       <div className="resultDonut">
         <svg width="100%" height="100%" viewBox="0 0 42 42">
+          {result.taxon.picture && (
+            <image
+              xlinkHref={result.taxon.picture}
+              id={result.taxon.name + "_svg"}
+              height="25.9"
+              width="25.9"
+              y="8"
+              x="8"
+            />
+          )}
+
           <circle
             cx="21"
             cy="21"
@@ -111,7 +122,6 @@ function IdResult({ result, openDialog }) {
           </a>
 
           <ReportButton reportResult={result} />
-
         </div>
       </div>
     </div>
