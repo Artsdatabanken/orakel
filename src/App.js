@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import ImageSearchIcon from "@material-ui/icons/ImageSearch";
 import ReplayIcon from "@material-ui/icons/Replay";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
@@ -13,6 +12,7 @@ import "./App.css";
 import UploadedImage from "./components/Image";
 import IdResult from "./components/IdResult";
 import About from "./components/About";
+import UserFeedback from "./components/UserFeedback";
 import ImageCropper from "./components/ImageCropper";
 
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
@@ -216,78 +216,16 @@ function App() {
           ))}
         </div>
 
-        {!predictions.length &&
-          !croppedImages.length &&
-          !uncroppedImages.length && (
-            <div className="hint">
-              <div className="title">Artsorakel</div>
-
-              <div className="body">
-                Trykk på kamera-
-                {window.cordova && " eller galleri-"}
-                ikonet for å starte. Appen kan brukes på{" "}
-                <span className="emphasis">viltlevende arter</span>.
-              </div>
-            </div>
-          )}
-
-        {loading && (
-          <div className="buttonRow">
-            <CircularProgress
-              style={{ color: "#f57c00", width: 100, height: 100 }}
-            />
-          </div>
-        )}
-
-        {gotError === 503 && (
-          <div className="hint">
-            <div className="body emphasis">
-              Artsorakelet opplever stor trafikk for tiden. Vennligst prøv
-              igjen.
-            </div>
-          </div>
-        )}
-
-        {gotError && gotError !== 503 && (
-          <div className="hint">
-            <div className="body emphasis">
-              Noe gikk galt, vennligst prøv igjen. Ta kontakt med{" "}
-              <a href="mailto:support@artsobservasjoner.no">
-                support@artsobservasjoner.no
-              </a>{" "}
-              hvis problemet vedvarer.
-            </div>
-          </div>
-        )}
+        <UserFeedback
+          predictions={predictions}
+          croppedImages={croppedImages}
+          uncroppedImages={uncroppedImages}
+          gotError={gotError}
+          loading={loading}
+        />
 
         {!!predictions.length && !uncroppedImages.length && (
           <div>
-            <div className="hint">
-              {predictions[0].probability > 0.5 ? (
-                <div className="body">
-                  Husk at resultatene er autogenererte, og kan være feil, også
-                  når Artsorakelet oppgir høy treffprosent. Du må selv
-                  kontrollere at artsbestemmelsen er riktig dersom du
-                  rapporterer funn.
-                </div>
-              ) : (
-                <div className="body emphasis">
-                  Artsorakelet er for usikker på gjenkjenningen til å si hva
-                  dette er. Du må selv kontrollere at artsbestemmelsen er riktig
-                  dersom du rapporterer funn.
-                </div>
-              )}
-            </div>
-
-            {predictions[0].probability < 0.8 && (
-              <div className="hint">
-                <div className="body">
-                  Prøv å legge til bilder med andre vinkler eller detaljer, og
-                  zoom inn til (kun) arten du vil gjenkjenne.
-                </div>
-              </div>
-            )}
-
             {predictions.map((prediction) => (
               <IdResult result={prediction} key={prediction.taxon.id} />
             ))}
