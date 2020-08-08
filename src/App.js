@@ -48,7 +48,6 @@ function App() {
   const [uncroppedImages, setUncroppedImages] = useState([]);
   const [predictions, setPredictions] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
 
   const [gotError, setError] = useState(false);
   const [useCamera, setUseCamera] = useState(true);
@@ -93,14 +92,6 @@ function App() {
     setError(false);
     setCroppedImages([]);
     setPredictions([]);
-  };
-
-  const handleClickOpen = () => {
-    setModalOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setModalOpen(false);
   };
 
   const uploadMore = (sender) => {
@@ -206,14 +197,7 @@ function App() {
             </a>
 
             <div className="fabContainer">
-              <div
-                className="clickable"
-                aria-label="Om appen"
-                tabIndex="0"
-                onClick={handleClickOpen}
-              >
-                Om
-              </div>
+              <About />
             </div>
           </div>
         </div>
@@ -305,10 +289,7 @@ function App() {
             )}
 
             {predictions.map((prediction) => (
-              <IdResult
-                result={prediction}
-                key={prediction.taxon.id}
-              />
+              <IdResult result={prediction} key={prediction.taxon.id} />
             ))}
           </div>
         )}
@@ -388,8 +369,6 @@ function App() {
             imgSize={500}
           />
         ))}
-
-      <About modalOpen={modalOpen} handleModalClose={handleModalClose} />
     </div>
   );
 }
