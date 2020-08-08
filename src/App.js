@@ -1,25 +1,19 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import ImageSearchIcon from "@material-ui/icons/ImageSearch";
 import ReplayIcon from "@material-ui/icons/Replay";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
 import axios from "axios";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import Dialog from "@material-ui/core/Dialog";
+
 import AppBar from "@material-ui/core/AppBar";
 import "./App.css";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContentText from "@material-ui/core/DialogContentText";
 
 import UploadedImage from "./components/Image";
 import IdResult from "./components/IdResult";
+import About from "./components/About";
+import UserFeedback from "./components/UserFeedback";
 import ImageCropper from "./components/ImageCropper";
-import { runningOnMobile } from "./utils/utils";
 
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
 import {
@@ -30,7 +24,6 @@ import { createBrowserHistory } from "history";
 
 const browserHistory = createBrowserHistory({ basename: "" });
 var reactPlugin = new ReactPlugin();
-let device = { platform: "app" };
 
 if (
   window.location.hostname === "orakel.test.artsdatabanken.no" ||
@@ -55,9 +48,6 @@ function App() {
   const [uncroppedImages, setUncroppedImages] = useState([]);
   const [predictions, setPredictions] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [reportResult, setReportResult] = useState(false);
 
   const [gotError, setError] = useState(false);
   const [useCamera, setUseCamera] = useState(true);
@@ -102,58 +92,6 @@ function App() {
     setError(false);
     setCroppedImages([]);
     setPredictions([]);
-  };
-
-  const handleClickOpen = () => {
-    setModalOpen(true);
-  };
-
-  const openReportDialog = (result) => {
-    setReportResult(result);
-    setDialogOpen(true);
-  };
-
-  const reportAO = () => {
-    var URL;
-
-    const prefix =
-      window.location.hostname === "orakel.test.artsdatabanken.no"
-        ? "test"
-        : "www";
-
-    if (runningOnMobile()) {
-      if (prefix === "test") {
-        URL = `https://utv.artsdatabanken.no/a2m/#/report?scientificname=${reportResult.taxon.scientificNameID}%26meta=from%3Dorakel%7Cplatform%3D${
-          window.cordova ? (device ? device.platform : "app") : "mobileweb"
-        }%7Cpercentage%3D${Math.round(reportResult.probability * 100)}`;
-      } else {
-        URL = `https://mobil.artsobservasjoner.no/#/report?scientificname=${reportResult.taxon.scientificNameID}%26meta=from%3Dorakel%7Cplatform%3D${
-          window.cordova ? (device ? device.platform : "app") : "mobileweb"
-        }%7Cpercentage%3D${Math.round(reportResult.probability * 100)}`;
-      }
-    } else if (reportResult.taxon.scientificNameID) {
-      URL = `https://${prefix}.artsobservasjoner.no/SubmitSighting/ReportByScientificName/${
-        reportResult.taxon.scientificNameID
-      }?meta=from%3Dorakel%7Cplatform%3Ddesktopweb%7Cpercentage%3D${Math.round(
-        reportResult.probability * 100
-      )}`;
-    } else {
-      URL = `https://${prefix}.artsobservasjoner.no/SubmitSighting/Report?meta=from%3Dorakel%7Cplatform%3Ddesktopweb%7Cpercentage%3D${Math.round(
-        reportResult.probability * 100
-      )}`;
-    }
-
-    window.open(URL, "_blank");
-    setReportResult(false);
-    setDialogOpen(false);
-  };
-
-  const handleModalClose = () => {
-    setModalOpen(false);
-  };
-
-  const handleDialogClose = () => {
-    setDialogOpen(false);
   };
 
   const uploadMore = (sender) => {
@@ -259,14 +197,7 @@ function App() {
             </a>
 
             <div className="fabContainer">
-              <div
-                className="clickable"
-                aria-label="Om appen"
-                tabIndex="0"
-                onClick={handleClickOpen}
-              >
-                Om
-              </div>
+              <About />
             </div>
           </div>
         </div>
@@ -285,84 +216,18 @@ function App() {
           ))}
         </div>
 
-        {!predictions.length &&
-          !croppedImages.length &&
-          !uncroppedImages.length && (
-            <div className="hint">
-              <div className="title">Artsorakel</div>
-
-              <div className="body">
-                Trykk på kamera-
-                {window.cordova && " eller galleri-"}
-                ikonet for å starte. Appen kan brukes på{" "}
-                <span className="emphasis">viltlevende arter</span>.
-              </div>
-            </div>
-          )}
-
-        {loading && (
-          <div className="buttonRow">
-            <CircularProgress
-              style={{ color: "#f57c00", width: 100, height: 100 }}
-            />
-          </div>
-        )}
-
-        {gotError === 503 && (
-          <div className="hint">
-            <div className="body emphasis">
-              Artsorakelet opplever stor trafikk for tiden. Vennligst prøv
-              igjen.
-            </div>
-          </div>
-        )}
-
-        {gotError && gotError !== 503 && (
-          <div className="hint">
-            <div className="body emphasis">
-              Noe gikk galt, vennligst prøv igjen. Ta kontakt med{" "}
-              <a href="mailto:support@artsobservasjoner.no">
-                support@artsobservasjoner.no
-              </a>{" "}
-              hvis problemet vedvarer.
-            </div>
-          </div>
-        )}
+        <UserFeedback
+          predictions={predictions}
+          croppedImages={croppedImages}
+          uncroppedImages={uncroppedImages}
+          gotError={gotError}
+          loading={loading}
+        />
 
         {!!predictions.length && !uncroppedImages.length && (
           <div>
-            <div className="hint">
-              {predictions[0].probability > 0.5 ? (
-                <div className="body">
-                  Husk at resultatene er autogenererte, og kan være feil, også
-                  når Artsorakelet oppgir høy treffprosent. Du må selv
-                  kontrollere at artsbestemmelsen er riktig dersom du
-                  rapporterer funn.
-                </div>
-              ) : (
-                <div className="body emphasis">
-                  Artsorakelet er for usikker på gjenkjenningen til å si hva
-                  dette er. Du må selv kontrollere at artsbestemmelsen er riktig
-                  dersom du rapporterer funn.
-                </div>
-              )}
-            </div>
-
-            {predictions[0].probability < 0.8 && (
-              <div className="hint">
-                <div className="body">
-                  Prøv å legge til bilder med andre vinkler eller detaljer, og
-                  zoom inn til (kun) arten du vil gjenkjenne.
-                </div>
-              </div>
-            )}
-
             {predictions.map((prediction) => (
-              <IdResult
-                result={prediction}
-                key={prediction.taxon.id}
-                openDialog={openReportDialog}
-              />
+              <IdResult result={prediction} key={prediction.taxon.id} />
             ))}
           </div>
         )}
@@ -442,152 +307,6 @@ function App() {
             imgSize={500}
           />
         ))}
-
-      <Dialog
-        onClose={handleDialogClose}
-        aria-labelledby="dialog-title"
-        open={dialogOpen}
-        fullWidth={true}
-      >
-        <DialogTitle id="alert-dialog-title">
-          {"Har du bekreftet arten?"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Sjekk artsbestemmelsen selv før du rapporterer. Artsorakelet kan ta
-            feil også ved høy treffprosent. Vil du fortsette?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleDialogClose} color="primary">
-            Avbryt
-          </Button>
-          <Button onClick={reportAO} color="primary" autoFocus>
-            Fortsett
-          </Button>
-        </DialogActions>
-      </Dialog>
-
-      <Dialog
-        onClose={handleModalClose}
-        aria-labelledby="dialog-title"
-        open={modalOpen}
-        fullWidth={true}
-      >
-        <DialogTitle id="simple-dialog-title">
-          Om Artsorakelet
-          <IconButton
-            aria-label="close"
-            onClick={handleModalClose}
-            style={{ right: "15px", top: "0", position: "absolute" }}
-          >
-            <CloseIcon />
-          </IconButton>
-        </DialogTitle>
-        <DialogContent className="dialogContent">
-          <p className="emphasis">
-            Artsdatabankens Artsorakel prøver å artsbestemme bilder ved hjelp av
-            maskinlæring. Artsorakelet kjenner igjen viltlevende arter (ingen
-            husdyr, hageplanter, osv.) og gir svar på artsnivå (og noen
-            underarter).
-          </p>
-
-          <p className="quote">
-            I likhet med andre orakler kan svaret være en åpenbaring, men det er
-            alltid en sjanse for at svaret er feil, uklart, flertydig og/eller
-            krever tolkning.
-          </p>
-
-          <p>
-            Selv om svaret angis med høy treffprosent betyr det ikke at svaret
-            nødvendigvis er riktig. Det er ikke like flink på arter der det er
-            få bilder tilgjengelig på Artsobservasjoner, som:
-          </p>
-          <ul>
-            <li>Store rovdyr og andre arter som er unntatt offentlighet</li>
-            <li>Fisk</li>
-            <li>
-              Arter som er vanskelig å fotografere og/eller artsbestemme fra
-              bilder
-            </li>
-          </ul>
-          <p>
-            Sjekk derfor alltid med relevant litteratur, for eksempel våre
-            ekspertskrevne artsbeskrivelser og nøkler i{" "}
-            <a href="https://www.artsdatabanken.no/arter-pa-nett">
-              Arter på nett
-            </a>
-            .
-          </p>
-
-          <p className="quote">
-            NB: Bruk aldri Artsorakelet til å vurdere om en art er spiselig
-            eller giftig!
-          </p>
-
-          <p>
-            Hvis du med stor sikkerhet vet hvilken art det er, vil vi gjerne at
-            du rapporterer observasjonen i{" "}
-            <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>{" "}
-            ved å trykke på "rapporter funn"-knappen . Slik hjelper du forskere
-            og naturforvaltere. Hvis du laster opp bildene der kan de i tillegg
-            brukes til å forbedre neste versjon av Artsorakelet.
-          </p>
-
-          {window.cordova && (
-            <p>
-              Artsorakelet er også tilgjengelig som nettversjon for pc og mobil
-              på{" "}
-              <a href="https://orakel.artsdatabanken.no">
-                orakel.artsdatabanken.no
-              </a>
-              .
-            </p>
-          )}
-
-          {!window.cordova && (
-            <p>
-              Artsorakelet er også tilgjengelig som Android og iOS app.
-              <br />
-              <a href="https://play.google.com/store/apps/details?id=no.artsdatabanken.orakel">
-                <img
-                  src="Google_Play_badge.png"
-                  alt="Tilgjengelig på Google Play"
-                  className="appStoreBadge"
-                />
-              </a>
-              <a href="https://apps.apple.com/no/app/id1522271415">
-                <img
-                  src="app_store_badge.png"
-                  alt="Last ned fra App Store"
-                  className="appStoreBadge"
-                />
-              </a>
-            </p>
-          )}
-
-          <p>
-            Du kan lese mer om Artsorakelet på{" "}
-            <a href="https://www.artsdatabanken.no/Pages/299643">
-              Artsdatabankens nettsider
-            </a>
-            . Spørsmål og tilbakemelding kan sendes til{" "}
-            <a href="mailto:support@artsobservasjoner.no">
-              support@artsobservasjoner.no
-            </a>
-            .
-          </p>
-
-          <p>
-            <img
-              src="Artsdatabanken_high.svg"
-              alt="Artsdatabanken"
-              className="aboutLogo"
-            />
-            <img src="Naturalis.svg" className="aboutLogo" alt="Naturalis" />
-          </p>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

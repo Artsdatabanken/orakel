@@ -1,5 +1,7 @@
 import React from "react";
 import "../App.css";
+import ReportButton from "./ReportButton";
+
 import Button from "@material-ui/core/Button";
 import WarningIcon from "@material-ui/icons/Warning";
 
@@ -108,17 +110,8 @@ function IdResult({ result, openDialog }) {
             </Button>
           </a>
 
-          <Button
-            style={{
-              fontSize: "9px",
-              lineHeight: "10px",
-            }}
-            variant="contained"
-            color="primary"
-            onClick={openDialog.bind(this, result)}
-          >
-            Rapporter funn
-          </Button>
+          <ReportButton reportResult={result} />
+
         </div>
       </div>
     </div>
