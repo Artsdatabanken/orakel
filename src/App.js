@@ -169,8 +169,9 @@ function App() {
         let predictions = res.data.predictions.filter(
           (pred) => pred.probability > 0.02
         );
-        if (predictions.length > 5) {
-          predictions = predictions.slice(0, 5);
+
+        if (predictions.length > 5 || predictions.length === 0) {
+          predictions = res.data.predictions.slice(0, 5);
         }
 
         setPredictions(predictions);

@@ -2,8 +2,13 @@ import React from "react";
 import "../App.css";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-
-function UserFeedback({predictions, croppedImages, uncroppedImages, loading, gotError}) {
+function UserFeedback({
+  predictions,
+  croppedImages,
+  uncroppedImages,
+  loading,
+  gotError,
+}) {
   return (
     <React.Fragment>
       {!predictions.length && !croppedImages.length && !uncroppedImages.length && (

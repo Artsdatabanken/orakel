@@ -2,6 +2,7 @@ const path = require("path");
 const { exec } = require("child_process");
 const fs = require("fs");
 const rimraf = require("rimraf");
+const createIcons = require("cordova-res");
 
 function renameOutputFolder(buildFolderPath, outputFolderPath) {
   return new Promise((resolve, reject) => {
@@ -44,6 +45,7 @@ module.exports = () => {
     process.cwd(),
     "./node_modules/.bin/react-scripts"
   );
+
   return new Promise((resolve, reject) => {
     exec(`${projectPath} build`, (error) => {
       if (error) {
@@ -51,18 +53,35 @@ module.exports = () => {
         reject(error);
         return;
       }
-      execPostReactBuild(
-        path.resolve(__dirname, "../build/"),
-        path.join(__dirname, "../www/")
-      )
-        .then((s) => {
-          console.log(s);
-          resolve(s);
-        })
-        .catch((e) => {
-          console.error(e);
-          reject(e);
-        });
+
+      createIcons({
+        directory: ".",
+        resourcesDirectory: "resources",
+        logstream: process.stdout, // Any WritableStream
+        platforms: {
+          android: {
+            icon: { sources: ["resources/icon_trans.png"] },
+            splash: { sources: ["resources/splash.png"] },
+          },
+          ios: {
+            icon: { sources: ["resources/icon_solid.png"] },
+            splash: { sources: ["resources/splash.png"] },
+          },
+        },
+      }).then(() => {
+        execPostReactBuild(
+          path.resolve(__dirname, "../build/"),
+          path.join(__dirname, "../www/")
+        )
+          .then((s) => {
+            console.log(s);
+            resolve(s);
+          })
+          .catch((e) => {
+            console.error(e);
+            reject(e);
+          });
+      });
     });
   });
 };
