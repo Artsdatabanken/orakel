@@ -96,7 +96,7 @@ function IdResult({ result, openDialog }) {
         </div>
         <div className="actions">
           <a
-            href={`https://artsdatabanken.no/Taxon/${result.taxon.name}/${result.taxon.scientificNameID}`}
+            href={result.taxon.infoUrl}
             target={"_blank"}
             onClick={
               result.taxon.scientificNameID
