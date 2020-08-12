@@ -105,7 +105,7 @@ function App() {
       setUseCamera(false);
 
       navigator.camera.getPicture(onSuccess, onFail, {
-        destinationType: window.Camera.DestinationType.DATA_URL,
+        destinationType: window.Camera.DestinationType.FILE_URI,
         sourceType: window.Camera.PictureSourceType.PHOTOLIBRARY,
         encodingType: window.Camera.EncodingType.JPEG,
         mediaType: window.Camera.MediaType.PICTURE,
@@ -115,10 +115,7 @@ function App() {
       });
 
       function onSuccess(imageData) {
-        setUncroppedImages([
-          ...uncroppedImages,
-          "data:image/jpeg;base64," + imageData,
-        ]);
+        setUncroppedImages([...uncroppedImages, imageData]);
       }
       function onFail(message) {
         console.log(message);
@@ -132,7 +129,7 @@ function App() {
       setUseCamera(true);
 
       navigator.camera.getPicture(onSuccess, onFail, {
-        destinationType: window.Camera.DestinationType.DATA_URL,
+        destinationType: window.Camera.DestinationType.FILE_URI,
         sourceType: window.Camera.PictureSourceType.CAMERA,
         encodingType: window.Camera.EncodingType.JPEG,
         mediaType: window.Camera.MediaType.PICTURE,
@@ -143,10 +140,7 @@ function App() {
       });
 
       function onSuccess(imageData) {
-        setUncroppedImages([
-          ...uncroppedImages,
-          "data:image/jpeg;base64," + imageData,
-        ]);
+        setUncroppedImages([...uncroppedImages, imageData]);
       }
       function onFail(message) {
         console.log(message);
