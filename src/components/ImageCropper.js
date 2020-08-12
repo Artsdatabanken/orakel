@@ -134,11 +134,6 @@ export default class ImageCropper extends Component {
   };
 
   render() {
-    if (this.state.src.slice(0, 10) !== "data:image") {
-      this.props.imageCropped(undefined);
-      return <div>Det er ikke et bilde</div>;
-    }
-
     window.addEventListener(
       "resize",
       this.debounce(this.initCropper.bind(this), 500).bind(this)
