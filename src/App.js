@@ -222,7 +222,11 @@ function App() {
         {!!predictions.length && !uncroppedImages.length && (
           <div>
             {predictions.map((prediction) => (
-              <IdResult result={prediction} key={prediction.taxon.id} />
+              <IdResult 
+              result={prediction} 
+              key={prediction.taxon.id} 
+              croppedImages={croppedImages}
+              />
             ))}
           </div>
         )}
