@@ -50,7 +50,8 @@ function ReportButton({ reportResult,croppedImages }) {
     }else if(window.location.hostname === 'localhost'){
       // When testing with artsobs mobile, run artsobsmobile on localhost:3000 
       // And run this on any other port. Artsobs mobile has issues when run on other ports.
-      url= 'http://localhost:3000/#/'      
+      // url= 'http://localhost:3000/#/'      
+      url = 'https://utv.artsdatabanken.no/a2m/#/';
     }else{
       url = 'https://mobil.artsobservasjoner.no/#/';
     }
@@ -126,7 +127,7 @@ function ReportButton({ reportResult,croppedImages }) {
 
           <form 
           //onSubmit={e => handleSubmit(e)}
-          action="http://localhost:3000/#/orakel" method="post" enctype="multipart/form-data">
+          action="" method="post" enctype="multipart/form-data">
           </form>
         </DialogContent>
         <DialogActions>
