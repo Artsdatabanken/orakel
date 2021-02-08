@@ -131,6 +131,9 @@ function ReportButton({ reportResult,croppedImages }) {
           </form>
         </DialogContent>
         <DialogActions>
+        <Button onClick={handleDialogClose} color="primary">
+            Avbryt
+          </Button>
         <Button  
            onClick={e => 
             {if (runningOnMobile()){
@@ -142,9 +145,7 @@ function ReportButton({ reportResult,croppedImages }) {
           color="primary" autoFocus>
             Fortsett
           </Button>
-          <Button onClick={handleDialogClose} color="primary">
-            Avbryt
-          </Button>
+         
 
           
         </DialogActions>
