@@ -1,14 +1,12 @@
 import React from "react";
 import "../App.css";
 import ReportButton from "./ReportButton";
-
 import Button from "@material-ui/core/Button";
 import WarningIcon from "@material-ui/icons/Warning";
 
-function IdResult({ result, openDialog }) {
+function IdResult({ result, openDialog,croppedImages }) {
   const percentage = result.probability * 100;
   const strokes = percentage.toString() + " " + (100 - percentage).toString();
-
   const colors = [
     [170, 0, 0],
     [220, 214, 43],
@@ -110,7 +108,7 @@ function IdResult({ result, openDialog }) {
             </Button>
           </a>
 
-          <ReportButton reportResult={result} />
+          <ReportButton reportResult={result} croppedImages={croppedImages}/>
         </div>
       </div>
     </div>
