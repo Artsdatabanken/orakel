@@ -36,7 +36,7 @@ function ReportButton({ reportResult,croppedImages }) {
     
     let probability = Math.round(reportResult.probability * 100);
     let percentage = `%7Cpercentage%3D${probability}`;
-    let url = `https://${prefix}.artsobservasjoner.no/SubmitSighting/SubmitSighting/`;
+    let url = `https://${prefix}.artsobservasjoner.no/SubmitSighting/`;
     let from = 'meta=from%3Dorakel%7C';
     let platform = `platform%3Ddesktopweb`;
     let reporttype = `Report?`;
@@ -62,6 +62,7 @@ function ReportButton({ reportResult,croppedImages }) {
   } else if (reportResult.taxon.scientificNameID) {
     reporttype = `ReportByScientificName/${reportResult.taxon.scientificNameID}?`;
   }           
+  console.log(url)
   return url+reporttype+from+platform+percentage;
   }
 
