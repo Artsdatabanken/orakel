@@ -62,7 +62,6 @@ function ReportButton({ reportResult,croppedImages }) {
   } else if (reportResult.taxon.scientificNameID) {
     reporttype = `ReportByScientificName/${reportResult.taxon.scientificNameID}?`;
   }           
-  console.log(url)
   return url+reporttype+from+platform+percentage;
   }
 
@@ -91,7 +90,6 @@ function ReportButton({ reportResult,croppedImages }) {
     let password = data.password;
     let url = makeURL(reportResult);
     url += "&id="+id+"&password="+password;
-    console.log(url)
     window.open(url, "_blank");
     setDialogOpen(false);
   }
