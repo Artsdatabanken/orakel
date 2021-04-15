@@ -245,6 +245,7 @@ function App() {
         )}
 
         {!croppedImages.length && !uncroppedImages.length && (
+          <div className=" bottomButtons">
           <div className=" bottomButton NewImage clickable" tabIndex="0">
             <AddAPhotoIcon style={{ fontSize: ".8em" }} />
             <input
@@ -254,7 +255,7 @@ function App() {
               onClick={openCamera}
               onChange={uploadMore.bind(this, "uploaderImages")}
             />
-          </div>
+          </div></div>
         )}
 
         {window.cordova && !croppedImages.length && !uncroppedImages.length && (
