@@ -185,20 +185,47 @@ function App() {
   return (
     <div className="App">
       <div className="image-section">
+        {!croppedImages.length && (
+          <div className="placeholder-container">
+            <h1 className="placeholder-title">Ta eller velg et bilde</h1>
+            <p className="placeholder-body">
+              Artsorakelet kjenner ikke igjen mennesker, husdyr, hageplanter,
+              osv.
+            </p>
+          </div>
+        )}
+
+        {!!croppedImages.length && (
+          <div className="images scrollbarless">
+            {croppedImages.map((img, index) => (
+              <UploadedImage img={img} key={index} delImage={delImage} />
+            ))}
+          </div>
+        )}
+
         <input
           type="file"
           id="bigDropzone"
           onClick={preventClick}
           onChange={uploadMore.bind(this, "bigDropzone")}
         />
-
-        <div className="images">
-          {croppedImages.map((img, index) => (
-            <UploadedImage img={img} key={index} delImage={delImage} />
-          ))}
-        </div>
       </div>
-      <div className="bottom-section">
+
+      <div className="bottom-section scrollbarless">
+        {!predictions.length &&
+          !!croppedImages.length &&
+          !loading &&
+          !uncroppedImages.length && (
+            <div
+              variant="contained"
+              className="id-btn"
+              onClick={getId}
+              tabIndex="0"
+            >
+              <span>Identifiser</span>
+            </div>
+          )}
+
         <UserFeedback
           predictions={predictions}
           croppedImages={croppedImages}
@@ -218,72 +245,32 @@ function App() {
             ))}
           </div>
         )}
+        {!predictions.length && (
+          <div className=" bottomButtons">
+            {window.cordova &&
+              !croppedImages.length &&
+              !uncroppedImages.length && (
+                <div
+                  className=" bottomButton galleryButton clickable"
+                  onClick={openGallery}
+                  tabIndex="0"
+                >
+                  <PhotoLibraryIcon style={{ fontSize: ".8em" }} />
+                </div>
+              )}
 
-        {!!croppedImages.length && !loading && !uncroppedImages.length && (
-          <div className="actionContainer">
-            <div>
-              <Button variant="contained" tabIndex="0">
-                <AddAPhotoIcon />
-              </Button>
-
-              <p>Legg til bilde for sikrere identifikasjon</p>
+            <div className=" bottomButton NewImage clickable" tabIndex="0">
+              <AddAPhotoIcon style={{ fontSize: ".8em" }} />
               <input
                 className="clickable"
                 type="file"
-                id="uploadMore"
-                onChange={uploadMore.bind(this, "uploadMore")}
-                onClick={useCamera ? openCamera : openGallery}
+                id="uploaderImages"
+                onClick={openCamera}
+                onChange={uploadMore.bind(this, "uploaderImages")}
               />
             </div>
-            <div onClick={resetImages}>
-              <Button tabIndex="0" variant="contained">
-                <ReplayIcon />
-              </Button>
-              <p>Identifiser noe annet</p>
-            </div>
           </div>
         )}
-
-        {!croppedImages.length && !uncroppedImages.length && (
-          <div className=" bottomButtons">
-          <div className=" bottomButton NewImage clickable" tabIndex="0">
-            <AddAPhotoIcon style={{ fontSize: ".8em" }} />
-            <input
-              className="clickable"
-              type="file"
-              id="uploaderImages"
-              onClick={openCamera}
-              onChange={uploadMore.bind(this, "uploaderImages")}
-            />
-          </div></div>
-        )}
-
-        {window.cordova && !croppedImages.length && !uncroppedImages.length && (
-          <div
-            className=" bottomButton galleryButton clickable"
-            onClick={openGallery}
-            tabIndex="0"
-          >
-            <PhotoLibraryIcon style={{ fontSize: ".8em" }} />
-          </div>
-        )}
-
-        {!predictions.length &&
-          !!croppedImages.length &&
-          !loading &&
-          !uncroppedImages.length && (
-            <div className="bottomButton identifyButton clickable">
-              <Button
-                variant="contained"
-                style={{ backgroundColor: "#f57c00", color: "white" }}
-                onClick={getId}
-                tabIndex="0"
-              >
-                <ImageSearchIcon style={{ fontSize: "4em" }} />{" "}
-                <span className="title">Identifiser</span>
-              </Button>
-            </div>
-          )}
       </div>
 
       {!!uncroppedImages.length &&

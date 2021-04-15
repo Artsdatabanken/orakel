@@ -6,14 +6,9 @@ function UploadedImage({ img, delImage }) {
   return (
     <div className="imgContainer">
       <img
-        className="gridElement"
+        className="uploadedImage"
         src={URL.createObjectURL(img)}
         alt="Uploaded"
-      />
-
-      <DeleteForeverIcon
-        className="removeLink clickable"
-        onClick={delImage.bind(this, img.name)}
       />
     </div>
   );

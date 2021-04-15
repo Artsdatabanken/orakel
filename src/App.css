@@ -1,7 +1,7 @@
 body {
   align-items: center;
   justify-content: center;
-  background-color: #121212;
+  background-color: hsl(0, 0%, 90%);
 }
 
 #root {
@@ -17,8 +17,13 @@ body {
   margin-right: auto;
 }
 
+#root > div {
+  width: 100%;
+}
+
 .App {
   height: 100%;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
@@ -26,14 +31,35 @@ body {
 .image-section {
   height: 25%;
   flex-grow: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.image-section .placeholder-container {
+  font-family: Roboto Condensed;
+  color: #ffffff;
+  width: 50%;
+  text-align: center;
+}
+
+.image-section .placeholder-title {
+  font-size: 1.3em;
+  line-height: 3em;
+}
+
+.image-section .placeholder-body {
+  font-weight: 300;
+  font-size: 1em;
+  line-height: 1.2em;
+}
 
 #bigDropzone {
   opacity: 0;
   top: 0px;
   z-index: 0;
-  position: realtive;
+  position: absolute;
   width: 100%;
   height: 100%;
 }
@@ -46,31 +72,33 @@ body {
   padding: 2.5em;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .hint {
   flex-grow: 1;
 }
 
-
 .bottomButtons {
-  transform-origin: center;
   z-index: 2;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .NewImage {
+  display: flex;
   align-items: center;
   justify-content: center;
-  display: flex;
   font-size: 4em;
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  margin-bottom: 15px;
   background-color: #5fb342;
   color: white;
+  position: relative;
 }
 
 .NewImage input {
@@ -82,4 +110,57 @@ body {
   right: 0;
   width: 100%;
   height: 100%;
+}
+
+.scrollbarless {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbarless::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.images {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+
+
+.imgContainer {
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.uploadedImage {
+  border-radius: 25px;
+  width: 120px;
+}
+
+.id-btn {
+  position: absolute;
+  background: #5fb342;
+  border: 3px solid #ffffff;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  height: 50px;
+  width: 50%;
+  margin-top: -65px;
+  left: 50%;
+  margin-left: -25%;
+  font-family: Roboto Condensed;
+  font-size: 25px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.id-btn > span {
+  flex-grow: 1;
+  padding: 10px;
 }
