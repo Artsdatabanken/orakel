@@ -11,7 +11,7 @@ function UserFeedback({
 }) {
   return (
     <React.Fragment>
-      {!predictions.length && !croppedImages.length && !uncroppedImages.length && (
+      {!predictions.length && (
         <div className="hint">
           Her kommer hintene
         </div>

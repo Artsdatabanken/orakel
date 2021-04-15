@@ -5,27 +5,28 @@ body {
 }
 
 #root {
+ width: 100vw;
+ height: 100vh;
+ position: relative;
+}
+
+#root > div {
+  width: 100%;
+  height: 100%;
+}
+
+.App {
   background-color: #5fb342;
-  background-image: linear-gradient(
-    rgba(255, 255, 0, 0),
-    rgba(255, 255, 0, 0.33) 25%
-  );
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 245, 0, .33) 25%);
+  height: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
   position: relative;
   max-width: 500px;
   display: flex;
   margin-left: auto;
   margin-right: auto;
-}
-
-#root > div {
-  width: 100%;
-}
-
-.App {
-  height: 100%;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
 }
 
 .image-section {
@@ -35,6 +36,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.menu-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 15px;
+  color: white;
 }
 
 .image-section .placeholder-container {
@@ -99,6 +108,7 @@ body {
   background-color: #5fb342;
   color: white;
   position: relative;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
 }
 
 .NewImage input {
@@ -127,8 +137,6 @@ body {
   overflow-x: scroll;
   overflow-y: hidden;
 }
-
-
 
 .imgContainer {
   padding-left: 7px;
@@ -163,4 +171,12 @@ body {
 .id-btn > span {
   flex-grow: 1;
   padding: 10px;
+}
+
+.cropContainer {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.85);
 }

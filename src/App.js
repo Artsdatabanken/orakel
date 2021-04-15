@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
+import MenuIcon from "@material-ui/icons/Menu";
 import axios from "axios";
 
 import "./App.css";
@@ -178,96 +179,7 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <div className="image-section">
-        {!croppedImages.length && (
-          <div className="placeholder-container">
-            <h1 className="placeholder-title">Ta eller velg et bilde</h1>
-            <p className="placeholder-body">
-              Artsorakelet kjenner ikke igjen mennesker, husdyr, hageplanter,
-              osv.
-            </p>
-          </div>
-        )}
-
-        {!!croppedImages.length && (
-          <div className="images scrollbarless">
-            {croppedImages.map((img, index) => (
-              <UploadedImage img={img} key={index} delImage={delImage} />
-            ))}
-          </div>
-        )}
-
-        <input
-          type="file"
-          id="bigDropzone"
-          onClick={preventClick}
-          onChange={uploadMore.bind(this, "bigDropzone")}
-        />
-      </div>
-
-      <div className="bottom-section scrollbarless">
-        {!predictions.length &&
-          !!croppedImages.length &&
-          !loading &&
-          !uncroppedImages.length && (
-            <div
-              variant="contained"
-              className="id-btn"
-              onClick={getId}
-              tabIndex="0"
-            >
-              <span>Identifiser</span>
-            </div>
-          )}
-
-        <UserFeedback
-          predictions={predictions}
-          croppedImages={croppedImages}
-          uncroppedImages={uncroppedImages}
-          gotError={gotError}
-          loading={loading}
-        />
-
-        {!!predictions.length && !uncroppedImages.length && (
-          <div>
-            {predictions.map((prediction) => (
-              <IdResult
-                result={prediction}
-                key={prediction.taxon.id}
-                croppedImages={croppedImages}
-              />
-            ))}
-          </div>
-        )}
-        {!predictions.length && (
-          <div className=" bottomButtons">
-            {window.cordova &&
-              !croppedImages.length &&
-              !uncroppedImages.length && (
-                <div
-                  className=" bottomButton galleryButton clickable"
-                  onClick={openGallery}
-                  tabIndex="0"
-                >
-                  <PhotoLibraryIcon style={{ fontSize: ".8em" }} />
-                </div>
-              )}
-
-            <div className=" bottomButton NewImage clickable" tabIndex="0">
-              <AddAPhotoIcon style={{ fontSize: ".8em" }} />
-              <input
-                className="clickable"
-                type="file"
-                id="uploaderImages"
-                onClick={openCamera}
-                onChange={uploadMore.bind(this, "uploaderImages")}
-              />
-            </div>
-          </div>
-        )}
-      </div>
-
+    <React.Fragment>
       {!!uncroppedImages.length &&
         uncroppedImages.map((ucimg, index) => (
           <ImageCropper
@@ -277,7 +189,100 @@ function App() {
             imgSize={500}
           />
         ))}
-    </div>
+
+      <div className="App">
+        <div className="image-section">
+          <MenuIcon className="menu-icon" style={{ fontSize: "2.2em" }} />
+
+          {!croppedImages.length && (
+            <div className="placeholder-container">
+              <h1 className="placeholder-title">Ta eller velg et bilde</h1>
+              <p className="placeholder-body">
+                Artsorakelet kjenner ikke igjen mennesker, husdyr, hageplanter,
+                osv.
+              </p>
+            </div>
+          )}
+
+          {!!croppedImages.length && (
+            <div className="images scrollbarless">
+              {croppedImages.map((img, index) => (
+                <UploadedImage img={img} key={index} delImage={delImage} />
+              ))}
+            </div>
+          )}
+
+          <input
+            type="file"
+            id="bigDropzone"
+            onClick={preventClick}
+            onChange={uploadMore.bind(this, "bigDropzone")}
+          />
+        </div>
+
+        <div className="bottom-section scrollbarless">
+          {!predictions.length &&
+            !!croppedImages.length &&
+            !loading &&
+            !uncroppedImages.length && (
+              <div
+                variant="contained"
+                className="id-btn"
+                onClick={getId}
+                tabIndex="0"
+              >
+                <span>Identifiser</span>
+              </div>
+            )}
+
+          <UserFeedback
+            predictions={predictions}
+            croppedImages={croppedImages}
+            uncroppedImages={uncroppedImages}
+            gotError={gotError}
+            loading={loading}
+          />
+
+          {!!predictions.length && !uncroppedImages.length && (
+            <div>
+              {predictions.map((prediction) => (
+                <IdResult
+                  result={prediction}
+                  key={prediction.taxon.id}
+                  croppedImages={croppedImages}
+                />
+              ))}
+            </div>
+          )}
+          {!predictions.length && (
+            <div className=" bottomButtons">
+              {window.cordova &&
+                !croppedImages.length &&
+                !uncroppedImages.length && (
+                  <div
+                    className=" bottomButton galleryButton clickable"
+                    onClick={openGallery}
+                    tabIndex="0"
+                  >
+                    <PhotoLibraryIcon style={{ fontSize: ".8em" }} />
+                  </div>
+                )}
+
+              <div className=" bottomButton NewImage clickable" tabIndex="0">
+                <AddAPhotoIcon style={{ fontSize: ".8em" }} />
+                <input
+                  className="clickable"
+                  type="file"
+                  id="uploaderImages"
+                  onClick={openCamera}
+                  onChange={uploadMore.bind(this, "uploaderImages")}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </React.Fragment>
   );
 }
 
