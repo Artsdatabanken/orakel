@@ -184,33 +184,21 @@ function App() {
 
   return (
     <div className="App">
-      <AppBar position="fixed" className="appBar">
-        <div className="headerBar">
-          <div className="headerLogo">
-            <a href="//artsdatabanken.no">
-              <img src="Artsdatabanken_long.svg" alt="Artsdatabanken" />
-            </a>
-
-            <div className="fabContainer">
-              <About />
-            </div>
-          </div>
-        </div>
-      </AppBar>
-
-      <div className="Container">
+      <div className="image-section">
         <input
           type="file"
           id="bigDropzone"
           onClick={preventClick}
           onChange={uploadMore.bind(this, "bigDropzone")}
         />
+
         <div className="images">
           {croppedImages.map((img, index) => (
             <UploadedImage img={img} key={index} delImage={delImage} />
           ))}
         </div>
-
+      </div>
+      <div className="bottom-section">
         <UserFeedback
           predictions={predictions}
           croppedImages={croppedImages}
@@ -222,10 +210,10 @@ function App() {
         {!!predictions.length && !uncroppedImages.length && (
           <div>
             {predictions.map((prediction) => (
-              <IdResult 
-              result={prediction} 
-              key={prediction.taxon.id} 
-              croppedImages={croppedImages}
+              <IdResult
+                result={prediction}
+                key={prediction.taxon.id}
+                croppedImages={croppedImages}
               />
             ))}
           </div>
