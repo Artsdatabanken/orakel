@@ -1,17 +1,12 @@
 import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
-import ImageSearchIcon from "@material-ui/icons/ImageSearch";
-import ReplayIcon from "@material-ui/icons/Replay";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import axios from "axios";
 
-import AppBar from "@material-ui/core/AppBar";
 import "./App.css";
 
 import UploadedImage from "./components/Image";
 import IdResult from "./components/IdResult";
-import About from "./components/About";
 import UserFeedback from "./components/UserFeedback";
 import ImageCropper from "./components/ImageCropper";
 

@@ -1,6 +1,5 @@
 import React from "react";
 import "../App.css";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 function UploadedImage({ img, delImage }) {
   return (
