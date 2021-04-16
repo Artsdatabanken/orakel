@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import MenuIcon from "@material-ui/icons/Menu";
+import CloseIcon from "@material-ui/icons/Close";
+import ReplayIcon from "@material-ui/icons/Replay";
+import Brightness4Icon from "@material-ui/icons/Brightness4";
+import AppleIcon from "@material-ui/icons/Apple";
+import ShopOutlinedIcon from "@material-ui/icons/ShopOutlined";
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined'
+
 import axios from "axios";
 
 import "./App.css";
@@ -44,6 +51,7 @@ function App() {
   const [uncroppedImages, setUncroppedImages] = useState([]);
   const [predictions, setPredictions] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false);
 
   const [gotError, setError] = useState(false);
   const [useCamera, setUseCamera] = useState(true);
@@ -88,6 +96,11 @@ function App() {
     setError(false);
     setCroppedImages([]);
     setPredictions([]);
+  };
+
+  const toggleMenu = () => {
+    console.log("hops");
+    setMenuVisible(!menuVisible);
   };
 
   const uploadMore = (sender) => {
@@ -191,8 +204,66 @@ function App() {
         ))}
 
       <div className="App">
+        <div id="menu" className={menuVisible ? "visible" : "invisible"}>
+          <div className="content">
+            <CloseIcon onClick={toggleMenu} id="closeMenu" />
+            <div
+              className="menuItem"
+              onClick={() => {
+                resetImages();
+                toggleMenu();
+              }}
+            >
+              <div>Slå på nattmodus</div>
+              <Brightness4Icon />
+            </div>
+
+            <div
+              className="menuItem"
+              onClick={() => {
+                toggleMenu();
+              }}
+            >
+              <div>Restart appen</div>
+              <ReplayIcon />
+            </div>
+            <div
+              className="menuItem"
+              onClick={() => {
+                resetImages();
+                toggleMenu();
+              }}
+            >
+              <div>Artsorakelet på Google Play</div>
+              <ShopOutlinedIcon />
+            </div>
+            <div
+              className="menuItem"
+              onClick={() => {
+                toggleMenu();
+              }}
+            >
+              <div>Artsorakelet i App Store</div>
+              <AppleIcon />
+            </div>
+
+            <div
+              className="menuItem"
+              onClick={() => {
+                toggleMenu();
+              }}
+            >
+              <div>Om Artsorakelet</div>
+              <InfoOutlinedIcon />
+            </div>
+          </div>
+        </div>
         <div className="image-section">
-          <MenuIcon className="menu-icon" style={{ fontSize: "2.2em" }} />
+          <MenuIcon
+            className="menu-icon"
+            style={{ fontSize: "2.2em" }}
+            onClick={toggleMenu}
+          />
 
           {!croppedImages.length && (
             <div className="placeholder-container">

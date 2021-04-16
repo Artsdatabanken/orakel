@@ -73,6 +73,10 @@ body {
   height: 100%;
 }
 
+.menu-icon {
+  z-index: 1;
+}
+
 .bottom-section {
   height: 75%;
   background-color: white;
@@ -179,4 +183,66 @@ body {
   height: 100vh;
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.85);
+}
+
+#menu {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.72);
+  width: 100%;
+  height: 100vh;
+}
+
+#menu.invisible {
+  z-index: -2;
+  opacity: 0;
+  transition: opacity 100ms linear 200ms, z-index 0ms linear 300ms;
+}
+
+#menu.visible {
+  opacity: 1;
+  z-index: 3;
+  transition: opacity 100ms linear 0ms;
+}
+
+#menu .content {
+  background-color: white;
+  width: 100%;
+  top: 0;
+  z-index: 300;
+  border-radius: 0 0 30px 30px;
+  transition: all 300ms ease-in-out 0ms;
+  padding: 60px 30px 30px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+#menu.visible .content {
+  height: 50vh;
+}
+
+#menu.invisible .content {
+  height: 0vh;
+}
+
+#menu .content #closeMenu {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+}
+
+.menuItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: 1px solid lightgray;
+  padding: 10px;
+  font-family: Roboto Condensed;
+  font-size: 1.3em;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.menuItem:active {
+  background-color: hsl(105, 46%, 88%);
 }
