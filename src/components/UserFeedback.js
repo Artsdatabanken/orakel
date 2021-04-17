@@ -11,7 +11,7 @@ function UserFeedback({
     <React.Fragment>
       {!predictions.length && (
         <div className="manual">
-          <div class="manual-item">
+          <div className="manual-item">
             <div className="manual-item-number">1.</div>
             <div className="manual-item-text">
               Ta eller velg et bilde av en art i norsk natur
@@ -24,7 +24,7 @@ function UserFeedback({
             </svg>
           </div>
 
-          <div class="manual-item">
+          <div className="manual-item">
             <div className="manual-item-number">2.</div>
             <div className="manual-item-text">Zoom inn til motivet </div>
             <svg viewBox="0 0 24 24">
@@ -35,7 +35,7 @@ function UserFeedback({
             </svg>
           </div>
 
-          <div class="manual-item">
+          <div className="manual-item">
             <div className="manual-item-number">3.</div>
             <div className="manual-item-text">
               Gjenta for sikrere identifisering
@@ -45,7 +45,7 @@ function UserFeedback({
 </svg>
           </div>
 
-          <div class="manual-item">
+          <div className="manual-item">
             <div className="manual-item-number">4.</div>
             <div className="manual-item-text">
               Trykk “identifiser” for å se hva det kan være!

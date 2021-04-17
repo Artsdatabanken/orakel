@@ -4,7 +4,7 @@ import ReportButton from "./ReportButton";
 import Button from "@material-ui/core/Button";
 import WarningIcon from "@material-ui/icons/Warning";
 
-function IdResult({ result, openDialog,croppedImages }) {
+function IdResult({ result, openResult, croppedImages }) {
   const percentage = result.probability * 100;
   const strokes = percentage.toString() + " " + (100 - percentage).toString();
   const colors = [
@@ -30,9 +30,12 @@ function IdResult({ result, openDialog,croppedImages }) {
   };
 
   let color = getColor(percentage);
+  const openResultModal = () => {
+    openResult(result);
+  }
 
   return (
-    <div className="resultRow">
+    <div className="resultRow" onClick={openResultModal}>
       <div className="resultDonut">
         <svg width="100%" height="100%" viewBox="0 0 42 42">
           <circle
@@ -52,12 +55,10 @@ function IdResult({ result, openDialog,croppedImages }) {
             stroke={color}
             strokeWidth="7"
             strokeDasharray={strokes}
-            strokeDashoffset="0"
+            strokeDashoffset="20"
           ></circle>
         </svg>
-        <div className="percentage">
-          {Math.round(percentage)}%
-        </div>
+        <div className="percentage">{Math.round(percentage)}%</div>
       </div>
 
       <div className="resultLabels">
@@ -73,9 +74,16 @@ function IdResult({ result, openDialog,croppedImages }) {
             result.taxon.vernacularName.slice(1)}
         </div>
         <div className="scientific">{result.taxon.name}</div>
-        <div className="group">
-          {result.taxon.groupName}
-        </div>
+        <div className="group">{result.taxon.groupName}</div>
+      </div>
+
+      <div className="chevron-right">
+        <svg viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+          />
+        </svg>
       </div>
     </div>
   );

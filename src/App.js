@@ -55,6 +55,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [inputStage, setInputStage] = useState(true);
   const [resultStage, setResultStage] = useState(false);
+  const [chosenPrediction, setChosenPrediction] = useState(false);
 
   const [menuVisible, setMenuVisible] = useState(false);
 
@@ -107,6 +108,10 @@ function App() {
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
+  };
+
+  const closeModal = () => {
+    setChosenPrediction(false);
   };
 
   const uploadMore = (sender) => {
@@ -211,14 +216,26 @@ function App() {
           />
         ))}
 
-      <div className="App">
+      <div className={"App" + (!!window.cordova ? " fullscreen" : "")}>
+        <div
+          id="resultModal"
+          className={"modal " + (!!chosenPrediction ? "visible" : "invisible")}
+          onClick={closeModal}
+        >
+          <div className="content" onClick={preventClick}>
+            <CloseIcon />
+
+            {!!chosenPrediction && <IdResult result={chosenPrediction} />}
+          </div>
+        </div>
+
         <div
           id="menu"
-          className={menuVisible ? "visible" : "invisible"}
+          className={"modal " + (menuVisible ? "visible" : "invisible")}
           onClick={toggleMenu}
         >
           <div className="content">
-            <CloseIcon id="closeMenu" />
+            <CloseIcon />
             <div
               className="menuItem"
               onClick={() => {
@@ -353,7 +370,7 @@ function App() {
         >
           {resultStage && (
             <div className="top-btn" onClick={resetImages} tabIndex="0">
-              <div class="btn reset">
+              <div className="btn reset">
                 <ReplayIcon />
               </div>
             </div>
@@ -366,6 +383,7 @@ function App() {
                   result={prediction}
                   key={prediction.taxon.id}
                   croppedImages={croppedImages}
+                  openResult={setChosenPrediction}
                 />
               ))}
             </div>
