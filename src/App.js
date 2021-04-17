@@ -17,6 +17,7 @@ import "./App.css";
 
 import UploadedImage from "./components/Image";
 import IdResult from "./components/IdResult";
+import ExtendedResult from "./components/ExtendedResult";
 import UserFeedback from "./components/UserFeedback";
 import ImageCropper from "./components/ImageCropper";
 
@@ -95,6 +96,7 @@ function App() {
   };
 
   const preventClick = (e) => {
+    e.stopPropagation();
     e.preventDefault();
   };
 
@@ -223,9 +225,14 @@ function App() {
           onClick={closeModal}
         >
           <div className="content" onClick={preventClick}>
-            <CloseIcon />
+            <CloseIcon onClick={closeModal} />
 
-            {!!chosenPrediction && <IdResult result={chosenPrediction} />}
+            {!!chosenPrediction && (
+              <ExtendedResult
+                result={chosenPrediction}
+                croppedImages={croppedImages}
+              />
+            )}
           </div>
         </div>
 

@@ -312,7 +312,7 @@ body {
   overflow: hidden;
 }
 
-#resultModal .content{
+#resultModal .content {
   position: relative;
   margin-top: 10vh;
   height: 80vh;
@@ -328,7 +328,6 @@ body {
   width: 0;
   padding: 0;
 }
-
 
 #menu .content {
   top: 0;
@@ -405,18 +404,59 @@ body {
 }
 
 .vernacular {
-  font-size: 1.8em;
   font-weight: 500;
 }
+
+.resultRow .vernacular {
+  font-size: 1.8em;
+}
+
+#resultModal .vernacular {
+  font-size: 2.5em;
+}
+
+#resultModal .resultLabels {
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  padding: 1em 0;
+  flex-grow: 0;
+  margin-bottom: 2em;
+}
+
+#resultModal .resultDescription {
+  font-size: 1.3em;
+  flex-grow: 1;
+}
+
+#resultModal .resultActions {
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
+ align-items: center;
+}
+
+#resultModal .btn {
+  margin: 0em .5em;
+  font-size: 1.1em;
+  padding: 0em 1.1em;
+}
+
 
 .italics {
   font-style: italic;
 }
 
+.resultRow .scientific {
+  font-size: 1.4em;
+}
+
+#resultModal .scientific {
+  font-size: 1.6em;
+}
+
 .scientific {
   font-style: italic;
   font-weight: 300;
-  font-size: 1.4em;
 }
 
 .group {
@@ -433,7 +473,7 @@ body {
 }
 
 .chevron-right svg {
-  opacity: .5;
+  opacity: 0.5;
   height: 3em;
 }
 
@@ -443,6 +483,6 @@ body {
 
 @keyframes spin {
   50% {
-    opacity: .5;
+    opacity: 0.5;
   }
 }
