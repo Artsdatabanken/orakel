@@ -7,7 +7,9 @@ import ReplayIcon from "@material-ui/icons/Replay";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
 import AppleIcon from "@material-ui/icons/Apple";
 import ShopOutlinedIcon from "@material-ui/icons/ShopOutlined";
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined'
+import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+import MenuBookIcon from "@material-ui/icons/MenuBook";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import axios from "axios";
 
@@ -51,6 +53,9 @@ function App() {
   const [uncroppedImages, setUncroppedImages] = useState([]);
   const [predictions, setPredictions] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [inputStage, setInputStage] = useState(true);
+  const [resultStage, setResultStage] = useState(false);
+
   const [menuVisible, setMenuVisible] = useState(false);
 
   const [gotError, setError] = useState(false);
@@ -96,10 +101,11 @@ function App() {
     setError(false);
     setCroppedImages([]);
     setPredictions([]);
+    setInputStage(true);
+    setResultStage(false);
   };
 
   const toggleMenu = () => {
-    console.log("hops");
     setMenuVisible(!menuVisible);
   };
 
@@ -159,6 +165,7 @@ function App() {
 
   const getId = () => {
     setError(false);
+    setInputStage(false);
     setLoading(true);
 
     var formdata = new FormData();
@@ -179,6 +186,7 @@ function App() {
 
         setPredictions(predictions);
         setLoading(false);
+        setResultStage(true);
       })
       .catch((error) => {
         if (error.response && error.response.status) {
@@ -204,14 +212,17 @@ function App() {
         ))}
 
       <div className="App">
-        <div id="menu" className={menuVisible ? "visible" : "invisible"}>
+        <div
+          id="menu"
+          className={menuVisible ? "visible" : "invisible"}
+          onClick={toggleMenu}
+        >
           <div className="content">
-            <CloseIcon onClick={toggleMenu} id="closeMenu" />
+            <CloseIcon id="closeMenu" />
             <div
               className="menuItem"
               onClick={() => {
                 resetImages();
-                toggleMenu();
               }}
             >
               <div>Slå på nattmodus</div>
@@ -221,38 +232,42 @@ function App() {
             <div
               className="menuItem"
               onClick={() => {
-                toggleMenu();
+                resetImages();
               }}
             >
               <div>Restart appen</div>
               <ReplayIcon />
             </div>
-            <div
-              className="menuItem"
-              onClick={() => {
-                resetImages();
-                toggleMenu();
-              }}
-            >
-              <div>Artsorakelet på Google Play</div>
-              <ShopOutlinedIcon />
-            </div>
-            <div
-              className="menuItem"
-              onClick={() => {
-                toggleMenu();
-              }}
-            >
-              <div>Artsorakelet i App Store</div>
-              <AppleIcon />
+
+            {!window.cordova && (
+              <a
+                href="https://play.google.com/store/apps/details?id=no.artsdatabanken.orakel"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="menuItem"
+              >
+                <div>Artsorakelet på Google Play</div>
+                <ShopOutlinedIcon />
+              </a>
+            )}
+            {!window.cordova && (
+              <a
+                href="https://apps.apple.com/no/app/id1522271415"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="menuItem"
+              >
+                <div>Artsorakelet i App Store</div>
+                <AppleIcon />
+              </a>
+            )}
+
+            <div className="menuItem">
+              <div>Bruksanvisning</div>
+              <MenuBookIcon />
             </div>
 
-            <div
-              className="menuItem"
-              onClick={() => {
-                toggleMenu();
-              }}
-            >
+            <div className="menuItem">
               <div>Om Artsorakelet</div>
               <InfoOutlinedIcon />
             </div>
@@ -275,13 +290,11 @@ function App() {
             </div>
           )}
 
-          {!!croppedImages.length && (
-            <div className="images scrollbarless">
-              {croppedImages.map((img, index) => (
-                <UploadedImage img={img} key={index} delImage={delImage} />
-              ))}
-            </div>
-          )}
+          <div className={"images scrollbarless" + (loading ? " loading" : "")}>
+            {croppedImages.map((img, index) => (
+              <UploadedImage img={img} key={index} delImage={delImage} />
+            ))}
+          </div>
 
           <input
             type="file"
@@ -291,20 +304,16 @@ function App() {
           />
         </div>
 
-        <div className="bottom-section scrollbarless">
-          {!predictions.length &&
-            !!croppedImages.length &&
-            !loading &&
-            !uncroppedImages.length && (
-              <div
-                variant="contained"
-                className="id-btn"
-                onClick={getId}
-                tabIndex="0"
-              >
-                <span>Identifiser</span>
-              </div>
-            )}
+        <div
+          className={
+            "bottom-section scrollbarless " + (inputStage ? "" : "hidden")
+          }
+        >
+          {!!inputStage && !!croppedImages.length && (
+            <div className="top-btn" onClick={getId} tabIndex="0">
+              <div className="btn id">Identifiser</div>
+            </div>
+          )}
 
           <UserFeedback
             predictions={predictions}
@@ -314,7 +323,43 @@ function App() {
             loading={loading}
           />
 
-          {!!predictions.length && !uncroppedImages.length && (
+          <div className=" bottomButtons">
+            {window.cordova && (
+              <div
+                className=" bottomButton galleryButton clickable"
+                onClick={openGallery}
+                tabIndex="0"
+              >
+                <PhotoLibraryIcon style={{ fontSize: ".8em" }} />
+              </div>
+            )}
+
+            <div className=" bottomButton NewImage clickable" tabIndex="0">
+              <AddAPhotoIcon style={{ fontSize: ".8em" }} />
+              <input
+                className="clickable"
+                type="file"
+                id="uploaderImages"
+                onClick={openCamera}
+                onChange={uploadMore.bind(this, "uploaderImages")}
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className={
+            "bottom-section scrollbarless " + (resultStage ? "" : "hidden")
+          }
+        >
+          {resultStage && (
+            <div className="top-btn" onClick={resetImages} tabIndex="0">
+              <div class="btn reset">
+                <ReplayIcon />
+              </div>
+            </div>
+          )}
+
+          {!!predictions.length && (
             <div>
               {predictions.map((prediction) => (
                 <IdResult
@@ -323,32 +368,6 @@ function App() {
                   croppedImages={croppedImages}
                 />
               ))}
-            </div>
-          )}
-          {!predictions.length && (
-            <div className=" bottomButtons">
-              {window.cordova &&
-                !croppedImages.length &&
-                !uncroppedImages.length && (
-                  <div
-                    className=" bottomButton galleryButton clickable"
-                    onClick={openGallery}
-                    tabIndex="0"
-                  >
-                    <PhotoLibraryIcon style={{ fontSize: ".8em" }} />
-                  </div>
-                )}
-
-              <div className=" bottomButton NewImage clickable" tabIndex="0">
-                <AddAPhotoIcon style={{ fontSize: ".8em" }} />
-                <input
-                  className="clickable"
-                  type="file"
-                  id="uploaderImages"
-                  onClick={openCamera}
-                  onChange={uploadMore.bind(this, "uploaderImages")}
-                />
-              </div>
             </div>
           )}
         </div>

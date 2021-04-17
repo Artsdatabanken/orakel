@@ -41,7 +41,7 @@ function IdResult({ result, openDialog,croppedImages }) {
             r="15.91549430918954"
             fill="transparent"
             stroke="#d2d3d4"
-            strokeWidth="6"
+            strokeWidth="7"
           ></circle>
 
           <circle
@@ -50,11 +50,14 @@ function IdResult({ result, openDialog,croppedImages }) {
             r="15.91549430918954"
             fill="transparent"
             stroke={color}
-            strokeWidth="6"
+            strokeWidth="7"
             strokeDasharray={strokes}
             strokeDashoffset="0"
           ></circle>
         </svg>
+        <div className="percentage">
+          {Math.round(percentage)}%
+        </div>
       </div>
 
       <div className="resultLabels">
@@ -70,45 +73,8 @@ function IdResult({ result, openDialog,croppedImages }) {
             result.taxon.vernacularName.slice(1)}
         </div>
         <div className="scientific">{result.taxon.name}</div>
-        <div className="percentage">
-          <span className="number">({Math.round(percentage)} % treff)</span>
-        </div>
         <div className="group">
-          {result.taxon.groupName}{" "}
-          {result.taxon.groupName === "Sopper" && (
-            <span className="danger">
-              <WarningIcon /> ALDRI SPIS NOE BASERT PÅ ARTSORAKELETS SVAR
-            </span>
-          )}
-        </div>
-        <div className="actions">
-          <a
-            href={result.taxon.infoUrl}
-            target={"_blank"}
-            onClick={
-              result.taxon.scientificNameID
-                ? () => {
-                    return;
-                  }
-                : (e) => {
-                    e.preventDefault();
-                  }
-            }
-            rel="noopener noreferrer"
-          >
-            <Button
-              style={{
-                fontSize: "9px",
-                lineHeight: "10px",
-              }}
-              variant="contained"
-              color="primary"
-            >
-              Les mer
-            </Button>
-          </a>
-
-          <ReportButton reportResult={result} croppedImages={croppedImages}/>
+          {result.taxon.groupName}
         </div>
       </div>
     </div>

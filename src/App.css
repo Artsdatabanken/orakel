@@ -2,12 +2,13 @@ body {
   align-items: center;
   justify-content: center;
   background-color: hsl(0, 0%, 90%);
+  font-family: Roboto Condensed;
 }
 
 #root {
- width: 100vw;
- height: 100vh;
- position: relative;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
 }
 
 #root > div {
@@ -17,7 +18,11 @@ body {
 
 .App {
   background-color: #5fb342;
-  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 245, 0, .33) 25%);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 245, 0, 0.33) 25%
+  );
   height: 100%;
   flex-grow: 1;
   display: flex;
@@ -47,7 +52,6 @@ body {
 }
 
 .image-section .placeholder-container {
-  font-family: Roboto Condensed;
   color: #ffffff;
   width: 50%;
   text-align: center;
@@ -88,10 +92,41 @@ body {
   justify-content: space-between;
   overflow-x: hidden;
   overflow-y: scroll;
+  transition: height 300ms ease-in-out 0s;
 }
 
-.hint {
+.bottom-section.hidden {
+  height: 0px;
+  padding: 0;
+}
+
+.manual {
+}
+
+.manual-item {
+  display: flex;
+  flex-direction: row;
+  padding: 20px 30px;
+  color: #121212;
+  align-items: center;
+}
+
+.manual-item-number {
+  font-size: 2em;
+  padding-right: 20px;
+  opacity: 0.25;
+}
+
+.manual-item-text {
   flex-grow: 1;
+  font-size: 1.3em;
+  font-weight: 300;
+  padding-right: 20px;
+}
+
+.manual-item svg {
+  min-width: 45px;
+  width: 45px;
 }
 
 .bottomButtons {
@@ -124,6 +159,7 @@ body {
   right: 0;
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 
 .scrollbarless {
@@ -150,29 +186,43 @@ body {
 .uploadedImage {
   border-radius: 25px;
   width: 120px;
+  max-height: 100%;
 }
 
-.id-btn {
+.top-btn {
   position: absolute;
+  margin-top: -65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  left: 0;
+}
+
+.btn {
   background: #5fb342;
   border: 3px solid #ffffff;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
   border-radius: 50px;
   height: 50px;
-  width: 50%;
-  margin-top: -65px;
-  left: 50%;
-  margin-left: -25%;
-  font-family: Roboto Condensed;
   font-size: 25px;
   line-height: 23px;
   display: flex;
   align-items: center;
-  text-align: center;
+  justify-content: center;
   color: white;
+  cursor: pointer;
 }
 
-.id-btn > span {
+.id.btn {
+  padding: 0px 2em;
+}
+
+.reset.btn {
+  padding: 0px 1em;
+}
+
+.btn > span {
   flex-grow: 1;
   padding: 10px;
 }
@@ -183,6 +233,51 @@ body {
   height: 100vh;
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.cropContainer > .cropper {
+  flex-grow: 1;
+}
+
+.cropContainer > .editing {
+  display: flex;
+  width: 100%;
+}
+
+.cropContainer > .editing .slider {
+  flex-grow: 1;
+  padding: 0px 20px;
+}
+
+.cropContainer > .buttons {
+  display: flex;
+}
+
+.cropContainer > .buttons > div {
+  border: 3px solid #ffffff;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 25px;
+  margin: 25px;
+}
+
+.cropContainer .btn-accept {
+  background: #5fb342;
+}
+
+.cropContainer .btn-delete {
+  background: #b35d42;
+}
+
+.cropContainer svg {
+  width: 30px;
+  cursor: pointer;
 }
 
 #menu {
@@ -214,10 +309,11 @@ body {
   padding: 60px 30px 30px 30px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 #menu.visible .content {
-  height: 50vh;
+  height: 27em;
 }
 
 #menu.invisible .content {
@@ -236,13 +332,78 @@ body {
   flex-direction: row;
   justify-content: space-between;
   border-top: 1px solid lightgray;
-  padding: 10px;
-  font-family: Roboto Condensed;
-  font-size: 1.3em;
+  padding: 15px 0px;
+  font-size: 1.4em;
   font-weight: 300;
   cursor: pointer;
+  transition: transform 350ms ease-in-out 0ms;
+}
+
+#menu.invisible .menuItem {
+  transform: translateY(-15vh);
 }
 
 .menuItem:active {
   background-color: hsl(105, 46%, 88%);
+}
+
+.menu-icon {
+  cursor: pointer;
+}
+
+#menu a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.resultRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.resultDonut {
+  width: 6em;
+  margin-right: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resultDonut .percentage {
+  position: absolute;
+  font-size: 1.3em;
+}
+
+.vernacular {
+  font-size: 2em;
+  font-weight: 500;
+}
+
+.italics {
+  font-style: italic;
+}
+
+.scientific {
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.4em;
+}
+
+.group {
+  font-size: 1em;
+  font-variant: small-caps;
+}
+
+.loading .imgContainer {
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  50% {
+    opacity: .5;
+  }
 }

@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import Slider from "@material-ui/core/Slider";
-import Button from "@material-ui/core/Button";
 import DoneIcon from "@material-ui/icons/Done";
 import ZoomOutIcon from "@material-ui/icons/ZoomOut";
 import ZoomInIcon from "@material-ui/icons/ZoomIn";
-import Grid from "@material-ui/core/Grid";
 import RotateLeftIcon from "@material-ui/icons/RotateLeft";
 import RotateRightIcon from "@material-ui/icons/RotateRight";
 
@@ -123,13 +121,13 @@ export default class ImageCropper extends Component {
 
   zoomOut = () => {
     if (this.cropper) {
-      this.cropper.zoom(-.1);
+      this.cropper.zoom(-0.1);
     }
   };
 
   zoomIn = () => {
     if (this.cropper) {
-      this.cropper.zoom(.1);
+      this.cropper.zoom(0.1);
     }
   };
 
@@ -168,52 +166,48 @@ export default class ImageCropper extends Component {
             }}
           />
         </div>
-        <div className="actions">
-          <Grid container>
-            <Grid item>
-              <RotateLeftIcon className="clickable imageEditButton" onClick={this.rotateLeft} />
-              <ZoomOutIcon className="clickable imageEditButton" onClick={this.zoomOut} />
-            </Grid>
-            <Grid item xs>
-              <Slider
-                value={this.state.zoom}
-                onChange={this.slideZoom}
-                step={0.01}
-                min={0}
-                max={2}
-                aria-labelledby="zoom-slider"
-              />{" "}
-            </Grid>
-            <Grid item>
-              <ZoomInIcon  className="clickable imageEditButton" onClick={this.zoomIn} />
-              <RotateRightIcon
-                className="clickable imageEditButton"
-                onClick={this.rotateRight}
-              />
-            </Grid>
-          </Grid>
-
-          <div className="cropButton">
-            Zoom og flytt til motivet fyller firkanten
+        <div className="editing">
+          <RotateLeftIcon
+            className="clickable imageEditButton"
+            onClick={this.rotateLeft}
+          />
+          <ZoomOutIcon
+            className="clickable imageEditButton"
+            onClick={this.zoomOut}
+          />
+          <div className="slider">
+            <Slider
+              value={this.state.zoom}
+              onChange={this.slideZoom}
+              step={0.01}
+              min={0}
+              max={2}
+              aria-labelledby="zoom-slider"
+            />
           </div>
-          <div className="cropButton">
-            <Button
-              variant="outlined"
-              color="primary"
-              size="large"
-              onClick={this.cancel}
-            >
-              Avbryt
-            </Button>{" "}
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              startIcon={<DoneIcon />}
-              onClick={this.cropImage}
-            >
-              Ferdig
-            </Button>
+          <ZoomInIcon
+            className="clickable imageEditButton"
+            onClick={this.zoomIn}
+          />
+          <RotateRightIcon
+            className="clickable imageEditButton"
+            onClick={this.rotateRight}
+          />
+        </div>
+
+        <div className="hint">Zoom og flytt til motivet fyller firkanten</div>
+
+        <div className="buttons">
+          <div onClick={this.cancel} className="btn-delete">
+            <svg viewBox="0 0 24 24">
+              <path
+                fill="currentColor"
+                d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z"
+              />
+            </svg>
+          </div>{" "}
+          <div onClick={this.cropImage}  className="btn-accept">
+            <DoneIcon />
           </div>
         </div>
       </div>
