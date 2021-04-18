@@ -10,7 +10,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContentText from "@material-ui/core/DialogContentText";
 
 
-function ReportButton({ reportResult, croppedImages }) {
+function ReportButton({ reportResult, croppedImages, preventClick }) {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleDialogClose = () => {
@@ -24,7 +24,8 @@ function ReportButton({ reportResult, croppedImages }) {
     setDialogOpen(false);
   };
 
-  const openDialog = () => {
+  const openDialog = (e) => {
+    preventClick(e);
     setDialogOpen(true);
   };
 

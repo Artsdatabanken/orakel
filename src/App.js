@@ -4,12 +4,6 @@ import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
 import ReplayIcon from "@material-ui/icons/Replay";
-import Brightness4Icon from "@material-ui/icons/Brightness4";
-import AppleIcon from "@material-ui/icons/Apple";
-import ShopOutlinedIcon from "@material-ui/icons/ShopOutlined";
-import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
-import MenuBookIcon from "@material-ui/icons/MenuBook";
-import CircularProgress from "@material-ui/core/CircularProgress";
 
 import axios from "axios";
 
@@ -20,6 +14,7 @@ import IdResult from "./components/IdResult";
 import ExtendedResult from "./components/ExtendedResult";
 import UserFeedback from "./components/UserFeedback";
 import ImageCropper from "./components/ImageCropper";
+import Menu from "./components/Menu";
 
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
 import {
@@ -61,7 +56,6 @@ function App() {
   const [menuVisible, setMenuVisible] = useState(false);
 
   const [gotError, setError] = useState(false);
-  const [useCamera, setUseCamera] = useState(true);
 
   const addImage = (img) => {
     setError(false);
@@ -101,6 +95,7 @@ function App() {
   };
 
   const resetImages = () => {
+    setMenuVisible(false);
     setError(false);
     setCroppedImages([]);
     setPredictions([]);
@@ -116,6 +111,12 @@ function App() {
     setChosenPrediction(false);
   };
 
+  const goToInput = () => {
+    setResultStage(false);
+    setPredictions([]);
+    setInputStage(true);
+  }
+
   const uploadMore = (sender) => {
     addImage(document.getElementById(sender).files);
     document.getElementById(sender).value = "";
@@ -124,7 +125,6 @@ function App() {
   const openGallery = (e) => {
     if (window.cordova) {
       e.preventDefault();
-      setUseCamera(false);
 
       navigator.camera.getPicture(onSuccess, onFail, {
         destinationType: window.Camera.DestinationType.FILE_URI,
@@ -148,7 +148,6 @@ function App() {
   const openCamera = (e) => {
     if (window.cordova) {
       e.preventDefault();
-      setUseCamera(true);
 
       navigator.camera.getPicture(onSuccess, onFail, {
         destinationType: window.Camera.DestinationType.FILE_URI,
@@ -224,13 +223,14 @@ function App() {
           className={"modal " + (!!chosenPrediction ? "visible" : "invisible")}
           onClick={closeModal}
         >
-          <div className="content" onClick={preventClick}>
-            <CloseIcon onClick={closeModal} />
+          <div className="content">
+            <CloseIcon />
 
             {!!chosenPrediction && (
               <ExtendedResult
                 result={chosenPrediction}
                 croppedImages={croppedImages}
+                preventClick={preventClick}
               />
             )}
           </div>
@@ -241,61 +241,7 @@ function App() {
           className={"modal " + (menuVisible ? "visible" : "invisible")}
           onClick={toggleMenu}
         >
-          <div className="content">
-            <CloseIcon />
-            <div
-              className="menuItem"
-              onClick={() => {
-                resetImages();
-              }}
-            >
-              <div>Slå på nattmodus</div>
-              <Brightness4Icon />
-            </div>
-
-            <div
-              className="menuItem"
-              onClick={() => {
-                resetImages();
-              }}
-            >
-              <div>Restart appen</div>
-              <ReplayIcon />
-            </div>
-
-            {!window.cordova && (
-              <a
-                href="https://play.google.com/store/apps/details?id=no.artsdatabanken.orakel"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="menuItem"
-              >
-                <div>Artsorakelet på Google Play</div>
-                <ShopOutlinedIcon />
-              </a>
-            )}
-            {!window.cordova && (
-              <a
-                href="https://apps.apple.com/no/app/id1522271415"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="menuItem"
-              >
-                <div>Artsorakelet i App Store</div>
-                <AppleIcon />
-              </a>
-            )}
-
-            <div className="menuItem">
-              <div>Bruksanvisning</div>
-              <MenuBookIcon />
-            </div>
-
-            <div className="menuItem">
-              <div>Om Artsorakelet</div>
-              <InfoOutlinedIcon />
-            </div>
-          </div>
+          <Menu resetImages={resetImages} />
         </div>
         <div className="image-section">
           <MenuIcon
@@ -318,6 +264,8 @@ function App() {
             {croppedImages.map((img, index) => (
               <UploadedImage img={img} key={index} delImage={delImage} />
             ))}
+
+            {resultStage && <div className="goToInput" onClick={goToInput}></div>}
           </div>
 
           <input

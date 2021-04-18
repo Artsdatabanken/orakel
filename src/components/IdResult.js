@@ -1,8 +1,5 @@
 import React from "react";
 import "../App.css";
-import ReportButton from "./ReportButton";
-import Button from "@material-ui/core/Button";
-import WarningIcon from "@material-ui/icons/Warning";
 
 function IdResult({ result, openResult, croppedImages }) {
   const percentage = result.probability * 100;
@@ -75,6 +72,11 @@ function IdResult({ result, openResult, croppedImages }) {
         </div>
         <div className="scientific">{result.taxon.name}</div>
         <div className="group">{result.taxon.groupName}</div>
+        {result.taxon.groupName === "Sopper" && (
+          <div className="danger">
+            ALDRI SPIS NOE PGA APPEN
+          </div>
+        )}
       </div>
 
       <div className="chevron-right">

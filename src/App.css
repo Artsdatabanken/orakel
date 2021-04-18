@@ -97,7 +97,7 @@ body {
   justify-content: space-between;
   overflow-x: hidden;
   overflow-y: scroll;
-  transition: height 300ms ease-in-out 0s;
+  transition: height 300ms ease-in-out 3ms;
 }
 
 .bottom-section.hidden {
@@ -191,6 +191,27 @@ body {
   max-height: 100%;
 }
 
+.goToInput {
+  border-radius: 25px;
+  width: 120px;
+  max-height: 100%;
+  border: rgba(255, 255, 255, 0.7) dashed;
+  background-color: rgba(255, 255, 255, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 5;
+  margin: 0 7px;
+}
+
+.goToInput::after {
+  content: "+";
+  font-family: "Times New Roman", Times, serif;
+  font-size: 5em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .top-btn {
   position: absolute;
   margin-top: -3em;
@@ -207,13 +228,14 @@ body {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
   border-radius: 50px;
   height: 50px;
-  font-size: 25px;
+  font-size: 1.3em;
   line-height: 23px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .id.btn {
@@ -274,7 +296,7 @@ body {
 }
 
 .cropContainer .btn-delete {
-  background: #b35d42;
+  background-color: #b35d42;
 }
 
 .cropContainer svg {
@@ -298,14 +320,14 @@ body {
 .modal.visible {
   opacity: 1;
   z-index: 3;
-  transition: opacity 100ms linear 0ms;
+  transition: opacity 100ms linear 3ms;
 }
 
 .modal .content {
   background-color: white;
   width: 100%;
   z-index: 300;
-  transition: all 300ms ease-in-out 0ms;
+  transition: all 300ms ease-in-out 3ms;
   padding: 60px 30px 30px 30px;
   display: flex;
   flex-direction: column;
@@ -358,7 +380,7 @@ body {
   font-size: 1.4em;
   font-weight: 300;
   cursor: pointer;
-  transition: transform 350ms ease-in-out 0ms;
+  transition: transform 350ms ease-in-out 3ms;
 }
 
 #menu.invisible .menuItem {
@@ -411,6 +433,22 @@ body {
   font-size: 1.8em;
 }
 
+.danger {
+  display: flex;
+  background-color: #b35d42;
+  margin-top: 1em;
+  line-height: 1.4em;
+  font-size: 0.75em;
+  padding: 0.3em;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.danger svg {
+  margin-right: 0.3em;
+}
+
 #resultModal .vernacular {
   font-size: 2.5em;
 }
@@ -429,18 +467,17 @@ body {
 }
 
 #resultModal .resultActions {
- display: flex;
- flex-direction: row;
- justify-content: center;
- align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 #resultModal .btn {
-  margin: 0em .5em;
+  margin: 0em 0.5em;
   font-size: 1.1em;
   padding: 0em 1.1em;
 }
-
 
 .italics {
   font-style: italic;
