@@ -1,3 +1,9 @@
+@media only screen and (min-width: 700px) {
+  html {
+    font-size: 1.5rem;
+  }
+}
+
 body {
   align-items: center;
   justify-content: center;
@@ -22,7 +28,7 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  max-width: 600px;
+  max-width: 900px;
   display: flex;
   margin-left: auto;
   margin-right: auto;
@@ -75,7 +81,7 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  margin: 15px;
+  margin: 1rem;
 }
 
 .image-section .placeholder-container {
@@ -84,19 +90,19 @@ body {
 }
 
 .image-section .placeholder-title {
-  font-size: 1.3em;
-  line-height: 3em;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
 }
 
 .image-section .placeholder-body {
   font-weight: 300;
-  font-size: 1em;
-  line-height: 1.2em;
+  font-size: 0.9rem;
+  line-height: 1rem;
 }
 
 #bigDropzone {
   opacity: 0;
-  top: 0px;
+  top: 0;
   z-index: 0;
   position: absolute;
   width: 100%;
@@ -109,8 +115,8 @@ body {
 
 .bottom-section {
   height: 75%;
-  border-radius: 30px 30px 0px 0px;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 1.8rem 1.8rem 0 0;
+  box-shadow: 0 0.15rem 0.15rem rgba(0, 0, 0, 0.12);
   padding: 1.5em;
   display: flex;
   flex-direction: column;
@@ -129,52 +135,69 @@ body {
 }
 
 .bottom-section.hidden {
-  height: 0px;
+  height: 0;
   padding: 0;
+}
+
+.manual {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 8rem;
 }
 
 .manual-item {
   display: flex;
   flex-direction: row;
-  padding: 20px 30px;
+  padding: 0.7rem 2rem;
   align-items: center;
+  overflow: hidden;
 }
 
 .manual-item-number {
-  font-size: 2em;
-  padding-right: 20px;
+  font-size: 1.6rem;
+  padding-right: 0.8em;
   opacity: 0.25;
+  word-break: break-word;
 }
 
 .manual-item-text {
   flex-grow: 1;
-  font-size: 1.3em;
+  font-size: 1.2rem;
   font-weight: 300;
-  padding-right: 20px;
+  padding-right: 1em;
 }
 
 .manual-item svg {
-  min-width: 45px;
-  width: 45px;
+  min-width: 2.5rem;
+  width: 2.5rem;
 }
 
 .bottomButtons {
   z-index: 2;
   display: flex;
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  width: 100%;
   justify-content: center;
   align-items: center;
+
 }
 
 .NewImage {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4em;
-  width: 100px;
-  height: 100px;
+  font-size: 4rem;
+  width: 1.5em;
+  height: 1.5em;
   border-radius: 50%;
   position: relative;
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 15rem 15rem rgba(0, 0, 0, 0.25);
+}
+
+.hidden .bottomButtons {
+  z-index: -2;
 }
 
 .lightmode .primary {
@@ -218,19 +241,20 @@ body {
 }
 
 .imgContainer {
-  padding-left: 7px;
-  padding-right: 7px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .uploadedImage {
-  border-radius: 25px;
-  width: 120px;
+  border-radius: 1.5rem;
+  width: 6rem;
   max-height: 100%;
 }
 
 .goToInput {
-  border-radius: 25px;
-  width: 120px;
+  border-radius: 1.5rem;
+  width: 6rem;
+  min-width: 6rem;
   max-height: 100%;
   border: hsla(0, 0%, 100%, 0.5) dashed;
   background-color: hsla(0, 0%, 100%, 0.15);
@@ -239,13 +263,13 @@ body {
   align-items: center;
   cursor: pointer;
   z-index: 2;
-  margin: 0 7px;
+  margin: 0 0.5rem;
 }
 
 .goToInput::after {
   content: "+";
   font-family: "Times New Roman", Times, serif;
-  font-size: 5em;
+  font-size: 5rem;
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -260,12 +284,11 @@ body {
 }
 
 .btn {
-  border: 3px solid;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
-  border-radius: 50px;
-  height: 50px;
-  font-size: 1.3em;
-  line-height: 23px;
+  border: 0.2rem solid;
+  box-shadow: 0 0.15rem 0.15rem rgba(0, 0, 0, 0.25);
+  border-radius: 1em;
+  height: 2em;
+  font-size: 1.3rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -274,16 +297,16 @@ body {
 }
 
 .id.btn {
-  padding: 0px 2em;
+  padding: 0 2em;
 }
 
 .reset.btn {
-  padding: 0px 1em;
+  padding: 0 1em;
 }
 
 .btn > span {
   flex-grow: 1;
-  padding: 10px;
+  padding: 1rem;
 }
 
 .cropContainer {
@@ -309,7 +332,7 @@ body {
 
 .cropContainer > .editing .slider {
   flex-grow: 1;
-  padding: 0px 20px;
+  padding: 0 1rem;
 }
 
 .cropContainer > .buttons {
@@ -317,12 +340,12 @@ body {
 }
 
 .cropContainer > .buttons > div {
-  padding: 8px 25px;
-  margin: 25px;
+  padding: 0.5rem 2rem;
+  margin: 1rem;
 }
 
 .cropContainer svg {
-  width: 30px;
+  height: 1.5rem;
   cursor: pointer;
 }
 
@@ -349,7 +372,7 @@ body {
   width: 100%;
   z-index: 300;
   transition: all 300ms ease-in-out 3ms;
-  padding: 60px 30px 30px 30px;
+  padding: 4rem 2rem 2rem 2rem;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -367,7 +390,7 @@ body {
   position: relative;
   margin-top: 10vh;
   height: 80vh;
-  border-radius: 30px;
+  border-radius: 2rem;
 }
 
 #resultModal.visible .content {
@@ -382,7 +405,7 @@ body {
 
 #menu .content {
   top: 0;
-  border-radius: 0 0 30px 30px;
+  border-radius: 0 0 1.7rem 1.7rem;
 }
 
 #menu.visible .content {
@@ -395,8 +418,8 @@ body {
 
 .modal .content > svg {
   position: absolute;
-  right: 20px;
-  top: 20px;
+  right: 1rem;
+  top: 1rem;
   cursor: pointer;
 }
 
@@ -405,8 +428,8 @@ body {
   flex-direction: row;
   justify-content: space-between;
   border-top: 1px solid hsla(0, 0%, 50%, 0.5);
-  padding: 15px 0px;
-  font-size: 1.4em;
+  padding: 1rem 0;
+  font-size: 1.2rem;
   font-weight: 300;
   cursor: pointer;
   transition: transform 350ms ease-in-out 3ms;
@@ -433,15 +456,15 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 20px 0px;
+  padding: 1.2rem 0;
   border-bottom: 1px solid hsla(0, 0%, 50%, 50%);
   cursor: pointer;
   word-break: break-word;
 }
 
 .resultDonut {
-  width: 5em;
-  margin-right: 20px;
+  width: 4.5rem;
+  margin-right: 1rem;
   position: relative;
   display: flex;
   align-items: center;
@@ -455,7 +478,7 @@ body {
 
 .resultDonut .percentage {
   position: absolute;
-  font-size: 1.3em;
+  font-size: 1em;
 }
 
 .vernacular {
@@ -544,7 +567,7 @@ body {
 
 .chevron-right {
   flex-shrink: 0;
-  color:  hsla(0, 0%, 50%, 75%)
+  color: hsla(0, 0%, 50%, 75%);
 }
 
 .chevron-right svg {
