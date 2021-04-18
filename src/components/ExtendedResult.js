@@ -26,7 +26,7 @@ function ExtendedResult({ result, croppedImages, preventClick }) {
 
       <div className="resultDescription" onClick={preventClick}>
         Artsorakelet gir {percentage} % treff for {result.taxon.vernacularName}{" "}
-        basert på {n_pics === 1 ? "ditt bilde" : "dine " + n_pics + " bilder"}.
+        basert på {n_pics === 1 ? "bildet ditt" : "dine " + n_pics + " bilder"}.
         Det er ikke sagt at det stemmer, du må selv kontrollere at det er
         riktig, særlig hvis du skal rapportere funnet.
         {result.taxon.groupName === "Sopper" && (
