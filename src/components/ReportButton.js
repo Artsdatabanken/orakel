@@ -98,7 +98,7 @@ function ReportButton({ reportResult, croppedImages, preventClick }) {
 
   return (
     <React.Fragment>
-      <div className="btn" onClick={openDialog.bind(this)}>Rapporter funn</div>
+      <div className="btn primary" onClick={openDialog.bind(this)}>Rapporter funn</div>
       <Dialog
         onClose={handleDialogClose}
         aria-labelledby="dialog-title"

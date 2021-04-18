@@ -40,7 +40,7 @@ function ExtendedResult({ result, croppedImages, preventClick }) {
           href={result.taxon.infoUrl}
           target={"_blank"}
           rel="noopener noreferrer"
-          className="btn"
+          className="btn primary"
         >
           Om arten
         </a>

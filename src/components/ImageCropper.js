@@ -139,7 +139,7 @@ export default class ImageCropper extends Component {
 
     // set the height of the cropper to the visible height, minus the heights of the header and the (actions) footer
     return (
-      <div className="cropContainer">
+      <div className={"cropContainer " + (this.props.darkMode ? "darkmode" : "lightmode")}>
         <div className="cropper">
           <Cropper
             style={{
@@ -198,7 +198,7 @@ export default class ImageCropper extends Component {
         <div className="hint">Zoom og flytt til motivet fyller firkanten</div>
 
         <div className="buttons">
-          <div onClick={this.cancel} className="btn-delete">
+          <div onClick={this.cancel} className="btn danger">
             <svg viewBox="0 0 24 24">
               <path
                 fill="currentColor"
@@ -206,7 +206,7 @@ export default class ImageCropper extends Component {
               />
             </svg>
           </div>{" "}
-          <div onClick={this.cropImage}  className="btn-accept">
+          <div onClick={this.cropImage} className="btn primary">
             <DoneIcon />
           </div>
         </div>

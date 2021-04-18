@@ -8,25 +8,17 @@ import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import ReplayIcon from "@material-ui/icons/Replay";
 
-function Menu({resetImages}) {
-
-  const reset = () => {
-    resetImages();
-  }
-
+function Menu({ resetImages, toggleDarkMode, darkMode }) {
 
   return (
     <div className="content">
       <CloseIcon />
-      <div className="menuItem">
-        <div>Slå på nattmodus</div>
+      <div className="menuItem" onClick={toggleDarkMode}>
+        <div>Slå {darkMode ? "av": "på"} nattmodus</div>
         <Brightness4Icon />
       </div>
 
-      <div
-        className="menuItem"
-        onClick={reset} 
-      >
+      <div className="menuItem" onClick={resetImages}>
         <div>Restart appen</div>
         <ReplayIcon />
       </div>

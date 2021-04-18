@@ -52,6 +52,7 @@ function App() {
   const [inputStage, setInputStage] = useState(true);
   const [resultStage, setResultStage] = useState(false);
   const [chosenPrediction, setChosenPrediction] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   const [menuVisible, setMenuVisible] = useState(false);
 
@@ -106,6 +107,10 @@ function App() {
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
   };
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  }
 
   const closeModal = () => {
     setChosenPrediction(false);
@@ -214,10 +219,11 @@ function App() {
             key={index}
             imageCropped={imageCropped}
             imgSize={500}
+            darkMode= {darkMode}
           />
         ))}
 
-      <div className={"App" + (!!window.cordova ? " fullscreen" : "")}>
+      <div className={"App" + (!!window.cordova ? " fullscreen" : "") + (darkMode ? " darkmode" : " lightmode")}>
         <div
           id="resultModal"
           className={"modal " + (!!chosenPrediction ? "visible" : "invisible")}
@@ -241,7 +247,7 @@ function App() {
           className={"modal " + (menuVisible ? "visible" : "invisible")}
           onClick={toggleMenu}
         >
-          <Menu resetImages={resetImages} />
+          <Menu resetImages={resetImages} toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
         </div>
         <div className="image-section">
           <MenuIcon
@@ -283,7 +289,7 @@ function App() {
         >
           {!!inputStage && !!croppedImages.length && (
             <div className="top-btn" onClick={getId} tabIndex="0">
-              <div className="btn id">Identifiser</div>
+              <div className="btn id primary">Identifiser</div>
             </div>
           )}
 
@@ -298,7 +304,7 @@ function App() {
           <div className=" bottomButtons">
             {window.cordova && (
               <div
-                className=" bottomButton galleryButton clickable"
+                className="bottomButton galleryButton clickable primary"
                 onClick={openGallery}
                 tabIndex="0"
               >
@@ -306,7 +312,7 @@ function App() {
               </div>
             )}
 
-            <div className=" bottomButton NewImage clickable" tabIndex="0">
+            <div className="bottomButton NewImage primary clickable" tabIndex="0">
               <AddAPhotoIcon style={{ fontSize: ".8em" }} />
               <input
                 className="clickable"
@@ -325,7 +331,7 @@ function App() {
         >
           {resultStage && (
             <div className="top-btn" onClick={resetImages} tabIndex="0">
-              <div className="btn reset">
+              <div className="btn reset primary">
                 <ReplayIcon />
               </div>
             </div>
