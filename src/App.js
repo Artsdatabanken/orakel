@@ -110,7 +110,7 @@ function App() {
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
-  }
+  };
 
   const closeModal = () => {
     setChosenPrediction(false);
@@ -120,7 +120,7 @@ function App() {
     setResultStage(false);
     setPredictions([]);
     setInputStage(true);
-  }
+  };
 
   const uploadMore = (sender) => {
     addImage(document.getElementById(sender).files);
@@ -219,11 +219,17 @@ function App() {
             key={index}
             imageCropped={imageCropped}
             imgSize={500}
-            darkMode= {darkMode}
+            darkMode={darkMode}
           />
         ))}
 
-      <div className={"App" + (!!window.cordova ? " fullscreen" : "") + (darkMode ? " darkmode" : " lightmode")}>
+      <div
+        className={
+          "App" +
+          (!!window.cordova ? " fullscreen" : "") +
+          (darkMode ? " darkmode" : " lightmode")
+        }
+      >
         <div
           id="resultModal"
           className={"modal " + (!!chosenPrediction ? "visible" : "invisible")}
@@ -247,15 +253,24 @@ function App() {
           className={"modal " + (menuVisible ? "visible" : "invisible")}
           onClick={toggleMenu}
         >
-          <Menu resetImages={resetImages} toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
-        </div>
-        <div className="image-section">
-          <MenuIcon
-            className="menu-icon"
-            style={{ fontSize: "2.2em" }}
-            onClick={toggleMenu}
+          <Menu
+            resetImages={resetImages}
+            toggleDarkMode={toggleDarkMode}
+            darkMode={darkMode}
           />
-
+        </div>
+        <MenuIcon
+          className={
+            "menu-icon" + (!inputStage && !resultStage ? " hidden" : "")
+          }
+          style={{ fontSize: "2.2em" }}
+          onClick={toggleMenu}
+        />
+        <div
+          className={
+            "image-section" + (!inputStage && !resultStage ? " expanded" : "")
+          }
+        >
           {!croppedImages.length && (
             <div className="placeholder-container">
               <h1 className="placeholder-title">Ta eller velg et bilde</h1>
@@ -271,7 +286,9 @@ function App() {
               <UploadedImage img={img} key={index} delImage={delImage} />
             ))}
 
-            {resultStage && <div className="goToInput" onClick={goToInput}></div>}
+            {resultStage && (
+              <div className="goToInput" onClick={goToInput}></div>
+            )}
           </div>
 
           <input
@@ -284,51 +301,16 @@ function App() {
 
         <div
           className={
-            "bottom-section scrollbarless " + (inputStage ? "" : "hidden")
+            "bottom-section scrollbarless " +
+            (inputStage || resultStage ? "" : "hidden")
           }
         >
-          {!!inputStage && !!croppedImages.length && (
+          {inputStage && !!croppedImages.length && (
             <div className="top-btn" onClick={getId} tabIndex="0">
               <div className="btn id primary">Identifiser</div>
             </div>
           )}
 
-          <UserFeedback
-            predictions={predictions}
-            croppedImages={croppedImages}
-            uncroppedImages={uncroppedImages}
-            gotError={gotError}
-            loading={loading}
-          />
-
-          <div className=" bottomButtons">
-            {window.cordova && (
-              <div
-                className="bottomButton galleryButton clickable primary"
-                onClick={openGallery}
-                tabIndex="0"
-              >
-                <PhotoLibraryIcon style={{ fontSize: ".8em" }} />
-              </div>
-            )}
-
-            <div className="bottomButton NewImage primary clickable" tabIndex="0">
-              <AddAPhotoIcon style={{ fontSize: ".8em" }} />
-              <input
-                className="clickable"
-                type="file"
-                id="uploaderImages"
-                onClick={openCamera}
-                onChange={uploadMore.bind(this, "uploaderImages")}
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          className={
-            "bottom-section scrollbarless " + (resultStage ? "" : "hidden")
-          }
-        >
           {resultStage && (
             <div className="top-btn" onClick={resetImages} tabIndex="0">
               <div className="btn reset primary">
@@ -337,7 +319,7 @@ function App() {
             </div>
           )}
 
-          {!!predictions.length && (
+          {resultStage && !!predictions.length && (
             <div>
               {predictions.map((prediction) => (
                 <IdResult
@@ -347,6 +329,44 @@ function App() {
                   openResult={setChosenPrediction}
                 />
               ))}
+            </div>
+          )}
+
+          {inputStage && (
+            <UserFeedback
+              predictions={predictions}
+              croppedImages={croppedImages}
+              uncroppedImages={uncroppedImages}
+              gotError={gotError}
+              loading={loading}
+            />
+          )}
+
+          {inputStage && (
+            <div className=" bottomButtons">
+              {window.cordova && (
+                <div
+                  className="bottomButton galleryButton clickable primary"
+                  onClick={openGallery}
+                  tabIndex="0"
+                >
+                  <PhotoLibraryIcon style={{ fontSize: ".8em" }} />
+                </div>
+              )}
+
+              <div
+                className="bottomButton NewImage primary clickable"
+                tabIndex="0"
+              >
+                <AddAPhotoIcon style={{ fontSize: ".8em" }} />
+                <input
+                  className="clickable"
+                  type="file"
+                  id="uploaderImages"
+                  onClick={openCamera}
+                  onChange={uploadMore.bind(this, "uploaderImages")}
+                />
+              </div>
             </div>
           )}
         </div>

@@ -1,6 +1,12 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 @media only screen and (min-width: 700px) {
   html {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 }
 
@@ -32,6 +38,7 @@ body {
   display: flex;
   margin-left: auto;
   margin-right: auto;
+  overflow: hidden;
 }
 
 .lightmode  {
@@ -61,12 +68,17 @@ body {
 }
 
 .image-section {
-  height: 25%;
-  flex-grow: 1;
+  height: 12rem;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 300ms ease-in-out 3ms;
+  will-change: transform;
+}
+
+.image-section.expanded {
+  transform: translateY(40vh);
 }
 
 .lightmode .image-section {
@@ -114,16 +126,16 @@ body {
 }
 
 .bottom-section {
-  height: 75%;
   border-radius: 1.8rem 1.8rem 0 0;
   box-shadow: 0 0.15rem 0.15rem rgba(0, 0, 0, 0.12);
   padding: 1.5em;
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   justify-content: space-between;
   overflow-x: hidden;
   overflow-y: scroll;
-  transition: height 300ms ease-in-out 3ms;
+  transition: transform 300ms ease-in-out 3ms;
 }
 
 .lightmode .bottom-section {
@@ -135,8 +147,8 @@ body {
 }
 
 .bottom-section.hidden {
-  height: 0;
-  padding: 0;
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
 }
 
 .manual {
@@ -181,23 +193,22 @@ body {
   width: 100%;
   justify-content: center;
   align-items: center;
-
 }
 
 .NewImage {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4rem;
+  font-size: 3.5rem;
   width: 1.5em;
   height: 1.5em;
   border-radius: 50%;
   position: relative;
-  box-shadow: 0 15rem 15rem rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.25);
 }
 
 .hidden .bottomButtons {
-  z-index: -2;
+  display: none;
 }
 
 .lightmode .primary {
@@ -275,13 +286,16 @@ body {
 
 .top-btn {
   position: absolute;
-  margin-top: -3em;
+  transform: translateY(-3em);
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   left: 0;
+  z-index: 2;
 }
+
+
 
 .btn {
   border: 0.15em solid;
@@ -289,13 +303,13 @@ body {
   border-radius: 1em;
   height: 2em;
   font-size: 1.3rem;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   text-decoration: none;
-  margin: .2em;
+  margin: 0.2em;
 }
 
 .id.btn {
@@ -361,23 +375,26 @@ body {
 .modal.invisible {
   z-index: -2;
   opacity: 0;
-  transition: opacity 100ms linear 200ms, z-index 0ms linear 300ms;
+  transition: opacity 100ms linear 203ms, z-index 0ms linear 303ms;
+  will-change: opacity, z-index;
 }
 
 .modal.visible {
   opacity: 1;
   z-index: 3;
   transition: opacity 100ms linear 3ms;
+  will-change: opacity;
 }
 
 .modal .content {
   width: 100%;
   z-index: 300;
-  transition: all 300ms ease-in-out 3ms;
   padding: 4rem 2rem 2rem 2rem;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transition: transform 300ms ease-in-out 3ms;
+  will-change: transform;
 }
 
 .lightmode .modal .content {
@@ -395,27 +412,14 @@ body {
   border-radius: 2rem;
 }
 
-#resultModal.visible .content {
-  margin-left: 0;
-}
-
 #resultModal.invisible .content {
-  margin-left: 100vw;
-  width: 0;
-  padding: 0;
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
 }
 
 #menu .content {
   top: 0;
   border-radius: 0 0 1.7rem 1.7rem;
-}
-
-#menu.visible .content {
-  height: 27em;
-}
-
-#menu.invisible .content {
-  height: 0vh;
 }
 
 .modal .content > svg {
@@ -435,6 +439,7 @@ body {
   font-weight: 300;
   cursor: pointer;
   transition: transform 350ms ease-in-out 3ms;
+  will-change: transform;
 }
 
 #menu.invisible .menuItem {
@@ -447,6 +452,11 @@ body {
 
 .menu-icon {
   cursor: pointer;
+  color: #fff;
+}
+
+.menu-icon.hidden {
+  display: none;
 }
 
 #menu a {
@@ -536,7 +546,7 @@ body {
 }
 
 #resultModal .btn {
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 .italics {

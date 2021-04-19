@@ -7,7 +7,7 @@ function UserFeedback({ predictions, gotError }) {
       {!predictions.length && (
         <div className="manual">
           <div className="manual-item">
-            <div className="manual-item-number">1.</div>
+            <div className="manual-item-number">1</div>
             <div className="manual-item-text">
               Ta eller velg et bilde av en art i norsk natur
             </div>
@@ -20,7 +20,7 @@ function UserFeedback({ predictions, gotError }) {
           </div>
 
           <div className="manual-item">
-            <div className="manual-item-number">2.</div>
+            <div className="manual-item-number">2</div>
             <div className="manual-item-text">Zoom inn til motivet </div>
             <svg viewBox="0 0 24 24">
               <path
@@ -31,7 +31,7 @@ function UserFeedback({ predictions, gotError }) {
           </div>
 
           <div className="manual-item">
-            <div className="manual-item-number">3.</div>
+            <div className="manual-item-number">3</div>
             <div className="manual-item-text">
               Gjenta for sikrere identifisering
             </div>
@@ -44,7 +44,7 @@ function UserFeedback({ predictions, gotError }) {
           </div>
 
           <div className="manual-item">
-            <div className="manual-item-number">4.</div>
+            <div className="manual-item-number">4</div>
             <div className="manual-item-text">
               Trykk “identifiser” for å se hva det kan være!
             </div>
