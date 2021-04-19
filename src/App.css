@@ -420,7 +420,14 @@ body {
 #menu .content {
   top: 0;
   border-radius: 0 0 1.7rem 1.7rem;
+  transition: transform 300ms ease-in-out 3ms;
+  will-change: transform;
 }
+
+#menu.invisible .content {
+  transform: translateY(-100%);
+}
+
 
 .modal .content > svg {
   position: absolute;
@@ -438,13 +445,8 @@ body {
   font-size: 1.2rem;
   font-weight: 300;
   cursor: pointer;
-  transition: transform 350ms ease-in-out 3ms;
-  will-change: transform;
 }
 
-#menu.invisible .menuItem {
-  transform: translateY(-15vh);
-}
 
 .menuItem:active {
   background-color: hsla(105, 45%, 68%, 0.25);
