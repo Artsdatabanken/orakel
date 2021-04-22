@@ -349,6 +349,15 @@ body {
   padding: 0 1rem;
 }
 
+.editing .MuiSlider-root {
+  color: white;
+}
+
+.cropContainer > .editing svg {
+  width: 3.5rem;
+  height: 2.5rem;
+}
+
 .cropContainer > .buttons {
   display: flex;
 }

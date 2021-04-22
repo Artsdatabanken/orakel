@@ -61,19 +61,18 @@ function App() {
   const [menuVisible, setMenuVisible] = useState(false);
   const [gotError, setError] = useState(false);
 
-  const addImage = (img) => {
+  const addImage = (images) => {
     setError(false);
-    for (let i of img) {
-      const reader = new FileReader();
 
-      reader.addEventListener(
-        "load",
-        function () {
-          setUncroppedImages([...uncroppedImages, reader.result]);
-        },
-        false
-      );
-      reader.readAsDataURL(i);
+    for (let i of images) {
+      setUncroppedImages([...uncroppedImages, i]);
+
+      // const reader = new FileReader();
+
+      // reader.addEventListener("load", () => {
+      //   setUncroppedImages([...uncroppedImages, reader.result]);}
+      // );
+      // reader.readAsDataURL(i);
     }
   };
 
@@ -82,7 +81,7 @@ function App() {
       img.lastModifiedDate = new Date();
       img.name = new Date() + ".png";
       setCroppedImages([...croppedImages, img]);
-      setFullImages([...fullImages, ...uncroppedImages])
+      setFullImages([...fullImages, ...uncroppedImages]);
       setPredictions([]);
     }
     setUncroppedImages([]);
@@ -90,11 +89,15 @@ function App() {
 
   const editImage = (index) => {
     setUncroppedImages([fullImages[index]]);
-    setFullImages(fullImages.slice(0, index).concat(fullImages.slice(index+1)));
-    setCroppedImages(croppedImages.slice(0, index).concat(croppedImages.slice(index+1)));
+    setFullImages(
+      fullImages.slice(0, index).concat(fullImages.slice(index + 1))
+    );
+    setCroppedImages(
+      croppedImages.slice(0, index).concat(croppedImages.slice(index + 1))
+    );
     setInputStage(true);
     setResultStage(false);
-  }
+  };
 
   const resetImages = () => {
     setMenuVisible(false);
@@ -261,9 +264,7 @@ function App() {
 
             {aboutVisible && <About />}
 
-            {extendedManualVisible && (
-              <ExtendedManual />
-            )}
+            {extendedManualVisible && <ExtendedManual />}
           </div>
         </div>
 
@@ -304,15 +305,18 @@ function App() {
 
           <div className={"images scrollbarless" + (loading ? " loading" : "")}>
             {croppedImages.map((img, index) => (
-              <UploadedImage img={img} key={index} imgIndex={index} editImage={editImage} />
+              <UploadedImage
+                img={img}
+                key={index}
+                imgIndex={index}
+                editImage={editImage}
+              />
             ))}
 
             {resultStage && (
               <div className="goToInput" onClick={goToInput}></div>
             )}
           </div>
-
-          
         </div>
 
         <div
