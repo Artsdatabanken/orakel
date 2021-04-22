@@ -66,13 +66,6 @@ function App() {
 
     for (let i of images) {
       setUncroppedImages([...uncroppedImages, i]);
-
-      // const reader = new FileReader();
-
-      // reader.addEventListener("load", () => {
-      //   setUncroppedImages([...uncroppedImages, reader.result]);}
-      // );
-      // reader.readAsDataURL(i);
     }
   };
 
@@ -233,7 +226,7 @@ function App() {
       <div
         className={
           "App" +
-          (!!window.cordova ? " fullscreen" : "") +
+          (window.cordova ? " fullscreen" : "") +
           (darkMode ? " darkmode" : " lightmode")
         }
       >
@@ -375,7 +368,7 @@ function App() {
               )}
 
               <div
-                className="bottomButton NewImage primary clickable"
+                className="bottomButton newImageButton primary clickable"
                 tabIndex="0"
               >
                 <AddAPhotoIcon style={{ fontSize: ".8em" }} />
