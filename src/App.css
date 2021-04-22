@@ -78,7 +78,7 @@ body {
 }
 
 .image-section.expanded {
-  transform: translateY(40vh);
+  transform: translateY(33vh);
 }
 
 .lightmode .image-section {
@@ -154,13 +154,13 @@ body {
 .manual {
   display: flex;
   flex-direction: column;
-  padding-bottom: 8rem;
+  padding-bottom: 6rem;
 }
 
 .manual-item {
   display: flex;
   flex-direction: row;
-  padding: 0.7rem 2rem;
+  padding: 0.7rem 1rem;
   align-items: center;
   overflow: hidden;
 }
@@ -295,8 +295,6 @@ body {
   z-index: 2;
 }
 
-
-
 .btn {
   border: 0.15em solid;
   box-shadow: 0 0.15rem 0.15rem rgba(0, 0, 0, 0.25);
@@ -392,9 +390,13 @@ body {
   padding: 4rem 2rem 2rem 2rem;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   transition: transform 300ms ease-in-out 3ms;
   will-change: transform;
+}
+
+.modal .content .scrollable {
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .lightmode .modal .content {
@@ -405,14 +407,20 @@ body {
   background-color: #20241b;
 }
 
-#resultModal .content {
+#modal .content {
   position: relative;
   margin-top: 10vh;
   height: 80vh;
   border-radius: 2rem;
+  font-size: 1.2rem;
+  font-weight: 300;
 }
 
-#resultModal.invisible .content {
+#modal p {
+  margin-bottom: 1.2em;
+}
+
+#modal.invisible .content {
   -webkit-transform: translateX(100%);
   transform: translateX(100%);
 }
@@ -428,12 +436,17 @@ body {
   transform: translateY(-100%);
 }
 
-
 .modal .content > svg {
   position: absolute;
   right: 1rem;
   top: 1rem;
   cursor: pointer;
+}
+
+.aboutLogo {
+  height: 5rem;
+  padding: 0.5em;
+  background-color: #fff;
 }
 
 .menuItem {
@@ -447,8 +460,7 @@ body {
   cursor: pointer;
 }
 
-
-.menuItem:active {
+.menuItem::active {
   background-color: hsla(105, 45%, 68%, 0.25);
 }
 
@@ -500,7 +512,7 @@ body {
 }
 
 .resultRow .vernacular {
-  font-size: 1.8em;
+  font-size: 1.6em;
 }
 
 .lightmode .danger {
@@ -519,11 +531,11 @@ body {
   margin-right: 0.3em;
 }
 
-#resultModal .vernacular {
-  font-size: 2.5em;
+#modal .vernacular {
+  font-size: 2em;
 }
 
-#resultModal .resultLabels {
+#modal .resultLabels {
   border-top: 1px solid hsla(0, 0%, 50%, 50%);
   border-bottom: 1px solid hsla(0, 0%, 50%, 50%);
   padding: 1em 0;
@@ -531,23 +543,23 @@ body {
   margin-bottom: 2em;
 }
 
-#resultModal .resultDescription {
-  font-size: 1.3em;
+#modal .resultDescription {
+  font-size: 1em;
   flex-grow: 1;
 }
 
-#resultModal .resultDescription > * {
+#modal .resultDescription > * {
   margin-top: 1em;
 }
 
-#resultModal .resultActions {
+#modal .resultActions {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-#resultModal .btn {
+#modal .btn {
   font-size: 0.9rem;
 }
 
@@ -556,11 +568,21 @@ body {
 }
 
 .resultRow .scientific {
+  font-size: 1.2em;
+}
+
+#modal .scientific {
   font-size: 1.4em;
 }
 
-#resultModal .scientific {
-  font-size: 1.6em;
+a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+a.btn {
+  text-decoration: none;
+  color: inherit;
 }
 
 .scientific {

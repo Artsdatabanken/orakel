@@ -9,7 +9,12 @@ function ExtendedResult({ result, croppedImages, preventClick }) {
 
   return (
     <React.Fragment>
-      <div className="resultLabels" onClick={preventClick}>
+      <div
+        className="resultLabels"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
         <div
           className={
             result.taxon.vernacularName.toLowerCase() ===
@@ -24,13 +29,13 @@ function ExtendedResult({ result, croppedImages, preventClick }) {
         <div className="scientific">{result.taxon.name}</div>
       </div>
 
-      <div className="resultDescription" onClick={preventClick}>
+      <div className="resultDescription">
         Artsorakelet gir {percentage} % treff for {result.taxon.vernacularName}{" "}
         basert på {n_pics === 1 ? "bildet ditt" : "dine " + n_pics + " bilder"}.
         Det er ikke sagt at det stemmer, du må selv kontrollere at det er
         riktig, særlig hvis du skal rapportere funnet.
         {result.taxon.groupName === "Sopper" && (
-          <div className="danger" onClick={preventClick}>
+          <div className="danger">
             <WarningIcon /> ALDRI SPIS NOE BASERT PÅ ARTSORAKELETS SVAR
           </div>
         )}

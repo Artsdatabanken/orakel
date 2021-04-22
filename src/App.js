@@ -15,6 +15,8 @@ import ExtendedResult from "./components/ExtendedResult";
 import UserFeedback from "./components/UserFeedback";
 import ImageCropper from "./components/ImageCropper";
 import Menu from "./components/Menu";
+import About from "./components/About";
+import ExtendedManual from "./components/ExtendedManual";
 
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
 import {
@@ -47,15 +49,16 @@ if (
 function App() {
   const [croppedImages, setCroppedImages] = useState([]);
   const [uncroppedImages, setUncroppedImages] = useState([]);
+  const [fullImages, setFullImages] = useState([]);
   const [predictions, setPredictions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [inputStage, setInputStage] = useState(true);
   const [resultStage, setResultStage] = useState(false);
   const [chosenPrediction, setChosenPrediction] = useState(false);
+  const [aboutVisible, setAboutVisible] = useState(false);
+  const [extendedManualVisible, setExtendedManualVisible] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
-
   const [menuVisible, setMenuVisible] = useState(false);
-
   const [gotError, setError] = useState(false);
 
   const addImage = (img) => {
@@ -79,27 +82,26 @@ function App() {
       img.lastModifiedDate = new Date();
       img.name = new Date() + ".png";
       setCroppedImages([...croppedImages, img]);
+      setFullImages([...fullImages, ...uncroppedImages])
       setPredictions([]);
     }
     setUncroppedImages([]);
   };
 
-  const delImage = (name) => {
-    setCroppedImages(croppedImages.filter((i) => i.name !== name));
-    setPredictions([]);
-    setError(false);
-  };
-
-  const preventClick = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-  };
+  const editImage = (index) => {
+    setUncroppedImages([fullImages[index]]);
+    setFullImages(fullImages.slice(0, index).concat(fullImages.slice(index+1)));
+    setCroppedImages(croppedImages.slice(0, index).concat(croppedImages.slice(index+1)));
+    setInputStage(true);
+    setResultStage(false);
+  }
 
   const resetImages = () => {
     setMenuVisible(false);
     setError(false);
     setCroppedImages([]);
     setPredictions([]);
+    setFullImages([]);
     setInputStage(true);
     setResultStage(false);
   };
@@ -114,6 +116,8 @@ function App() {
 
   const closeModal = () => {
     setChosenPrediction(false);
+    setAboutVisible(false);
+    setExtendedManualVisible(false);
   };
 
   const goToInput = () => {
@@ -231,19 +235,34 @@ function App() {
         }
       >
         <div
-          id="resultModal"
-          className={"modal " + (!!chosenPrediction ? "visible" : "invisible")}
+          id="modal"
+          className={
+            "modal " +
+            (!!chosenPrediction | aboutVisible | extendedManualVisible
+              ? "visible"
+              : "invisible")
+          }
           onClick={closeModal}
         >
-          <div className="content">
-            <CloseIcon />
+          <div
+            className="content"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            <CloseIcon onClick={closeModal} />
 
             {!!chosenPrediction && (
               <ExtendedResult
                 result={chosenPrediction}
                 croppedImages={croppedImages}
-                preventClick={preventClick}
               />
+            )}
+
+            {aboutVisible && <About />}
+
+            {extendedManualVisible && (
+              <ExtendedManual />
             )}
           </div>
         </div>
@@ -256,6 +275,8 @@ function App() {
           <Menu
             resetImages={resetImages}
             toggleDarkMode={toggleDarkMode}
+            toggleAbout={setAboutVisible}
+            toggleManual={setExtendedManualVisible}
             darkMode={darkMode}
           />
         </div>
@@ -283,7 +304,7 @@ function App() {
 
           <div className={"images scrollbarless" + (loading ? " loading" : "")}>
             {croppedImages.map((img, index) => (
-              <UploadedImage img={img} key={index} delImage={delImage} />
+              <UploadedImage img={img} key={index} imgIndex={index} editImage={editImage} />
             ))}
 
             {resultStage && (
@@ -291,12 +312,7 @@ function App() {
             )}
           </div>
 
-          <input
-            type="file"
-            id="bigDropzone"
-            onClick={preventClick}
-            onChange={uploadMore.bind(this, "bigDropzone")}
-          />
+          
         </div>
 
         <div

@@ -8,7 +8,15 @@ import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import ReplayIcon from "@material-ui/icons/Replay";
 
-function Menu({ resetImages, toggleDarkMode, darkMode }) {
+function Menu({ resetImages, toggleDarkMode, darkMode, toggleAbout, toggleManual}) {
+
+  const openAbout = () => {
+    toggleAbout(true);
+  };
+
+  const openManual = () => {
+    toggleManual(true);
+  };
 
   return (
     <div className="content">
@@ -46,12 +54,12 @@ function Menu({ resetImages, toggleDarkMode, darkMode }) {
         </a>
       )}
 
-      <div className="menuItem">
+      <div className="menuItem" onClick={openManual}>
         <div>Bruksanvisning</div>
         <MenuBookIcon />
       </div>
 
-      <div className="menuItem">
+      <div className="menuItem" onClick={openAbout}>
         <div>Om Artsorakelet</div>
         <InfoOutlinedIcon />
       </div>
