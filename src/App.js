@@ -107,6 +107,7 @@ function App() {
   };
 
   const toggleDarkMode = () => {
+    StatusBar.backgroundColorByHexString(darkMode ? "#5fb342" : "#121212")
     setDarkMode(!darkMode);
   };
 
@@ -132,7 +133,8 @@ function App() {
       e.preventDefault();
 
       navigator.camera.getPicture(onSuccess, onFail, {
-        destinationType: window.Camera.DestinationType.FILE_URI,
+        // destinationType: window.Camera.DestinationType.FILE_URI,
+        destinationType: window.Camera.DestinationType.DATA_URL,
         sourceType: window.Camera.PictureSourceType.PHOTOLIBRARY,
         encodingType: window.Camera.EncodingType.JPEG,
         mediaType: window.Camera.MediaType.PICTURE,
@@ -155,7 +157,8 @@ function App() {
       e.preventDefault();
 
       navigator.camera.getPicture(onSuccess, onFail, {
-        destinationType: window.Camera.DestinationType.FILE_URI,
+        // destinationType: window.Camera.DestinationType.FILE_URI,
+        destinationType: window.Camera.DestinationType.DATA_URL,
         sourceType: window.Camera.PictureSourceType.CAMERA,
         encodingType: window.Camera.EncodingType.JPEG,
         mediaType: window.Camera.MediaType.PICTURE,

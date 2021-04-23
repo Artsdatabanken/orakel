@@ -24,8 +24,6 @@ if (!HTMLCanvasElement.prototype.toBlob) {
           arr[i] = binStr.charCodeAt(i);
         }
 
-        console.log("Using own toBlob");
-
         callback(new Blob([arr], { type: type || "image/png" }));
       });
     },
@@ -37,13 +35,6 @@ export const ImageCropper = ({ imgFile, darkMode, imageCropped, imgSize }) => {
   const [cropper, setCropper] = useState();
   const [zoom, setZoom] = useState(1);
   const [initialized, setInitialized] = useState(false);
-
-  const reader = new FileReader();
-  reader.onload = () => {
-    setImage(reader.result);
-    initCropper();
-  };
-  reader.readAsDataURL(imgFile);
 
   const initCropper = () => {
     if (!initialized && cropper && cropper.containerData) {
@@ -150,8 +141,20 @@ export const ImageCropper = ({ imgFile, darkMode, imageCropped, imgSize }) => {
           guides={false}
           onInitialized={(instance) => {
             setCropper(instance);
+
+            if (typeof imgFile === "object") {
+              const reader = new FileReader();
+              reader.onloadend = () => {
+                setImage(reader.result);
+                initCropper();
+              };
+              reader.readAsDataURL(imgFile);
+            } else {
+              setImage("data:image/jpeg;base64," + imgFile);
+              initCropper();
+            }
           }}
-          ready={initCropper}
+          // ready={initCropper}
           src={image}
         />
       </div>
