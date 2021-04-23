@@ -1,10 +1,10 @@
 import React from "react";
 import "../App.css";
 
-function UserFeedback({ predictions, gotError }) {
+function UserFeedback({ inputStage, gotError }) {
   return (
     <React.Fragment>
-      {!predictions.length && (
+      {inputStage && !gotError && (
         <div className="manual">
           <div className="manual-item">
             <div className="manual-item-number">1</div>

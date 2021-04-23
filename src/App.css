@@ -280,7 +280,7 @@ body {
   margin-bottom: -2rem;
 }
 
-.hidden .bottomButtons {
+.hidden.bottomButtons {
   display: none;
 }
 
@@ -296,7 +296,7 @@ body {
   color: #121212;
 }
 
-.newImageButton input {
+input {
   opacity: 0;
   position: absolute;
   top: 0;
@@ -347,6 +347,7 @@ body {
   cursor: pointer;
   z-index: 2;
   margin: 0 0.5rem;
+  position: relative;
 }
 
 .goToInput::after {

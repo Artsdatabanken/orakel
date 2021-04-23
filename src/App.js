@@ -60,6 +60,7 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const [gotError, setError] = useState(false);
+  const [usedGallery, setUsedGallery] = useState(false);
 
   const addImage = (images) => {
     setError(false);
@@ -107,7 +108,9 @@ function App() {
   };
 
   const toggleDarkMode = () => {
-    StatusBar.backgroundColorByHexString(darkMode ? "#5fb342" : "#121212")
+    if (window.cordova) {
+      StatusBar.backgroundColorByHexString(darkMode ? "#5fb342" : "#121212");
+    }
     setDarkMode(!darkMode);
   };
 
@@ -121,6 +124,11 @@ function App() {
     setResultStage(false);
     setPredictions([]);
     setInputStage(true);
+    if (usedGallery) {
+      openGallery();
+    } else {
+      document.getElementById("uploaderImages").click();
+    }
   };
 
   const uploadMore = (sender) => {
@@ -131,6 +139,7 @@ function App() {
   const openGallery = (e) => {
     if (window.cordova) {
       e.preventDefault();
+      setUsedGallery(true);
 
       navigator.camera.getPicture(onSuccess, onFail, {
         // destinationType: window.Camera.DestinationType.FILE_URI,
@@ -155,6 +164,7 @@ function App() {
   const openCamera = (e) => {
     if (window.cordova) {
       e.preventDefault();
+      setUsedGallery(false);
 
       navigator.camera.getPicture(onSuccess, onFail, {
         // destinationType: window.Camera.DestinationType.FILE_URI,
@@ -208,7 +218,8 @@ function App() {
         } else {
           setError(1);
         }
-
+        setResultStage(false);
+        setInputStage(true);
         setLoading(false);
       });
   };
@@ -350,41 +361,37 @@ function App() {
 
           {inputStage && (
             <UserFeedback
-              predictions={predictions}
-              croppedImages={croppedImages}
-              uncroppedImages={uncroppedImages}
+              inputStage={inputStage}
               gotError={gotError}
               loading={loading}
             />
           )}
 
-          {inputStage && (
-            <div className=" bottomButtons">
-              {window.cordova && (
-                <div
-                  className="bottomButton galleryButton clickable primary"
-                  onClick={openGallery}
-                  tabIndex="0"
-                >
-                  <PhotoLibraryIcon style={{ fontSize: ".8em" }} />
-                </div>
-              )}
-
+          <div className={"bottomButtons " + (inputStage ? "" : "hidden")}>
+            {window.cordova && (
               <div
-                className="bottomButton newImageButton primary clickable"
+                className="bottomButton galleryButton clickable primary"
+                onClick={openGallery}
                 tabIndex="0"
               >
-                <AddAPhotoIcon style={{ fontSize: ".8em" }} />
-                <input
-                  className="clickable"
-                  type="file"
-                  id="uploaderImages"
-                  onClick={openCamera}
-                  onChange={uploadMore.bind(this, "uploaderImages")}
-                />
+                <PhotoLibraryIcon style={{ fontSize: ".8em" }} />
               </div>
+            )}
+
+            <div
+              className="bottomButton newImageButton primary clickable"
+              tabIndex="0"
+            >
+              <AddAPhotoIcon style={{ fontSize: ".8em" }} />
+              <input
+                className="clickable"
+                type="file"
+                id="uploaderImages"
+                onClick={openCamera}
+                onChange={uploadMore.bind(this, "uploaderImages")}
+              />
             </div>
-          )}
+          </div>
         </div>
       </div>
     </React.Fragment>
