@@ -104,6 +104,7 @@ body {
   justify-content: center;
   background-color: hsl(0, 0%, 90%);
   font-family: "Roboto Condensed";
+  overflow: hidden;
 }
 
 #root {
