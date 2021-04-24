@@ -125,7 +125,7 @@ function App() {
     setPredictions([]);
     setInputStage(true);
     if (usedGallery) {
-      openGallery();
+      document.getElementById("galleryOpener").click();
     } else {
       document.getElementById("uploaderImages").click();
     }
@@ -302,7 +302,9 @@ function App() {
         >
           {!croppedImages.length && (
             <div className="placeholder-container">
-              <h1 className="placeholder-title">Ta eller velg et bilde</h1>
+              <h1 className="placeholder-title">
+                Ta eller velg et bilde for å starte
+              </h1>
               <p className="placeholder-body">
                 Artsorakelet kjenner ikke igjen mennesker, husdyr, hageplanter,
                 osv.
@@ -320,7 +322,7 @@ function App() {
               />
             ))}
 
-            {resultStage && (
+            {!!croppedImages.length && (inputStage || resultStage) && (
               <div className="goToInput" onClick={goToInput}></div>
             )}
           </div>
@@ -377,6 +379,7 @@ function App() {
             {window.cordova && (
               <div
                 className="bottomButton galleryButton clickable primary"
+                id="galleryOpener"
                 onClick={openGallery}
                 tabIndex="0"
               >
