@@ -391,6 +391,10 @@ input {
   padding: 0 1em;
 }
 
+.btn svg {
+  height: 1.3em;
+}
+
 .btn > span {
   flex-grow: 1;
   padding: 1rem;
