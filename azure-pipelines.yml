@@ -16,6 +16,13 @@ variables:
   system.debug: true
 
 steps:
+- task: InstallAppleCertificate@2
+  inputs:
+    certSecureFile: 'appCertificate.p12'
+    certPwd: $(appCertificatePassword)
+    keychain: 'temp'
+    deleteCert: true
+    
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
