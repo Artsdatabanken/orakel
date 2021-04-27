@@ -17,6 +17,7 @@ steps:
 
 - script: |
     npm install
+    npm install -g cordova
     npm run build
     cp -R build/ www/
     cordova platform remove ios
