@@ -18,4 +18,9 @@ steps:
 - script: |
     npm install
     npm run build
-  displayName: 'npm install and build'
+    cp -R build/ www/
+    cordova platform remove ios
+    cordova platform add ios@6.1.0
+    cordova build ios --buildFlag="-UseModernBuildSystem=0" --codeSignIdentity="iPhone Developer" --developementTeam="Artsdatabanken" --packageType="app-store"
+
+  displayName: 'build Mac'
