@@ -197,7 +197,7 @@ export const ImageCropper = ({ imgFile, darkMode, imageCropped, imgSize }) => {
             />
           </svg>
         </div>{" "}
-        <div onClick={getCropData} className="btn primary">
+        <div onClick={getCropData} className="btn ok">
           <DoneIcon />
         </div>
       </div>

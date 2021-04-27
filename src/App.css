@@ -1,3 +1,29 @@
+:root {
+  --overlay-color: hsla(34, 45%, 68%, 0.25);
+}
+
+.lightmode {
+  --primary-clr: hsl(35, 93%, 45%);
+  --bg-clr: hsl(35, 93%, 45%);
+  --box-clr: #eeeeee;
+  --text-clr: hsl(30, 3%, 29%);
+  --text-clr-on-primary: #eeeeee;
+  --danger: hsl(14, 46%, 48%);
+  --ok: hsl(105, 46%, 48%);
+  color: var(--text-clr);
+}
+
+.darkmode {
+  --primary-clr: hsl(35, 93%, 68%);
+  --bg-clr: #121212;
+  --box-clr: hsl(33, 14%, 15%);
+  --text-clr: #eeeeee;
+  --text-clr-on-primary: #121212;
+  --danger: hsl(14, 46%, 68%);
+  --ok: hsl(105, 46%, 68%);
+  color: var(--text-clr);
+}
+
 /* roboto-condensed-300 - latin-ext_latin */
 @font-face {
   font-family: "Roboto Condensed";
@@ -119,7 +145,7 @@ body {
 }
 
 ul {
-  list-style-type: circle;
+  list-style-type: square;
 }
 
 .App {
@@ -135,25 +161,17 @@ ul {
   overflow: hidden;
 }
 
-.lightmode  {
-  color: #121212;
-}
 
-.darkmode {
-  color: #eee;
+.App {
+  background-color: var(--bg-clr);
 }
 
 .App.lightmode {
-  background-color: #5fb342;
   background-image: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 245, 0, 0.33) 25%
+    hsla(0, 0%, 100%, 0) 0%,
+    hsla(50, 100%, 50%, 0.33) 25%
   );
-}
-
-.App.darkmode {
-  background-color: #121212;
 }
 
 .App.fullscreen {
@@ -162,6 +180,7 @@ ul {
 }
 
 .image-section {
+  padding-top: 1.1rem;
   height: 12rem;
   position: relative;
   display: flex;
@@ -171,15 +190,19 @@ ul {
   will-change: transform;
 }
 
+.logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 1.3rem 1rem;
+  width: 1.5em;
+}
+
 .image-section.expanded {
   transform: translateY(33vh);
 }
 
-.lightmode .image-section {
-  color: white;
-}
-
-.darkmode .image-section {
+.image-section {
   color: #eee;
 }
 
@@ -201,7 +224,7 @@ ul {
 }
 
 .image-section .placeholder-body {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 0.9rem;
   line-height: 1rem;
 }
@@ -232,12 +255,8 @@ ul {
   transition: transform 300ms ease-in-out 3ms;
 }
 
-.lightmode .bottom-section {
-  background-color: white;
-}
-
-.darkmode .bottom-section {
-  background-color: #20241b;
+.bottom-section {
+  background-color: var(--box-clr);
 }
 
 .bottom-section.hidden {
@@ -270,7 +289,7 @@ ul {
   flex-grow: 1;
   font-size: 1.2rem;
   font-weight: 300;
-  padding-right: 1em;
+  padding-left: 1.5em;
 }
 
 .manual-item svg {
@@ -282,7 +301,7 @@ ul {
   z-index: 2;
   display: flex;
   position: absolute;
-  bottom: 1rem;
+  bottom: 2.5rem;
   left: 0;
   width: 100%;
   justify-content: center;
@@ -320,17 +339,12 @@ ul {
   display: none;
 }
 
-.lightmode .primary {
-  background-color: hsl(105, 46%, 48%);
-  border-color: #fff;
-  color: #fff;
+.primary {
+  background-color: var(--primary-clr);
+  border-color: var(--text-clr-on-primary);
+  color: var(--text-clr-on-primary);
 }
 
-.darkmode .primary {
-  background-color: hsl(88, 50%, 68%);
-  border-color: #121212;
-  color: #121212;
-}
 
 input {
   opacity: 0;
@@ -473,6 +487,7 @@ input {
 
 .cropContainer > .buttons {
   display: flex;
+  padding-bottom: 2.5rem;
 }
 
 .cropContainer > .buttons > div {
@@ -511,6 +526,7 @@ input {
   z-index: 300;
   padding: 4rem 2rem 2rem 2rem;
   display: flex;
+  line-height: 1.4em;
   flex-direction: column;
   transition: transform 300ms ease-in-out 3ms;
   will-change: transform;
@@ -521,12 +537,8 @@ input {
   overflow-x: hidden;
 }
 
-.lightmode .modal .content {
-  background-color: white;
-}
-
-.darkmode .modal .content {
-  background-color: #20241b;
+.modal .content {
+  background-color: var(--box-clr);
 }
 
 #modal .content {
@@ -535,7 +547,7 @@ input {
   height: 80vh;
   border-radius: 2rem;
   font-size: 1.2rem;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 #modal p {
@@ -598,12 +610,12 @@ hr {
   border-top: 1px solid hsla(0, 0%, 50%, 0.5);
   padding: 1rem 0;
   font-size: 1.2rem;
-  font-weight: 300;
+  font-weight: 400;
   cursor: pointer;
 }
 
 .menuItem:active {
-  background-color: hsla(105, 45%, 68%, 0.25);
+  background-color: var(--overlay-color);
 }
 
 .menu-icon {
@@ -658,16 +670,16 @@ hr {
   font-size: 1.6em;
 }
 
-.lightmode .danger {
-  background-color: #b35d42;
-  border-color: #fff;
-  color: #fff;
+.danger {
+  background-color: var(--danger);
+  border-color: var(--text-clr-on-primary);
+  color: var(--text-clr-on-primary);
 }
 
-.darkmode .danger {
-  background-color: hsl(14, 46%, 68%);
-  border-color: #121212;
-  color: #121212;
+.ok {
+  background-color: var(--ok);
+  border-color: var(--text-clr-on-primary);
+  color: var(--text-clr-on-primary);
 }
 
 .danger svg {
@@ -711,11 +723,13 @@ hr {
 }
 
 .resultRow .scientific {
-  font-size: 1.2em;
+  font-size: 1em;
+  line-height: 1.5em;
 }
 
 #modal .scientific {
-  font-size: 1.4em;
+  font-size: 1.2em;
+  line-height: 2.2em;
 }
 
 a {
@@ -725,12 +739,12 @@ a {
 
 a.btn {
   text-decoration: none;
-  color: inherit;
+  color: var(--text-clr-on-primary);
 }
 
 .scientific {
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .group {

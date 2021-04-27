@@ -109,7 +109,7 @@ function App() {
 
   const toggleDarkMode = () => {
     if (window.cordova) {
-      StatusBar.backgroundColorByHexString(darkMode ? "#5fb342" : "#121212");
+      StatusBar.backgroundColorByHexString(darkMode ? "#dd8508" : "#121212");
     }
     setDarkMode(!darkMode);
   };
@@ -295,6 +295,13 @@ function App() {
           style={{ fontSize: "2.2em" }}
           onClick={toggleMenu}
         />
+
+        <img
+          src="Artsdatabanken_notext_mono_white.svg"
+          alt="Artsdatabanken"
+          className="logo"
+        />
+
         <div
           className={
             "image-section" + (!inputStage && !resultStage ? " expanded" : "")
