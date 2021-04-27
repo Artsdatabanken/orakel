@@ -301,7 +301,7 @@ ul {
   z-index: 2;
   display: flex;
   position: absolute;
-  bottom: 2.5rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
   left: 0;
   width: 100%;
   justify-content: center;
@@ -487,7 +487,7 @@ input {
 
 .cropContainer > .buttons {
   display: flex;
-  padding-bottom: 2.5rem;
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
 }
 
 .cropContainer > .buttons > div {
