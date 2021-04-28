@@ -3,7 +3,6 @@ import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
-import ReplayIcon from "@material-ui/icons/Replay";
 
 import axios from "axios";
 

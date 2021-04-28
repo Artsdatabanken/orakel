@@ -136,6 +136,7 @@ body {
 #root {
   width: 100vw;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   position: relative;
 }
 
@@ -454,6 +455,7 @@ input {
   position: absolute;
   width: 100%;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.85);
   display: flex;
@@ -505,6 +507,7 @@ input {
   background-color: rgba(0, 0, 0, 0.72);
   width: 100%;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 .modal.invisible {
@@ -545,6 +548,7 @@ input {
   position: relative;
   margin-top: 10vh;
   height: 80vh;
+  height: calc(var(--vh, 1vh) * 80);
   border-radius: 2rem;
   font-size: 1.2rem;
   font-weight: 400;
