@@ -162,7 +162,6 @@ ul {
   overflow: hidden;
 }
 
-
 .App {
   background-color: var(--bg-clr);
 }
@@ -346,7 +345,6 @@ ul {
   color: var(--text-clr-on-primary);
 }
 
-
 input {
   opacity: 0;
   position: absolute;
@@ -372,21 +370,24 @@ input {
   display: flex;
   flex-direction: row;
   overflow-x: auto;
+  max-height: 100%;
 }
 
 .imgContainer {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+  margin: 2rem 0rem;
 }
 
 .uploadedImage {
   border-radius: 1.5rem;
-  width: 6rem;
+  height: 6rem;
   max-height: 100%;
 }
 
 .goToInput {
   border-radius: 1.5rem;
+  height: 6rem;
   width: 6rem;
   min-width: 6rem;
   max-height: 100%;
@@ -397,7 +398,7 @@ input {
   align-items: center;
   cursor: pointer;
   z-index: 2;
-  margin: 0 0.5rem;
+  margin: 2rem 0.5rem;
   position: relative;
 }
 
