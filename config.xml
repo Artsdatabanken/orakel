@@ -8,8 +8,9 @@
         Artsdatabanken
     </author>
     <content src="index.html" />
-    <preference name="HeaderColor" value="#4c4a48" />
-    <preference name="StatusBarBackgroundColor" value="#4c4a48" />
+    <preference name="HeaderColor" value="#dd8508" />
+    <preference name="StatusBarBackgroundColor" value="#dd8508" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-plugin-camera" spec="^4.1.0" />
     <access origin="*" />

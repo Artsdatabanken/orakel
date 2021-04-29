@@ -1,19 +1,18 @@
 import React from "react";
 import "../App.css";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
-function UploadedImage({ img, delImage }) {
+function UploadedImage({ img, imgIndex, editImage }) {
+
+  const doEdit = () => {
+    editImage(imgIndex);
+  };
+
   return (
-    <div className="imgContainer">
+    <div className="imgContainer" onClick={doEdit}>
       <img
-        className="gridElement"
+        className="uploadedImage"
         src={URL.createObjectURL(img)}
         alt="Uploaded"
-      />
-
-      <DeleteForeverIcon
-        className="removeLink clickable"
-        onClick={delImage.bind(this, img.name)}
       />
     </div>
   );

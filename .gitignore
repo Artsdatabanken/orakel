@@ -108,3 +108,5 @@ $RECYCLE.BIN/
 build.json
 orakel_keystore.jks
 app.aab
+
+src/fonts

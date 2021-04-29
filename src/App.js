@@ -1,19 +1,21 @@
 import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
-import ImageSearchIcon from "@material-ui/icons/ImageSearch";
-import ReplayIcon from "@material-ui/icons/Replay";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
+import MenuIcon from "@material-ui/icons/Menu";
+import CloseIcon from "@material-ui/icons/Close";
+
 import axios from "axios";
 
-import AppBar from "@material-ui/core/AppBar";
 import "./App.css";
 
 import UploadedImage from "./components/Image";
 import IdResult from "./components/IdResult";
-import About from "./components/About";
+import ExtendedResult from "./components/ExtendedResult";
 import UserFeedback from "./components/UserFeedback";
 import ImageCropper from "./components/ImageCropper";
+import Menu from "./components/Menu";
+import About from "./components/About";
+import ExtendedManual from "./components/ExtendedManual";
 
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
 import {
@@ -46,25 +48,33 @@ if (
 function App() {
   const [croppedImages, setCroppedImages] = useState([]);
   const [uncroppedImages, setUncroppedImages] = useState([]);
+  const [fullImages, setFullImages] = useState([]);
   const [predictions, setPredictions] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const [inputStage, setInputStage] = useState(true);
+  const [resultStage, setResultStage] = useState(false);
+  const [chosenPrediction, setChosenPrediction] = useState(false);
+  const [aboutVisible, setAboutVisible] = useState(false);
+  const [extendedManualVisible, setExtendedManualVisible] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false);
   const [gotError, setError] = useState(false);
-  const [useCamera, setUseCamera] = useState(true);
+  const [usedGallery, setUsedGallery] = useState(false);
 
-  const addImage = (img) => {
+  document.addEventListener("backbutton", onBackKeyDown, false);
+  function onBackKeyDown() {
+    // Handle the back button
+    setMenuVisible(false);
+    setChosenPrediction(false);
+    setAboutVisible(false);
+    setExtendedManualVisible(false);
+  }
+
+  const addImage = (images) => {
     setError(false);
-    for (let i of img) {
-      const reader = new FileReader();
 
-      reader.addEventListener(
-        "load",
-        function () {
-          setUncroppedImages([...uncroppedImages, reader.result]);
-        },
-        false
-      );
-      reader.readAsDataURL(i);
+    for (let i of images) {
+      setUncroppedImages([...uncroppedImages, i]);
     }
   };
 
@@ -73,25 +83,60 @@ function App() {
       img.lastModifiedDate = new Date();
       img.name = new Date() + ".png";
       setCroppedImages([...croppedImages, img]);
+      setFullImages([...fullImages, ...uncroppedImages]);
       setPredictions([]);
     }
     setUncroppedImages([]);
   };
 
-  const delImage = (name) => {
-    setCroppedImages(croppedImages.filter((i) => i.name !== name));
-    setPredictions([]);
-    setError(false);
-  };
-
-  const preventClick = (e) => {
-    e.preventDefault();
+  const editImage = (index) => {
+    setUncroppedImages([fullImages[index]]);
+    setFullImages(
+      fullImages.slice(0, index).concat(fullImages.slice(index + 1))
+    );
+    setCroppedImages(
+      croppedImages.slice(0, index).concat(croppedImages.slice(index + 1))
+    );
+    setInputStage(true);
+    setResultStage(false);
   };
 
   const resetImages = () => {
+    setMenuVisible(false);
     setError(false);
     setCroppedImages([]);
     setPredictions([]);
+    setFullImages([]);
+    setInputStage(true);
+    setResultStage(false);
+  };
+
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
+  };
+
+  const toggleDarkMode = () => {
+    if (window.cordova) {
+      StatusBar.backgroundColorByHexString(darkMode ? "#dd8508" : "#121212");
+    }
+    setDarkMode(!darkMode);
+  };
+
+  const closeModal = () => {
+    setChosenPrediction(false);
+    setAboutVisible(false);
+    setExtendedManualVisible(false);
+  };
+
+  const goToInput = () => {
+    setResultStage(false);
+    setPredictions([]);
+    setInputStage(true);
+    if (usedGallery) {
+      document.getElementById("galleryOpener").click();
+    } else {
+      document.getElementById("uploaderImages").click();
+    }
   };
 
   const uploadMore = (sender) => {
@@ -102,10 +147,11 @@ function App() {
   const openGallery = (e) => {
     if (window.cordova) {
       e.preventDefault();
-      setUseCamera(false);
+      setUsedGallery(true);
 
       navigator.camera.getPicture(onSuccess, onFail, {
-        destinationType: window.Camera.DestinationType.FILE_URI,
+        // destinationType: window.Camera.DestinationType.FILE_URI,
+        destinationType: window.Camera.DestinationType.DATA_URL,
         sourceType: window.Camera.PictureSourceType.PHOTOLIBRARY,
         encodingType: window.Camera.EncodingType.JPEG,
         mediaType: window.Camera.MediaType.PICTURE,
@@ -126,10 +172,11 @@ function App() {
   const openCamera = (e) => {
     if (window.cordova) {
       e.preventDefault();
-      setUseCamera(true);
+      setUsedGallery(false);
 
       navigator.camera.getPicture(onSuccess, onFail, {
-        destinationType: window.Camera.DestinationType.FILE_URI,
+        // destinationType: window.Camera.DestinationType.FILE_URI,
+        destinationType: window.Camera.DestinationType.DATA_URL,
         sourceType: window.Camera.PictureSourceType.CAMERA,
         encodingType: window.Camera.EncodingType.JPEG,
         mediaType: window.Camera.MediaType.PICTURE,
@@ -150,6 +197,7 @@ function App() {
 
   const getId = () => {
     setError(false);
+    setInputStage(false);
     setLoading(true);
 
     var formdata = new FormData();
@@ -170,6 +218,7 @@ function App() {
 
         setPredictions(predictions);
         setLoading(false);
+        setResultStage(true);
       })
       .catch((error) => {
         if (error.response && error.response.status) {
@@ -177,126 +226,14 @@ function App() {
         } else {
           setError(1);
         }
-
+        setResultStage(false);
+        setInputStage(true);
         setLoading(false);
       });
   };
 
   return (
-    <div className="App">
-      <AppBar position="fixed" className="appBar">
-        <div className="headerBar">
-          <div className="headerLogo">
-            <a href="//artsdatabanken.no">
-              <img src="Artsdatabanken_long.svg" alt="Artsdatabanken" />
-            </a>
-
-            <div className="fabContainer">
-              <About />
-            </div>
-          </div>
-        </div>
-      </AppBar>
-
-      <div className="Container">
-        <input
-          type="file"
-          id="bigDropzone"
-          onClick={preventClick}
-          onChange={uploadMore.bind(this, "bigDropzone")}
-        />
-        <div className="images">
-          {croppedImages.map((img, index) => (
-            <UploadedImage img={img} key={index} delImage={delImage} />
-          ))}
-        </div>
-
-        <UserFeedback
-          predictions={predictions}
-          croppedImages={croppedImages}
-          uncroppedImages={uncroppedImages}
-          gotError={gotError}
-          loading={loading}
-        />
-
-        {!!predictions.length && !uncroppedImages.length && (
-          <div>
-            {predictions.map((prediction) => (
-              <IdResult 
-              result={prediction} 
-              key={prediction.taxon.id} 
-              croppedImages={croppedImages}
-              />
-            ))}
-          </div>
-        )}
-
-        {!!croppedImages.length && !loading && !uncroppedImages.length && (
-          <div className="actionContainer">
-            <div>
-              <Button variant="contained" tabIndex="0">
-                <AddAPhotoIcon />
-              </Button>
-
-              <p>Legg til bilde for sikrere identifikasjon</p>
-              <input
-                className="clickable"
-                type="file"
-                id="uploadMore"
-                onChange={uploadMore.bind(this, "uploadMore")}
-                onClick={useCamera ? openCamera : openGallery}
-              />
-            </div>
-            <div onClick={resetImages}>
-              <Button tabIndex="0" variant="contained">
-                <ReplayIcon />
-              </Button>
-              <p>Identifiser noe annet</p>
-            </div>
-          </div>
-        )}
-
-        {!croppedImages.length && !uncroppedImages.length && (
-          <div className=" bottomButton NewImage clickable" tabIndex="0">
-            <AddAPhotoIcon style={{ fontSize: ".8em" }} />
-            <input
-              className="clickable"
-              type="file"
-              id="uploaderImages"
-              onClick={openCamera}
-              onChange={uploadMore.bind(this, "uploaderImages")}
-            />
-          </div>
-        )}
-
-        {window.cordova && !croppedImages.length && !uncroppedImages.length && (
-          <div
-            className=" bottomButton galleryButton clickable"
-            onClick={openGallery}
-            tabIndex="0"
-          >
-            <PhotoLibraryIcon style={{ fontSize: ".8em" }} />
-          </div>
-        )}
-
-        {!predictions.length &&
-          !!croppedImages.length &&
-          !loading &&
-          !uncroppedImages.length && (
-            <div className="bottomButton identifyButton clickable">
-              <Button
-                variant="contained"
-                style={{ backgroundColor: "#f57c00", color: "white" }}
-                onClick={getId}
-                tabIndex="0"
-              >
-                <ImageSearchIcon style={{ fontSize: "4em" }} />{" "}
-                <span className="title">Identifiser</span>
-              </Button>
-            </div>
-          )}
-      </div>
-
+    <React.Fragment>
       {!!uncroppedImages.length &&
         uncroppedImages.map((ucimg, index) => (
           <ImageCropper
@@ -304,9 +241,184 @@ function App() {
             key={index}
             imageCropped={imageCropped}
             imgSize={500}
+            darkMode={darkMode}
           />
         ))}
-    </div>
+
+      <div
+        className={
+          "App" +
+          (window.cordova ? " fullscreen" : "") +
+          (darkMode ? " darkmode" : " lightmode")
+        }
+      >
+        <div
+          id="modal"
+          className={
+            "modal " +
+            (!!chosenPrediction | aboutVisible | extendedManualVisible
+              ? "visible"
+              : "invisible")
+          }
+          onClick={closeModal}
+        >
+          <div
+            className="content"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            <CloseIcon onClick={closeModal} />
+
+            {!!chosenPrediction && (
+              <ExtendedResult
+                result={chosenPrediction}
+                croppedImages={croppedImages}
+              />
+            )}
+
+            {aboutVisible && <About />}
+
+            {extendedManualVisible && <ExtendedManual />}
+          </div>
+        </div>
+
+        <div
+          id="menu"
+          className={"modal " + (menuVisible ? "visible" : "invisible")}
+          onClick={toggleMenu}
+        >
+          <Menu
+            resetImages={resetImages}
+            toggleDarkMode={toggleDarkMode}
+            toggleAbout={setAboutVisible}
+            toggleManual={setExtendedManualVisible}
+            darkMode={darkMode}
+          />
+        </div>
+        <MenuIcon
+          className={
+            "menu-icon" + (!inputStage && !resultStage ? " hidden" : "")
+          }
+          style={{ fontSize: "2.2em" }}
+          onClick={toggleMenu}
+        />
+
+        <img
+          src="Artsdatabanken_notext_mono_white.svg"
+          alt="Artsdatabanken"
+          className="logo"
+        />
+
+        <div
+          className={
+            "image-section" + (!inputStage && !resultStage ? " expanded" : "")
+          }
+        >
+          {!croppedImages.length && (
+            <div className="placeholder-container">
+              <h1 className="placeholder-title">
+                Ta eller velg et bilde for å starte
+              </h1>
+              <p className="placeholder-body">
+                Artsorakelet kjenner ikke igjen mennesker, husdyr, hageplanter,
+                osv.
+              </p>
+            </div>
+          )}
+
+          <div className={"images scrollbarless" + (loading ? " loading" : "")}>
+            {croppedImages.map((img, index) => (
+              <UploadedImage
+                img={img}
+                key={index}
+                imgIndex={index}
+                editImage={editImage}
+              />
+            ))}
+
+            {!!croppedImages.length && (inputStage || resultStage) && (
+              <div className="goToInput" onClick={goToInput}></div>
+            )}
+          </div>
+        </div>
+
+        <div
+          className={
+            "bottom-section scrollbarless " +
+            (inputStage || resultStage ? "" : "hidden")
+          }
+        >
+          {inputStage && !!croppedImages.length && (
+            <div className="top-btn" onClick={getId} tabIndex="0">
+              <div className="btn id primary">Identifiser</div>
+            </div>
+          )}
+
+          {resultStage && (
+            <div className="top-btn" onClick={resetImages} tabIndex="0">
+              <div className="btn reset primary">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    fill="currentColor"
+                    d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z"
+                  />
+                </svg>
+                {/* <ReplayIcon /> */}
+              </div>
+            </div>
+          )}
+
+          {resultStage && !!predictions.length && (
+            <div>
+              {predictions.map((prediction) => (
+                <IdResult
+                  result={prediction}
+                  key={prediction.taxon.id}
+                  croppedImages={croppedImages}
+                  openResult={setChosenPrediction}
+                />
+              ))}
+            </div>
+          )}
+
+          {inputStage && (
+            <UserFeedback
+              inputStage={inputStage}
+              gotError={gotError}
+              loading={loading}
+            />
+          )}
+
+          <div className={"bottomButtons " + (inputStage ? "" : "hidden")}>
+            {window.cordova && (
+              <div
+                className="bottomButton galleryButton clickable primary"
+                id="galleryOpener"
+                onClick={openGallery}
+                tabIndex="0"
+              >
+                <PhotoLibraryIcon style={{ fontSize: ".8em" }} />
+              </div>
+            )}
+
+            <div
+              className="bottomButton newImageButton primary clickable"
+              tabIndex="0"
+            >
+              <AddAPhotoIcon style={{ fontSize: ".8em" }} />
+              <input
+                className="clickable"
+                type="file"
+                id="uploaderImages"
+                onClick={openCamera}
+                onChange={uploadMore.bind(this, "uploaderImages")}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </React.Fragment>
   );
 }
 

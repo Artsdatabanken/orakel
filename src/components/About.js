@@ -1,153 +1,93 @@
-import React, { useState } from "react";
+import React from "react";
 import "../App.css";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import Dialog from "@material-ui/core/Dialog";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
 
 function About() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const handleClickOpen = () => {
-    setModalOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setModalOpen(false);
-  };
-
   return (
-    <React.Fragment>
-      <div
-        className="clickable"
-        aria-label="Om appen"
-        tabIndex="0"
-        onClick={handleClickOpen}
-      >
-        Om
-      </div>
+    <div className="scrollable scrollbarless">
+      <img
+        src="Artsdatabanken_long_light.svg"
+        alt="Artsdatabanken"
+        className="aboutHeader light"
+      />
 
-      <Dialog
-        onClose={handleModalClose}
-        aria-labelledby="dialog-title"
-        open={modalOpen}
-        fullWidth={true}
-      >
-        <DialogTitle id="simple-dialog-title">
-          Om Artsorakelet
-          <IconButton
-            aria-label="close"
-            onClick={handleModalClose}
-            style={{ right: "15px", top: "0", position: "absolute" }}
-          >
-            <CloseIcon />
-          </IconButton>
-        </DialogTitle>
-        <DialogContent className="dialogContent">
-          <p className="emphasis">
-            Artsdatabankens Artsorakel prøver å artsbestemme bilder ved hjelp av
-            maskinlæring. Artsorakelet kjenner kun viltlevende arter (ingen
-            husdyr, hageplanter, osv.) og gir svar på artsnivå (og noen
-            underarter).
-          </p>
+      <img
+        src="Artsdatabanken_long_dark.svg"
+        alt="Artsdatabanken"
+        className="aboutHeader dark"
+      />
 
-          <p className="quote">
-            I likhet med andre orakler kan svaret være en åpenbaring, men det er
-            alltid en sjanse for at svaret er feil, uklart, flertydig og/eller
-            krever tolkning.
-          </p>
+      <hr />
 
-          <p>
-            Selv om svaret angis med høy treffprosent betyr det ikke at svaret
-            nødvendigvis er riktig. Det er ikke like flink på arter der det er
-            få bilder tilgjengelig på Artsobservasjoner, som:
-          </p>
-          <ul>
-            <li>Store rovdyr og andre arter som er unntatt offentlighet</li>
-            <li>Fisk</li>
-            <li>
-              Arter som er vanskelig å fotografere og/eller artsbestemme fra
-              bilder
-            </li>
-          </ul>
-          <p>
-            Sjekk derfor alltid med relevant litteratur, for eksempel våre
-            ekspertskrevne artsbeskrivelser og nøkler i{" "}
-            <a href="https://www.artsdatabanken.no/arter-pa-nett">
-              Arter på nett
-            </a>
-            .
-          </p>
+      <p className="weight400">
+        Artsorakelet er utviklet av Artsdatabanken i samarbeid med Naturalis
+        Biodiversity Center. Appen prøver å artsbestemme bilder ved hjelp av
+        maskinlæring.
+      </p>
 
-          <p className="quote">
-            NB: Bruk aldri Artsorakelet til å vurdere om en art er spiselig
-            eller giftig!
-          </p>
+      <img
+        src="Artsorakel_logo_trans.svg"
+        alt="Artsorakelet"
+        className="aboutHeader"
+      />
 
-          <p>
-            Hvis du med stor sikkerhet vet hvilken art det er, vil vi gjerne at
-            du rapporterer observasjonen i{" "}
-            <a href="https://www.artsobservasjoner.no/">Artsobservasjoner.no</a>{" "}
-            ved å trykke på "rapporter funn"-knappen . Slik hjelper du forskere
-            og naturforvaltere. Hvis du laster opp bildene der kan de i tillegg
-            brukes til å forbedre neste versjon av Artsorakelet.
-          </p>
+      <p>
+        Gjenkjenningsmodellen trenes hos Naturalis Biodiversity Center, med
+        bilder som er offentlig tilgjengelig på artsobservasjoner.no. Når appen
+        brukes sier modellen hva det ligner mest på av artene den har blitt
+        trent med. Dette innebærer at den kun kan foreslå arter som finnes i
+        Norsk natur hvor bildene ikke er unntatt offentlighet (som ved store
+        rovdyr). Den kjenner altså kun viltlevende arter (ingen husdyr,
+        hageplanter, osv.) og gir svar på artsnivå (og noen underarter).
+      </p>
 
-          {window.cordova && (
-            <p>
-              Artsorakelet er også tilgjengelig som nettversjon for pc og mobil
-              på{" "}
-              <a href="https://orakel.artsdatabanken.no">
-                orakel.artsdatabanken.no
-              </a>
-              .
-            </p>
-          )}
+      <p>
+        Bilder sendes til serveren til gjenkjenning. Bilder og brukerinformasjon
+        blir ikke tilgjengelige for Artsdatabanken eller andre.
+      </p>
 
-          {!window.cordova && (
-            <p>
-              Artsorakelet er også tilgjengelig som Android og iOS app.
-              <br />
-              <a href="https://play.google.com/store/apps/details?id=no.artsdatabanken.orakel">
-                <img
-                  src="Google_Play_badge.png"
-                  alt="Tilgjengelig på Google Play"
-                  className="appStoreBadge"
-                />
-              </a>
-              <a href="https://apps.apple.com/no/app/id1522271415">
-                <img
-                  src="app_store_badge.png"
-                  alt="Last ned fra App Store"
-                  className="appStoreBadge"
-                />
-              </a>
-            </p>
-          )}
+      {window.cordova && (
+        <p>
+          Artsorakelet er også tilgjengelig som nettversjon for pc og mobil på{" "}
+          <a href="https://orakel.artsdatabanken.no">
+            orakel.artsdatabanken.no
+          </a>
+          .
+        </p>
+      )}
 
-          <p>
-            Du kan lese mer om Artsorakelet på{" "}
-            <a href="https://www.artsdatabanken.no/Pages/299643">
-              Artsdatabankens nettsider
-            </a>
-            . Spørsmål og tilbakemelding kan sendes til{" "}
-            <a href="mailto:support@artsobservasjoner.no">
-              support@artsobservasjoner.no
-            </a>
-            .
-          </p>
+      {!window.cordova && (
+        <p>
+          Artsorakelet er også tilgjengelig som Android og iOS app, se lenkene i
+          hovedmenyen.
+        </p>
+      )}
 
-          <p>
-            <img
-              src="Artsdatabanken_high.svg"
-              alt="Artsdatabanken"
-              className="aboutLogo"
-            />
-            <img src="Naturalis.svg" className="aboutLogo" alt="Naturalis" />
-          </p>
-        </DialogContent>
-      </Dialog>
-    </React.Fragment>
+      <p>
+        Du kan lese mer om Artsorakelet på{" "}
+        <a href="https://www.artsdatabanken.no/Pages/299643">
+          Artsdatabankens nettsider
+        </a>
+        . Spørsmål og tilbakemelding kan sendes til{" "}
+        <a href="mailto:support@artsobservasjoner.no">
+          support@artsobservasjoner.no
+        </a>
+        .
+      </p>
+
+      <p>
+        <img
+          src="Artsdatabanken_high_light.svg"
+          alt="Artsdatabanken"
+          className="aboutLogo light"
+        />
+        <img
+          src="Artsdatabanken_high_dark.svg"
+          alt="Artsdatabanken"
+          className="aboutLogo dark"
+        />
+        <img src="Naturalis.svg" className="aboutLogo" alt="Naturalis" />
+      </p>
+    </div>
   );
 }
 

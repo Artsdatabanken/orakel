@@ -10,7 +10,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContentText from "@material-ui/core/DialogContentText";
 
 
-function ReportButton({ reportResult,croppedImages }) {
+function ReportButton({ reportResult, croppedImages }) {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleDialogClose = () => {
@@ -24,7 +24,7 @@ function ReportButton({ reportResult,croppedImages }) {
     setDialogOpen(false);
   };
 
-  const openDialog = () => {
+  const openDialog = (e) => {
     setDialogOpen(true);
   };
 
@@ -97,18 +97,7 @@ function ReportButton({ reportResult,croppedImages }) {
 
   return (
     <React.Fragment>
-      {" "}
-      <Button
-        style={{
-          fontSize: "9px",
-          lineHeight: "10px",
-        }}
-        variant="contained"
-        color="primary"
-        onClick={openDialog.bind(this)}
-      >
-        Rapporter funn
-      </Button>
+      <div className="btn primary" onClick={openDialog.bind(this)}>Rapporter funn</div>
       <Dialog
         onClose={handleDialogClose}
         aria-labelledby="dialog-title"
