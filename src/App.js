@@ -61,6 +61,15 @@ function App() {
   const [gotError, setError] = useState(false);
   const [usedGallery, setUsedGallery] = useState(false);
 
+  document.addEventListener("backbutton", onBackKeyDown, false);
+  function onBackKeyDown() {
+    // Handle the back button
+    setMenuVisible(false);
+    setChosenPrediction(false);
+    setAboutVisible(false);
+    setExtendedManualVisible(false);
+  }
+
   const addImage = (images) => {
     setError(false);
 
