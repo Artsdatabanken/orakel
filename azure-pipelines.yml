@@ -81,6 +81,19 @@ steps:
     cordova build ios --buildFlag="-UseModernBuildSystem=0" --codeSignIdentity="iPhone Developer" --developementTeam="Artsdatabanken" --packageType="app-store"
 
   displayName: 'build Mac'
+
+- task: Xcode@5
+  inputs:
+    actions: 'build'
+    scheme: '$(scheme)'
+    sdk: '$(sdk)'
+    configuration: '$(configuration)'
+    xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
+    xcodeVersion: 'default'
+    signingOption: 'manual'
+    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+    provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
+    packageApp: true
 - task: CopyFiles@2
   inputs:
     contents: '**/*.ipa'
