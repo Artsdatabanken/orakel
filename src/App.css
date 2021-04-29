@@ -308,14 +308,12 @@ ul {
 
 .bottomButtons {
   z-index: 2;
-  display: flex;
   position: absolute;
   bottom: calc(1rem + env(safe-area-inset-bottom));
   left: 0;
   width: 100%;
+  margin-left: 50%;
   height: 6rem;
-  justify-content: center;
-  align-items: center;
 }
 
 .newImageButton {
@@ -328,6 +326,8 @@ ul {
   border-radius: 50%;
   position: absolute;
   box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.25);
+  transform-origin: center;
+  transform: translateX(-50%);
 }
 
 .galleryButton {
@@ -340,8 +340,10 @@ ul {
   border-radius: 50%;
   box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.25);
   position: absolute;
-  margin-left: -10rem;
-  margin-bottom: -2rem;
+  margin-left: -4.5rem;
+  margin-top: 2rem;
+  transform-origin: center;
+  transform: translateX(-50%);
 }
 
 .hidden.bottomButtons {
