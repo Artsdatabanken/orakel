@@ -250,7 +250,7 @@ function App() {
           "App" +
           (window.cordova ? " fullscreen" : "") +
           (darkMode ? " darkmode" : " lightmode") + 
-          (window.cordova && device.platform == "iOS" ? " topMargin" : "")
+          (window.cordova && !!device && (device.platform == "iOS") ? " topMargin" : "")
         }
       >
         <div
