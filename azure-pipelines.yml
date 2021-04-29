@@ -28,6 +28,15 @@ steps:
 #     provProfileSecureFile: 'app.mobileprovision'
 #     removeProfile: true
 
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'fonts.zip'
+- task: ExtractFiles@1
+  inputs:
+    archiveFilePatterns: 'fonts.zip'
+    destinationFolder: 'src'
+    cleanDestinationFolder: false
+    overwriteExistingFiles: true
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
