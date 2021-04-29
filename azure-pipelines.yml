@@ -31,6 +31,12 @@ steps:
 - task: DownloadSecureFile@1
   inputs:
     secureFile: 'fonts.zip'
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'build.json'
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'orakel_keystore.jks'
 - task: ExtractFiles@1
   inputs:
     archiveFilePatterns: '/Users/runner/work/_temp/fonts.zip'
@@ -48,9 +54,24 @@ steps:
     npm run build
     cp -R build/ www/
     cordova platform add android
-    cordova build android --release --buildConfig=/bitrise/src2/build.json -- --packageType=bundle
+    cp /Users/runner/work/_temp/build.json .
+    cp /Users/runner/work/_temp/orakel_keystore.jks .
+    cordova build android --release --buildConfig=build.json -- --packageType=bundle
   displayName: 'build Android'
-  
+
+- task: CopyFiles@2
+  inputs:
+    contents: '**/*.apk'
+    targetFolder: '$(build.artifactStagingDirectory)'
+  displayName: Copy .apk files to artifact staging directory
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(build.artifactStagingDirectory)'
+    artifactName: 'drop'
+    artifactType: 'container'
+  displayName: Publish Android artifacts
+
 - script: |
     npm install
     npm install -g cordova
