@@ -10,7 +10,7 @@ pool:
   vmImage: macOS-10.14
 
 variables:
-  scheme: ''
+  scheme: 'Artsorakel'
   sdk: 'iphoneos'
   configuration: 'Release'
   system.debug: true
