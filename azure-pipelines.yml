@@ -88,7 +88,7 @@ steps:
     scheme: '$(scheme)'
     sdk: '$(sdk)'
     configuration: '$(configuration)'
-    xcWorkspacePath: 'platforms/ios/Artsorakel.xcworkspace/'
+    xcWorkspacePath: 'platforms/ios/Artsorakel.xcworkspace'
     xcodeVersion: 'default'
     signingOption: 'manual'
     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
