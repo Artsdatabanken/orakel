@@ -88,7 +88,7 @@ steps:
     scheme: '$(scheme)'
     sdk: '$(sdk)'
     configuration: '$(configuration)'
-    xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
+    xcWorkspacePath: 'platforms/ios/Artsorakel.xcworkspace/'
     xcodeVersion: 'default'
     signingOption: 'manual'
     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
@@ -98,8 +98,6 @@ steps:
   inputs:
     contents: '**/*.ipa'
     targetFolder: '$(build.artifactStagingDirectory)'
-    overWrite: true
-    flattenFolders: true
   displayName: Copy .ipa files to artifact staging directory
 - task: PublishBuildArtifacts@1
   inputs:
