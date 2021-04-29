@@ -16,23 +16,32 @@ variables:
   system.debug: true
 
 steps:
-- task: InstallAppleCertificate@2
-  inputs:
-    certSecureFile: 'artsorakel.p12'
-    certPwd: $(appCertificatePassword)
-    keychain: 'temp'
-    deleteCert: true
+# - task: InstallAppleCertificate@2
+#   inputs:
+#     certSecureFile: 'artsorakel.p12'
+#     certPwd: $(appCertificatePassword)
+#     keychain: 'temp'
+#     deleteCert: true
     
-- task: InstallAppleProvisioningProfile@1
-  inputs:
-    provProfileSecureFile: 'app.mobileprovision'
-    removeProfile: true
+# - task: InstallAppleProvisioningProfile@1
+#   inputs:
+#     provProfileSecureFile: 'app.mobileprovision'
+#     removeProfile: true
 
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
+- script: |
+    npm install
+    npm install -g cordova
+    npm run build
+    cp -R build/ www/
+    cordova platform add android
+    cordova build android --release --buildConfig=/bitrise/src2/build.json -- --packageType=bundle
+  displayName: 'build Android'
+  
 - script: |
     npm install
     npm install -g cordova
