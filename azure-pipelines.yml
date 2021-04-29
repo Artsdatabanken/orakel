@@ -54,8 +54,8 @@ steps:
     npm run build
     cp -R build/ www/
     cordova platform add android
-    cp /Users/runner/work/_temp/build.json
-    cp /Users/runner/work/_temp/orakel_keystore.jks
+    cp /Users/runner/work/_temp/build.json .
+    cp /Users/runner/work/_temp/orakel_keystore.jks .
     cordova build android --release --buildConfig=build.json -- --packageType=bundle
   displayName: 'build Android'
 
