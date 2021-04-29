@@ -71,14 +71,26 @@ steps:
     artifactName: 'drop'
     artifactType: 'container'
   displayName: Publish Android artifacts
-
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
 - script: |
-    npm install
-    npm install -g cordova
-    npm run build
-    cp -R build/ www/
     cordova platform remove ios
-    cordova platform add ios@6.1.0
+    cordova platform add ios@latest
     cordova build ios --buildFlag="-UseModernBuildSystem=0" --codeSignIdentity="iPhone Developer" --developementTeam="Artsdatabanken" --packageType="app-store"
 
   displayName: 'build Mac'
+- task: CopyFiles@2
+  inputs:
+    contents: '**/*.ipa'
+    targetFolder: '$(build.artifactStagingDirectory)'
+    overWrite: true
+    flattenFolders: true
+  displayName: Copy .ipa files to artifact staging directory
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(build.artifactStagingDirectory)'
+    artifactName: 'drop'
+    publishLocation: 'Container'
+  displayName: Publish Iphone artifacts
