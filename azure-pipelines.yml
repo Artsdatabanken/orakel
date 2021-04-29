@@ -16,17 +16,17 @@ variables:
   system.debug: true
 
 steps:
-# - task: InstallAppleCertificate@2
-#   inputs:
-#     certSecureFile: 'artsorakel.p12'
-#     certPwd: $(appCertificatePassword)
-#     keychain: 'temp'
-#     deleteCert: true
+- task: InstallAppleCertificate@2
+  inputs:
+    certSecureFile: 'artsorakel.p12'
+    certPwd: $(appCertificatePassword)
+    keychain: 'temp'
+    deleteCert: true
     
-# - task: InstallAppleProvisioningProfile@1
-#   inputs:
-#     provProfileSecureFile: 'app.mobileprovision'
-#     removeProfile: true
+- task: InstallAppleProvisioningProfile@1
+  inputs:
+    provProfileSecureFile: 'ArtsorakelNewProvisionProfile.mobileprovision'
+    removeProfile: true
 
 - task: DownloadSecureFile@1
   inputs:
@@ -72,13 +72,13 @@ steps:
     artifactType: 'container'
   displayName: Publish Android artifacts
 
-# - script: |
-#     npm install
-#     npm install -g cordova
-#     npm run build
-#     cp -R build/ www/
-#     cordova platform remove ios
-#     cordova platform add ios@6.1.0
-#     cordova build ios --buildFlag="-UseModernBuildSystem=0" --codeSignIdentity="iPhone Developer" --developementTeam="Artsdatabanken" --packageType="app-store"
+- script: |
+    npm install
+    npm install -g cordova
+    npm run build
+    cp -R build/ www/
+    cordova platform remove ios
+    cordova platform add ios@6.1.0
+    cordova build ios --buildFlag="-UseModernBuildSystem=0" --codeSignIdentity="iPhone Developer" --developementTeam="Artsdatabanken" --packageType="app-store"
 
-#   displayName: 'build Mac'
+  displayName: 'build Mac'
