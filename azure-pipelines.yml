@@ -33,7 +33,7 @@ steps:
     secureFile: 'fonts.zip'
 - task: ExtractFiles@1
   inputs:
-    archiveFilePatterns: 'fonts.zip'
+    archiveFilePatterns: '/Users/runner/work/_temp/fonts.zip'
     destinationFolder: 'src'
     cleanDestinationFolder: false
     overwriteExistingFiles: true
