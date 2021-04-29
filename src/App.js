@@ -249,7 +249,8 @@ function App() {
         className={
           "App" +
           (window.cordova ? " fullscreen" : "") +
-          (darkMode ? " darkmode" : " lightmode")
+          (darkMode ? " darkmode" : " lightmode") + 
+          (window.cordova && device.platform == "iOS" ? " topMargin" : "")
         }
       >
         <div

@@ -5,7 +5,7 @@
 .lightmode {
   --primary-clr: hsl(35, 93%, 45%);
   --bg-clr: hsl(35, 93%, 45%);
-  --box-clr: #eeeeee;
+  --box-clr: #fff;
   --text-clr: hsl(30, 3%, 29%);
   --text-clr-on-primary: #eeeeee;
   --danger: hsl(14, 46%, 48%);
@@ -198,6 +198,10 @@ ul {
   width: 1.5em;
 }
 
+.topMargin .logo {
+  top: 2rem;
+}
+
 .image-section.expanded {
   transform: translateY(33vh);
 }
@@ -212,6 +216,11 @@ ul {
   right: 0;
   margin: 1rem;
 }
+
+.topMargin .menu-icon {
+  top: 2rem;
+}
+
 
 .image-section .placeholder-container {
   width: 50%;
