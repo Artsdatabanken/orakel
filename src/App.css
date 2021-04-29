@@ -312,12 +312,17 @@ ul {
 .bottomButtons {
   z-index: 2;
   position: absolute;
-  bottom: calc(1rem + env(safe-area-inset-bottom));
+  bottom: 1rem;
   left: 0;
   width: 100%;
   margin-left: 50%;
   height: 6rem;
 }
+
+.bottomButtons.moveUp {
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+}
+
 
 .newImageButton {
   display: flex;

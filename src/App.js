@@ -417,7 +417,7 @@ function App() {
             />
           )}
 
-          <div className={"bottomButtons " + (inputStage ? "" : "hidden")}>
+          <div className={"bottomButtons " + (inputStage ? "" : "hidden") + (!window.cordova ? " moveUp" : "")}>
             {window.cordova && (
               <div
                 className="bottomButton galleryButton clickable primary"
