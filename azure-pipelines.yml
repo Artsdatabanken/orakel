@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: macOS-10.14
+  vmImage: macOS-latest
 
 variables:
   scheme: 'Artsorakel'
@@ -89,7 +89,7 @@ steps:
     sdk: '$(sdk)'
     configuration: '$(configuration)'
     xcWorkspacePath: 'platforms/ios/Artsorakel.xcworkspace'
-    xcodeVersion: 'default'
+    xcodeVersion: '12'
     signingOption: 'manual'
     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
     provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
