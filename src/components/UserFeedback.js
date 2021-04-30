@@ -22,6 +22,18 @@ function UserFeedback({ inputStage, gotError }) {
             <svg viewBox="0 0 24 24">
               <path
                 fill="currentColor"
+                d="M19,3H15V5H19V9H21V5C21,3.89 20.1,3 19,3M19,19H15V21H19A2,2 0 0,0 21,19V15H19M5,15H3V19A2,2 0 0,0 5,21H9V19H5M3,5V9H5V5H9V3H5A2,2 0 0,0 3,5Z"
+              />
+            </svg>
+            <div className="manual-item-text">
+              Zoom inn til arten på bildet
+            </div>
+          </div>
+
+          <div className="manual-item">
+            <svg viewBox="0 0 24 24">
+              <path
+                fill="currentColor"
                 d="M21,17H7V3H21M21,1H7A2,2 0 0,0 5,3V17A2,2 0 0,0 7,19H21A2,2 0 0,0 23,17V3A2,2 0 0,0 21,1M3,5H1V21A2,2 0 0,0 3,23H19V21H3M15.96,10.29L13.21,13.83L11.25,11.47L8.5,15H19.5L15.96,10.29Z"
               />
             </svg>
@@ -30,17 +42,7 @@ function UserFeedback({ inputStage, gotError }) {
             </div>
           </div>
 
-          <div className="manual-item">
-            <svg viewBox="0 0 24 24">
-              <path
-                fill="currentColor"
-                d="M19,3H15V5H19V9H21V5C21,3.89 20.1,3 19,3M19,19H15V21H19A2,2 0 0,0 21,19V15H19M5,15H3V19A2,2 0 0,0 5,21H9V19H5M3,5V9H5V5H9V3H5A2,2 0 0,0 3,5Z"
-              />
-            </svg>
-            <div className="manual-item-text">
-              Zoom inn til arten på hvert bilde
-            </div>
-          </div>
+         
 
           <div className="manual-item">
             <svg viewBox="0 0 24 24">

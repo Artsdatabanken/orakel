@@ -18,7 +18,7 @@ function About() {
 
       <hr />
 
-      <p className="weight400">
+      <p className="intro">
         Artsorakelet er utviklet av Artsdatabanken i samarbeid med Naturalis
         Biodiversity Center. Appen prøver å artsbestemme bilder ved hjelp av
         maskinlæring.

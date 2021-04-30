@@ -70,31 +70,7 @@ function App() {
     setExtendedManualVisible(false);
   }
 
-  const getOS = () => {
-    var userAgent = window.navigator.userAgent,
-        platform = window.navigator.platform,
-        macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
-        windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
-        iosPlatforms = ['iPhone', 'iPad', 'iPod'],
-        os = null;
   
-    if (macosPlatforms.indexOf(platform) !== -1) {
-      os = 'Mac OS';
-    } else if (iosPlatforms.indexOf(platform) !== -1) {
-      os = 'iOS';
-    } else if (windowsPlatforms.indexOf(platform) !== -1) {
-      os = 'Windows';
-    } else if (/Android/.test(userAgent)) {
-      os = 'Android';
-    } else if (!os && /Linux/.test(platform)) {
-      os = 'Linux';
-    }
-    console.log(os);
-    return os;
-  }
-
-  const isIOS = getOS() == 'iOS';
-
 
   const addImage = (images) => {
     setError(false);
@@ -275,8 +251,7 @@ function App() {
         className={
           "App" +
           (window.cordova ? " fullscreen" : "") +
-          (darkMode ? " darkmode" : " lightmode") + 
-          (window.cordova && !!isIOS ? " topMargin" : "")
+          (darkMode ? " darkmode" : " lightmode")
         }
       >
         <div
@@ -417,7 +392,13 @@ function App() {
             />
           )}
 
-          <div className={"bottomButtons " + (inputStage ? "" : "hidden") + (!window.cordova ? " moveUp" : "")}>
+          <div
+            className={
+              "bottomButtons " +
+              (inputStage ? "" : "hidden") +
+              (!window.cordova ? " moveUp" : "")
+            }
+          >
             {window.cordova && (
               <div
                 className="bottomButton galleryButton clickable primary"
