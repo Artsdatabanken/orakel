@@ -160,11 +160,20 @@ ul {
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
-}
-
-.App {
   background-color: var(--bg-clr);
 }
+
+.bottom-section::after {
+  content: "";
+  position: absolute;
+  display: block;
+  bottom: calc(var(--vh, 1vh) * -10);
+  height: calc(var(--vh, 1vh) * 10);
+  width: 100vw;
+  left: -1.5em;
+  background-color: var(--box-clr);
+}
+
 
 .App.lightmode {
   background-image: linear-gradient(

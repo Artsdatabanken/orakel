@@ -92,8 +92,9 @@ function ExtendedManual() {
           </li>
           <li>
             Noen arter, for eksempel fisk, rapporteres relativt lite. Der er
-            ikke Artsorakelet like flink. Hvis du rapporterer bilder på
-            Artsobservasjoner.no er med til å gjøre neste versjonen bedre.
+            ikke Artsorakelet like flink. Hvis du rapporterer med bilde på
+            Artsobservasjoner.no bidrar du til å gjøre neste versjon av
+            Artsorakelet bedre.
           </li>
           <li>
             Er gjenkjenningen usikker? Det kan hjelpe å legge til flere bilder

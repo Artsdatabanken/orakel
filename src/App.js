@@ -70,8 +70,6 @@ function App() {
     setExtendedManualVisible(false);
   }
 
-  
-
   const addImage = (images) => {
     setError(false);
 
