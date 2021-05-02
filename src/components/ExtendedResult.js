@@ -24,13 +24,24 @@ function ExtendedResult({ result, croppedImages, preventClick }) {
           }
         >
           {result.taxon.vernacularName.charAt(0).toUpperCase() +
+            " " +
             result.taxon.vernacularName.slice(1)}
         </div>
         <div className="scientific">{result.taxon.name}</div>
       </div>
 
       <div className="resultDescription">
-        Artsorakelet gir {percentage} % treff for {result.taxon.vernacularName}{" "}
+        Artsorakelet gir {percentage} % treff for{" "}
+        <span
+          className={
+            result.taxon.vernacularName.toLowerCase() ===
+            result.taxon.name.toLowerCase()
+              ? "italics"
+              : ""
+          }
+        >
+          {result.taxon.vernacularName}
+        </span>{" "}
         basert på {n_pics === 1 ? "bildet ditt" : "dine " + n_pics + " bilder"}.
         Det er ikke sagt at det stemmer, du må selv kontrollere at det er
         riktig, særlig hvis du skal rapportere funnet.

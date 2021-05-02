@@ -174,7 +174,6 @@ ul {
   background-color: var(--box-clr);
 }
 
-
 .App.lightmode {
   background-image: linear-gradient(
     180deg,
@@ -295,13 +294,6 @@ ul {
   padding: 0.7rem 1rem;
   align-items: center;
   overflow: hidden;
-}
-
-.manual-item-number {
-  font-size: 1.6rem;
-  padding-right: 0.8em;
-  opacity: 0.25;
-  word-break: break-word;
 }
 
 .manual-item-text {
@@ -700,6 +692,18 @@ hr {
   font-size: 1.6em;
 }
 
+.vernacular {
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+}
+
+.vernacular::first-letter {
+  letter-spacing: -0.25em;
+}
+
 .danger {
   background-color: var(--danger);
   border-color: var(--text-clr-on-primary);
@@ -718,14 +722,15 @@ hr {
 
 #modal .vernacular {
   font-size: 2em;
+  line-height: 1em;
 }
 
 #modal .resultLabels {
   border-top: 1px solid hsla(0, 0%, 50%, 50%);
   border-bottom: 1px solid hsla(0, 0%, 50%, 50%);
   padding: 1em 0;
-  flex-grow: 0;
   margin-bottom: 2em;
+  flex-grow: 0;
 }
 
 #modal .resultDescription {
@@ -759,12 +764,13 @@ hr {
 
 #modal .scientific {
   font-size: 1.2em;
-  line-height: 2.2em;
+  line-height: 1em;
+  margin-top: 0.5em;
 }
 
 .extendedManual svg {
   width: 3rem;
-  margin-right: .75em;
+  margin-right: 0.75em;
   float: left;
 }
 
@@ -790,6 +796,7 @@ a.btn {
 
 .resultLabels {
   flex-grow: 1;
+  flex-shrink: 1;
 }
 
 .chevron-right {

@@ -29,7 +29,7 @@ function IdResult({ result, openResult, croppedImages }) {
   let color = getColor(percentage);
   const openResultModal = () => {
     openResult(result);
-  }
+  };
 
   return (
     <div className="resultRow" onClick={openResultModal}>
@@ -68,14 +68,13 @@ function IdResult({ result, openResult, croppedImages }) {
           }
         >
           {result.taxon.vernacularName.charAt(0).toUpperCase() +
+            " " +
             result.taxon.vernacularName.slice(1)}
         </div>
         <div className="scientific">{result.taxon.name}</div>
         <div className="group">{result.taxon.groupName}</div>
         {result.taxon.groupName === "Sopper" && (
-          <div className="danger">
-            ALDRI SPIS NOE PGA APPEN
-          </div>
+          <div className="danger">ALDRI SPIS NOE PGA APPEN</div>
         )}
       </div>
 
