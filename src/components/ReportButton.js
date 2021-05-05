@@ -30,7 +30,6 @@ function ReportButton({ reportResult, croppedImages }) {
 
   function makeURL() {
     let prefix =
-      !window.cordova &&
       window.location.hostname === "orakel.test.artsdatabanken.no"
         ? "test"
         : "www";
@@ -50,7 +49,7 @@ function ReportButton({ reportResult, croppedImages }) {
       reporttype = `?scientificname=${reportResult.taxon.scientificNameID}%26`;
       if (prefix === "test") {
         url = "https://utv.artsdatabanken.no/a2m/#/";
-      } else if (window.location.hostname === "localhost") {
+      } else if (!window.cordova && window.location.hostname === "localhost") {
         // When testing with artsobs mobile, run artsobsmobile on localhost:3000
         // And run this on any other port. Artsobs mobile has issues when run on other ports.
         // url= 'http://localhost:3000/#/'
