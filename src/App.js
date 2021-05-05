@@ -296,50 +296,58 @@ function App() {
             darkMode={darkMode}
           />
         </div>
-        <MenuIcon
-          className={
-            "menu-icon" + (!inputStage && !resultStage ? " hidden" : "")
-          }
-          style={{ fontSize: "2.2em" }}
-          onClick={toggleMenu}
-        />
 
-        <img
-          src="Artsdatabanken_notext_mono_white.svg"
-          alt="Artsdatabanken"
-          className="logo"
-        />
+        <div className="image-section">
+          <div className="topBar">
+            <MenuIcon
+              className={
+                "menu-icon" + (!inputStage && !resultStage ? " hidden" : "")
+              }
+              style={{ fontSize: "2em" }}
+              onClick={toggleMenu}
+            />
 
-        <div
-          className={
-            "image-section" + (!inputStage && !resultStage ? " expanded" : "")
-          }
-        >
-          {!croppedImages.length && (
-            <div className="placeholder-container">
-              <h1 className="placeholder-title">
-                Ta eller velg et bilde for å starte
-              </h1>
-              <p className="placeholder-body">
-                Artsorakelet kjenner ikke igjen mennesker, husdyr, hageplanter,
-                osv.
-              </p>
-            </div>
-          )}
-
-          <div className={"images scrollbarless" + (loading ? " loading" : "")}>
-            {croppedImages.map((img, index) => (
-              <UploadedImage
-                img={img}
-                key={index}
-                imgIndex={index}
-                editImage={editImage}
-              />
-            ))}
-
-            {!!croppedImages.length && (inputStage || resultStage) && (
-              <div className="goToInput" onClick={goToInput}></div>
+            <img
+              src="Artsdatabanken_notext_mono_white.svg"
+              alt="Artsdatabanken"
+              className={
+                "logo" + (!inputStage && !resultStage ? " hidden" : "")
+              }
+            />
+          </div>
+          <div
+            className={
+              "topContent" + (!inputStage && !resultStage ? " expanded" : "")
+            }
+          >
+            {!croppedImages.length && (
+              <div className="placeholder-container">
+                <h1 className="placeholder-title">
+                  Ta eller velg et bilde for å starte
+                </h1>
+                <p className="placeholder-body">
+                  Artsorakelet kjenner ikke igjen mennesker, husdyr,
+                  hageplanter, osv.
+                </p>
+              </div>
             )}
+
+            <div
+              className={"images scrollbarless" + (loading ? " loading" : "")}
+            >
+              {croppedImages.map((img, index) => (
+                <UploadedImage
+                  img={img}
+                  key={index}
+                  imgIndex={index}
+                  editImage={editImage}
+                />
+              ))}
+
+              {!!croppedImages.length && (inputStage || resultStage) && (
+                <div className="goToInput" onClick={goToInput}></div>
+              )}
+            </div>
           </div>
         </div>
 
@@ -357,7 +365,11 @@ function App() {
 
           {resultStage && (
             <div className="top-btn">
-              <div className="btn reset primary" onClick={resetImages} tabIndex="0">
+              <div
+                className="btn reset primary"
+                onClick={resetImages}
+                tabIndex="0"
+              >
                 <svg viewBox="0 0 24 24">
                   <path
                     fill="currentColor"
@@ -390,13 +402,7 @@ function App() {
             />
           )}
 
-          <div
-            className={
-              "bottomButtons " +
-              (inputStage ? "" : "hidden") +
-              (!window.cordova ? " moveUp" : "")
-            }
-          >
+          <div className={"bottomButtons " + (inputStage ? "" : "hidden")}>
             {window.cordova && (
               <div
                 className="bottomButton galleryButton clickable primary"

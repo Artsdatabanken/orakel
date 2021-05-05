@@ -194,13 +194,14 @@ ul {
 }
 
 .image-section {
-  padding-top: 1.1rem;
+  padding-top: 1rem;
   height: 12rem;
   flex-shrink: 0;
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   transition: transform 300ms ease-in-out 3ms;
   will-change: transform;
 }
@@ -209,31 +210,16 @@ ul {
   position: absolute;
   top: 0;
   left: 0;
-  margin: 1.3rem 1rem;
+  margin-left: 1rem;
   width: 1.5em;
 }
 
-.topMargin .logo {
-  top: 2rem;
-}
-
-.image-section.expanded {
+.expanded {
   transform: translateY(33vh);
 }
 
 .image-section {
   color: #eee;
-}
-
-.menu-icon {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 1rem;
-}
-
-.topMargin .menu-icon {
-  top: 2rem;
 }
 
 .image-section .placeholder-container {
@@ -259,10 +245,6 @@ ul {
   position: absolute;
   width: 100%;
   height: 100%;
-}
-
-.menu-icon {
-  z-index: 1;
 }
 
 .bottom-section {
@@ -318,16 +300,31 @@ ul {
 .bottomButtons {
   z-index: 2;
   position: absolute;
-  bottom: 1rem;
   left: 0;
   width: 100%;
   margin-left: 50%;
   height: 6rem;
+  bottom: calc(1rem + constant(safe-area-inset-bottom));
+  bottom: calc(1rem + env(safe-area-inset-bottom));
 }
 
-.bottomButtons.moveUp {
-  bottom: calc(1rem + constant(safe-area-inset-bottom));
-  bottom: calc(1rem + env(safe-area-inset-bottom)); 
+.topBar {
+  width: 100%;
+  height: 0px;
+  position: relative;
+  flex-grow: 0;
+  top: 0;
+}
+
+.topContent {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  transition: transform 300ms ease-in-out 3ms;
+  will-change: transform;
 }
 
 .newImageButton {
@@ -368,7 +365,7 @@ ul {
   box-sizing: border-box;
   overflow: hidden;
   padding: 0px !important;
-  margin-left: .5em;
+  margin-left: 0.5em;
   width: 1em;
   height: 1em;
   border-radius: 50%;
@@ -411,12 +408,13 @@ input {
   flex-direction: row;
   overflow-x: auto;
   max-height: 100%;
+  flex-grow: 0;
 }
 
 .imgContainer {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  margin: 2rem 0rem;
+  margin: 1rem 0rem;
 }
 
 .uploadedImage {
@@ -438,7 +436,7 @@ input {
   align-items: center;
   cursor: pointer;
   z-index: 2;
-  margin: 2rem 0.5rem;
+  margin: 1rem 0.5rem;
   position: relative;
 }
 
@@ -532,7 +530,6 @@ input {
   display: flex;
   padding-bottom: calc(1rem + constant(safe-area-inset-bottom));
   padding-bottom: calc(1rem + env(safe-area-inset-bottom));
-
 }
 
 .cropContainer > .buttons > div {
@@ -668,6 +665,12 @@ hr {
 .menu-icon {
   cursor: pointer;
   color: #fff;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 1rem;
+  margin-top: -0.4rem;
+  z-index: 1;
 }
 
 .menu-icon.hidden {
