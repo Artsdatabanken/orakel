@@ -2,7 +2,7 @@
   "name": "artsorakel",
   "displayName": "Artsorakel",
   "homepage": "./",
-  "version": "2.01.1",
+  "version": "2.0.1.002",
   "description": "Artsdatabankens Artsorakel til automatisk identifisering av arter i Norge.",
   "main": "index.js",
   "scripts": {
