@@ -692,16 +692,12 @@ hr {
   font-size: 1.6em;
 }
 
-.vernacular {
+.hyphenate {
   -moz-hyphens: auto;
   -ms-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
   word-wrap: break-word;
-}
-
-.vernacular::first-letter {
-  letter-spacing: -0.25em;
 }
 
 .danger {

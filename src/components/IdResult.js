@@ -63,15 +63,19 @@ function IdResult({ result, openResult, croppedImages }) {
           className={
             result.taxon.vernacularName.toLowerCase() ===
             result.taxon.name.toLowerCase()
-              ? "vernacular italics"
-              : "vernacular"
+              ? "hyphenate vernacular italics"
+              : "hyphenate vernacular"
           }
         >
-          {result.taxon.vernacularName.charAt(0).toUpperCase() +
-            " " +
-            result.taxon.vernacularName.slice(1)}
+          {result.taxon.vernacularName.charAt(0).toUpperCase()}
+          &#8203;
+          {result.taxon.vernacularName.slice(1)}
         </div>
-        <div className="scientific">{result.taxon.name}</div>
+        <div className="hyphenate scientific">
+          {result.taxon.name.charAt(0)}
+          &#8203;
+          {result.taxon.name.slice(1)}
+        </div>
         <div className="group">{result.taxon.groupName}</div>
         {result.taxon.groupName === "Sopper" && (
           <div className="danger">ALDRI SPIS NOE PGA APPEN</div>
