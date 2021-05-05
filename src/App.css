@@ -285,7 +285,8 @@ ul {
 .manual {
   display: flex;
   flex-direction: column;
-  padding-bottom: 6rem;
+  padding-top: 1rem;
+  padding-bottom: 7rem;
 }
 
 .manual-item {
