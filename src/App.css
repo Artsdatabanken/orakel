@@ -767,6 +767,7 @@ hr {
 }
 
 #modal .resultActions {
+  margin-top: 1em;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -796,6 +797,12 @@ hr {
   width: 3rem;
   margin-right: 0.75em;
   float: left;
+}
+
+.extendedResult {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 a {

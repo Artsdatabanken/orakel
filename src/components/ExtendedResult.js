@@ -8,7 +8,7 @@ function ExtendedResult({ result, croppedImages, preventClick }) {
   const n_pics = croppedImages.length;
 
   return (
-    <React.Fragment>
+    <div className="extendedResult scrollable scrollbarless">
       <div
         className="resultLabels"
         onClick={(e) => {
@@ -70,7 +70,7 @@ function ExtendedResult({ result, croppedImages, preventClick }) {
           preventClick={preventClick}
         />
       </div>
-    </React.Fragment>
+    </div>
   );
 }
 
