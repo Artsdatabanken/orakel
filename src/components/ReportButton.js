@@ -30,6 +30,7 @@ function ReportButton({ reportResult, croppedImages }) {
 
   function makeURL() {
     let prefix =
+      !window.cordova &&
       window.location.hostname === "orakel.test.artsdatabanken.no"
         ? "test"
         : "www";
