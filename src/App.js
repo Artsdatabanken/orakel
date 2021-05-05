@@ -356,8 +356,8 @@ function App() {
           )}
 
           {resultStage && (
-            <div className="top-btn" onClick={resetImages} tabIndex="0">
-              <div className="btn reset primary">
+            <div className="top-btn">
+              <div className="btn reset primary" onClick={resetImages} tabIndex="0">
                 <svg viewBox="0 0 24 24">
                   <path
                     fill="currentColor"
