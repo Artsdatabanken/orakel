@@ -68,12 +68,12 @@ function IdResult({ result, openResult, croppedImages }) {
           }
         >
           {result.taxon.vernacularName.charAt(0).toUpperCase()}
-          &#8203;
+          &#8288;
           {result.taxon.vernacularName.slice(1)}
         </div>
         <div className="hyphenate scientific">
           {result.taxon.name.charAt(0)}
-          &#8203;
+          &#8288;
           {result.taxon.name.slice(1)}
         </div>
         <div className="group">{result.taxon.groupName}</div>
