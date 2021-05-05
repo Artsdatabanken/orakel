@@ -2,6 +2,10 @@
   --overlay-color: hsla(34, 45%, 68%, 0.25);
 }
 
+:root *:focus {
+  outline: none;
+}
+
 .lightmode {
   --primary-clr: hsl(35, 93%, 45%);
   --bg-clr: hsl(35, 93%, 45%);
