@@ -161,6 +161,8 @@ ul {
   margin-right: auto;
   overflow: hidden;
   background-color: var(--bg-clr);
+  padding-top: constant(safe-area-inset-top);
+  padding-top: env(safe-area-inset-top);
 }
 
 .bottom-section::after {
@@ -320,7 +322,8 @@ ul {
 }
 
 .bottomButtons.moveUp {
-  bottom: calc(1rem + env(safe-area-inset-bottom));
+  bottom: calc(1rem + constant(safe-area-inset-bottom));
+  bottom: calc(1rem + env(safe-area-inset-bottom)); 
 }
 
 .newImageButton {
@@ -523,7 +526,9 @@ input {
 
 .cropContainer > .buttons {
   display: flex;
+  padding-bottom: calc(1rem + constant(safe-area-inset-bottom));
   padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+
 }
 
 .cropContainer > .buttons > div {
