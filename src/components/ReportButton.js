@@ -21,7 +21,7 @@ function ReportButton({ reportResult, croppedImages }) {
   let device = { platform: "app" };
 
   const openDialog = (e) => {
-    if (!runningOnMobile()) {
+    if (runningOnMobile()) {
       saveImages(croppedImages);
     } else {
       setDialogOpen(true);
