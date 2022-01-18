@@ -3,11 +3,8 @@ import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
-
 import axios from "axios";
-
 import "./App.css";
-
 import UploadedImage from "./components/Image";
 import IdResult from "./components/IdResult";
 import ExtendedResult from "./components/ExtendedResult";
@@ -17,33 +14,6 @@ import Menu from "./components/Menu";
 import About from "./components/About";
 import ExtendedManual from "./components/ExtendedManual";
 
-import { ApplicationInsights } from "@microsoft/applicationinsights-web";
-import {
-  ReactPlugin,
-  withAITracking,
-} from "@microsoft/applicationinsights-react-js";
-import { createBrowserHistory } from "history";
-
-const browserHistory = createBrowserHistory({ basename: "" });
-var reactPlugin = new ReactPlugin();
-
-if (
-  window.location.hostname === "orakel.test.artsdatabanken.no" ||
-  window.location.hostname === "orakel.artsdatabanken.no"
-) {
-  var appInsights = new ApplicationInsights({
-    config: {
-      instrumentationKey: "a108a996-bb13-431c-a929-b70f8e15c1ea",
-      extensions: [reactPlugin],
-      extensionConfig: {
-        [reactPlugin.identifier]: { history: browserHistory },
-      },
-    },
-  });
-  appInsights.loadAppInsights();
-} else {
-  console.log("Running on", window.location.hostname, "- not logging");
-}
 
 function App() {
   const [croppedImages, setCroppedImages] = useState([]);
@@ -62,6 +32,8 @@ function App() {
   const [usedGallery, setUsedGallery] = useState(false);
 
   document.addEventListener("backbutton", onBackKeyDown, false);
+  
+
   function onBackKeyDown() {
     // Handle the back button
     setMenuVisible(false);
@@ -70,13 +42,15 @@ function App() {
     setExtendedManualVisible(false);
   }
 
+
   const addImage = (images) => {
     setError(false);
 
     for (let i of images) {
-      setUncroppedImages([...uncroppedImages, i]);
+        setUncroppedImages([...uncroppedImages, i]);
     }
   };
+
 
   const imageCropped = (img) => {
     if (img) {
@@ -88,6 +62,7 @@ function App() {
     }
     setUncroppedImages([]);
   };
+
 
   const editImage = (index) => {
     setUncroppedImages([fullImages[index]]);
@@ -101,6 +76,7 @@ function App() {
     setResultStage(false);
   };
 
+
   const resetImages = () => {
     setMenuVisible(false);
     setError(false);
@@ -111,9 +87,11 @@ function App() {
     setResultStage(false);
   };
 
+
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
   };
+
 
   const toggleDarkMode = () => {
     if (window.cordova) {
@@ -122,11 +100,13 @@ function App() {
     setDarkMode(!darkMode);
   };
 
+
   const closeModal = () => {
     setChosenPrediction(false);
     setAboutVisible(false);
     setExtendedManualVisible(false);
   };
+
 
   const goToInput = () => {
     setResultStage(false);
@@ -139,10 +119,12 @@ function App() {
     }
   };
 
+
   const uploadMore = (sender) => {
     addImage(document.getElementById(sender).files);
     document.getElementById(sender).value = "";
   };
+
 
   const openGallery = (e) => {
     if (window.cordova) {
@@ -169,6 +151,7 @@ function App() {
     }
   };
 
+
   const openCamera = (e) => {
     if (window.cordova) {
       e.preventDefault();
@@ -194,6 +177,7 @@ function App() {
       }
     }
   };
+
 
   const getId = () => {
     setError(false);
@@ -231,6 +215,7 @@ function App() {
         setLoading(false);
       });
   };
+
 
   return (
     <React.Fragment>
@@ -434,4 +419,4 @@ function App() {
   );
 }
 
-export default withAITracking(reactPlugin, App);
+export default App;
