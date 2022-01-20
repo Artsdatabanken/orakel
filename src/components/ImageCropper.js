@@ -10,6 +10,8 @@ import RotateLeftIcon from "@material-ui/icons/RotateLeft";
 import RotateRightIcon from "@material-ui/icons/RotateRight";
 
 import "../App.css";
+import { convertImage } from '../helpers';
+
 
 if (!HTMLCanvasElement.prototype.toBlob) {
   Object.defineProperty(HTMLCanvasElement.prototype, "toBlob", {
@@ -147,17 +149,21 @@ export const ImageCropper = ({ imgFile, darkMode, imageCropped, imgSize }) => {
           onInitialized={(instance) => {
             setCropper(instance);
 
-            if (typeof imgFile === "object") {
-              const reader = new FileReader();
-              reader.onloadend = () => {
-                setImage(reader.result);
-                // initCropper();
-              };
-              reader.readAsDataURL(imgFile);
-            } else {
-              setImage("data:image/jpeg;base64," + imgFile);
-              // initCropper();
-            }
+            convertImage(imgFile).then(
+              imgFile => {
+                if (typeof imgFile === "object") {
+                  const reader = new FileReader();
+                  reader.onloadend = () => {
+                    setImage(reader.result);
+                    // initCropper();
+                  };
+                  reader.readAsDataURL(imgFile);
+                } else {
+                  setImage("data:image/jpeg;base64," + imgFile);
+                  // initCropper();
+                }
+              }
+            )
           }}
           // ready={initCropper}
           src={image}

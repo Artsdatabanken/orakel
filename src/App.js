@@ -13,7 +13,6 @@ import ImageCropper from "./components/ImageCropper";
 import Menu from "./components/Menu";
 import About from "./components/About";
 import ExtendedManual from "./components/ExtendedManual";
-import { convertImage } from './helpers';
 
 function App() {
   const [croppedImages, setCroppedImages] = useState([]);
@@ -46,7 +45,7 @@ function App() {
     setError(false);
     
     for (let i of images) {
-        setUncroppedImages([...uncroppedImages, await convertImage(i)]);
+        setUncroppedImages([...uncroppedImages, i]);
     }
   };
 
