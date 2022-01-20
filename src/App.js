@@ -13,8 +13,7 @@ import ImageCropper from "./components/ImageCropper";
 import Menu from "./components/Menu";
 import About from "./components/About";
 import ExtendedManual from "./components/ExtendedManual";
-import convert from 'heic-convert';
-import { getJpegName, shouldConvertFromHeic } from './helpers';
+import { convertImage } from './helpers';
 
 function App() {
   const [croppedImages, setCroppedImages] = useState([]);
@@ -43,26 +42,11 @@ function App() {
     setExtendedManualVisible(false);
   }
 
-  const convertImages = async (image) => {
-    if (shouldConvertFromHeic(image.name)) {
-      const arrayBuffer = await image.arrayBuffer();
-      const inputBuffer = Buffer.from(arrayBuffer);
-      const outputBuffer = await convert({
-        buffer: inputBuffer,      // the HEIC file buffer
-        format: 'JPEG',      // output format
-        quality: 1           // the jpeg compression quality, between 0 and 1
-      });
-      const file = new File([outputBuffer], getJpegName(image.name), { type: "image/jpeg", lastModified: image.lastModified });
-      return file;
-    } 
-    return image;
-  }
-
   const addImage = async (images) => {
     setError(false);
     
     for (let i of images) {
-        setUncroppedImages([...uncroppedImages, await convertImages(i)]);
+        setUncroppedImages([...uncroppedImages, await convertImage(i)]);
     }
   };
 
