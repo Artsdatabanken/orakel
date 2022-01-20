@@ -13,7 +13,7 @@ import ImageCropper from "./components/ImageCropper";
 import Menu from "./components/Menu";
 import About from "./components/About";
 import ExtendedManual from "./components/ExtendedManual";
-
+import { convertImage } from './helpers';
 
 function App() {
   const [croppedImages, setCroppedImages] = useState([]);
@@ -42,12 +42,11 @@ function App() {
     setExtendedManualVisible(false);
   }
 
-
-  const addImage = (images) => {
+  const addImage = async (images) => {
     setError(false);
-
+    
     for (let i of images) {
-        setUncroppedImages([...uncroppedImages, i]);
+        setUncroppedImages([...uncroppedImages, await convertImage(i)]);
     }
   };
 
@@ -120,8 +119,8 @@ function App() {
   };
 
 
-  const uploadMore = (sender) => {
-    addImage(document.getElementById(sender).files);
+  const uploadMore = async (sender) => {
+    await addImage(document.getElementById(sender).files);
     document.getElementById(sender).value = "";
   };
 
