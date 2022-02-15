@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, SafeAreaView, StatusBar, ScrollView, Pressable, Dimensions } from 'react-native';
+import React, { useState, useRef } from "react";
+import { View, Text, StyleSheet, Animated, StatusBar, ScrollView, Pressable, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import ImagePicker from 'react-native-image-crop-picker';
 import { SvgXml } from 'react-native-svg';
@@ -12,7 +12,6 @@ import IdResult from "./Components/idResult";
 const vw = Dimensions.get('window').width;
 const vh = Dimensions.get('window').height;
 
-
 const App = () => {
   const [croppedImages, setCroppedImages] = useState([]);
   const [uncroppedImages, setUncroppedImages] = useState([]);
@@ -21,7 +20,34 @@ const App = () => {
   const [inputStage, setInputStage] = useState(true);
   const [loading, setLoading] = useState(false);
   const [resultStage, setResultStage] = useState(false);
+  const viewSizeAnim = useRef(new Animated.Value(vh - 160 - 120)).current;
 
+  const hideView = () => {
+    // Will change fadeAnim value to 1 in 5 seconds
+    Animated.timing(viewSizeAnim, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: false
+    }).start();
+  };
+
+  const resultView = () => {
+    // Will change fadeAnim value to 0 in 3 seconds
+    Animated.timing(viewSizeAnim, {
+      toValue: vh - 160,
+      duration: 200,
+      useNativeDriver: false
+    }).start();
+  };
+
+  const inputView = () => {
+    // Will change fadeAnim value to 0 in 3 seconds
+    Animated.timing(viewSizeAnim, {
+      toValue: vh - 160 - 120,
+      duration: 200,
+      useNativeDriver: false
+    }).start();
+  };
 
   const editImage = (imgIndex) => {
     ImagePicker.openCropper({
@@ -36,13 +62,14 @@ const App = () => {
       );
     }
     ).catch(
-      () => {setCroppedImages(croppedImages.slice(0, imgIndex).concat(croppedImages.slice(imgIndex + 1)))}
+      () => { setCroppedImages(croppedImages.slice(0, imgIndex).concat(croppedImages.slice(imgIndex + 1))) }
     )
   }
 
   const getId = () => {
-    setError(false);
     setInputStage(false);
+    hideView();
+    setError(false);
     setLoading(true);
 
     let formdata = new FormData();
@@ -77,10 +104,14 @@ const App = () => {
           setPredictions(preds);
           setLoading(false);
           setResultStage(true);
+          resultView();
         });
 
       })
-      .catch((e) => console.log(e))
+      .catch((e) => {
+        console.log(e);
+        inputView();
+      })
       .done()
   };
 
@@ -90,6 +121,7 @@ const App = () => {
     setResultStage(false);
     setInputStage(true);
     setPredictions([]);
+    inputView();
   };
 
   return (
@@ -100,7 +132,7 @@ const App = () => {
 
       <TopSection images={croppedImages} editImage={editImage} />
 
-      {!!croppedImages.length && !predictions.length &&
+      {!!croppedImages.length && !predictions.length && inputStage &&
 
         <Pressable
           onPress={() => {
@@ -111,7 +143,7 @@ const App = () => {
         </Pressable>
       }
 
-      {!!croppedImages.length && !!predictions.length &&
+      {!!croppedImages.length && !!predictions.length && resultStage &&
 
         <Pressable
           onPress={() => {
@@ -123,12 +155,10 @@ const App = () => {
         </Pressable>
       }
 
+      <Animated.ScrollView style={[styles.scrollView, {
+        height: viewSizeAnim
+      }]}>
 
-
-
-
-
-      <ScrollView style={styles.scrollView}>
 
         {!!predictions.length &&
 
@@ -145,7 +175,7 @@ const App = () => {
             <HelpItem icon={"cloud-search-outline"} text={"Trykk «identifiser» for å se hva det kan være!"} />
           </View>
         )}
-      </ScrollView>
+      </Animated.ScrollView>
 
       {inputStage &&
         <View style={styles.bottom_bar} >
@@ -217,7 +247,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: .07 * vw,
     borderTopRightRadius: .07 * vw,
     paddingTop: .02 * vh,
-    flexGrow: 1,
+    flexGrow: 0,
     paddingHorizontal: .055 * vw
   },
 

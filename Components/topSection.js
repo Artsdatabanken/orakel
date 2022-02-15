@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
 
     view: {
         width: vw,
-        height: 160,
         flexShrink: 0,
+        flexGrow: 1,
         alignContent: "center",
         alignItems: "center",
         justifyContent: 'center',
