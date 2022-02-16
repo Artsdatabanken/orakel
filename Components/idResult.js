@@ -86,6 +86,11 @@ function IdResult({ result, openResult, croppedImages }) {
                     <Text >ALDRI SPIS NOE PGA APPEN</Text>
                 )}
             </View>
+
+            <SvgXml style={styles.chevron} xml={`<svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>`} />
+
+
+
         </View>
     );
 }
@@ -94,7 +99,8 @@ function IdResult({ result, openResult, croppedImages }) {
 
 const styles = StyleSheet.create({
     resultText: {
-        paddingLeft: .055 * vw
+        paddingLeft: .055 * vw,
+        flexGrow: 1
     },
 
     vernacularName: {
@@ -119,6 +125,13 @@ const styles = StyleSheet.create({
         alignItems: "center",
         borderBottomWidth: 1,
         borderBottomColor: "#ccc"
+    },
+
+    chevron: {
+        color: "#ccc",
+        width: 60,
+        height: 60,
+        flexGrow: 0
     }
 
 }

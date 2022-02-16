@@ -4510,60 +4510,15 @@
   dependencies:
     "p-locate" "^4.1.0"
 
-"lodash._reinterpolate@^3.0.0":
-  "integrity" "sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0="
-  "resolved" "https://registry.npmjs.org/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz"
-  "version" "3.0.0"
-
 "lodash.debounce@^4.0.8":
   "integrity" "sha1-gteb/zCmfEAF/9XiUVMArZyk168="
   "resolved" "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz"
   "version" "4.0.8"
 
-"lodash.frompairs@^4.0.1":
-  "integrity" "sha1-vE5SB/onV8E25XNhTpZkUGsrG9I="
-  "resolved" "https://registry.npmjs.org/lodash.frompairs/-/lodash.frompairs-4.0.1.tgz"
-  "version" "4.0.1"
-
-"lodash.isequal@^4.5.0":
-  "integrity" "sha1-QVxEePK8wwEgwizhDtMib30+GOA="
-  "resolved" "https://registry.npmjs.org/lodash.isequal/-/lodash.isequal-4.5.0.tgz"
-  "version" "4.5.0"
-
-"lodash.isstring@^4.0.1":
-  "integrity" "sha1-1SfftUVuynzJu5XV2ur4i6VKVFE="
-  "resolved" "https://registry.npmjs.org/lodash.isstring/-/lodash.isstring-4.0.1.tgz"
-  "version" "4.0.1"
-
 "lodash.merge@^4.6.2":
   "integrity" "sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ=="
   "resolved" "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz"
   "version" "4.6.2"
-
-"lodash.omit@^4.5.0":
-  "integrity" "sha1-brGa5aHuHdnfC5aeZs4Lf6MLXmA="
-  "resolved" "https://registry.npmjs.org/lodash.omit/-/lodash.omit-4.5.0.tgz"
-  "version" "4.5.0"
-
-"lodash.pick@^4.4.0":
-  "integrity" "sha1-UvBWEP/53tQiYRRB7R/BI6AwAbM="
-  "resolved" "https://registry.npmjs.org/lodash.pick/-/lodash.pick-4.4.0.tgz"
-  "version" "4.4.0"
-
-"lodash.template@^4.5.0":
-  "integrity" "sha512-84vYFxIkmidUiFxidA/KjjH9pAycqW+h980j7Fuz5qxRtO9pgB7MDFTdys1N7A5mcucRiDyEq4fusljItR1T/A=="
-  "resolved" "https://registry.npmjs.org/lodash.template/-/lodash.template-4.5.0.tgz"
-  "version" "4.5.0"
-  dependencies:
-    "lodash._reinterpolate" "^3.0.0"
-    "lodash.templatesettings" "^4.0.0"
-
-"lodash.templatesettings@^4.0.0":
-  "integrity" "sha512-stgLz+i3Aa9mZgnjr/O+v9ruKZsPsndy7qPZOchbqk2cnTU1ZaldKK+v7m54WoKIyxiuMZTKT2H81F8BeAc3ZQ=="
-  "resolved" "https://registry.npmjs.org/lodash.templatesettings/-/lodash.templatesettings-4.2.0.tgz"
-  "version" "4.2.0"
-  dependencies:
-    "lodash._reinterpolate" "^3.0.0"
 
 "lodash.throttle@^4.1.1":
   "integrity" "sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ="
@@ -5669,20 +5624,6 @@
   dependencies:
     "css-select" "^2.1.0"
     "css-tree" "^1.0.0-alpha.39"
-
-"react-native-vector-icons@^9.0.0":
-  "integrity" "sha512-qKX5d5/TafHmI4B7UOSZCL3BAGh7ZfF30iLwRgxBkKfZl2lKSuHp8Ottj9OyWh9b5fFtlg+LtyvZrns3g2kh+w=="
-  "resolved" "https://registry.npmjs.org/react-native-vector-icons/-/react-native-vector-icons-9.0.0.tgz"
-  "version" "9.0.0"
-  dependencies:
-    "lodash.frompairs" "^4.0.1"
-    "lodash.isequal" "^4.5.0"
-    "lodash.isstring" "^4.0.1"
-    "lodash.omit" "^4.5.0"
-    "lodash.pick" "^4.4.0"
-    "lodash.template" "^4.5.0"
-    "prop-types" "^15.7.2"
-    "yargs" "^16.1.1"
 
 "react-native@*", "react-native@>=0.40.0", "react-native@>=0.50.0", "react-native@0.67.1":
   "integrity" "sha512-doKN9qhtjilF+6p8603OVzqGKL4fq8EDAH5u00KPmZbL5ampHDQX9y8/uwlUvJggvHwZXlnvhW63u8Y1LA8rxw=="
@@ -7058,19 +6999,6 @@
     "which-module" "^2.0.0"
     "y18n" "^4.0.0"
     "yargs-parser" "^18.1.2"
-
-"yargs@^16.1.1":
-  "integrity" "sha512-D1mvvtDG0L5ft/jGWkLpG1+m0eQxOfaBvTNELraWj22wSVUMWxZUvYgJYcKh6jGGIkJFhH4IZPQhR4TKpc8mBw=="
-  "resolved" "https://registry.npmjs.org/yargs/-/yargs-16.2.0.tgz"
-  "version" "16.2.0"
-  dependencies:
-    "cliui" "^7.0.2"
-    "escalade" "^3.1.1"
-    "get-caller-file" "^2.0.5"
-    "require-directory" "^2.1.1"
-    "string-width" "^4.2.0"
-    "y18n" "^5.0.5"
-    "yargs-parser" "^20.2.2"
 
 "yargs@^16.2.0":
   "integrity" "sha512-D1mvvtDG0L5ft/jGWkLpG1+m0eQxOfaBvTNELraWj22wSVUMWxZUvYgJYcKh6jGGIkJFhH4IZPQhR4TKpc8mBw=="
