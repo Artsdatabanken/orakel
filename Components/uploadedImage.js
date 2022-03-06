@@ -15,7 +15,6 @@ const UploadedImage = ({ img, imgIndex, editImage }) => {
             <Image
                 source={{ uri: img["path"] }}
                 style={styles.img}
-                onPr
             />
         </TouchableWithoutFeedback>
 
@@ -31,7 +30,6 @@ const styles = StyleSheet.create({
         height: .17 * vw,
         borderRadius: .04 * vw,
         marginRight: .04 * vw,
-
     }
 })
 

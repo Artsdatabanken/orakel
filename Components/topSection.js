@@ -56,18 +56,16 @@ const styles = StyleSheet.create({
 
     view: {
         width: vw,
-        flexShrink: 0,
-        flexGrow: 1,
+        height: .186*vh,
         alignContent: "center",
         alignItems: "center",
         justifyContent: 'center',
         color: "#fff",
-        padding: .04 * vw
-        },
+        padding: .04 * vw,
+    },
 
     images: {
         color: "#fff",
-        padding: .04 * vw,
     },
 
 }

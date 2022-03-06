@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Pressable } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 const vw = Dimensions.get('window').width;
@@ -70,7 +70,9 @@ function IdResult({ result, openResult, croppedImages }) {
     };
 
     return (
-        <View style={styles.result}>
+        <Pressable style={styles.result}
+            onPress={() => openResultModal()}
+        >
             <SvgXml xml={xml} width="70" height="70" />
             <View style={styles.resultText}>
                 <Text style={styles.vernacularName}>
@@ -91,7 +93,7 @@ function IdResult({ result, openResult, croppedImages }) {
 
 
 
-        </View>
+        </Pressable>
     );
 }
 

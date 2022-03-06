@@ -11,9 +11,13 @@
   },
   "dependencies": {
     "axios": "^0.25.0",
+    "hyphenation.en-us": "^0.2.1",
+    "hyphenation.nb-no": "^0.2.1",
+    "hypher": "^0.2.5",
     "react": "17.0.2",
     "react-native": "0.67.1",
     "react-native-image-crop-picker": "^0.37.2",
+    "react-native-modal": "^13.0.0",
     "react-native-svg": "^12.1.1"
   },
   "devDependencies": {
