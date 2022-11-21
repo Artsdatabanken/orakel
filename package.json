@@ -31,7 +31,7 @@
     "react": "^16.14.0",
     "react-cropper": "^2.1.7",
     "react-dom": "^16.14.0",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^5.0.1",
     "rimraf": "^3.0.2"
   },
   "browserslist": {
