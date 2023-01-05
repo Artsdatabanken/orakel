@@ -58,6 +58,8 @@ steps:
     cp /Users/runner/work/_temp/orakel_keystore.jks .
     cp /Users/runner/Library/Android/sdk/build-tools/32.0.0/d8 /Users/runner/Library/Android/sdk/build-tools/32.0.0/dx
     cp /Users/runner/Library/Android/sdk/build-tools/32.0.0/lib/d8.jar /Users/runner/Library/Android/sdk/build-tools/32.0.0/lib/dx.jar
+    cp /Users/runner/Library/Android/sdk/build-tools/33.0.1/d8 /Users/runner/Library/Android/sdk/build-tools/33.0.1/dx
+    cp /Users/runner/Library/Android/sdk/build-tools/33.0.1/lib/d8.jar /Users/runner/Library/Android/sdk/build-tools/33.0.1/lib/dx.jar
     cordova build android --release --buildConfig=build.json -- --packageType=bundle
   displayName: 'build Android'
 
