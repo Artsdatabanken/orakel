@@ -14,25 +14,23 @@ const icons = {
 }
 
 
-const HelpItem = ({ text, icon }) => {
+const HelpItem = ({ text, icon, theme }) => {
     return (
         <View style={styles.view}>
-            <SvgXml xml={icons[icon]} style={styles.icon} />
-            <Text style={styles.text}>{text}</Text>
+            <SvgXml xml={icons[icon]} style={[styles.icon, theme.styles.content]} />
+            <Text style={[styles.text, theme.styles.content]}>{text}</Text>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     text: {
-        fontSize: .026 * vh,
+        fontSize: .05 * vw,
         paddingLeft: vw * .08,
-        color: "rgb(76, 74, 72)",
         flexGrow: 1
     },
 
     icon: {
-        color: "rgb(76, 74, 72)",
         flexGrow: 0,
         height: .1 * vw,
         width: .1 * vw,
@@ -43,7 +41,7 @@ const styles = StyleSheet.create({
         width: vw * .7,
         flexDirection: "row",
         alignContent: "center",
-        alignItems: "center"
+        alignItems: "center",
     },
 
 }

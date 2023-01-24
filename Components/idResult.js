@@ -5,7 +5,7 @@ import { SvgXml } from 'react-native-svg';
 const vw = Dimensions.get('window').width;
 const vh = Dimensions.get('window').height;
 
-function IdResult({ result, openResult, croppedImages }) {
+function IdResult({ result, openResult, theme }) {
     const percentage = result.probability * 100;
     const strokes = percentage.toString() + " " + (100 - percentage).toString();
     const colors = [
@@ -55,9 +55,9 @@ function IdResult({ result, openResult, croppedImages }) {
 
 
     <text
-    y="25"
+    y="24.25"
     x="22"
-  style="font-size:10;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;">${Math.round(percentage)}%</text>
+  style="font-size:8.5;text-align:center;text-anchor:middle;fill:currentColor;fill-opacity:1;">${Math.round(percentage)}%</text>
 
 
 
@@ -73,23 +73,23 @@ function IdResult({ result, openResult, croppedImages }) {
         <Pressable style={styles.result}
             onPress={() => openResultModal()}
         >
-            <SvgXml xml={xml} width="70" height="70" />
-            <View style={styles.resultText}>
-                <Text style={styles.vernacularName}>
+            <SvgXml xml={xml} style={[styles.resultStats, theme.styles.content]} width={vw * .18} height={vw * .18}/>
+            <View style={[styles.resultText]}>
+                <Text style={[styles.vernacularName, theme.styles.content]}>
                     {result.taxon.vernacularName.charAt(0).toUpperCase()}
                     &#8288;
                     {result.taxon.vernacularName.slice(1)}</Text>
-                <Text style={styles.scientific}>
+                <Text style={[styles.scientific, theme.styles.content]}>
                     {result.taxon.name.charAt(0)}
                     &#8288;
                     {result.taxon.name.slice(1)}</Text>
-                <Text style={styles.groupName}>{result.taxon.groupName}</Text>
+                <Text style={[styles.groupName, theme.styles.content]}>{result.taxon.groupName}</Text>
                 {result.taxon.groupName === "Sopper" && (
-                    <Text >ALDRI SPIS NOE PGA APPEN</Text>
+                    <Text style={[styles.warning, theme.styles.content_warning]}>ALDRI SPIS NOE PGA APPEN</Text>
                 )}
             </View>
 
-            <SvgXml style={styles.chevron} xml={`<svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>`} />
+            <SvgXml style={[styles.chevron, theme.styles.content]} xml={`<svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>`} />
 
 
 
@@ -100,24 +100,31 @@ function IdResult({ result, openResult, croppedImages }) {
 
 
 const styles = StyleSheet.create({
+
+    resultStats: {
+        maxWidth: vw * .18,
+        flexGrow: 0,
+        flexShrink: 0,
+    },
+
     resultText: {
-        paddingLeft: .055 * vw,
-        flexGrow: 1
+        paddingLeft: .05 * vw,
+        flexGrow: 1,
+        maxWidth: vw - 120,
     },
 
     vernacularName: {
-        fontSize: .065 * vw,
+        fontSize: .05 * vw,
     },
 
     scientific: {
-        fontSize: .04 * vw,
-        fontStyle: "italic"
+        fontSize: .035 * vw,
+        fontStyle: "italic",
     },
 
     groupName: {
         fontVariant: [ 'small-caps' ],
-        fontStyle: "normal"
-
+        fontStyle: "normal",
     },
 
     result: {
@@ -130,10 +137,16 @@ const styles = StyleSheet.create({
     },
 
     chevron: {
-        color: "#ccc",
-        width: 60,
-        height: 60,
-        flexGrow: 0
+        width: vw * .12,
+        height: vw * .12,
+        flexGrow: 0,
+        flexShrink: 0,
+        opacity: .25
+    },
+
+    warning: {
+        paddingHorizontal: .03 * vw,
+        paddingVertical: 1,
     }
 
 }

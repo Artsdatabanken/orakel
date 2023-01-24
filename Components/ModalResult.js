@@ -1,51 +1,52 @@
 import React from "react";
-import { View, Text, StyleSheet, Dimensions, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Pressable, Linking } from 'react-native';
+import ReportButton from "./reportButton";
 
 const vw = Dimensions.get('window').width;
 const vh = Dimensions.get('window').height;
 
 
 
-function ModalResult({ result, openResult, croppedImages }) {
+function ModalResult({ result, croppedImages, theme}) {
     const percentage = result.probability * 100;
-
-    const openResultModal = () => {
-        openResult(result);
-    };
 
     return (
         <View style={styles.result}
         >
             <View style={styles.resultText}>
-                <Text style={styles.vernacularName}>
+                <Text style={[styles.vernacularName, theme.styles.content]}>
                     {result.taxon.vernacularName.charAt(0).toUpperCase() + result.taxon.vernacularName.slice(1)}</Text>
-                <Text style={styles.scientific}>
+                <Text style={[styles.scientific, theme.styles.content]}>
                     {result.taxon.name.charAt(0)}
                     &#8288;
                     {result.taxon.name.slice(1)}</Text>
-                <Text style={styles.groupName}>{result.taxon.groupName}</Text>
+                <Text style={[styles.groupName, theme.styles.content]}>{result.taxon.groupName}</Text>
                 {result.taxon.groupName === "Sopper" && (
-                    <Text >ALDRI SPIS NOE PGA APPEN</Text>
+                    <Text style={[theme.styles.content_warning]}>ALDRI SPIS NOE PGA APPEN</Text>
                 )}
             </View>
 
-            <Text style={styles.infoText}>
+            <Text style={[styles.infoText, theme.styles.content]}>
                 Artsorakelet gir {Math.round(percentage)} % treff for {result.taxon.vernacularName} basert
-                på bildet ditt. Det er ikke sagt at det stemmer, du må selv kontrollere at det er riktig,
+                på {croppedImages.length > 1 ? "bildene dine" : "bildet ditt"}. Det er ikke sagt at det stemmer, du må selv kontrollere at det er riktig,
                 særlig hvis du skal rapportere funnet.
             </Text>
 
             <View style={styles.actionButtons}>
                 <Pressable
-
-                    style={styles.idButton}>
-                    <Text style={styles.idButtonText}>Om arten</Text>
+                    style={[styles.button, theme.styles.button]}
+                    onPress={ ()=>{ Linking.openURL(result.taxon.infoUrl)}}
+                    >
+                    <Text style={[styles.buttonText, theme.styles.button]}>Om arten</Text>
                 </Pressable>
 
+
+                <ReportButton croppedImages={croppedImages} reportResult={result} styles={styles} theme={theme}/>
+{/* 
                 <Pressable
                     style={styles.idButton}>
                     <Text style={styles.idButtonText}>Rapporter funn</Text>
-                </Pressable>
+                </Pressable> */}
 
 
 
@@ -97,18 +98,17 @@ const styles = StyleSheet.create({
     actionButtons: {
         flexDirection: "row",
         flexGrow: 0,
+        justifyContent: "space-around",
     },
 
-
-    idButton: {
-        height: 40,
-        width: .4 * vw,
+    button: {
+        height: .10 * vw,
+        width: .37 * vw,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 20,
         borderWidth: 2.5,
         borderColor: "#fff",
-        backgroundColor: "rgb(221, 133, 8)",
         zIndex: 100,
         shadowColor: "#000",
         shadowOffset: {
@@ -120,9 +120,8 @@ const styles = StyleSheet.create({
         elevation: 6,
     },
 
-    idButtonText: {
-        color: "#fff",
-        fontSize: 16,
+    buttonText: {
+        fontSize: .04 * vw
     },
 
 }

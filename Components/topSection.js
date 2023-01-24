@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions, ScrollView, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import UploadedImage from './uploadedImage';
 
 const vw = Dimensions.get('window').width;
 const vh = Dimensions.get('window').height;
 
 
-const TopSection = ({ images, editImage }) => {
+const TopSection = ({ images, editImage, repeatLastAction, loading }) => {
 
     return (
         <View style={styles.view}>
@@ -18,8 +18,17 @@ const TopSection = ({ images, editImage }) => {
                             key={index}
                             imgIndex={index}
                             editImage={editImage}
+                            loading={loading}
                         />
                     ))}
+
+                    {!loading &&
+                        <UploadedImage
+                            editImage={repeatLastAction}
+                        />
+
+                    }
+
                 </ScrollView>
             }
 
@@ -56,16 +65,19 @@ const styles = StyleSheet.create({
 
     view: {
         width: vw,
-        height: .186*vh,
         alignContent: "center",
         alignItems: "center",
         justifyContent: 'center',
         color: "#fff",
         padding: .04 * vw,
+        flexGrow: 1,
+        minHeight: .18 * vh,
+        display: "flex"
     },
 
     images: {
         color: "#fff",
+        flexGrow: 0
     },
 
 }
