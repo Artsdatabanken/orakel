@@ -58,3 +58,7 @@ target 'Artsorakel' do
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end
+
+pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+pod 'Permission-MediaLibrary', :path => "#{permissions_path}/MediaLibrary"
+
