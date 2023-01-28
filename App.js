@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import {
-  View, Text, StyleSheet, Animated, StatusBar, Pressable,
+  View, Text, StyleSheet, Animated, StatusBar, Pressable, SafeAreaView,
   Dimensions, TouchableWithoutFeedback, BackHandler, Appearance
 } from 'react-native';
 import Modal from "react-native-modal";
@@ -295,7 +295,7 @@ const App = () => {
   };
 
   return (
-    <View style={[styles.container, theme.styles.accent]}>
+    <SafeAreaView style={[styles.container, theme.styles.accent]}>
       <StatusBar
         backgroundColor={(theme.name === "dark" ? dark2 : accent)}
       />
@@ -440,7 +440,7 @@ const App = () => {
         </View>
       }
 
-    </View >
+    </SafeAreaView >
   )
 }
 
