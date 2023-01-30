@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     introText: {
         fontSize: .052 * vw,
         fontWeight: "600",
-        paddingVertical: .05 * vw,
+        paddingBottom: .05 * vw,
     },
 
     text: {

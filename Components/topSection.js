@@ -71,13 +71,14 @@ const styles = StyleSheet.create({
         color: "#fff",
         padding: .04 * vw,
         flexGrow: 1,
-        minHeight: .18 * vh,
+        minHeight: .2 * vh,
         display: "flex"
     },
 
     images: {
         color: "#fff",
-        flexGrow: 0
+        flexGrow: 0,
+        paddingBottom: .015 * vh
     },
 
 }

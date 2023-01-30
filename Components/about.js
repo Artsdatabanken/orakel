@@ -120,7 +120,7 @@ function About({theme}) {
         <ScrollView>
             <Text style={[styles.version, theme.styles.content]}>Versjon 2.02.00</Text>
 
-            <SvgXml style={[theme.styles.content]} xml={logoWide} width={vw * .8} height={vh * .035} />
+            <SvgXml style={[theme.styles.content]} xml={logoWide} width={.9 * vw} height={vh * .035} />
 
             <Text style={[styles.introText, theme.styles.content]}>Artsorakelet er utviklet av Artsdatabanken i samarbeid med Naturalis Biodiversity Center. Appen prøver å artsbestemme bilder ved hjelp av maskinlæring.</Text>
 
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
 
     appIcon: {
         marginVertical:  vw * .035,
-        width: vw * .8,
+        width: vw * .9,
         height: vh * .06,
     },
 

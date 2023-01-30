@@ -7,7 +7,7 @@ const vh = Dimensions.get('window').height;
 
 
 
-function ModalResult({ result, croppedImages, theme}) {
+function ResultDetails({ result, croppedImages, theme}) {
     const percentage = result.probability * 100;
 
     return (
@@ -127,4 +127,4 @@ const styles = StyleSheet.create({
 }
 )
 
-export default ModalResult;
+export default ResultDetails;
