@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback, Pressable } from 'react-native';
+import React, { useRef } from 'react';
+import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback, Pressable, Animated } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 
@@ -10,6 +10,24 @@ const UploadedImage = ({ img, imgIndex, editImage, loading }) => {
     const doEdit = () => {
         editImage(imgIndex);
     };
+
+    const fadeAnim = useRef(new Animated.Value(1)).current;
+
+    const opacityAnimation = Animated.loop(
+        Animated.sequence([
+            Animated.timing(fadeAnim, {
+                toValue: .4,
+                duration: 300,
+                useNativeDriver: true
+            }),
+            Animated.timing(fadeAnim, {
+                toValue: 1,
+                duration: 300,
+                useNativeDriver: true
+            })
+        ])
+    )
+
 
     if (!img) {
         return (
@@ -22,17 +40,23 @@ const UploadedImage = ({ img, imgIndex, editImage, loading }) => {
         );
     }
 
-
+    if (loading) {
+        opacityAnimation.start();
+    }
+    else {
+        opacityAnimation.reset();
+    }
 
     return (
         <TouchableWithoutFeedback onPress={doEdit}>
-            <Image
-                source={{ uri: img["path"] }}
-                style={[
-                    styles.img,
-                    ]}
-            />
-        </TouchableWithoutFeedback>
+            <Animated.View
+                style={{ opacity: fadeAnim }}>
+                <Image
+                    source={{ uri: img["path"] }}
+                    style={[styles.img]}
+                />
+            </Animated.View>
+        </TouchableWithoutFeedback >
     );
 }
 
