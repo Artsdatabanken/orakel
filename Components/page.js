@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    View, Text, StyleSheet, Pressable, Dimensions, Modal
+    View, Text, StyleSheet, Pressable, Dimensions, Modal, SafeAreaView
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
@@ -15,7 +15,7 @@ function Page({ theme, page, setShowPage }) {
             animationType="slide"
             onRequestClose={() => setShowPage(false)}
         >
-            <View style={[theme.styles.content, styles.content]}>
+            <SafeAreaView style={[theme.styles.content, styles.content]}>
                 <View
                     style={styles.header}
                 >
@@ -33,7 +33,7 @@ function Page({ theme, page, setShowPage }) {
                 </View>
 
                 {page && page.content}
-            </View>
+            </SafeAreaView>
         </Modal>
     );
 }
