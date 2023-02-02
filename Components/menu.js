@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Dimensions, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Pressable, ScrollView } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import About from "./about";
 import Manual from "./manual";
@@ -12,7 +12,8 @@ const vh = Dimensions.get('window').height;
 function Menu({ theme, setShowPage, toggleTheme, reset }) {
 
     return (
-        <>
+        <ScrollView style={[styles.content]}>
+
             <Pressable style={styles.menuItem} onPress={() => {
                 toggleTheme();
                 setShowPage(false);
@@ -75,12 +76,14 @@ function Menu({ theme, setShowPage, toggleTheme, reset }) {
                     Om Artsorakelet
                 </Text>
             </Pressable>
-        </>
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
-
+    content: {
+        paddingHorizontal: .06 * vw,
+      },
 
     menuItem: {
         padding: .025 * vw,

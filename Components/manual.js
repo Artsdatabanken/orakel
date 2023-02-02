@@ -16,10 +16,10 @@ const brain = `<svg viewBox="0 0 24 24"><path fill="currentColor" d="M13 3C16.88
 const info = `<svg style="width:24px;height:24px" viewBox="0 0 24 24">
 <path fill="currentColor" d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.23,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z" />
 </svg>`
-function Manual({theme}) {
+function Manual({ theme }) {
 
     return (
-        <ScrollView>
+        <ScrollView style={[styles.content]}>
 
             <Text style={[styles.introText, theme.styles.content]}>Artsdatabankens Artsorakel prøver å artsbestemme bilder ved hjelp av maskinlæring. Artsorakelet kjenner kun viltlevende arter (ingen husdyr, hageplanter, osv.) og gir svar på artsnivå (og noen underarter).</Text>
 
@@ -79,6 +79,10 @@ function Manual({theme}) {
 }
 
 const styles = StyleSheet.create({
+    content: {
+        paddingHorizontal: .06 * vw,
+    },
+
     introText: {
         fontSize: .052 * vw,
         fontWeight: "600",

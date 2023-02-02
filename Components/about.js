@@ -87,7 +87,7 @@ const Naturalis = `<svg version="1.1" viewBox="0 0 501.3 272.1" xmlns="http://ww
 function About({theme}) {
 
     return (
-        <ScrollView>
+        <ScrollView style={[styles.content]}>
 
             <SvgXml style={[theme.styles.content]} xml={logoWide} width={.9 * vw} height={vh * .035} />
 
@@ -112,6 +112,10 @@ function About({theme}) {
 }
 
 const styles = StyleSheet.create({
+    content: {
+      paddingHorizontal: .06 * vw,
+    },
+
     introText: {
         fontSize: .052 * vw,
         fontWeight: "600",

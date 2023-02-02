@@ -41,7 +41,6 @@ function Page({ theme, page, setShowPage }) {
 const styles = StyleSheet.create({
     content: {
         opacity: 1,
-        padding: .06 * vw,
         flex: 1,
     },
 
@@ -63,7 +62,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "flex-start",
         marginBottom: .035 * vw,
-        paddingBottom: .040 * vw,
+        padding: .04 * vw,
         borderBottomWidth: 1,
         borderBottomColor: "#ccc"
       },
