@@ -87,7 +87,9 @@ const styles = StyleSheet.create({
 
     result: {
         flexDirection: "column",
-        flex: 1
+        flex: 1,
+        paddingHorizontal: .06 *vw,
+        paddingBottom: .06 * vw,
     },
 
     infoText: {
