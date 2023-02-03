@@ -301,95 +301,99 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={[styles.container, theme.styles.accent]}>
+    <>
       <StatusBar
         backgroundColor={(theme.name === "dark" ? dark2 : accent)}
       />
+      <SafeAreaView style={[{ flex: 0 }, theme.styles.accent]} />
+      <SafeAreaView style={[styles.container, theme.styles.content]}>
+        <View style={[theme.styles.accent, styles.container]} >
 
-      <Page
-        theme={theme}
-        page={showPage}
-        setShowPage={setShowPage}
-      />
-
-      <View style={styles.menu_bar}>
-        <SvgXml style={theme.styles.accent} xml={logo} width="21" height="25" />
-        <Pressable
-          onPress={() => {
-            setShowPage(
-              {
-                "title": "Artsorakel",
-                "content": <Menu theme={theme} setShowPage={setShowPage} toggleTheme={toggleTheme} reset={reset} />
-              }
-            );
-          }}>
-          <SvgXml xml={`<svg><path fill="#fff" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>`} width="25" height="25" />
-        </Pressable>
-      </View>
-
-      <TopSection images={croppedImages} editImage={editImage} repeatLastAction={repeatLastAction} loading={loading} />
-
-      {
-        !!croppedImages.length && !predictions.length && !loading &&
-
-        <Pressable
-          onPress={() => {
-            getId()
-          }}
-          style={[styles.idButton, theme.styles.button]}>
-          <Text style={[styles.idButtonText, theme.styles.button]}>Identifiser</Text>
-        </Pressable>
-      }
-
-      {
-        !!croppedImages.length && !!predictions.length &&
-
-        <Pressable
-          onPress={() => {
-            reset()
-          }}
-          style={[styles.idButton, theme.styles.button]}>
-          <SvgXml style={theme.styles.button} xml={`<svg><path fill="currentColor" d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z"></path></svg>`} width="25" height="25" />
-
-        </Pressable>
-      }
-
-      <Animated.ScrollView style={[styles.scrollView, theme.styles.content, {
-        height: viewSizeAnim
-      }]}>
-
-
-        {!!predictions.length &&
-          predictions.map((pred, i) => (
-            <IdResult result={pred} openResult={openResult} key={i} theme={theme} />
-          ))
-        }
-
-        {!predictions.length && (
-          <View>
-            <HelpItem icon={"flower-tulip"} text={"Ta eller velg et bilde av en art i norsk natur"} theme={theme} />
-            <HelpItem icon={"crop-free"} text={"Zoom inn til arten på bildet"} theme={theme} />
-            <HelpItem icon={"image-multiple-outline"} text={"Flere bilder gir sikrere gjenkjenning"} theme={theme} />
-            <HelpItem icon={"cloud-search-outline"} text={"Trykk «identifiser» for å se hva det kan være!"} theme={theme} />
-          </View>
-        )}
-      </Animated.ScrollView>
-
-      {
-        !predictions.length && !loading &&
-        <View style={[styles.bottom_bar, theme.styles.content]} >
-          <CameraButtons
-            setUncroppedImages={setUncroppedImages}
-            uncroppedImages={uncroppedImages}
-            setCroppedImages={setCroppedImages}
-            croppedImages={croppedImages}
-            setUsedGallery={setUsedGallery}
+          <Page
             theme={theme}
+            page={showPage}
+            setShowPage={setShowPage}
           />
-        </View>
-      }
 
-    </SafeAreaView >
+          <View style={styles.menu_bar}>
+            <SvgXml style={theme.styles.accent} xml={logo} width="21" height="25" />
+            <Pressable
+              onPress={() => {
+                setShowPage(
+                  {
+                    "title": "Artsorakel",
+                    "content": <Menu theme={theme} setShowPage={setShowPage} toggleTheme={toggleTheme} reset={reset} />
+                  }
+                );
+              }}>
+              <SvgXml xml={`<svg><path fill="#fff" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>`} width="25" height="25" />
+            </Pressable>
+          </View>
+
+          <TopSection images={croppedImages} editImage={editImage} repeatLastAction={repeatLastAction} loading={loading} />
+
+          {
+            !!croppedImages.length && !predictions.length && !loading &&
+
+            <Pressable
+              onPress={() => {
+                getId()
+              }}
+              style={[styles.idButton, theme.styles.button]}>
+              <Text style={[styles.idButtonText, theme.styles.button]}>Identifiser</Text>
+            </Pressable>
+          }
+
+          {
+            !!croppedImages.length && !!predictions.length &&
+
+            <Pressable
+              onPress={() => {
+                reset()
+              }}
+              style={[styles.idButton, theme.styles.button]}>
+              <SvgXml style={theme.styles.button} xml={`<svg><path fill="currentColor" d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z"></path></svg>`} width="25" height="25" />
+
+            </Pressable>
+          }
+
+          <Animated.ScrollView style={[styles.scrollView, theme.styles.content, {
+            height: viewSizeAnim
+          }]}>
+
+
+            {!!predictions.length &&
+              predictions.map((pred, i) => (
+                <IdResult result={pred} openResult={openResult} key={i} theme={theme} />
+              ))
+            }
+
+            {!predictions.length && (
+              <View>
+                <HelpItem icon={"flower-tulip"} text={"Ta eller velg et bilde av en art i norsk natur"} theme={theme} />
+                <HelpItem icon={"crop-free"} text={"Zoom inn til arten på bildet"} theme={theme} />
+                <HelpItem icon={"image-multiple-outline"} text={"Flere bilder gir sikrere gjenkjenning"} theme={theme} />
+                <HelpItem icon={"cloud-search-outline"} text={"Trykk «identifiser» for å se hva det kan være!"} theme={theme} />
+              </View>
+            )}
+          </Animated.ScrollView>
+
+          {
+            !predictions.length && !loading &&
+            <View style={[styles.bottom_bar, theme.styles.content]} >
+              <CameraButtons
+                setUncroppedImages={setUncroppedImages}
+                uncroppedImages={uncroppedImages}
+                setCroppedImages={setCroppedImages}
+                croppedImages={croppedImages}
+                setUsedGallery={setUsedGallery}
+                theme={theme}
+              />
+            </View>
+          }
+        </View>
+      </SafeAreaView >
+    </>
   )
 }
 
