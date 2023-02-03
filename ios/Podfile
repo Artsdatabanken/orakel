@@ -59,6 +59,3 @@ target 'Artsorakel' do
   end
 end
 
-pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
-pod 'Permission-MediaLibrary', :path => "#{permissions_path}/MediaLibrary"
-
