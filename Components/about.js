@@ -1,8 +1,7 @@
 import React from "react";
 import { ScrollView, View, Text, StyleSheet, Dimensions, Linking} from 'react-native';
 import { SvgXml } from 'react-native-svg';
-
-
+import { version } from "../package.json"
 
 const vw = Dimensions.get('window').width;
 const vh = Dimensions.get('window').height;
@@ -83,7 +82,6 @@ const Naturalis = `<svg version="1.1" viewBox="0 0 501.3 272.1" xmlns="http://ww
 <path class="st0" d="M105.8 153.9c-9.4 6-21.8 3.2-27.8-6.1L3.3 31C-2.7 21.6.1 9.2 9.4 3.2c9.4-6 21.8-3.2 27.8 6.1l74.6 116.8c6.1 9.4 3.4 21.8-6 27.8m9.5 40.4c0 11.1-9 20.1-20.1 20.1h-75C9 214.5 0 205.5 0 194.3c0-11.1 9-20.1 20.1-20.1h75c11.2 0 20.2 9 20.2 20.1m0 56.3c0 11.1-9 20.1-20.1 20.1h-75C9 270.7 0 261.7 0 250.6c0-11.1 9-20.1 20.1-20.1h75c11.2-.1 20.2 8.9 20.2 20.1" fill="currentColor"/>
 </svg>`
 
-
 function About({theme}) {
 
     return (
@@ -91,7 +89,7 @@ function About({theme}) {
 
             <SvgXml style={[theme.styles.content]} xml={logoWide} width={.9 * vw} height={vh * .035} />
 
-            <Text style={[styles.version, theme.styles.content]}>Versjon 2.02.00</Text>
+            <Text style={[styles.version, theme.styles.content]}>Versjon {version}</Text>
 
             <Text style={[styles.introText, theme.styles.content]}>Artsorakelet er utviklet av Artsdatabanken i samarbeid med Naturalis Biodiversity Center. Appen prøver å artsbestemme bilder ved hjelp av maskinlæring.</Text>
 

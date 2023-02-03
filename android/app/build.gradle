@@ -3,6 +3,31 @@ apply plugin: "com.facebook.react"
 
 import com.android.build.OutputFile
 
+
+/**
+ * From https://stackoverflow.com/questions/35924721/how-to-update-version-number-of-react-native-app
+ * Gets the version number and incremental version code from package.json and git commits, respectively
+ */
+
+import groovy.json.JsonSlurper
+
+def getNpmVersion() {
+    def inputFile = new File("../package.json")
+    def packageJson = new JsonSlurper().parseText(inputFile.text)
+    return packageJson["version"]
+}
+/* calculated from git commits to give sequential integers */
+def getGitVersion() {
+    def process = "git rev-list master --first-parent --count".execute()
+    return process.text.toInteger()
+}
+
+def userVer = getNpmVersion()
+def googleVer = getGitVersion()
+
+/** --------------------------------------------------------------------------- */
+
+
 /**
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.
@@ -98,8 +123,8 @@ android {
         applicationId "com.artsorakel"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode googleVer
+        versionName userVer
     }
 
     splits {
