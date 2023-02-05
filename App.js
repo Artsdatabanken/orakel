@@ -108,16 +108,24 @@ const App = () => {
   });
 
 
+  let controller = new AbortController();
 
   const backHandler = BackHandler.addEventListener(
     'hardwareBackPress',
     () => {
-      if (!!predictions.length) {
+      if (loading) {
+        controller.abort();
+        setPredictions([]);
+        inputView();
+        return true;
+      }
+      else if (!!predictions.length) {
         reset();
         return true;
       }
       else if (!!croppedImages.length) {
         editImage(croppedImages.length - 1)
+        setLoading(false);
         return true;
       }
       BackHandler.exitApp();
@@ -265,6 +273,7 @@ const App = () => {
     }
 
     fetch('https://ai.artsdatabanken.no', {
+      signal: controller.signal,
       method: 'POST',
       headers: {
         "Content-Type": "multipart/form-data",
@@ -362,13 +371,13 @@ const App = () => {
           }]}>
 
 
-            {!!predictions.length &&
+            {!!predictions.length && !!croppedImages.length &&
               predictions.map((pred, i) => (
                 <IdResult result={pred} openResult={openResult} key={i} theme={theme} />
               ))
             }
 
-            {!predictions.length && (
+            {(!predictions.length || !croppedImages.length) && (
               <View>
                 <HelpItem icon={"flower-tulip"} text={"Ta eller velg et bilde av en art i norsk natur"} theme={theme} />
                 <HelpItem icon={"crop-free"} text={"Zoom inn til arten på bildet"} theme={theme} />
