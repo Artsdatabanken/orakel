@@ -51,7 +51,7 @@ steps:
 
 - script: |
     npm install
-    npx react-native build-android --buildConfig=build.json --packageType=bundle
+    npm react-native build-android --buildConfig=build.json --packageType=bundle
     cp /Users/runner/work/_temp/build.json .
     cp /Users/runner/work/_temp/orakel_keystore.jks .
     cp /Users/runner/Library/Android/sdk/build-tools/32.0.0/d8 /Users/runner/Library/Android/sdk/build-tools/32.0.0/dx
@@ -74,12 +74,8 @@ steps:
   displayName: Publish Android artifacts
 - task: NodeTool@0
   inputs:
-    versionSpec: '10.x'
+    versionSpec: 'latest'
   displayName: 'Install Node.js'
-- script: |
-    
-
-  displayName: 'build Mac'
 
 - task: Xcode@5
   inputs:
