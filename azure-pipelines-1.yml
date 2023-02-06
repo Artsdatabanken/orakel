@@ -1,0 +1,112 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+- react_native
+
+pool:
+  vmImage: macOS-11
+
+variables:
+  scheme: 'Artsorakel'
+  sdk: 'iphoneos'
+  configuration: 'Release'
+  system.debug: true
+
+steps:
+- task: InstallAppleCertificate@2
+  inputs:
+    certSecureFile: 'artsorakel.p12'
+    certPwd: $(appCertificatePassword)
+    keychain: 'temp'
+    deleteCert: true
+    
+- task: InstallAppleProvisioningProfile@1
+  inputs:
+    provProfileSecureFile: 'ArtsorakelNewProvisionProfile.mobileprovision'
+    removeProfile: true
+
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'fonts.zip'
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'build.json'
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'orakel_keystore.jks'
+- task: ExtractFiles@1
+  inputs:
+    archiveFilePatterns: '/Users/runner/work/_temp/fonts.zip'
+    destinationFolder: 'src'
+    cleanDestinationFolder: false
+    overwriteExistingFiles: true
+- task: NodeTool@0
+  inputs:
+    versionSpec: 'latest'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm install -g cordova
+    npm run build
+    cp -R build/ www/
+    cordova platform add android
+    cp /Users/runner/work/_temp/build.json .
+    cp /Users/runner/work/_temp/orakel_keystore.jks .
+    cp /Users/runner/Library/Android/sdk/build-tools/32.0.0/d8 /Users/runner/Library/Android/sdk/build-tools/32.0.0/dx
+    cp /Users/runner/Library/Android/sdk/build-tools/32.0.0/lib/d8.jar /Users/runner/Library/Android/sdk/build-tools/32.0.0/lib/dx.jar
+    cp /Users/runner/Library/Android/sdk/build-tools/33.0.1/d8 /Users/runner/Library/Android/sdk/build-tools/33.0.1/dx
+    cp /Users/runner/Library/Android/sdk/build-tools/33.0.1/lib/d8.jar /Users/runner/Library/Android/sdk/build-tools/33.0.1/lib/dx.jar
+    cordova build android --release --buildConfig=build.json -- --packageType=bundle
+  displayName: 'build Android'
+
+- task: CopyFiles@2
+  inputs:
+    contents: 'platforms/android/**/*.aab'
+    targetFolder: '$(build.artifactStagingDirectory)'
+  displayName: Copy .apk files to artifact staging directory
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(build.artifactStagingDirectory)'
+    artifactName: 'drop'
+    artifactType: 'container'
+  displayName: Publish Android artifacts
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+- script: |
+    cordova platform remove ios
+    cordova platform add ios@latest
+    cordova build ios --buildFlag="-UseModernBuildSystem=0" --codeSignIdentity="iPhone Developer" --developementTeam="Artsdatabanken" --packageType="app-store"
+
+  displayName: 'build Mac'
+
+- task: Xcode@5
+  inputs:
+    actions: 'build'
+    scheme: '$(scheme)'
+    sdk: '$(sdk)'
+    configuration: '$(configuration)'
+    xcWorkspacePath: 'platforms/ios/Artsorakel.xcworkspace'
+    xcodeVersion: '12'
+    signingOption: 'manual'
+    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+    provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
+    packageApp: true
+- task: CopyFiles@2
+  inputs:
+    contents: '**/*.ipa'
+    targetFolder: '$(build.artifactStagingDirectory)'
+  displayName: Copy .ipa files to artifact staging directory
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(build.artifactStagingDirectory)'
+    artifactName: 'drop'
+    publishLocation: 'Container'
+  displayName: Publish Iphone artifacts
