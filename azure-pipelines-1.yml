@@ -51,8 +51,7 @@ steps:
 
 - script: |
     npm install
-    npm install -g cordova
-    npm run build
+    npx react-native run-android --buildConfig=build.json -- --packageType=bundle
     cp -R build/ www/
     cordova platform add android
     cp /Users/runner/work/_temp/build.json .
@@ -61,7 +60,6 @@ steps:
     cp /Users/runner/Library/Android/sdk/build-tools/32.0.0/lib/d8.jar /Users/runner/Library/Android/sdk/build-tools/32.0.0/lib/dx.jar
     cp /Users/runner/Library/Android/sdk/build-tools/33.0.1/d8 /Users/runner/Library/Android/sdk/build-tools/33.0.1/dx
     cp /Users/runner/Library/Android/sdk/build-tools/33.0.1/lib/d8.jar /Users/runner/Library/Android/sdk/build-tools/33.0.1/lib/dx.jar
-    cordova build android --release --buildConfig=build.json -- --packageType=bundle
   displayName: 'build Android'
 
 - task: CopyFiles@2
