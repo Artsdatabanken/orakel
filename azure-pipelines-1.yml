@@ -17,6 +17,17 @@ variables:
   system.debug: true
 
 steps:
+- task: InstallAppleCertificate@2
+  inputs:
+    certSecureFile: 'artsorakel.p12'
+    certPwd: $(appCertificatePassword)
+    keychain: 'temp'
+    deleteCert: true
+    
+- task: InstallAppleProvisioningProfile@1
+  inputs:
+    provProfileSecureFile: 'ArtsorakelNewProvisionProfile.mobileprovision'
+    removeProfile: true
 
 - task: DownloadSecureFile@1
   inputs:
@@ -40,9 +51,7 @@ steps:
 
 - script: |
     npm install
-    npx react-native run-android --buildConfig=build.json --packageType=bundle
-    cp -R build/ www/
-    cordova platform add android
+    npx react-native run-android --buildConfig=build.json -- --packageType=bundle
     cp /Users/runner/work/_temp/build.json .
     cp /Users/runner/work/_temp/orakel_keystore.jks .
     cp /Users/runner/Library/Android/sdk/build-tools/32.0.0/d8 /Users/runner/Library/Android/sdk/build-tools/32.0.0/dx
@@ -63,4 +72,35 @@ steps:
     artifactName: 'drop'
     artifactType: 'container'
   displayName: Publish Android artifacts
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+- script: |
+    
 
+  displayName: 'build Mac'
+
+- task: Xcode@5
+  inputs:
+    actions: 'build'
+    scheme: '$(scheme)'
+    sdk: '$(sdk)'
+    configuration: '$(configuration)'
+    xcWorkspacePath: 'platforms/ios/Artsorakel.xcworkspace'
+    xcodeVersion: '12'
+    signingOption: 'manual'
+    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+    provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
+    packageApp: true
+- task: CopyFiles@2
+  inputs:
+    contents: '**/*.ipa'
+    targetFolder: '$(build.artifactStagingDirectory)'
+  displayName: Copy .ipa files to artifact staging directory
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(build.artifactStagingDirectory)'
+    artifactName: 'drop'
+    publishLocation: 'Container'
+  displayName: Publish Iphone artifacts
