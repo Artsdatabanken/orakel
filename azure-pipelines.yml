@@ -78,12 +78,12 @@ steps:
 #   displayName: Publish Android artifacts
 - task: NodeTool@0
   inputs:
-    versionSpec: 'latest'
+    versionSpec: '18.14'
   displayName: 'Install Node.js'
 
 - script: |
     npm install
-    # npx react-native
+    react-native bundle --platform ios --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
     # cordova platform remove ios
     # cordova platform add ios@latest
     # cordova build ios --buildFlag="-UseModernBuildSystem=0" --codeSignIdentity="iPhone Developer" --developementTeam="Artsdatabanken" --packageType="app-store"
