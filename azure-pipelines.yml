@@ -81,6 +81,9 @@ steps:
     versionSpec: '18.14'
   displayName: 'Install Node.js'
 
+- script: |
+    npm install
+
 - task: CocoaPods@0
   displayName: 'Install CocoaPods'
   inputs:
