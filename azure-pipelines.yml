@@ -83,6 +83,7 @@ steps:
 
 - script: |
     npm install
+    npm update
 
 - task: CocoaPods@0
   displayName: 'Install CocoaPods'
@@ -90,13 +91,13 @@ steps:
     workingDirectory: 'ios'
 
 - task: Xcode@5
-  displayName: 'Build IPA'
+  displayName: 'Brew IPA'
   inputs:
     actions: 'build'
     configuration: 'Release'
     sdk: 'iphoneos'
-    xcWorkspacePath: 'ios/MyProject.xcworkspace'
-    scheme: 'MyProject'
+    xcWorkspacePath: 'ios/Artsorakel.xcworkspace'
+    scheme: 'Artsorakel'
     packageApp: true
     exportPath: 'output'
     signingOption: 'manual'
