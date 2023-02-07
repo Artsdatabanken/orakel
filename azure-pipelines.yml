@@ -81,6 +81,19 @@ steps:
     versionSpec: '18.14'
   displayName: 'Install Node.js'
 
+# Cache v2
+# Cache files between runs.
+- task: Cache@2
+  inputs:
+    key: nodemodules # string. Required. Key. 
+    path: node_modules # string. Required. Path. 
+
+# Cache files between runs.
+- task: Cache@2
+  inputs:
+    key: pods # string. Required. Key. 
+    path: ios/Pods # string. Required. Path. 
+
 - script: |
     npm install
     npm update
