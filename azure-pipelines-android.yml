@@ -17,6 +17,11 @@ variables:
   system.debug: true
 
 steps:
+ - task: JavaToolInstaller@0
+    inputs:
+      versionSpec: '11'
+      jdkArchitectureOption: 'x64'
+      jdkSourceOption: 'PreInstalled'
 # - task: InstallAppleCertificate@2
 #   inputs:
 #     certSecureFile: 'artsorakel.p12'
@@ -81,31 +86,4 @@ steps:
     artifactName: 'drop'
     artifactType: 'container'
   displayName: Publish Android artifacts
-- task: NodeTool@0
-  inputs:
-    versionSpec: 'latest'
-  displayName: 'Install Node.js'
 
-- task: Xcode@5
-  inputs:
-    actions: 'build'
-    scheme: '$(scheme)'
-    sdk: '$(sdk)'
-    configuration: '$(configuration)'
-    xcWorkspacePath: 'platforms/ios/Artsorakel.xcworkspace'
-    xcodeVersion: '12'
-    signingOption: 'manual'
-    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
-    provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
-    packageApp: true
-- task: CopyFiles@2
-  inputs:
-    contents: '**/*.ipa'
-    targetFolder: '$(build.artifactStagingDirectory)'
-  displayName: Copy .ipa files to artifact staging directory
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: '$(build.artifactStagingDirectory)'
-    artifactName: 'drop'
-    publishLocation: 'Container'
-  displayName: Publish Iphone artifacts
