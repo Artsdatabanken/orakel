@@ -139,14 +139,14 @@ steps:
 #     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
 #     provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
 #     packageApp: true
-# - task: CopyFiles@2
-#   inputs:
-#     contents: '**/*.ipa'
-#     targetFolder: '$(build.artifactStagingDirectory)'
-#   displayName: Copy .ipa files to artifact staging directory
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     pathtoPublish: '$(build.artifactStagingDirectory)'
-#     artifactName: 'drop'
-#     publishLocation: 'Container'
-#   displayName: Publish Iphone artifacts
+- task: CopyFiles@2
+  inputs:
+    contents: '**/*.ipa'
+    targetFolder: '$(build.artifactStagingDirectory)'
+  displayName: Copy .ipa files to artifact staging directory
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(build.artifactStagingDirectory)'
+    artifactName: 'drop'
+    publishLocation: 'Container'
+  displayName: Publish Iphone artifacts
