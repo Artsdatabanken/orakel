@@ -1,6 +1,6 @@
 {
   "name": "Artsorakel",
-  "version": "2.02.01",
+  "version": "2.2.1",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
