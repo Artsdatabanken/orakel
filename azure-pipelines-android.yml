@@ -63,6 +63,7 @@ steps:
 
 - script: |
     npm install
+    git rev-list master --first-parent --count
     react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
     cd android
     cp /Users/runner/work/_temp/build.json .
