@@ -81,14 +81,34 @@ steps:
     versionSpec: '18.14'
   displayName: 'Install Node.js'
 
-- script: |
-    npm install
-    react-native bundle --platform ios --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
-    # cordova platform remove ios
-    # cordova platform add ios@latest
-    # cordova build ios --buildFlag="-UseModernBuildSystem=0" --codeSignIdentity="iPhone Developer" --developementTeam="Artsdatabanken" --packageType="app-store"
+- task: CocoaPods@0
+  displayName: 'Install CocoaPods'
+  inputs:
+    workingDirectory: 'ios'
 
-  displayName: 'build Mac'
+- task: Xcode@5
+  displayName: 'Build IPA'
+  inputs:
+    actions: 'build'
+    configuration: 'Release'
+    sdk: 'iphoneos'
+    xcWorkspacePath: 'ios/MyProject.xcworkspace'
+    scheme: 'MyProject'
+    packageApp: true
+    exportPath: 'output'
+    signingOption: 'manual'
+    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+    provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
+
+# - script: |
+#     npm install
+#     react-native bundle --platform ios --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
+#     react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle
+#     # cordova platform remove ios
+#     # cordova platform add ios@latest
+#     # cordova build ios --buildFlag="-UseModernBuildSystem=0" --codeSignIdentity="iPhone Developer" --developementTeam="Artsdatabanken" --packageType="app-store"
+
+#   displayName: 'build Mac'
 
 # - task: Xcode@5
 #   inputs:
