@@ -113,6 +113,7 @@ const App = () => {
     () => {
       if (loading) {
         controller.abort();
+        controller = new AbortController();
         return true;
       }
       else if (!!predictions.length) {
@@ -252,7 +253,7 @@ const App = () => {
     );
   }
 
-  const getId = async () => {
+  const getId = () => {
     hideView();
     setLoading(true);
 
@@ -268,36 +269,36 @@ const App = () => {
       );
     }
 
-    try {
-      res = await fetch('https://ai.artsdatabanken.no', {
-        signal: controller.signal,
-        method: 'POST',
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        body: formdata
+    fetch('https://ai.artsdatabanken.no', {
+      signal: controller.signal,
+      method: 'POST',
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      body: formdata
+    })
+      .then((res) => {
+        res.json().then(json => {
+          let preds = json.predictions.filter(
+            (pred) => pred.probability > 0.02
+          );
+
+          if (preds.length > 5 || preds.length === 0) {
+            preds = preds.slice(0, 5);
+          }
+
+          setPredictions(preds);
+          setLoading(false);
+          resultView();
+
+        });
       })
-
-      json = await res.json()
-
-      let preds = json.predictions.filter(
-        (pred) => pred.probability > 0.02
-      );
-
-      if (preds.length > 5 || preds.length === 0) {
-        preds = preds.slice(0, 5);
-      }
-
-      setPredictions(preds);
-      setLoading(false);
-      resultView();
-    }
-    catch {
-      setPredictions([]);
-      setLoading(false);
-      inputView();
-    }
-
+      .catch((e) => {
+        console.log(e);
+        setPredictions([]);
+        setLoading(false);
+        inputView();
+      })
   };
 
   const reset = () => {
@@ -344,6 +345,7 @@ const App = () => {
 
             <Pressable
               onPress={() => {
+                console.log("Click")
                 getId()
               }}
               style={[styles.idButton, theme.styles.button]}>
