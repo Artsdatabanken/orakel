@@ -97,7 +97,7 @@ steps:
      jarsign: true 
      jarsignerKeystoreFile: 'android/orakel_keystore.jks'
      jarsignerKeystorePassword: '$(jarsignerKeystorePassword)'
-     jarsignerKeystoreAlias: '$(yourKeystoreAlias)'
+     jarsignerKeystoreAlias: '$(keystoreAlias)'
      jarsignerKeyPassword: '$(jarsignerKeyPassword)'
      jarsignerArguments: '-sigalg SHA256withRSA -digestalg SHA-256'
      zipalign: true
