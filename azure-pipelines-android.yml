@@ -37,10 +37,10 @@ steps:
 # - task: DownloadSecureFile@1
 #   inputs:
 #     secureFile: 'fonts.zip'
-- task: DownloadSecureFile@1
-  inputs:
-    secureFile: 'build.json'
-  displayName: 'npm install and copy keystore'
+# - task: DownloadSecureFile@1
+#   inputs:
+#     secureFile: 'build.json'
+#   displayName: 'npm install and copy keystore'
   
 - task: DownloadSecureFile@1
   inputs:
@@ -95,7 +95,7 @@ steps:
   inputs:
      apkFiles: 'android/app/build/outputs/**/*.aab'
      jarsign: true 
-     jarsignerKeystoreFile: 'android/orakel_keystore.jks'
+     jarsignerKeystoreFile: 'orakel_keystore.jks'
      jarsignerKeystorePassword: '$(jarsignerKeystorePassword)'
      jarsignerKeystoreAlias: '$(keystoreAlias)'
      jarsignerKeyPassword: '$(jarsignerKeyPassword)'
