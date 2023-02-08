@@ -68,7 +68,7 @@ steps:
     npm install
     cd android
     cp /Users/runner/work/_temp/build.json .
-    cp /Users/runner/work/_temp/orakel_keystore.jks .
+    cp /Users/runner/work/_temp/orakel_keystore.jks ./app/
 #   npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
 #    cp /Users/runner/Library/Android/sdk/build-tools/32.0.0/d8 /Users/runner/Library/Android/sdk/build-tools/32.0.0/dx
 #    cp /Users/runner/Library/Android/sdk/build-tools/32.0.0/lib/d8.jar /Users/runner/Library/Android/sdk/build-tools/32.0.0/lib/dx.jar
