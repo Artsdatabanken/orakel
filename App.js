@@ -34,6 +34,7 @@ const light2 = "#eee"
 const dark1 = "#000"
 const dark2 = "#121212"
 
+let controller = new AbortController();
 
 const light_theme = StyleSheet.create({
   accent: {
@@ -107,16 +108,11 @@ const App = () => {
     "styles": (colorScheme === "dark" ? dark_theme : light_theme)
   });
 
-
-  let controller = new AbortController();
-
   const backHandler = BackHandler.addEventListener(
     'hardwareBackPress',
     () => {
       if (loading) {
         controller.abort();
-        setPredictions([]);
-        inputView();
         return true;
       }
       else if (!!predictions.length) {
@@ -256,7 +252,7 @@ const App = () => {
     );
   }
 
-  const getId = () => {
+  const getId = async () => {
     hideView();
     setLoading(true);
 
@@ -272,34 +268,36 @@ const App = () => {
       );
     }
 
-    fetch('https://ai.artsdatabanken.no', {
-      signal: controller.signal,
-      method: 'POST',
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      body: formdata
-    })
-      .then((res) => {
-        res.json().then(json => {
-          let preds = json.predictions.filter(
-            (pred) => pred.probability > 0.02
-          );
-
-          if (preds.length > 5 || preds.length === 0) {
-            preds = preds.slice(0, 5);
-          }
-
-          setPredictions(preds);
-          setLoading(false);
-          resultView();
-        });
-
+    try {
+      res = await fetch('https://ai.artsdatabanken.no', {
+        signal: controller.signal,
+        method: 'POST',
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        body: formdata
       })
-      .catch((e) => {
-        console.log(e);
-        inputView();
-      })
+
+      json = await res.json()
+
+      let preds = json.predictions.filter(
+        (pred) => pred.probability > 0.02
+      );
+
+      if (preds.length > 5 || preds.length === 0) {
+        preds = preds.slice(0, 5);
+      }
+
+      setPredictions(preds);
+      setLoading(false);
+      resultView();
+    }
+    catch {
+      setPredictions([]);
+      setLoading(false);
+      inputView();
+    }
+
   };
 
   const reset = () => {
