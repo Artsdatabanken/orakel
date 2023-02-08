@@ -91,7 +91,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    contents: 'platforms/android/**/*.aab'
+    contents: 'android/app/build/**/*.aab'
     targetFolder: '$(build.artifactStagingDirectory)'
   displayName: Copy .apk files to artifact staging directory
 
