@@ -91,6 +91,11 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'bundleRelease'
   displayName: Build .aab file
+  env:
+    JARSIGNERKEYSTOREPASSWORD: $(jarsignerKeystorePassword)
+    KEYSTOREALIAS: $(keystoreAlias)
+    JARSIGNERKEYPASSWORD: $(jarsignerKeyPassword)
+
 
 # - task: AndroidSigning@2
 #   inputs:
