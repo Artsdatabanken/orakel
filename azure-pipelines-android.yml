@@ -91,17 +91,17 @@ steps:
     tasks: 'bundleRelease'
   displayName: Build .aab file
 
-- task: AndroidSigning@2
-  inputs:
-     apkFiles: 'android/app/build/outputs/**/*.aab'
-     jarsign: true 
-     jarsignerKeystoreFile: 'orakel_keystore.jks'
-     jarsignerKeystorePassword: '$(jarsignerKeystorePassword)'
-     jarsignerKeystoreAlias: '$(keystoreAlias)'
-     jarsignerKeyPassword: '$(jarsignerKeyPassword)'
-     jarsignerArguments: '-sigalg SHA256withRSA -digestalg SHA-256'
-     zipalign: true
-  displayName: Sign .aab files
+# - task: AndroidSigning@2
+#   inputs:
+#      apkFiles: 'android/app/build/outputs/**/*.aab'
+#      jarsign: true 
+#      jarsignerKeystoreFile: 'orakel_keystore.jks'
+#      jarsignerKeystorePassword: '$(jarsignerKeystorePassword)'
+#      jarsignerKeystoreAlias: '$(keystoreAlias)'
+#      jarsignerKeyPassword: '$(jarsignerKeyPassword)'
+#      jarsignerArguments: '-sigalg SHA256withRSA -digestalg SHA-256'
+#      zipalign: true
+#   displayName: Sign .aab files
 
 
 - task: CopyFiles@2
