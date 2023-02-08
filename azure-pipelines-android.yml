@@ -40,6 +40,8 @@ steps:
 - task: DownloadSecureFile@1
   inputs:
     secureFile: 'build.json'
+  displayName: 'npm install and copy keystore'
+  
 - task: DownloadSecureFile@1
   inputs:
     secureFile: 'orakel_keystore.jks'
@@ -60,11 +62,11 @@ steps:
   inputs:
     key: nodemodules # string. Required. Key. 
     path: node_modules # string. Required. Path. 
+  displayName: 'Cache node modules'
 
 - script: |
     npm install
-    date +%s
-    react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
+#   npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
     cd android
     cp /Users/runner/work/_temp/build.json .
     cp /Users/runner/work/_temp/orakel_keystore.jks .
@@ -77,7 +79,7 @@ steps:
 #    # cp /Users/runner/Library/Android/sdk/build-tools/32.0.0/lib/d8.jar /Users/runner/Library/Android/sdk/build-tools/32.0.0/lib/dx.jar
 #    # cp /Users/runner/Library/Android/sdk/build-tools/33.0.1/d8 /Users/runner/Library/Android/sdk/build-tools/33.0.1/dx
 #    # cp /Users/runner/Library/Android/sdk/build-tools/33.0.1/lib/d8.jar /Users/runner/Library/Android/sdk/build-tools/33.0.1/lib/dx.jar
-  displayName: 'build Android'
+  displayName: 'npm install and copy keystore'
 
 - task: Gradle@2
   inputs:
@@ -86,14 +88,27 @@ steps:
     gradleOptions: '-Xmx3072m'
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
-    # tasks: 'assembleRelease'
     tasks: 'bundleRelease'
+  displayName: Build .aab file
+
+- task: AndroidSigning@2
+  inputs:
+     apkFiles: 'android/app/build/outputs/**/*.aab'
+     jarsign: true 
+     jarsignerKeystoreFile: 'android/orakel_keystore.jks'
+     jarsignerKeystorePassword: '$(jarsignerKeystorePassword)'
+     jarsignerKeystoreAlias: '$(yourKeystoreAlias)'
+     jarsignerKeyPassword: '$(jarsignerKeyPassword)'
+     jarsignerArguments: '-sigalg SHA256withRSA -digestalg SHA-256'
+     zipalign: true
+  displayName: Sign .aab files
+
 
 - task: CopyFiles@2
   inputs:
-    contents: 'android/app/build/**/*.aab'
+    contents: 'android/app/build/outputs/**/*.aab'
     targetFolder: '$(build.artifactStagingDirectory)'
-  displayName: Copy .apk files to artifact staging directory
+  displayName: Copy .aab files to artifact staging directory
 
 - task: PublishBuildArtifacts@1
   inputs:
