@@ -119,7 +119,7 @@ android {
 
     compileSdkVersion 33
 
-    namespace "no.artsdatabanken.orakel"
+    namespace "com.artsorakel"
     defaultConfig {
         applicationId "no.artsdatabanken.orakel"
         minSdkVersion 21
