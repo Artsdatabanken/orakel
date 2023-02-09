@@ -11,73 +11,80 @@ const CameraButtons = ({ setUncroppedImages, uncroppedImages, setCroppedImages, 
 
     return (
         <View style={styles.camera_buttons} >
-            <Pressable
-                onPress={() => {
-                    ImagePicker.openPicker({
-                        forceJpg: true,
-                        cropping: false,
-                        mediaType: "photo",
-                    }).then(image => {
-                        setUncroppedImages([...uncroppedImages, image])
-                        ImagePicker.openCropper({
-                            path: image["path"],
-                            cropperToolbarTitle: "Zoom inn på arten",
-                            showCropGuidelines: false,
-                            width: 500,
-                            height: 500,
-                            cropperStatusBarColor: "#000000",
-                            cropperToolbarColor: "#000000",
-                            cropperToolbarWidgetColor: "#FFFFFF",
-                            forceJpg: true
-                        }).then(img => {
-                            setUsedGallery(true)
-                            setCroppedImages([...croppedImages, img])
+            <View
+                accessible={true}
+                accessibilityLabel="Velg bilde fra galleri"
+            >
+                <Pressable
+                    onPress={() => {
+                        ImagePicker.openPicker({
+                            forceJpg: true,
+                            cropping: false,
+                            mediaType: "photo",
+                        }).then(image => {
+                            setUncroppedImages([...uncroppedImages, image])
+                            ImagePicker.openCropper({
+                                path: image["path"],
+                                cropperToolbarTitle: "Zoom inn på arten",
+                                showCropGuidelines: false,
+                                width: 500,
+                                height: 500,
+                                cropperStatusBarColor: "#000000",
+                                cropperToolbarColor: "#000000",
+                                cropperToolbarWidgetColor: "#FFFFFF",
+                                forceJpg: true
+                            }).then(img => {
+                                setUsedGallery(true)
+                                setCroppedImages([...croppedImages, img])
+                            });
                         });
-                    });
-                }}
-                style={[styles.button, styles.galleryButton, theme.styles.button]}>
+                    }}
+                    style={[styles.button, styles.galleryButton, theme.styles.button]}>
 
-                <SvgXml
-                    xml={`<svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M22,16V4A2,2 0 0,0 20,2H8A2,2 0 0,0 6,4V16A2,2 0 0,0 8,18H20A2,2 0 0,0 22,16M11,12L13.03,14.71L16,11L20,16H8M2,6V20A2,2 0 0,0 4,22H18V20H4V6" /></svg>`}
-                    style={[styles.galleryIcon, theme.styles.button]}
-                />
+                    <SvgXml
+                        xml={`<svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M22,16V4A2,2 0 0,0 20,2H8A2,2 0 0,0 6,4V16A2,2 0 0,0 8,18H20A2,2 0 0,0 22,16M11,12L13.03,14.71L16,11L20,16H8M2,6V20A2,2 0 0,0 4,22H18V20H4V6" /></svg>`}
+                        style={[styles.galleryIcon, theme.styles.button]}
+                    />
 
-            </Pressable>
-
-
-            <Pressable
-                onPress={() => {
-                    ImagePicker.openCamera({
-                        forceJpg: true,
-                        cropping: false,
-                        mediaType: "photo",
-                    }).then(image => {
-                        setUncroppedImages([...uncroppedImages, image])
-                        ImagePicker.openCropper({
-                            path: image["path"],
-                            cropperToolbarTitle: "Zoom inn på arten",
-                            showCropGuidelines: false,
-                            width: 500,
-                            height: 500,
-                            cropperStatusBarColor: "#000000",
-                            cropperToolbarColor: "#000000",
-                            cropperToolbarWidgetColor: "#FFFFFF",
-                            forceJpg: true
-                        }).then(img => {
-                            setUsedGallery(false)
-                            setCroppedImages([...croppedImages, img])
+                </Pressable>
+            </View>
+            <View
+                accessible={true}
+                accessibilityLabel="Ta nytt bilde"
+            >
+                <Pressable
+                    onPress={() => {
+                        ImagePicker.openCamera({
+                            forceJpg: true,
+                            cropping: false,
+                            mediaType: "photo",
+                        }).then(image => {
+                            setUncroppedImages([...uncroppedImages, image])
+                            ImagePicker.openCropper({
+                                path: image["path"],
+                                cropperToolbarTitle: "Zoom inn på arten",
+                                showCropGuidelines: false,
+                                width: 500,
+                                height: 500,
+                                cropperStatusBarColor: "#000000",
+                                cropperToolbarColor: "#000000",
+                                cropperToolbarWidgetColor: "#FFFFFF",
+                                forceJpg: true
+                            }).then(img => {
+                                setUsedGallery(false)
+                                setCroppedImages([...croppedImages, img])
+                            });
                         });
-                    });
-                }}
-                style={[styles.button, styles.cameraButton, theme.styles.button]}>
+                    }}
+                    style={[styles.button, styles.cameraButton, theme.styles.button]}>
 
-                <SvgXml
-                    xml={`<svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M4,4H7L9,2H15L17,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z" /></svg>`}
-                    style={[styles.cameraIcon, theme.styles.button]}
-                />
+                    <SvgXml
+                        xml={`<svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M4,4H7L9,2H15L17,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z" /></svg>`}
+                        style={[styles.cameraIcon, theme.styles.button]}
+                    />
 
-            </Pressable>
-
+                </Pressable>
+            </View>
             <View style={styles.button_balancer}>
 
             </View >
@@ -110,7 +117,7 @@ const styles = StyleSheet.create({
         elevation: 6,
     },
 
-    cameraButton : {
+    cameraButton: {
         width: .22 * vw,
         height: .22 * vw,
     },
