@@ -11,9 +11,9 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		38B36FD9F22ED7F6D68A47B2 /* libPods-Artsorakel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AF03CE63CEF62E1DADCB05E /* libPods-Artsorakel.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		C2F335DEC80295D3EBB03FBA /* libPods-Artsorakel-ArtsorakelTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F04D5EA41EB43EF0734E82D0 /* libPods-Artsorakel-ArtsorakelTests.a */; };
-		FADD1E3605D784AA8958B68C /* libPods-Artsorakel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC416A1A3AE22510E0ADBBF2 /* libPods-Artsorakel.a */; };
+		DE6517049250CFD0FD0AB90E /* libPods-Artsorakel-ArtsorakelTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AC437D1EB7F4D46DF6F82A /* libPods-Artsorakel-ArtsorakelTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,14 +36,14 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Artsorakel/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Artsorakel/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Artsorakel/main.m; sourceTree = "<group>"; };
-		1A9AAF34807D73352C7F5E19 /* Pods-Artsorakel-ArtsorakelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Artsorakel-ArtsorakelTests.debug.xcconfig"; path = "Target Support Files/Pods-Artsorakel-ArtsorakelTests/Pods-Artsorakel-ArtsorakelTests.debug.xcconfig"; sourceTree = "<group>"; };
-		40FAD7FA9F60B05430F02E47 /* Pods-Artsorakel-ArtsorakelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Artsorakel-ArtsorakelTests.release.xcconfig"; path = "Target Support Files/Pods-Artsorakel-ArtsorakelTests/Pods-Artsorakel-ArtsorakelTests.release.xcconfig"; sourceTree = "<group>"; };
-		4D9415C81211BF3DB576F8F2 /* Pods-Artsorakel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Artsorakel.debug.xcconfig"; path = "Target Support Files/Pods-Artsorakel/Pods-Artsorakel.debug.xcconfig"; sourceTree = "<group>"; };
-		6DDE9AD783B1673BD3B3E7AC /* Pods-Artsorakel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Artsorakel.release.xcconfig"; path = "Target Support Files/Pods-Artsorakel/Pods-Artsorakel.release.xcconfig"; sourceTree = "<group>"; };
+		2EA58D508A76447FCE9E79FD /* Pods-Artsorakel-ArtsorakelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Artsorakel-ArtsorakelTests.debug.xcconfig"; path = "Target Support Files/Pods-Artsorakel-ArtsorakelTests/Pods-Artsorakel-ArtsorakelTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Artsorakel/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		EC416A1A3AE22510E0ADBBF2 /* libPods-Artsorakel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Artsorakel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8AF03CE63CEF62E1DADCB05E /* libPods-Artsorakel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Artsorakel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B322DBB767E1586BB994AF69 /* Pods-Artsorakel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Artsorakel.debug.xcconfig"; path = "Target Support Files/Pods-Artsorakel/Pods-Artsorakel.debug.xcconfig"; sourceTree = "<group>"; };
+		C2312A8731D45374D3905722 /* Pods-Artsorakel-ArtsorakelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Artsorakel-ArtsorakelTests.release.xcconfig"; path = "Target Support Files/Pods-Artsorakel-ArtsorakelTests/Pods-Artsorakel-ArtsorakelTests.release.xcconfig"; sourceTree = "<group>"; };
+		C58A8E46BEA52909A3F5F9A1 /* Pods-Artsorakel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Artsorakel.release.xcconfig"; path = "Target Support Files/Pods-Artsorakel/Pods-Artsorakel.release.xcconfig"; sourceTree = "<group>"; };
+		D3AC437D1EB7F4D46DF6F82A /* libPods-Artsorakel-ArtsorakelTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Artsorakel-ArtsorakelTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F04D5EA41EB43EF0734E82D0 /* libPods-Artsorakel-ArtsorakelTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Artsorakel-ArtsorakelTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2F335DEC80295D3EBB03FBA /* libPods-Artsorakel-ArtsorakelTests.a in Frameworks */,
+				DE6517049250CFD0FD0AB90E /* libPods-Artsorakel-ArtsorakelTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FADD1E3605D784AA8958B68C /* libPods-Artsorakel.a in Frameworks */,
+				38B36FD9F22ED7F6D68A47B2 /* libPods-Artsorakel.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,8 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				EC416A1A3AE22510E0ADBBF2 /* libPods-Artsorakel.a */,
-				F04D5EA41EB43EF0734E82D0 /* libPods-Artsorakel-ArtsorakelTests.a */,
+				8AF03CE63CEF62E1DADCB05E /* libPods-Artsorakel.a */,
+				D3AC437D1EB7F4D46DF6F82A /* libPods-Artsorakel-ArtsorakelTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -140,10 +140,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4D9415C81211BF3DB576F8F2 /* Pods-Artsorakel.debug.xcconfig */,
-				6DDE9AD783B1673BD3B3E7AC /* Pods-Artsorakel.release.xcconfig */,
-				1A9AAF34807D73352C7F5E19 /* Pods-Artsorakel-ArtsorakelTests.debug.xcconfig */,
-				40FAD7FA9F60B05430F02E47 /* Pods-Artsorakel-ArtsorakelTests.release.xcconfig */,
+				B322DBB767E1586BB994AF69 /* Pods-Artsorakel.debug.xcconfig */,
+				C58A8E46BEA52909A3F5F9A1 /* Pods-Artsorakel.release.xcconfig */,
+				2EA58D508A76447FCE9E79FD /* Pods-Artsorakel-ArtsorakelTests.debug.xcconfig */,
+				C2312A8731D45374D3905722 /* Pods-Artsorakel-ArtsorakelTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -155,12 +155,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ArtsorakelTests" */;
 			buildPhases = (
-				55529435AC611779B8A10C7D /* [CP] Check Pods Manifest.lock */,
+				FDC1AA4CF8F02D75326D3AE9 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				900463302A39719F7465E0C0 /* [CP] Embed Pods Frameworks */,
-				035F711FB146EAC1A1302D73 /* [CP] Copy Pods Resources */,
+				3BCA746FEBE5779214A27BF2 /* [CP] Embed Pods Frameworks */,
+				DC0515D24BCA66F9DDFEACCD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -176,14 +176,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Artsorakel" */;
 			buildPhases = (
-				1B918DC7BD8C7766F1525FE0 /* [CP] Check Pods Manifest.lock */,
+				E75270A863CA59B1B040E01B /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				E76686A152441276A5EB5C8D /* [CP] Embed Pods Frameworks */,
-				52CBE217381238F1A8DEE96E /* [CP] Copy Pods Resources */,
+				03C1F1889C27384C6453EAEC /* [CP] Embed Pods Frameworks */,
+				577F1BF1245CDAB3DB14AC1A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -266,7 +266,58 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		035F711FB146EAC1A1302D73 /* [CP] Copy Pods Resources */ = {
+		03C1F1889C27384C6453EAEC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Artsorakel/Pods-Artsorakel-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Artsorakel/Pods-Artsorakel-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Artsorakel/Pods-Artsorakel-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3BCA746FEBE5779214A27BF2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Artsorakel-ArtsorakelTests/Pods-Artsorakel-ArtsorakelTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Artsorakel-ArtsorakelTests/Pods-Artsorakel-ArtsorakelTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Artsorakel-ArtsorakelTests/Pods-Artsorakel-ArtsorakelTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		577F1BF1245CDAB3DB14AC1A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Artsorakel/Pods-Artsorakel-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Artsorakel/Pods-Artsorakel-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Artsorakel/Pods-Artsorakel-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC0515D24BCA66F9DDFEACCD /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -283,7 +334,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Artsorakel-ArtsorakelTests/Pods-Artsorakel-ArtsorakelTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1B918DC7BD8C7766F1525FE0 /* [CP] Check Pods Manifest.lock */ = {
+		E75270A863CA59B1B040E01B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -305,24 +356,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		52CBE217381238F1A8DEE96E /* [CP] Copy Pods Resources */ = {
+		FD10A7F022414F080027D42C /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Artsorakel/Pods-Artsorakel-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			inputPaths = (
+			);
+			name = "Start Packager";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Artsorakel/Pods-Artsorakel-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Artsorakel/Pods-Artsorakel-resources.sh\"\n";
+			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		55529435AC611779B8A10C7D /* [CP] Check Pods Manifest.lock */ = {
+		FDC1AA4CF8F02D75326D3AE9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -342,59 +395,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		900463302A39719F7465E0C0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Artsorakel-ArtsorakelTests/Pods-Artsorakel-ArtsorakelTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Artsorakel-ArtsorakelTests/Pods-Artsorakel-ArtsorakelTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Artsorakel-ArtsorakelTests/Pods-Artsorakel-ArtsorakelTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E76686A152441276A5EB5C8D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Artsorakel/Pods-Artsorakel-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Artsorakel/Pods-Artsorakel-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Artsorakel/Pods-Artsorakel-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FD10A7F022414F080027D42C /* Start Packager */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Start Packager";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -430,7 +430,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1A9AAF34807D73352C7F5E19 /* Pods-Artsorakel-ArtsorakelTests.debug.xcconfig */;
+			baseConfigurationReference = 2EA58D508A76447FCE9E79FD /* Pods-Artsorakel-ArtsorakelTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -457,7 +457,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40FAD7FA9F60B05430F02E47 /* Pods-Artsorakel-ArtsorakelTests.release.xcconfig */;
+			baseConfigurationReference = C2312A8731D45374D3905722 /* Pods-Artsorakel-ArtsorakelTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -481,7 +481,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4D9415C81211BF3DB576F8F2 /* Pods-Artsorakel.debug.xcconfig */;
+			baseConfigurationReference = B322DBB767E1586BB994AF69 /* Pods-Artsorakel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -512,7 +512,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6DDE9AD783B1673BD3B3E7AC /* Pods-Artsorakel.release.xcconfig */;
+			baseConfigurationReference = C58A8E46BEA52909A3F5F9A1 /* Pods-Artsorakel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
