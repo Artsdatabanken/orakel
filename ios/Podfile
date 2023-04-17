@@ -21,7 +21,7 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'Artsorakel' do
+target 'artsorakel' do
   config = use_native_modules!
 
   # Flags change depending on the env values.
@@ -43,7 +43,7 @@ target 'Artsorakel' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'ArtsorakelTests' do
+  target 'artsorakelTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -58,4 +58,3 @@ target 'Artsorakel' do
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end
-

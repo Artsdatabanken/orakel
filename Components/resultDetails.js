@@ -16,10 +16,8 @@ function ResultDetails({ result, croppedImages, theme}) {
             <View style={styles.resultText}>
                 <Text style={[styles.vernacularName, theme.styles.content]}>
                     {result.taxon.vernacularName.charAt(0).toUpperCase() + result.taxon.vernacularName.slice(1)}</Text>
-                <Text style={[styles.scientific, theme.styles.content]}>
-                    {result.taxon.name.charAt(0)}
-                    &#8288;
-                    {result.taxon.name.slice(1)}</Text>
+                <Text selectable={true} style={[styles.scientific, theme.styles.content]}>
+                    {result.taxon.name}</Text>
                 <Text style={[styles.groupName, theme.styles.content]}>{result.taxon.groupName}</Text>
                 {result.taxon.groupName === "Sopper" && (
                     <Text style={[theme.styles.content_warning]}>ALDRI SPIS NOE PGA APPEN</Text>

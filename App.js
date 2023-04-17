@@ -345,7 +345,6 @@ const App = () => {
 
             <Pressable
               onPress={() => {
-                console.log("Click")
                 getId()
               }}
               style={[styles.idButton, theme.styles.button]}>
