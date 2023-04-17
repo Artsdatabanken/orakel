@@ -95,7 +95,7 @@ android {
 
     namespace "com.artsorakel"
     defaultConfig {
-        applicationId "com.artsorakel"
+        applicationId "no.artsdatabanken.orakel"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
