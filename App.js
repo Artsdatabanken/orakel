@@ -282,8 +282,11 @@ const App = () => {
           let preds = json.predictions.filter(
             (pred) => pred.probability > 0.02
           );
-
-          if (preds.length > 5 || preds.length === 0) {
+          
+          if(preds.length === 0) {
+            preds = json.predictions.slice(0, 5);
+          }
+          else if (preds.length > 5) {
             preds = preds.slice(0, 5);
           }
 
