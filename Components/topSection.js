@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         padding: .04 * vw,
         flexGrow: 1,
         minHeight: .2 * vh,
-        display: "flex"
+        display: "flex",
     },
 
     images: {

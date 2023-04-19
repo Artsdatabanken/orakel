@@ -8,7 +8,7 @@ trigger:
 - react_native
 
 pool:
-  vmImage: macOS-11
+  vmImage: macOS-latest
 
 variables:
   scheme: 'Artsorakel'

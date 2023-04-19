@@ -282,8 +282,8 @@ const App = () => {
           let preds = json.predictions.filter(
             (pred) => pred.probability > 0.02
           );
-          
-          if(preds.length === 0) {
+
+          if (preds.length === 0) {
             preds = json.predictions.slice(0, 5);
           }
           else if (preds.length > 5) {
@@ -424,6 +424,7 @@ const styles = StyleSheet.create({
     paddingVertical: .025 * vh,
     flexGrow: 0,
     minHeight: .05 * vh,
+    zIndex: 100
   },
 
   menu: {
