@@ -53,7 +53,7 @@
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>Med tilgang til kameraet kan Artsorakelet artsbestemme bilder du tar i appen</string>
-	<key>NSAppleMusicUsageDescription</key>
+	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Med tilgang til dine bilder kan Artsorakelet artsbestemme bilder du har tatt tidligere</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
