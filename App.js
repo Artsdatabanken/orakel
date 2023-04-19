@@ -336,7 +336,9 @@ const App = () => {
                     "content": <Menu theme={theme} setShowPage={setShowPage} toggleTheme={toggleTheme} reset={reset} />
                   }
                 );
-              }}>
+              }}
+              hitSlop={15}
+              >
               <SvgXml xml={`<svg><path fill="#fff" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>`} width="25" height="25" />
             </Pressable>
           </View>
