@@ -8,7 +8,8 @@ trigger:
 - react_native
 
 pool:
-  vmImage: macOS-11
+  vmImage: macOS-latest
+
 
 variables:
   scheme: 'Artsorakel'
@@ -81,6 +82,24 @@ steps:
     versionSpec: '18.14'
   displayName: 'Install Node.js'
 
+# Cache v2
+# Cache files between runs.
+- task: Cache@2
+  inputs:
+    key: nodemodules # string. Required. Key. 
+    path: node_modules # string. Required. Path. 
+
+# Cache files between runs.
+- task: Cache@2
+  inputs:
+    key: pods # string. Required. Key. 
+    path: ios/Pods # string. Required. Path. 
+
+- script: |
+    npm install
+    npm update
+
+
 - task: CocoaPods@0
   displayName: 'Install CocoaPods'
   inputs:
@@ -88,12 +107,13 @@ steps:
 
 - task: Xcode@5
   displayName: 'Build IPA'
+  
   inputs:
     actions: 'build'
     configuration: 'Release'
     sdk: 'iphoneos'
-    xcWorkspacePath: 'ios/MyProject.xcworkspace'
-    scheme: 'MyProject'
+    xcWorkspacePath: 'ios/Artsorakel.xcworkspace'
+    scheme: 'Artsorakel'
     packageApp: true
     exportPath: 'output'
     signingOption: 'manual'
@@ -122,14 +142,16 @@ steps:
 #     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
 #     provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
 #     packageApp: true
-# - task: CopyFiles@2
-#   inputs:
-#     contents: '**/*.ipa'
-#     targetFolder: '$(build.artifactStagingDirectory)'
-#   displayName: Copy .ipa files to artifact staging directory
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     pathtoPublish: '$(build.artifactStagingDirectory)'
-#     artifactName: 'drop'
-#     publishLocation: 'Container'
-#   displayName: Publish Iphone artifacts
+
+- task: CopyFiles@2
+  inputs:
+    contents: '**/*.ipa'
+    targetFolder: '$(build.artifactStagingDirectory)'
+  displayName: Copy .ipa files to artifact staging directory
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(build.artifactStagingDirectory)'
+    artifactName: 'drop'
+    publishLocation: 'Container'
+  displayName: Publish Iphone artifacts
+
