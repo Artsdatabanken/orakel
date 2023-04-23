@@ -10,6 +10,7 @@ trigger:
 pool:
   vmImage: macOS-latest
 
+
 variables:
   scheme: 'Artsorakel'
   sdk: 'iphoneos'
@@ -98,13 +99,15 @@ steps:
     npm install
     npm update
 
+
 - task: CocoaPods@0
   displayName: 'Install CocoaPods'
   inputs:
     workingDirectory: 'ios'
 
 - task: Xcode@5
-  displayName: 'Brew IPA'
+  displayName: 'Build IPA'
+  
   inputs:
     actions: 'build'
     configuration: 'Release'
@@ -139,6 +142,7 @@ steps:
 #     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
 #     provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
 #     packageApp: true
+
 - task: CopyFiles@2
   inputs:
     contents: '**/*.ipa'
@@ -150,3 +154,4 @@ steps:
     artifactName: 'drop'
     publishLocation: 'Container'
   displayName: Publish Iphone artifacts
+
