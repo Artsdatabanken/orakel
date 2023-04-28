@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, Dimensions, Pressable } from 'react-native';
 import { SvgXml } from 'react-native-svg';
+import ResultGauge from "./resultGauge";
+import TaxonImage from "./taxonImage";
 
 const vw = Dimensions.get('window').width;
 const vh = Dimensions.get('window').height;
@@ -57,7 +59,7 @@ function IdResult({ result, openResult, theme }) {
     <text
     y="24.25"
     x="22"
-  style="font-size:8.5;text-align:center;text-anchor:middle;fill:currentColor;fill-opacity:1;">${Math.round(percentage)}%</text>
+  style="font-size:8.5;text-align:center;text-anchor:middle;fill:currentColor;fill-opacity:1;">${Math.floor(percentage)}%</text>
 
 
 
@@ -73,7 +75,8 @@ function IdResult({ result, openResult, theme }) {
         <Pressable style={styles.result}
             onPress={() => openResultModal()}
         >
-            <SvgXml xml={xml} style={[styles.resultStats, theme.styles.content]} width={vw * .18} height={vw * .18}/>
+            <TaxonImage result={result} style={[styles.resultStats, theme.styles.content]}  />
+            {/* <SvgXml xml={xml} style={[styles.resultStats, theme.styles.content]} width={vw * .18} height={vw * .18} /> */}
             <View style={[styles.resultText]}>
                 <Text style={[styles.vernacularName, theme.styles.content]}>
                     {result.taxon.vernacularName.charAt(0).toUpperCase()}
@@ -87,6 +90,8 @@ function IdResult({ result, openResult, theme }) {
                 {result.taxon.groupName === "Sopper" && (
                     <Text style={[styles.warning, theme.styles.content_warning]}>ALDRI SPIS NOE PGA APPEN</Text>
                 )}
+                <ResultGauge result={result} theme={theme} />
+
             </View>
 
             <SvgXml style={[styles.chevron, theme.styles.content]} xml={`<svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>`} />
@@ -123,12 +128,13 @@ const styles = StyleSheet.create({
     },
 
     groupName: {
-        fontVariant: [ 'small-caps' ],
+        fontVariant: ['small-caps'],
         fontStyle: "normal",
     },
 
     result: {
         paddingVertical: .02 * vh,
+        marginVertical:  .01 * vh,
         flexDirection: "row",
         alignContent: "center",
         alignItems: "center",
@@ -147,6 +153,7 @@ const styles = StyleSheet.create({
     warning: {
         paddingHorizontal: .03 * vw,
         paddingVertical: 1,
+        marginVertical: .02 * vw,
     }
 
 }

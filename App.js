@@ -269,7 +269,7 @@ const App = () => {
       );
     }
 
-    fetch('https://ai.artsdatabanken.no', {
+    fetch('https://ai.test.artsdatabanken.no', {
       signal: controller.signal,
       method: 'POST',
       headers: {
