@@ -33,17 +33,25 @@ const groups = {
     "Armfotinger, pigghuder, kappedyr": `<svg width="50.982mm" height="50.982mm" version="1.1" viewBox="0 0 50.982 50.982" xmlns="http://www.w3.org/2000/svg"><circle cx="25.491" cy="25.491" r="25.491" fill="#808080" stop-color="#000000" stroke-width=".61291"/><path d="m33.179 5.96c-1.9224 1.4475-3.1534 3.6266-4.4691 5.602-0.8149 1.8762-1.1465 3.9975-2.5461 5.5823-1.2865 1.325-0.86686 4.3543-2.5515 4.8659-1.562-1.0991-3.3181-1.9856-5.0033-2.9077-2.6264-1.3018-5.5357-1.7374-8.3741-2.3321-1.4932-0.60123-4.8317-1.4166-3.9563 1.4026 2.2096 1.3649 4.8447 1.9634 7.1064 3.2786 1.8804 1.306 4.1106 1.9426 5.9953 3.2335 2.3037 0.58609 0.45781 1.8856-0.6769 2.4723-0.70332 0.56846-1.4278 0.55451-1.4979 1.4477-1.5199 0.3447-2.4132 2.258-3.9321 3.1918-1.337 1.3992-2.8629 2.5918-4.196 3.9421-1.5529 0.84238-1.1529 2.3611 0.59246 2.4522 1.7187-0.16307 3.2768-1.0942 4.667-2.089 1.4234-1.3127 3.3417-1.7721 4.6378-3.2087 1.3659-1.2339 3.0199-1.9655 4.4244-3.1541 1.4367 0.60566 1.2046 3.3399 1.4671 4.8647 0.01456 1.9778-2.2617 2.7758-3.1848 4.3164-1.0032 1.4066-2.5214 2.9017-2.3338 4.7502 1.3345 2.3109 2.9846-1.0382 4.2587-1.7652 1.3504-1.2419 3.5804-1.4373 4.4551-3.1185 1.1981-1.0417 1.3747-2.5728 1.5731-4.2097 0.35616-1.6078-0.16807-3.4405-0.41184-4.694-0.21641-0.598-0.35578-1.1639-0.65539-1.7644 1.6455 0.11168 3.4628 0.04367 5.2163-0.27492 2.0741-0.22497 4.1122-0.63297 6.153-1.0326 2.0845-0.76461 4.183-1.4857 6.1849-2.4392 1.3692-0.09217 4.0028-1.8742 1.5726-2.6218-1.8823 0.06171-3.8028 0.7825-5.5703 0.77598-1.6784 0.33028-3.6921 0.48128-5.2969 0.72589-1.1463-0.53689-1.5111 0.52144-2.4539-0.10999-0.59978 0.82162-1.3247-0.44488-2.0574 0.29379-0.79073-1.4253-0.86026 1.0424-1.9517-0.09758-0.62828 1.0285-1.0433-0.1873-1.9879 0.25554 0.20539-1.895 1.4992-3.6972 2.1566-5.4474 0.4401-2.015 1.3435-3.8859 1.6937-5.7029 0.4169-1.7149 1.4157-3.3187 1.96-5.0354 0.04575-0.74735 0.15487-1.9331-1.0073-1.4483z" fill="#fff"/></svg>`,
 }
 
+const getSize = (size) => {
+    return parseInt(Math.ceil(size/64) * 64)
+}
 
-function TaxonImage({ result }) {
-    if (result.taxon.picture) {
-        return <Image src={result.taxon.picture} style={{ borderRadius: vw * .18, width: vw * .18, height: vw * .18 }} />
+function TaxonImage({ result, size=.18*vw }) {
+
+    const style={ borderRadius: size, width: size, height: size }
+
+    if(result.taxon.picture) {
+        result.taxon.picture = result.taxon.picture.replace("128x128", getSize(size) + "x" + getSize(size))
+        // style={ borderRadius: width, width: width, height: height, marginLeft: .44 * vw - width / 2, marginTop: -.025*vw, marginBottom: .025*vw}
+        return <Image src={result.taxon.picture} style={style} />
     }
 
     if (groups[result.taxon.groupName]) {
-        return <SvgXml xml={groups[result.taxon.groupName]} style={{ width: vw * .18, height: vw * .18 }} width={vw * .18} height={vw * .18} />
+        return <SvgXml xml={groups[result.taxon.groupName]} style={style} width={Math.min(size, .25 * vw)} height={Math.min(size, .25 * vw)} />
     }
 
-    return <SvgXml xml={unknown} style={{ width: vw * .18, height: vw * .18 }} width={vw * .18} height={vw * .18} />;
+    return <SvgXml xml={unknown} style={style} width={Math.min(size, .25 * vw)} height={Math.min(size, .25 * vw)} />;
 }
 
 

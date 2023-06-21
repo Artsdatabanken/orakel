@@ -1,11 +1,33 @@
 import React from 'react';
-import { View, StyleSheet, Dimensions, Pressable } from 'react-native';
+import { View, StyleSheet, Dimensions, Pressable, PermissionsAndroid, Platform } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import ImagePicker from 'react-native-image-crop-picker';
+import { CameraRoll } from "@react-native-camera-roll/camera-roll";
 
 const vw = Dimensions.get('window').width;
 const vh = Dimensions.get('window').height;
 
+
+
+async function hasAndroidPermission() {
+    const permission = Platform.Version >= 33 ? PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES : PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE;
+
+    const hasPermission = await PermissionsAndroid.check(permission);
+    if (hasPermission) {
+        return true;
+    }
+
+    const status = await PermissionsAndroid.request(permission);
+    return status === 'granted';
+}
+
+
+async function savePicture(img) {
+    if (Platform.OS === "android" && !(await hasAndroidPermission())) {
+        return;
+    }
+    CameraRoll.save(img, {type: 'Photo', album: 'Artsorakel'})
+}
 
 const CameraButtons = ({ setUncroppedImages, uncroppedImages, setCroppedImages, croppedImages, setUsedGallery, theme }) => {
 
@@ -71,6 +93,7 @@ const CameraButtons = ({ setUncroppedImages, uncroppedImages, setCroppedImages, 
                                 cropperToolbarWidgetColor: "#FFFFFF",
                                 forceJpg: true
                             }).then(img => {
+                                savePicture(img.path)
                                 setUsedGallery(false)
                                 setCroppedImages([...croppedImages, img])
                             });
