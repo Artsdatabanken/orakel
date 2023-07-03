@@ -21,7 +21,7 @@ function Manual({ theme }) {
     return (
         <ScrollView style={[styles.content]}>
 
-            <Text style={[styles.introText, theme.styles.content]}>Artsdatabankens Artsorakel prøver å artsbestemme bilder ved hjelp av maskinlæring. Artsorakelet kjenner kun viltlevende arter (ingen husdyr, hageplanter, osv.) og gir svar på artsnivå (og noen underarter).</Text>
+            <Text style={[styles.introText, theme.styles.content]}>Artsdatabankens Artsorakel prøver å artsbestemme bilder ved hjelp av maskinlæring. Artsorakelet kjenner kun viltlevende arter (ingen mennesker, husdyr, rene hageplanter, osv.) og gir svar på artsnivå (og noen underarter).</Text>
 
             <View style={[styles.helpItem]}>
                 <SvgXml style={[theme.styles.content]} xml={tulip} width={vw * .12} height={vw * .12} />
@@ -45,7 +45,7 @@ function Manual({ theme }) {
 
             <View style={[styles.helpItem]}>
                 <SvgXml style={[theme.styles.content]} xml={brain} width={vw * .12} height={vw * .12} />
-                <Text style={[styles.helpText, theme.styles.content]}>Nå er det din tur til å bruke hodet! En høy treffprosent i Artsorakelet garanterer ikke at resultatet er riktig. Artsorakelet prøver å matche bildene dine med bilder det har sett før, men mange arter har det sett enten få, dårlige eller ingen bilder av! Husdyr, hageplanter og mennesker har det ikke blitt trent med i det hele tatt.</Text>
+                <Text style={[styles.helpText, theme.styles.content]}>Nå er det din tur til å bruke hodet! En høy treffprosent i Artsorakelet garanterer ikke at resultatet er riktig. Artsorakelet prøver å matche bildene dine med bilder det har sett før, men mange arter har det sett enten få, dårlige eller ingen bilder av! Husdyr, rene hageplanter og mennesker har det ikke blitt trent med i det hele tatt.</Text>
             </View>
 
             <Text style={[styles.text, theme.styles.content]}>Trykker du på et resultat kan du lese mer om det, klikke videre og se mer om arten på Artsdatabankens nettside. Vi anbefaler deg å være litt detektiv i denne delen av prosessen. Let opp informasjon om de foreslåtte artene eller diskuter resultatet med andre som har kunnskap. Er du sikker på at du har et riktig resultat kan du rapportere funnet i Artsobservasjoner.no. Vennligst ikke rapporter funn kun basert på Artsorakelets svar.</Text>
