@@ -36,7 +36,7 @@ const TopSection = ({ images, editImage, repeatLastAction, loading }) => {
                 <Text style={styles.title}>Ta eller velg et bilde for å starte</Text>
             }
             {!images.length &&
-                <Text style={styles.info}>Artsorakelet kjenner ikke igjen mennesker, husdyr, hageplanter, osv.</Text>
+                <Text style={styles.info}>Artsorakelet kjenner igjen viltlevende arter (ikke mennesker, husdyr, osv).</Text>
             }
         </View>
     )

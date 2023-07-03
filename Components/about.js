@@ -93,7 +93,7 @@ function About({theme}) {
 
             <Text style={[styles.introText, theme.styles.content]}>Artsorakelet er utviklet av Artsdatabanken i samarbeid med Naturalis Biodiversity Center. Appen prøver å artsbestemme bilder ved hjelp av maskinlæring.</Text>
 
-            <Text style={[styles.text, theme.styles.content]}>Gjenkjenningsmodellen trenes hos Naturalis Biodiversity Center, med bilder som er offentlig tilgjengelig på artsobservasjoner.no. Når appen brukes sier modellen hva det ligner mest på av artene den har blitt trent med. Dette innebærer at den kun kan foreslå arter som finnes i Norsk natur og som har blitt rapportert med bilder. Den kjenner altså kun viltlevende arter (ingen husdyr, hageplanter, osv.) og gir svar på artsnivå (og noen underarter).</Text>
+            <Text style={[styles.text, theme.styles.content]}>Gjenkjenningsmodellen trenes hos Naturalis Biodiversity Center, med bilder som er offentlig tilgjengelig på artsobservasjoner.no. Når appen brukes sier modellen hva det ligner mest på av artene den har blitt trent med. Dette innebærer at den kun kan foreslå arter som finnes i Norsk natur og som har blitt rapportert med bilder. Den kjenner altså kun viltlevende arter (ingen mennesker, husdyr, rene hageplanter, osv.) og gir svar på artsnivå (og noen underarter).</Text>
 
             <Text style={[styles.text, theme.styles.content]}>Bilder sendes til serveren til gjenkjenning. Bilder og brukerinformasjon blir ikke tilgjengelige for Artsdatabanken eller andre.</Text>
 
