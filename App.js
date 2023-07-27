@@ -47,6 +47,10 @@ const light_theme = StyleSheet.create({
     color: dark2
   },
 
+  content_text: {
+    color: dark2
+  },
+
   content_warning: {
     backgroundColor: danger,
     color: light1
@@ -71,6 +75,10 @@ const dark_theme = StyleSheet.create({
 
   content: {
     backgroundColor: accent_dark1,
+    color: light2
+  },
+
+  content_text: {
     color: light2
   },
 
@@ -269,7 +277,7 @@ const App = () => {
       );
     }
 
-    fetch('https://ai.artsdatabanken.no', {
+    fetch('https://ai.test.artsdatabanken.no', {
       signal: controller.signal,
       method: 'POST',
       headers: {
@@ -338,7 +346,7 @@ const App = () => {
                 );
               }}
               hitSlop={15}
-              >
+            >
               <SvgXml xml={`<svg><path fill="#fff" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>`} width="25" height="25" />
             </Pressable>
           </View>
@@ -377,7 +385,7 @@ const App = () => {
 
             {!!predictions.length && !!croppedImages.length &&
               predictions.map((pred, i) => (
-                <IdResult result={pred} openResult={openResult} key={i} theme={theme} />
+                <IdResult result={pred} openResult={openResult} ranking={i} key={i} theme={theme} />
               ))
             }
 

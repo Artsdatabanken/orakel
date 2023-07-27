@@ -1,28 +1,34 @@
 import React from "react";
-import { View, Text, StyleSheet, Dimensions, Pressable, Linking } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Pressable, Linking, Image } from 'react-native';
 import ReportButton from "./reportButton";
+import TaxonImage from "./taxonImage";
 
 const vw = Dimensions.get('window').width;
 const vh = Dimensions.get('window').height;
 
 
-
-function ResultDetails({ result, croppedImages, theme}) {
+function ResultDetails({ result, croppedImages, theme }) {
     const percentage = result.probability * 100;
 
     return (
-        <View style={styles.result}
-        >
+        <View style={styles.result}>
+            <View style={styles.headerImage}>
+                <TaxonImage result={result} size={.5 * vw} style={{ marginLeft: .5 * vw }} />
+            </View>
+
             <View style={styles.resultText}>
-                <Text style={[styles.vernacularName, theme.styles.content]}>
+
+                <Text style={[styles.vernacularName, theme.styles.content_text]}>
                     {result.taxon.vernacularName.charAt(0).toUpperCase() + result.taxon.vernacularName.slice(1)}</Text>
-                <Text selectable={true} style={[styles.scientific, theme.styles.content]}>
+                <Text selectable={true} style={[styles.scientific, theme.styles.content_text]}>
                     {result.taxon.name}</Text>
-                <Text style={[styles.groupName, theme.styles.content]}>{result.taxon.groupName}</Text>
+                <Text style={[styles.groupName, theme.styles.content_text]}>{result.taxon.groupName}</Text>
                 {result.taxon.groupName === "Sopper" && (
                     <Text style={[theme.styles.content_warning]}>ALDRI SPIS NOE PGA APPEN</Text>
                 )}
             </View>
+
+
 
             <Text style={[styles.infoText, theme.styles.content]}>
                 Artsorakelet gir {Math.round(percentage)} % treff for {result.taxon.vernacularName} basert
@@ -30,17 +36,19 @@ function ResultDetails({ result, croppedImages, theme}) {
                 særlig hvis du skal rapportere funnet.
             </Text>
 
+
+
             <View style={styles.actionButtons}>
                 <Pressable
                     style={[styles.button, theme.styles.button]}
-                    onPress={ ()=>{ Linking.openURL(result.taxon.infoUrl)}}
-                    >
+                    onPress={() => { Linking.openURL(result.taxon.infoUrl) }}
+                >
                     <Text style={[styles.buttonText, theme.styles.button]}>Om arten</Text>
                 </Pressable>
 
 
-                <ReportButton croppedImages={croppedImages} reportResult={result} styles={styles} theme={theme}/>
-{/* 
+                <ReportButton croppedImages={croppedImages} reportResult={result} styles={styles} theme={theme} />
+                {/* 
                 <Pressable
                     style={styles.idButton}>
                     <Text style={styles.idButtonText}>Rapporter funn</Text>
@@ -86,7 +94,7 @@ const styles = StyleSheet.create({
     result: {
         flexDirection: "column",
         flex: 1,
-        paddingHorizontal: .06 *vw,
+        paddingHorizontal: .06 * vw,
         paddingBottom: .06 * vw,
     },
 
@@ -96,6 +104,12 @@ const styles = StyleSheet.create({
     },
 
     actionButtons: {
+        flexDirection: "row",
+        flexGrow: 0,
+        justifyContent: "space-around",
+    },
+
+    headerImage: {
         flexDirection: "row",
         flexGrow: 0,
         justifyContent: "space-around",
