@@ -267,8 +267,9 @@ const App = () => {
 
     let formdata = new FormData();
 
-    for (let image of croppedImages) {
+    formdata.append('application', 'Artsorakel 3.1.1')
 
+    for (let image of croppedImages) {
       formdata.append('image', {
         uri: image.path,
         type: image.mime,
@@ -287,7 +288,8 @@ const App = () => {
     })
       .then((res) => {
         res.json().then(json => {
-          let preds = json.predictions.filter(
+
+          let preds = json.predictions[0].taxa.items.filter(
             (pred) => pred.probability > 0.02
           );
 

@@ -19,11 +19,11 @@ function ResultDetails({ result, croppedImages, theme }) {
             <View style={styles.resultText}>
 
                 <Text style={[styles.vernacularName, theme.styles.content_text]}>
-                    {result.taxon.vernacularName.charAt(0).toUpperCase() + result.taxon.vernacularName.slice(1)}</Text>
+                    {result.vernacularName.charAt(0).toUpperCase() + result.vernacularName.slice(1)}</Text>
                 <Text selectable={true} style={[styles.scientific, theme.styles.content_text]}>
-                    {result.taxon.name}</Text>
-                <Text style={[styles.groupName, theme.styles.content_text]}>{result.taxon.groupName}</Text>
-                {result.taxon.groupName === "Sopper" && (
+                    {result.name}</Text>
+                <Text style={[styles.groupName, theme.styles.content_text]}>{result.groupName}</Text>
+                {result.groupName === "Sopper" && (
                     <Text style={[theme.styles.content_warning]}>ALDRI SPIS NOE PGA APPEN</Text>
                 )}
             </View>
@@ -31,7 +31,7 @@ function ResultDetails({ result, croppedImages, theme }) {
 
 
             <Text style={[styles.infoText, theme.styles.content]}>
-                Artsorakelet gir {Math.round(percentage)} % treff for {result.taxon.vernacularName} basert
+                Artsorakelet gir {Math.round(percentage)} % treff for {result.vernacularName} basert
                 på {croppedImages.length > 1 ? "bildene dine" : "bildet ditt"}. Det er ikke sagt at det stemmer, du må selv kontrollere at det er riktig,
                 særlig hvis du skal rapportere funnet.
             </Text>
@@ -41,7 +41,7 @@ function ResultDetails({ result, croppedImages, theme }) {
             <View style={styles.actionButtons}>
                 <Pressable
                     style={[styles.button, theme.styles.button]}
-                    onPress={() => { Linking.openURL(result.taxon.infoUrl) }}
+                    onPress={() => { Linking.openURL(result.infoUrl) }}
                 >
                     <Text style={[styles.buttonText, theme.styles.button]}>Om arten</Text>
                 </Pressable>
