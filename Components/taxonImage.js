@@ -41,14 +41,14 @@ function TaxonImage({ result, size=.18*vw }) {
 
     const style={ borderRadius: size, width: size, height: size }
 
-    if(result.taxon.picture) {
-        result.taxon.picture = result.taxon.picture.replace("128x128", getSize(size) + "x" + getSize(size))
+    if(result.picture) {
+        result.picture = result.picture.replace("128x128", getSize(size) + "x" + getSize(size))
         // style={ borderRadius: width, width: width, height: height, marginLeft: .44 * vw - width / 2, marginTop: -.025*vw, marginBottom: .025*vw}
-        return <Image src={result.taxon.picture} style={style} />
+        return <Image src={result.picture} style={style} />
     }
 
-    if (groups[result.taxon.groupName]) {
-        return <SvgXml xml={groups[result.taxon.groupName]} style={style} width={Math.min(size, .25 * vw)} height={Math.min(size, .25 * vw)} />
+    if (groups[result.groupName]) {
+        return <SvgXml xml={groups[result.groupName]} style={style} width={Math.min(size, .25 * vw)} height={Math.min(size, .25 * vw)} />
     }
 
     return <SvgXml xml={unknown} style={style} width={Math.min(size, .25 * vw)} height={Math.min(size, .25 * vw)} />;

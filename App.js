@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import {
   View, Text, StyleSheet, Animated, StatusBar, Pressable, SafeAreaView,
-  Dimensions, BackHandler, Appearance
+  Dimensions, BackHandler, Appearance, Platform
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -267,8 +267,9 @@ const App = () => {
 
     let formdata = new FormData();
 
-    for (let image of croppedImages) {
+    formdata.append('application', 'Artsorakel 3.1.1 (' + Platform.OS + ')')
 
+    for (let image of croppedImages) {
       formdata.append('image', {
         uri: image.path,
         type: image.mime,
@@ -287,7 +288,8 @@ const App = () => {
     })
       .then((res) => {
         res.json().then(json => {
-          let preds = json.predictions.filter(
+
+          let preds = json.predictions[0].taxa.items.filter(
             (pred) => pred.probability > 0.02
           );
 
