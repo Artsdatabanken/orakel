@@ -56,6 +56,7 @@ const CameraButtons = ({ setUncroppedImages, uncroppedImages, setCroppedImages, 
                                 cropperToolbarWidgetColor: "#FFFFFF",
                                 forceJpg: true
                             }).then(img => {
+                                savePicture(img.path)
                                 setUsedGallery(true)
                                 setCroppedImages([...croppedImages, img])
                             });
