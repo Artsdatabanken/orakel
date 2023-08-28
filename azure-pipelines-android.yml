@@ -83,7 +83,7 @@ steps:
 
   - task: Gradle@2
     inputs:
-      workingDirectory: "android"
+      workingDirectory: "android/app"
       gradleWrapperFile: "android/gradlew"
       gradleOptions: "-Xmx3072m"
       publishJUnitResults: false
