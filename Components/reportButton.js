@@ -44,7 +44,7 @@ const ReportButton = ({ reportResult, croppedImages, styles, theme }) => {
         let platform = `platform%3Dapp`;
         let reporttype = `Report?`;
 
-        reporttype = `?scientificname=${reportResult.taxon.scientificNameID}%26`;
+        reporttype = `?scientificname=${reportResult.scientificNameID}%26`;
         let url = "https://mobil.artsobservasjoner.no/#/orakel";
 
         return url + reporttype + from + platform + percentage;

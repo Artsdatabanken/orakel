@@ -21,15 +21,15 @@ function IdResult({ result, openResult, theme, ranking }) {
             {/* <SvgXml xml={xml} style={[styles.resultStats, theme.styles.content]} width={vw * .18} height={vw * .18} /> */}
             <View style={[styles.resultText]}>
                 <Text style={[styles.vernacularName, theme.styles.content]}>
-                    {result.taxon.vernacularName.charAt(0).toUpperCase()}
+                    {result.vernacularName.charAt(0).toUpperCase()}
                     &#8288;
-                    {result.taxon.vernacularName.slice(1)}</Text>
+                    {result.vernacularName.slice(1)}</Text>
                 <Text style={[styles.scientific, theme.styles.content]}>
-                    {result.taxon.name.charAt(0)}
+                    {result.name.charAt(0)}
                     &#8288;
-                    {result.taxon.name.slice(1)}</Text>
-                <Text style={[styles.groupName, theme.styles.content]}>{result.taxon.groupName}</Text>
-                {result.taxon.groupName === "Sopper" && (
+                    {result.name.slice(1)}</Text>
+                <Text style={[styles.groupName, theme.styles.content]}>{result.groupName}</Text>
+                {result.groupName === "Sopper" && (
                     <Text style={[styles.warning, theme.styles.content_warning]}>ALDRI SPIS NOE PGA APPEN</Text>
                 )}
                 <ResultGauge result={result} theme={theme} ranking={ranking} />
