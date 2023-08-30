@@ -12,7 +12,8 @@ import {
 } from "react-native";
 import { SvgXml } from "react-native-svg";
 import ImagePicker from "react-native-image-crop-picker";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import RNFS from "react-native-fs";
 
 import HelpItem from "./Components/helpItem";
 import TopSection from "./Components/topSection";
@@ -122,8 +123,18 @@ const App = () => {
     styles: colorScheme === "dark" ? dark_theme : light_theme,
   });
 
+  const cleanUp = () => {
+    RNFS.unlink(RNFS.ExternalDirectoryPath).catch((err) => {});
+    RNFS.unlink(RNFS.CachesDirectoryPath).catch((err) => {});
+    console.log("Cleaned up");
+  };
+
+  if (!croppedImages.length && !uncroppedImages.length) {
+    cleanUp();
+  }
+
   const toggleTheme = () => {
-    AsyncStorage.setItem('colorScheme', theme.opposite);
+    AsyncStorage.setItem("colorScheme", theme.opposite);
     setTheme({
       name: theme.opposite,
       opposite: theme.name,
@@ -133,9 +144,9 @@ const App = () => {
 
   const intTheme = async () => {
     try {
-      const value = await AsyncStorage.getItem('colorScheme');
+      const value = await AsyncStorage.getItem("colorScheme");
       if (value === theme.opposite) {
-        toggleTheme()
+        toggleTheme();
       }
     } catch (e) {
       // error reading value
@@ -279,7 +290,7 @@ const App = () => {
       });
     }
 
-    fetch("https://ai.test.artsdatabanken.no", {
+    fetch("https://ai.artsdatabanken.no", {
       signal: controller.signal,
       method: "POST",
       headers: {
