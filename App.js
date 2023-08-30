@@ -130,7 +130,7 @@ const App = () => {
     console.log("Cleaned up");
   };
 
-  if (!croppedImages.length && !uncroppedImages.length) {
+  if (Platform.OS.toLowerCase() === "android" && !croppedImages.length && !uncroppedImages.length) {
     cleanUp();
   }
 
