@@ -98,7 +98,7 @@ function About({ theme }) {
         height={vh * 0.035}
       />
 
-      <Text style={[styles.version, theme.styles.content]} onPress={cleanUp}>
+      <Text style={[styles.version, theme.styles.content]}>
         Versjon {version}
       </Text>
 
