@@ -18,7 +18,7 @@ variables:
 steps:
   - task: InstallAppleCertificate@2
     inputs:
-      certSecureFile: "artsorakel.p12"
+      certSecureFile: "ArtsdatabankenDistCert2025.p12"
       certPwd: $(appCertificatePassword)
       keychain: "temp"
       deleteCert: true
