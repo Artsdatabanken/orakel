@@ -1,3 +1,4 @@
+
 # Node.js
 # Build a general Node.js project with npm.
 # Add steps that analyze code, save build artifacts, deploy, and more:
@@ -64,8 +65,8 @@ steps:
   #   displayName: "Cache node modules"
 
   - script: |
-      echo $(JARSIGNERKEYSTOREPASSWORD)
-      echo $(JARSIGNERKEYPASSWORD)
+      set pedro = $(JARSIGNERKEYSTOREPASSWORD) + ' - ' + $(JARSIGNERKEYPASSWORD)
+      echo pedro
       npm install
       cd android
       cp /Users/runner/work/_temp/build.json .
