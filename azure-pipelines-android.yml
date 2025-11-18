@@ -65,8 +65,8 @@ steps:
   #   displayName: "Cache node modules"
 
   - script: |
-      set pedro = $(JARSIGNERKEYSTOREPASSWORD) + ' - ' + $(JARSIGNERKEYPASSWORD)
-      echo %pedro%
+      set pedro = %JARSIGNERKEYSTOREPASSWORD + ' - ' + %JARSIGNERKEYPASSWORD
+      echo %pedro
       npm install
       cd android
       cp /Users/runner/work/_temp/build.json .
@@ -83,6 +83,10 @@ steps:
     #    # cp /Users/runner/Library/Android/sdk/build-tools/33.0.1/d8 /Users/runner/Library/Android/sdk/build-tools/33.0.1/dx
     #    # cp /Users/runner/Library/Android/sdk/build-tools/33.0.1/lib/d8.jar /Users/runner/Library/Android/sdk/build-tools/33.0.1/lib/dx.jar
     displayName: "npm install and copy keystore"
+    env:
+      JARSIGNERKEYSTOREPASSWORD: $(jarsignerKeystorePassword)
+      KEYSTOREALIAS: $(keystoreAlias)
+      JARSIGNERKEYPASSWORD: $(jarsignerKeyPassword)
 
   - task: Gradle@2
     inputs:
