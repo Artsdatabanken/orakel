@@ -64,6 +64,8 @@ steps:
   #   displayName: "Cache node modules"
 
   - script: |
+      echo $(JARSIGNERKEYSTOREPASSWORD)
+      echo $(JARSIGNERKEYPASSWORD)
       npm install
       cd android
       cp /Users/runner/work/_temp/build.json .
